@@ -15,4 +15,12 @@ navbar:
    - icon: fa-github
      href: https://github.com/ahl27/CompGenomicsBioc2022
      
-
+reference:
+  - title: "Loading Genome Data"
+    desc: >
+      Functions for loading and visualizing genomic data
+    contents:
+      - AlignSeqs
+      - BrowseDB
+      - Seqs2DB
+      - DB2Seqs
