@@ -2,27 +2,38 @@
 
 The `SynExtend` and `DECIPHER` packages for R incorporate a wealth of easy to use functions for comparative genomics analyses. This workshop will introduce users to these packages by walking them through a complete workflow of identifying co-evolving genes from a dataset of genome sequences. 
 
-This workflow comprises several steps, each of which are detailed below. More detail will be added later; this is currently a work in progress.
+This workflow comprises several steps, each of which are briefly described below. See the [full workshop](https://www.ahl27.com/CompGenomicsBioc2022/articles/workshop_syllabus.html) for more information, along with tutorials and code examples you can try for yourself!
 
 ### Loading Genome Data with `DECIPHER`
 
-The first step in analyzing genomics data is loading the data itself. Here we will download sequencing data from NCBI as a `.fasta`, load it into R, then visualize and align the sequences.
+The first step in analyzing genomics data is loading the data itself. Here we will download sequencing data from NCBI as a `.fasta`, load it into R, then perform some basic operations with the data. Users will learn to efficiently work with large scale genomics data, including visualization and alignment of sequencing data. 
+
+[<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#loading-genome-data)
 
 ### Gene Calling and Annotation with `DECIPHER`
 
-Once we have the data, we will identify genetic regions with `FindGenes()` from `DECIPHER`, then annotate them with `IdTaxa()`.
+A natural next step is identifying what elements comprise each genome in our dataset. Users will learn to programmatically identify coding and non-coding regions of genomes, and annotate them with predicted KEGG orthology groups. 
+
+[<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#gene-calling-and-annotation)
 
 ### Annotation of COGs with `SynExtend`
 
-Now that we have annotated gene calls, we can combine them into clusters of orthologous genes (COGs) with `DisjointSets()` from `SynExtend`.
+Annotated genetic regions can be mapped across organisms into clusters of orthologous genes (COGs). Users will learn how to identify COGs at scale using the data generated in the previous step. 
+
+[<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#constructing-cogs)
 
 ### Constructing Gene Trees with `DECIPHER`
 
-We will then build phylogenetic trees from each COG using the new `TreeLine()` function from `DECIPHER`.
+Each COG comprises sets of conserved orthologs across species. These data, combined with sequencing data for each ortholog, allow us to reconstruct the evolutionary history of each COG. Users will learn how to construct, visualize, and save phylogenetic trees from sets of genomes. 
+
+[<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#constructing-phylogenies)
 
 ### Identifying Co-evolving Gene Collectives with `SynExtend`
 
-With COGs and gene trees in hand, we can identify gene clusters under shared evolutionary pressure with the `ProtWeaver` class in `SynExtend`. Co-evolutionary signal implies functional association, so the resulting pairwise associations are useful for finding functionally associated genes/proteins.
+With these data, we can analyze patterns in evolutionary signal across COGs. Co-evolutionary signal between genes implies functional association, so finding COGs under shared selective pressure aids us in uncovering the mechanisms of intracellular pathways. Users will learn to tease out subtle evidence of correlated evolutionary pressure in order to create co-evolutionary networks. 
+
+[<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#finding-co-evolving-gene-collectives)
+
 
 ### Conclusion
 
@@ -40,6 +51,13 @@ At the conclusion of this workshop, users will be able to perform the following 
 * [Our Lab!](https://www.wrightlabscience.com/p/index.html)
 
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 
 
