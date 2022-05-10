@@ -1,52 +1,40 @@
-# BuildABiocWorkshop
+# Comparative Genomics Analyses with `SynExtend` and `DECIPHER`
 
-This package is a template for building a Bioconductor workshop. The package
-includes Github actions to:
+The `SynExtend` and `DECIPHER` packages for R incorporate a wealth of easy to use functions for comparative genomics analyses. This workshop will introduce users to these packages by walking them through a complete workflow of identifying co-evolving genes from a dataset of genome sequences. 
 
-1. Set up bioconductor/bioconductor_docker:devel on Github resources
-2. Install package dependencies for your package (based on the `DESCRIPTION` file)
-3. Run `rcmdcheck::rcmdcheck`
-4. Build a pkgdown website and push it to github pages
-5. Build a docker image with the installed package and dependencies and deploy to [the Github Container Repository](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pulling-container-images) at the name `ghcr.io/gihub_user/repo_name`, all lowercase. 
+This workflow comprises several steps, each of which are detailed below. More detail will be added later; this is currently a work in progress.
 
-## Responsibilities
+## Loading Genome Data with `DECIPHER`
 
-Package authors are primarily responsible for:
+The first step in analyzing genomics data is loading the data itself. Here we will download sequencing data from NCBI as a `.fasta`, load it into R, then visualize and align the sequences.
 
-1. Creating a landing site of their choosing for their workshops (a website). This website should be listed in the `DESCRIPTION` file as the `URL`.
-2. Creating a docker image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including "tag" if desired, should be listed in a non-standard tag, `DockerImage:` in the `DESCRIPTION` file. 
+## Gene Calling and Annotation with `DECIPHER`
 
-Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.
+Once we have the data, we will identify genetic regions with `FindGenes()` from `DECIPHER`, then annotate them with `IdTaxa()`.
 
-## Details
+## Annotation of COGs with `SynExtend`
 
-For detailed instructions, see the `How to build a workshop` article/vignette.
+Now that we have annotated gene calls, we can combine them into clusters of orthologous genes (COGs) with `DisjointSets()` from `SynExtend`.
 
-## Results of successful deployment
+## Constructing Gene Trees with `DECIPHER`
 
-- A working docker image that contains the installed package and dependencies.
-- An up-to-date `pkgdown` website at https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/
-- Docker image will be tagged with `latest`, `sha-XXXXXX` where `XXXXXX` is the hash of the current `master` commit, and `master`. 
+We will then build phylogenetic trees from each COG using the new `TreeLine()` function from `DECIPHER`.
 
-## To use the resulting image:
+## Identifying Co-evolving Gene Collectives with `SynExtend`
 
-```sh
-docker run -e PASSWORD=<choose_a_password_for_rstudio> -p 8787:8787 YOURDOCKERIMAGENAME
-```
-Once running, navigate to https://localhost:8787/ and then login with `rstudio`:`yourchosenpassword`. 
+With COGs and gene trees in hand, we can identify gene clusters under shared evolutionary pressure with the `ProtWeaver` class in `SynExtend`. Co-evolutionary signal implies functional association, so the resulting pairwise associations are useful for finding functionally associated genes/proteins.
 
-To try with **this** repository docker image:
+## Conclusion
 
-```sh
-docker run -e PASSWORD=abc -p 8787:8787 ghcr.io/seandavi/buildabiocworkshop
-```
+At the conclusion of this workshop, users will be able to perform the following tasks in R:
+* Visualize sequence data
+* Identify and annotate genes from sequence data
+* Identify COGs from a set of gene calls
+* Build phylogenies at the species and gene level
+* Predict COGs under shared evolutionary pressure
 
-*NOTE*: Running docker that uses the password in plain text like above exposes the password to others 
-in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment 
-variable instead of plain text to pass along passwords and other secrets in docker command lines. 
-
-
-## Whatcha get
-
-- https://seandavi.github.io/BuildABiocWorkshop
-- A Docker image that you can run locally, in the cloud, or (usually) even as a singularity container on HPC systems. 
+## Useful Links
+* [DECIPHER](http://bioconductor.org/packages/release/bioc/html/DECIPHER.html)
+* [SynExtend](http://bioconductor.org/packages/release/bioc/html/SynExtend.html)
+* [Related Tutorials](http://www2.decipher.codes/Tutorials.html)
+* [Our Lab!](https://www.wrightlabscience.com/p/index.html)
