@@ -1,0 +1,149 @@
+---
+title: "Comparative Genomics with SynExtend and DECIPHER"
+author: Aidan Lakshman^[ahl27@pitt.edu]
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ComparativeGenomicsBioc2022}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Comparative Genomics with SynExtend and DECIPHER
+
+Authors: Aidan Lakshman[^1], Nicholas Cooley[^1], Erik S. Wright[^1]. <br/> Last
+modified: 10 May, 2022.
+
+[^1]: University of Pittsburgh
+
+## Overview
+
+### Description
+
+This workshop consists of an interactive, instructor-led demonstration of common
+analyses in comparative genomics. 
+
+The overall goal of the session is to use sequence data to uncover networks of 
+functionally associated genes. These networks consist of genetic regions under 
+shared evolutionary pressure, which have previously been shown to imply some 
+degree of conserved function.
+
+While this analysis is useful, the purpose of this workshop is to teach users how
+to utilize a wide variety of tools for computational genomics. Our overarching 
+goal serves as a convenient mechanism to guide instruction in a set of broadly 
+applicable tools that can easily be repurposed to many other problems.
+
+This workshop will showcase the following functionalities through hands-on tutorials
+with real data:
+
+- Reading sequence data into R
+- Aligning sequences
+- Phylogenetic reconstruction
+- Identifying coding and non-coding regions
+- Annotating gene function
+- Finding clusters of orthologous genes (COGs)
+- Predicting functional association between COGs
+
+All of these analyses will be conducted entirely within R, and are achievable using
+only raw sequencing data along with the `DECIPHER` and `SynExtend` packages.
+
+### Pre-requisites
+
+Both `DECIPHER` and `SynExtend` are developed to be as simple as possible for the 
+end user. As such, the only pre-requisites for this workshop are the following:
+
+-   Basic knowledge of R syntax
+-   Basic knowledge of genomics data (DNA, RNA, amino acids)
+
+Participants can expect to fully understand the entire workshop with only the above
+qualifications. However, users that want to dig deeper into the content covered
+may find the following resources useful for reference either before or after the
+workshop:
+
+-   Papers
+-   Textbooks
+-   Code documentation
+-   decipher.codes
+
+### Participation
+
+Attendees will be expected to participate by following along with the examples 
+provided in the workshop. Rather than just listening to instruction, attendees
+are expected to run the examples for themselves and ask questions related to either
+steps in the workshop or related problem scenarios these methods could be applicable to.
+
+### *R* / *Bioconductor* packages used
+
+-   [`DECIPHER`](http://bioconductor.org/packages/release/bioc/html/DECIPHER.html)
+-   [`SynExtend`](http://bioconductor.org/packages/release/bioc/html/SynExtend.html)
+
+### Time outline
+
+Timing is estimated and may vary depending on questions from audience.
+
+| Activity                                 |  Package  |        Time        |
+|:-----------------------------------------|:---------:|-------------------:|
+| Introduction                             |           |           10 min   |
+| Environment Setup                        |           |            5 min   |
+| Visualizing and Aligning Genomes         | `DECIPHER`|           15 min   |
+| Gene Calling                             | `DECIPHER`|           20 min   |
+| Gene Annotation                          | `DECIPHER`|           20 min   |
+| Finding COGs                             |`SynExtend`|           20 min   |
+| Phylogenetic Reconstruction              | `DECIPHER`|           20 min   |
+| Identifying Co-evolving Gene Collectives |`SynExtend`|           20 min   |
+| Concluding Remarks                       |           |            5 min   |
+| Q & A                                    |           |   Remaining Time   |
+
+### Workshop goals and objectives
+
+The "big picture" goal of this workshop is to enable researchers to conduct
+computational analyses involving genomics data independently on a wide variety
+of problems. Not every attendee will need to identify co-evolving gene clusters,
+but having the ability to conduct analyses like aligning genomes, creating 
+phylogenetic trees, or finding shared selective pressure across genomes is 
+valuable for any researcher in molecular biology to be able to quickly analyze
+preliminary data and guide experimental hypotheses.
+
+At the conclusion of this workshop, attendees will possess a toolkit of analyses
+they can apply to their own data. Computational analyses are increasingly valuable
+in the modern era of microbiology, and attendees of this workshop will gain sufficient
+expertise to be able to conduct *in silico* analyses, even if they don't have a 
+deep bioinformatics background.
+
+
+*Learning goals* are high-level descriptions of what participants will
+learn and be able to do after the workshop is over. *Learning
+objectives*, on the other hand, describe in very specific and measurable
+terms specific skills or knowledge attained. The [Bloom's
+Taxonomy](#bloom) may be a useful framework for defining and describing
+your goals and objectives, although there are others.
+
+### Learning goals
+
+-   Describe how to work with and visualize sequencing data in R 
+-   Identify methods to analyze evolutionary forces on genetic regions
+-   ???
+
+### Learning objectives
+
+-   Analyze sequencing data to produce experimental hypotheses
+-   Generate phylogenetic reconstructions to investigate the evolutionary history
+    of a set of genomes
+-   Mine big genomic data to find regions with conserved function across organisms
+
+## Workshop
+
+Divide the workshop into sections (`## A Section`). Include
+fully-evaluated *R* code chunks. Develop exercises and solutions, and
+anticipate that your audience will walk through the code with you, or
+work on the code independently -- do not be too ambitious in the material
+that you present.
