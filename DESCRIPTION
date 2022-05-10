@@ -37,7 +37,7 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown
-URL: https://ahl27.github.io/CompGenomicsBioc2022/
+URL: https://www.ahl27.com/CompGenomicsBioc2022/
 BugReports: https://github.com/ahl27/CompGenomicsBioc2022/issues/new/choose
 VignetteBuilder: knitr
 DockerImage: ghcr.io/ahl27/CompGenomicsBioc2022:latest
