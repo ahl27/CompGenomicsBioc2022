@@ -30,8 +30,8 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Depends: 
-    Biobase
-    DECIPHER
+    Biobase,
+    DECIPHER,
     SynExtend
 Suggests: 
     knitr,
