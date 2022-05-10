@@ -22,6 +22,7 @@ reference:
     contents:
       - AlignSeqs
       - AlignTranslation
+      - BrowseSeqs
       - BrowseDB
       - SearchDB
       - Seqs2DB
@@ -48,6 +49,7 @@ reference:
       - LinkedPairs-class
       - NucleotideOverlap
       - PairSummaries
+      - BlockExpansion
 
   - title: "Constructing Phylogenies"
     desc: >
@@ -66,4 +68,5 @@ reference:
       - ProtWeaver
       - predict.ProtWeaver
       - plot.ProtWeb
-      - getProtWebData.ProtWeb
+      - GetProtWebData.ProtWeb
+
