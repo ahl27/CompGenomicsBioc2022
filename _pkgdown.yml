@@ -21,6 +21,49 @@ reference:
       Functions for loading and visualizing genomic data
     contents:
       - AlignSeqs
+      - AlignTranslation
       - BrowseDB
+      - SearchDB
       - Seqs2DB
       - DB2Seqs
+
+  - title: "Gene Calling and Annotation"
+    desc: >
+      Functions for calling and annotating genetic regions
+    contents:
+      - FindGenes
+      - FindNonCoding
+      - LearnNonCoding
+      - IdTaxa
+      - Taxa-class
+      - LearnTaxa
+
+  - title: "Constructing COGs"
+    desc: >
+      Functions to construct COGs from annotated genetic regions
+    contents:
+      - DisjointSet
+      - ExtractBy
+      - FindSets
+      - LinkedPairs-class
+      - NucleotideOverlap
+      - PairSummaries
+
+  - title: "Constructing Phylogenies"
+    desc: >
+      Functions for phylogenetic reconstruction of genomes or COGs
+    contents:
+      - Cophenetic
+      - DistanceMatrix
+      - IdClusters
+      - TreeLine
+      - WriteDendrogram
+
+  - title: "Finding Co-evolving Gene Collectives"
+    desc: >
+      Functions for finding co-evolutionary signal between COGs
+    contents:
+      - ProtWeaver
+      - predict.ProtWeaver
+      - plot.ProtWeb
+      - getProtWebData.ProtWeb
