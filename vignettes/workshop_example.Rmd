@@ -1,6 +1,6 @@
 ---
 title: "Comparative Genomics with SynExtend and DECIPHER"
-author: Sean Davis^[ahl27@pitt.edu]
+author: Aidan Lakshman^[ahl27@pitt.edu]
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ComparativeGenomicsBioc2022}
