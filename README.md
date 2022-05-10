@@ -1,4 +1,4 @@
-# Comparative Genomics Analyses with `SynExtend` and `DECIPHER`
+# Workshop Overview
 
 The `SynExtend` and `DECIPHER` packages for R incorporate a wealth of easy to use functions for comparative genomics analyses. This workshop will introduce users to these packages by walking them through a complete workflow of identifying co-evolving genes from a dataset of genome sequences. 
 
