@@ -20,10 +20,10 @@ knitr::opts_chunk$set(
 
 # Comparative Genomics with SynExtend and DECIPHER
 
-Authors: Aidan Lakshman[^1], Nicholas Cooley[^1], Erik S. Wright[^1]. <br/> Last
+Authors: Aidan Lakshman, Nicholas Cooley, Erik S. Wright[^1]. <br/> Last
 modified: 10 May, 2022.
 
-[^1]: University of Pittsburgh
+[^1]: All authors affiliated with University of Pittsburgh
 
 ## Overview
 
