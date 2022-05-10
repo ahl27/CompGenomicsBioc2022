@@ -23,7 +23,7 @@ Description: In the past decade, the number of sequenced proteins with unknown f
              to prediction protein functional association. We will briefly show how each algorithm works, then apply them to a real set of 
              proteins of unknown function. This workshop will teach participants how to extract useful information from large biological 
              sequence data with comparative genomics and predict the function of uncharacterized proteins.
-License: MIT + file LICENSE
+License: CC BY-SA (LICENSE)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
