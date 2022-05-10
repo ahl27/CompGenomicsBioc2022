@@ -65,7 +65,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/workshop_example.html">Comparative Genomics with SynExtend and DECIPHER</a>
+      <a href="articles/workshop_syllabus.html">Comparative Genomics with SynExtend and DECIPHER</a>
     </li>
   </ul>
 </li>
@@ -94,44 +94,44 @@
 </h1></div>
 <p>The <code>SynExtend</code> and <code>DECIPHER</code> packages for R incorporate a wealth of easy to use functions for comparative genomics analyses. This workshop will introduce users to these packages by walking them through a complete workflow of identifying co-evolving genes from a dataset of genome sequences.</p>
 <p>This workflow comprises several steps, each of which are detailed below. More detail will be added later; this is currently a work in progress.</p>
-<div class="section level2">
-<h2 id="loading-genome-data-with-decipher">Loading Genome Data with <code>DECIPHER</code>
+<div class="section level3">
+<h3 id="loading-genome-data-with-decipher">Loading Genome Data with <code>DECIPHER</code>
 <a class="anchor" aria-label="anchor" href="#loading-genome-data-with-decipher"></a>
-</h2>
+</h3>
 <p>The first step in analyzing genomics data is loading the data itself. Here we will download sequencing data from NCBI as a <code>.fasta</code>, load it into R, then visualize and align the sequences.</p>
 </div>
-<div class="section level2">
-<h2 id="gene-calling-and-annotation-with-decipher">Gene Calling and Annotation with <code>DECIPHER</code>
+<div class="section level3">
+<h3 id="gene-calling-and-annotation-with-decipher">Gene Calling and Annotation with <code>DECIPHER</code>
 <a class="anchor" aria-label="anchor" href="#gene-calling-and-annotation-with-decipher"></a>
-</h2>
+</h3>
 <p>Once we have the data, we will identify genetic regions with <code>FindGenes()</code> from <code>DECIPHER</code>, then annotate them with <code>IdTaxa()</code>.</p>
 </div>
-<div class="section level2">
-<h2 id="annotation-of-cogs-with-synextend">Annotation of COGs with <code>SynExtend</code>
+<div class="section level3">
+<h3 id="annotation-of-cogs-with-synextend">Annotation of COGs with <code>SynExtend</code>
 <a class="anchor" aria-label="anchor" href="#annotation-of-cogs-with-synextend"></a>
-</h2>
+</h3>
 <p>Now that we have annotated gene calls, we can combine them into clusters of orthologous genes (COGs) with <code>DisjointSets()</code> from <code>SynExtend</code>.</p>
 </div>
-<div class="section level2">
-<h2 id="constructing-gene-trees-with-decipher">Constructing Gene Trees with <code>DECIPHER</code>
+<div class="section level3">
+<h3 id="constructing-gene-trees-with-decipher">Constructing Gene Trees with <code>DECIPHER</code>
 <a class="anchor" aria-label="anchor" href="#constructing-gene-trees-with-decipher"></a>
-</h2>
+</h3>
 <p>We will then build phylogenetic trees from each COG using the new <code>TreeLine()</code> function from <code>DECIPHER</code>.</p>
 </div>
-<div class="section level2">
-<h2 id="identifying-co-evolving-gene-collectives-with-synextend">Identifying Co-evolving Gene Collectives with <code>SynExtend</code>
+<div class="section level3">
+<h3 id="identifying-co-evolving-gene-collectives-with-synextend">Identifying Co-evolving Gene Collectives with <code>SynExtend</code>
 <a class="anchor" aria-label="anchor" href="#identifying-co-evolving-gene-collectives-with-synextend"></a>
-</h2>
+</h3>
 <p>With COGs and gene trees in hand, we can identify gene clusters under shared evolutionary pressure with the <code>ProtWeaver</code> class in <code>SynExtend</code>. Co-evolutionary signal implies functional association, so the resulting pairwise associations are useful for finding functionally associated genes/proteins.</p>
 </div>
-<div class="section level2">
-<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
-</h2>
+<div class="section level3">
+<h3 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</h3>
 <p>At the conclusion of this workshop, users will be able to perform the following tasks in R: * Visualize sequence data * Identify and annotate genes from sequence data * Identify COGs from a set of gene calls * Build phylogenies at the species and gene level * Predict COGs under shared evolutionary pressure</p>
 </div>
-<div class="section level2">
-<h2 id="useful-links">Useful Links<a class="anchor" aria-label="anchor" href="#useful-links"></a>
-</h2>
+<div class="section level3">
+<h3 id="useful-links">Useful Links<a class="anchor" aria-label="anchor" href="#useful-links"></a>
+</h3>
 <ul>
 <li><a href="http://bioconductor.org/packages/release/bioc/html/DECIPHER.html" class="external-link">DECIPHER</a></li>
 <li><a href="http://bioconductor.org/packages/release/bioc/html/SynExtend.html" class="external-link">SynExtend</a></li>

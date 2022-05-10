@@ -50,7 +50,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/workshop_example.html">Comparative Genomics with SynExtend and DECIPHER</a>
+      <a href="../articles/workshop_syllabus.html">Comparative Genomics with SynExtend and DECIPHER</a>
     </li>
   </ul>
 </li>
@@ -82,15 +82,15 @@ Lakshman<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ahl27/CompGenomicsBioc2022/blob/HEAD/vignettes/workshop_example.Rmd" class="external-link"><code>vignettes/workshop_example.Rmd</code></a></small>
-      <div class="hidden name"><code>workshop_example.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/ahl27/CompGenomicsBioc2022/blob/HEAD/vignettes/workshop_syllabus.Rmd" class="external-link"><code>vignettes/workshop_syllabus.Rmd</code></a></small>
+      <div class="hidden name"><code>workshop_syllabus.Rmd</code></div>
 
     </div>
 
     
     
 <div class="section level2">
-<h2 id="workshop-title">Workshop Title<a class="anchor" aria-label="anchor" href="#workshop-title"></a>
+<h2 id="comparative-genomics-with-synextend-and-decipher">Comparative Genomics with SynExtend and DECIPHER<a class="anchor" aria-label="anchor" href="#comparative-genomics-with-synextend-and-decipher"></a>
 </h2>
 <p>Authors: Aidan Lakshman<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, Nicholas Cooley<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, Erik S. Wright<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. <br>
 Last modified: 10 May, 2022.</p>
@@ -100,68 +100,137 @@ Last modified: 10 May, 2022.</p>
 <div class="section level4">
 <h4 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
 </h4>
-<p>Along with the topic of your workshop, include how students can
-expect to spend their time. For the description may also include
-information about what type of workshop it is (e.g. instructor-led live
-demo, lab, lecture + lab, etc.). Instructors are strongly recommended to
-provide completely worked examples for lab sessions, and a set of
-stand-alone notes that can be read and understood outside of the
-workshop.</p>
+<p>This workshop consists of an interactive, instructor-led
+demonstration of common analyses in comparative genomics.</p>
+<p>The overall goal of the session is to use sequence data to uncover
+networks of functionally associated genes. These networks consist of
+genetic regions under shared evolutionary pressure, which have
+previously been shown to imply some degree of conserved function.</p>
+<p>While this analysis is useful, the purpose of this workshop is to
+teach users how to utilize a wide variety of tools for computational
+genomics. Our overarching goal serves as a convenient mechanism to guide
+instruction in a set of broadly applicable tools that can easily be
+repurposed to many other problems.</p>
+<p>This workshop will showcase the following functionalities through
+hands-on tutorials with real data:</p>
+<ul>
+<li>Reading sequence data into R</li>
+<li>Aligning sequences</li>
+<li>Phylogenetic reconstruction</li>
+<li>Identifying coding and non-coding regions</li>
+<li>Annotating gene function</li>
+<li>Finding clusters of orthologous genes (COGs)</li>
+<li>Predicting functional association between COGs</li>
+</ul>
+<p>All of these analyses will be conducted entirely within R, and are
+achievable using only raw sequencing data along with the
+<code>DECIPHER</code> and <code>SynExtend</code> packages.</p>
 </div>
 <div class="section level4">
 <h4 id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
 </h4>
-<p>List any workshop prerequisites, for example:</p>
+<p>Both <code>DECIPHER</code> and <code>SynExtend</code> are developed
+to be as simple as possible for the end user. As such, the only
+pre-requisites for this workshop are the following:</p>
 <ul>
 <li>Basic knowledge of R syntax</li>
-<li>Familiarity with the GenomicRanges class</li>
-<li>Familiarity with xyz vignette (provide link)</li>
+<li>Basic knowledge of genomics data (DNA, RNA, amino acids)</li>
 </ul>
-<p>List relevant background reading for the workshop, including any
-theoretical background you expect students to have.</p>
+<p>Participants can expect to fully understand the entire workshop with
+only the above qualifications. However, users that want to dig deeper
+into the content covered may find the following resources useful for
+reference either before or after the workshop:</p>
 <ul>
-<li>List any textbooks, papers, or other reading that students should be
-familiar with. Include direct links where possible.</li>
+<li>Papers</li>
+<li>Textbooks</li>
+<li>Code documentation</li>
+<li>decipher.codes</li>
 </ul>
 </div>
 <div class="section level4">
 <h4 id="participation">Participation<a class="anchor" aria-label="anchor" href="#participation"></a>
 </h4>
-<p>Describe how students will be expected to participate in the
-workshop.</p>
+<p>Attendees will be expected to participate by following along with the
+examples provided in the workshop. Rather than just listening to
+instruction, attendees are expected to run the examples for themselves
+and ask questions related to either steps in the workshop or related
+problem scenarios these methods could be applicable to.</p>
 </div>
 <div class="section level4">
 <h4 id="r-bioconductor-packages-used">
 <em>R</em> / <em>Bioconductor</em> packages used<a class="anchor" aria-label="anchor" href="#r-bioconductor-packages-used"></a>
 </h4>
-<p>List any <em>R</em> / <em>Bioconductor</em> packages that will be
-explicitly covered.</p>
+<ul>
+<li><a href="http://bioconductor.org/packages/release/bioc/html/DECIPHER.html" class="external-link"><code>DECIPHER</code></a></li>
+<li><a href="http://bioconductor.org/packages/release/bioc/html/SynExtend.html" class="external-link"><code>SynExtend</code></a></li>
+</ul>
 </div>
 <div class="section level4">
 <h4 id="time-outline">Time outline<a class="anchor" aria-label="anchor" href="#time-outline"></a>
 </h4>
-<p>An example for a 45-minute workshop:</p>
+<p>Timing is estimated and may vary depending on questions from
+audience.</p>
 <table class="table">
+<colgroup>
+<col width="57%">
+<col width="15%">
+<col width="27%">
+</colgroup>
 <thead><tr class="header">
-<th>Activity</th>
-<th>Time</th>
+<th align="left">Activity</th>
+<th align="center">Package</th>
+<th align="right">Time</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Packages</td>
-<td>15m</td>
+<td align="left">Introduction</td>
+<td align="center"></td>
+<td align="right">10 min</td>
 </tr>
 <tr class="even">
-<td>Package Development</td>
-<td>15m</td>
+<td align="left">Environment Setup</td>
+<td align="center"></td>
+<td align="right">5 min</td>
 </tr>
 <tr class="odd">
-<td>Contributing to Bioconductor</td>
-<td>5m</td>
+<td align="left">Visualizing and Aligning Genomes</td>
+<td align="center"><code>DECIPHER</code></td>
+<td align="right">15 min</td>
 </tr>
 <tr class="even">
-<td>Best Practices</td>
-<td>10m</td>
+<td align="left">Gene Calling</td>
+<td align="center"><code>DECIPHER</code></td>
+<td align="right">20 min</td>
+</tr>
+<tr class="odd">
+<td align="left">Gene Annotation</td>
+<td align="center"><code>DECIPHER</code></td>
+<td align="right">20 min</td>
+</tr>
+<tr class="even">
+<td align="left">Finding COGs</td>
+<td align="center"><code>SynExtend</code></td>
+<td align="right">20 min</td>
+</tr>
+<tr class="odd">
+<td align="left">Phylogenetic Reconstruction</td>
+<td align="center"><code>DECIPHER</code></td>
+<td align="right">20 min</td>
+</tr>
+<tr class="even">
+<td align="left">Identifying Co-evolving Gene Collectives</td>
+<td align="center"><code>SynExtend</code></td>
+<td align="right">20 min</td>
+</tr>
+<tr class="odd">
+<td align="left">Concluding Remarks</td>
+<td align="center"></td>
+<td align="right">5 min</td>
+</tr>
+<tr class="even">
+<td align="left">Q &amp; A</td>
+<td align="center"></td>
+<td align="right">Remaining Time</td>
 </tr>
 </tbody>
 </table>
@@ -169,11 +238,20 @@ explicitly covered.</p>
 <div class="section level4">
 <h4 id="workshop-goals-and-objectives">Workshop goals and objectives<a class="anchor" aria-label="anchor" href="#workshop-goals-and-objectives"></a>
 </h4>
-<p>List “big picture” student-centered workshop goals and learning
-objectives. Learning goals and objectives are related, but not the same
-thing. These goals and objectives will help some people to decide
-whether to attend the conference for training purposes, so please make
-these as precise and accurate as possible.</p>
+<p>The “big picture” goal of this workshop is to enable researchers to
+conduct computational analyses involving genomics data independently on
+a wide variety of problems. Not every attendee will need to identify
+co-evolving gene clusters, but having the ability to conduct analyses
+like aligning genomes, creating phylogenetic trees, or finding shared
+selective pressure across genomes is valuable for any researcher in
+molecular biology to be able to quickly analyze preliminary data and
+guide experimental hypotheses.</p>
+<p>At the conclusion of this workshop, attendees will possess a toolkit
+of analyses they can apply to their own data. Computational analyses are
+increasingly valuable in the modern era of microbiology, and attendees
+of this workshop will gain sufficient expertise to be able to conduct
+<em>in silico</em> analyses, even if they don’t have a deep
+bioinformatics background.</p>
 <p><em>Learning goals</em> are high-level descriptions of what
 participants will learn and be able to do after the workshop is over.
 <em>Learning objectives</em>, on the other hand, describe in very
@@ -185,20 +263,22 @@ others.</p>
 <div class="section level4">
 <h4 id="learning-goals">Learning goals<a class="anchor" aria-label="anchor" href="#learning-goals"></a>
 </h4>
-<p>Some examples:</p>
 <ul>
-<li>describe how to…</li>
-<li>identify methods for…</li>
-<li>understand the difference between…</li>
+<li>Describe how to work with and visualize sequencing data in R</li>
+<li>Identify methods to analyze evolutionary forces on genetic
+regions</li>
+<li>???</li>
 </ul>
 </div>
 <div class="section level4">
 <h4 id="learning-objectives">Learning objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a>
 </h4>
 <ul>
-<li>analyze xyz data to produce…</li>
-<li>create xyz plots</li>
-<li>evaluate xyz data for artifacts</li>
+<li>Analyze sequencing data to produce experimental hypotheses</li>
+<li>Generate phylogenetic reconstructions to investigate the
+evolutionary history of a set of genomes</li>
+<li>Mine big genomic data to find regions with conserved function across
+organisms</li>
 </ul>
 </div>
 </div>
@@ -208,7 +288,7 @@ others.</p>
 <p>Divide the workshop into sections (<code>## A Section</code>).
 Include fully-evaluated <em>R</em> code chunks. Develop exercises and
 solutions, and anticipate that your audience will walk through the code
-with you, or work on the code idependently – do not be too ambitious in
+with you, or work on the code independently – do not be too ambitious in
 the material that you present.</p>
 </div>
 </div>
