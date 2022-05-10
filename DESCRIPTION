@@ -1,28 +1,43 @@
-Package: BuildABiocWorkshop
-Title: Bioconductor or R Workshop Template and Github Actions
+Package: CompGenomicsBioc2022
+Title: Comparative Genomics Analyses with SynExtend and DECIPHER
 Version: 2.0.0
 Authors@R: 
-    person(given = "Sean",
-           family = "Davis",
+    person(given = "Aidan",
+           family = "Lakshman",
            role = c("aut", "cre"),
-           email = "seandavi@gmail.com",
-           comment = c(ORCID = "0000-0002-8991-6458"))
-Description: This package serves as a template for using github actions to 
-    prepare a Bioconductor Workshop package for use. In particular,
-    a pkgdown website and docker image are generated based on workflow 
-    settings. 
-License: MIT + file LICENSE
+           email = "ahl27@pitt.edu",
+           comment = c(ORCID = "0000-0002-9465-6785"))
+Description: In the past decade, the number of sequenced proteins with unknown functions has grown exponentially while the number of 
+             experimentally analyzed proteins has increased at a relatively constant rate. To assign functions to more proteins, many 
+             in silico methods have been produced that predict protein function purely from gene sequence data. These methods rely on 
+             a ‘guilt-by-association’ analysis to detect genes that are likely involved in common functional pathways. We have 
+             developed two Bioconductor packages with many functions for comparative genomics. This workshop will focus on one 
+             application of comparative genomics: predicting the functional association between proteins to formulate hypotheses about 
+             the unknown role of new proteins. Along the way, we will cover several topics:
+                -	Finding and importing genomes into a sequence database with the DECIPHER package
+                -	Gene calling and annotation using the DECIPHER package
+                -	Identification of clusters of orthologous genes using the SynExtend package
+                -	Construction of alignments and phylogenetic trees using the new TreeLine function in the DECIPHER package
+                -	Prediction of functional associations using ProtWeaver in the SynExtend package
+
+             The talk will highlight our newest functionality, ProtWeaver, which implements several methods commonly used in the literature 
+             to prediction protein functional association. We will briefly show how each algorithm works, then apply them to a real set of 
+             proteins of unknown function. This workshop will teach participants how to extract useful information from large biological 
+             sequence data with comparative genomics and predict the function of uncharacterized proteins.
+License: MIT + CC-BY-SA
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Depends: 
     Biobase
+    DECIPHER
+    SynExtend
 Suggests: 
     knitr,
     rmarkdown,
     pkgdown
-URL: https://seandavi.github.io/BuildABiocWorkshop/
-BugReports: https://github.com/seandavi/BuildABiocWorkshop/issues/new/choose
+URL: https://ahl27.github.io/CompGenomicsBioc2022/
+BugReports: https://github.com/ahl27/CompGenomicsBioc2022/issues/new/choose
 VignetteBuilder: knitr
-DockerImage: ghcr.io/seandavi/buildabiocworkshop:latest
+DockerImage: ghcr.io/ahl27/CompGenomicsBioc2022:latest
