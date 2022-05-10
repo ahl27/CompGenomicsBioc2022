@@ -3,7 +3,7 @@ url: https://www.ahl27.com/CompGenomicsBioc2022
 template:
   params:
     bootstrap: 5
-    bootswatch: vapor
+    bootswatch: quartz
     theme: monokai
     #ganalytics: UA-99999999-9
 
