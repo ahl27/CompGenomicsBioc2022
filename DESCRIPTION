@@ -14,11 +14,11 @@ Description: In the past decade, the number of sequenced proteins with unknown f
              developed two Bioconductor packages with many functions for comparative genomics. This workshop will focus on one 
              application of comparative genomics: predicting the functional association between proteins to formulate hypotheses about 
              the unknown role of new proteins. Along the way, we will cover several topics:
-                -	Finding and importing genomes into a sequence database with the DECIPHER package
-                -	Gene calling and annotation using the DECIPHER package
-                -	Identification of clusters of orthologous genes using the SynExtend package
-                -	Construction of alignments and phylogenetic trees using the new TreeLine function in the DECIPHER package
-                -	Prediction of functional associations using ProtWeaver in the SynExtend package
+             - Finding and importing genomes into a sequence database with the DECIPHER package
+             - Gene calling and annotation using the DECIPHER package
+             - Identification of clusters of orthologous genes using the SynExtend package
+             - Construction of alignments and phylogenetic trees using the new TreeLine function in the DECIPHER package
+             - Prediction of functional associations using ProtWeaver in the SynExtend package
              The talk will highlight our newest functionality, ProtWeaver, which implements several methods commonly used in the literature 
              to prediction protein functional association. We will briefly show how each algorithm works, then apply them to a real set of 
              proteins of unknown function. This workshop will teach participants how to extract useful information from large biological 
