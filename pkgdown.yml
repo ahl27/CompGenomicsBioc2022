@@ -3,7 +3,7 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   workshop_example: workshop_example.html
-last_built: 2022-05-10T17:55Z
+last_built: 2022-05-10T17:56Z
 urls:
   reference: https://www.ahl27.com/CompGenomicsBioc2022/reference
   article: https://www.ahl27.com/CompGenomicsBioc2022/articles
