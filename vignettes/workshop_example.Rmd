@@ -1,9 +1,9 @@
 ---
-title: "An Example Workshop"
-author: Sean Davis^[seandavi@gmail.com]
+title: "Comparative Genomics with SynExtend and DECIPHER"
+author: Sean Davis^[ahl27@pitt.edu]
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{An Example Workshop}
+  %\VignetteIndexEntry{ComparativeGenomicsBioc2022}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,8 +19,9 @@ knitr::opts_chunk$set(
 # Workshop Title
 
 Authors:
-    Author Name^[Institution],
-    Another Author^[Another Institution].
+    Aidan Lakshman^[University of Pittsburgh],
+    Nicholas Cooley^[University of Pittsburgh],
+    Erik S. Wright^[University of Pittsburgh].
     <br/>
 Last modified: 14 May, 2018.
 
