@@ -38,6 +38,7 @@ With these data, we can analyze patterns in evolutionary signal across COGs. Co-
 ### Conclusion
 
 At the conclusion of this workshop, users will be able to perform the following tasks in R:
+
 * Visualize sequence data
 * Identify and annotate genes from sequence data
 * Identify COGs from a set of gene calls
