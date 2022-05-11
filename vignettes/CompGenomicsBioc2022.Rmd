@@ -117,14 +117,6 @@ in the modern era of microbiology, and attendees of this workshop will gain suff
 expertise to be able to conduct *in silico* analyses, even if they don't have a 
 deep bioinformatics background.
 
-
-*Learning goals* are high-level descriptions of what participants will
-learn and be able to do after the workshop is over. *Learning
-objectives*, on the other hand, describe in very specific and measurable
-terms specific skills or knowledge attained. The [Bloom's
-Taxonomy](#bloom) may be a useful framework for defining and describing
-your goals and objectives, although there are others.
-
 ### Learning goals
 
 -   Describe how to work with and visualize sequencing data in R 
