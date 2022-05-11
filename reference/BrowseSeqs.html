@@ -19,15 +19,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="../articles/CompGenomicsBioc2022.html">Get started</a>
-</li>
-<li class="active nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
+  <a class="nav-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html">Overview</a>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-workshop">Workshop</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-workshop">
-    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Overview.html">Overview</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html">Overview</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">Setup</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">Working with Genomic Data</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">Gene Calling and Annotation</a>
@@ -35,6 +32,9 @@
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">Building Phylogenies</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Coevolution%20Networks.html">Coevolutionary Networks</a>
   </div>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -49,7 +49,10 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="Main Website"></a>
+  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="Main Website">
+    <span class="fa fa-potato"></span>
+     
+  </a>
 </li>
       </ul></div>
 
@@ -173,22 +176,22 @@ Kunzmann P., et al. (2020) "Substitution matrix based color schemes for sequence
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining sequence weights:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.04 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.03 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing Free Energies:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 13.42 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 11.14 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Predicting RNA Secondary Structures:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.72 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.4 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="co"># dbn now contains the scores for whether a base is paired (left/right) or unpaired</span></span>
 <span class="r-in"><span class="va">dbn</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span> <span class="co"># the scores for the first position in the first sequence</span></span>
@@ -235,7 +238,7 @@ Kunzmann P., et al. (2020) "Substitution matrix based color schemes for sequence
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on shared 5-mers:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.06 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
@@ -245,41 +248,41 @@ Kunzmann P., et al. (2020) "Substitution matrix based color schemes for sequence
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.95 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.74 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.02 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.03 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.02 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.92 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.69 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.02 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.03 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.02 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.2 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.17 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu">BrowseSeqs</span><span class="op">(</span><span class="va">AA</span>, highlight<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
 <span class="r-in"></span>
@@ -314,51 +317,51 @@ Kunzmann P., et al. (2020) "Substitution matrix based color schemes for sequence
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on shared 5-mers:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.67 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.56 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.05 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.35 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.55 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.1 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.1 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.87 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.68 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.1 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.11 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.14 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fl">21</span>, v<span class="op">=</span><span class="fl">0.8</span>, start<span class="op">=</span><span class="fl">0.9</span>, end<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span> <span class="co"># codon colors</span></span>
 <span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">GENETIC_CODE</span>, <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">GENETIC_CODE</span><span class="op">)</span><span class="op">)</span> <span class="co"># corresponding amino acid</span></span>
