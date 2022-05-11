@@ -1,0 +1,69 @@
+---
+title: "Introduction"
+output: html_document
+date: "2022-05-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setting up your environment
+This tutorial depends on a few key packages to work correctly. This page will outline
+how to install all the necessary components for this workshop. If you're attending
+this tutorial at BioC2022, you can skip directly to the next page.
+
+### Prerequisites
+All content will be shown using the `R` programming language. You can install
+`R` at [this website](https://www.r-project.org/) for your operating system. For 
+existing users, note that your version of `R` must be at least version `4.x.x` 
+for compatibility with the packages we'll be using.
+
+I also recommend using RStudio as a development environment, since it's an 
+excellent IDE with tons of features. This can be downloaded at [this link](https://www.rstudio.com/products/rstudio/). This step is totally optional;
+feel free to use whatever development environment you prefer.
+
+### Installing packages
+This workshop depends on two main packages: `DECIPHER` and `SynExtend`. 
+These will be installed via [Bioconductor](http://bioconductor.org/), a package 
+manager for open source bioinformatics projects in R.
+
+```{r eval=FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install('DECIPHER')
+BiocManager::install('SynExtend')
+```
+
+### Downloading Data
+
+Several toy datasets for the examples will be available in the associated GitHub 
+repository for this workshop. 
+
+
+<div class="center">
+  <ul class="pagination pagination-lg">
+    <li class="page-item disabled">
+      <a class="page-link" href="#">&laquo;</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">4</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">5</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">&raquo;</a>
+    </li>
+  </ul>
+</div>

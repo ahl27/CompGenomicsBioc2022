@@ -56,7 +56,7 @@ with real data:
 All of these analyses will be conducted entirely within R, and are achievable using
 only raw sequencing data along with the `DECIPHER` and `SynExtend` packages.
 
-### Pre-requisites
+### Prerequisites
 
 Both `DECIPHER` and `SynExtend` are developed to be as simple as possible for the 
 end user. As such, the only pre-requisites for this workshop are the following:

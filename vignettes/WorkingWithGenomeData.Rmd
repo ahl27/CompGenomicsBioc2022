@@ -1,0 +1,48 @@
+---
+title: "Loading in Genome Data with `DECIPHER`"
+output: html_document
+date: "2022-05-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Coming Soon!
+This tutorial will be coming soon!
+
+```{r eval=FALSE}
+library(DECIPHER)
+
+dna
+dbConn <- dbConnect(SQLite(), ":memory:")
+Seqs2DB(dna, "FASTA", dbConn, "Seq")
+BrowseDB(dbConn)
+```
+
+
+<div class="center">
+  <ul class="pagination pagination-lg">
+    <li class="page-item">
+      <a class="page-link" href="#">&laquo;</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">4</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">5</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">&raquo;</a>
+    </li>
+  </ul>
+</div>
