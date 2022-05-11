@@ -1,8 +1,9 @@
 ---
-title: "Finding COGs with `SynExtend`"
+title: "Building Coevolution Networks with SynExtend"
+author: Aidan Lakshman^[ahl27@pitt.edu]
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{FindingCOGs}
+  %\VignetteIndexEntry{CoevolutionNetworks}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -15,19 +16,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Coming Soon!
-This tutorial will be coming soon!
+This tutorial will be coming soon! Code is not guaranteed to work until the 
+tutorial is finished.
 
 ```{r eval=FALSE}
 library(SynExtend)
 
+pw <- ProtWeaver(treesFromCOGs)
+res <- predict(pw)
+res
 ```
-
 
 
 <div class="center">
   <ul class="pagination pagination-lg">
     <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">&laquo;</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">&laquo;</a>
     </li>
     <li class="page-item">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">1</a>
@@ -38,17 +42,17 @@ library(SynExtend)
     <li class="page-item">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">3</a>
     </li>
-    <li class="page-item active">
+    <li class="page-item">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">4</a>
     </li>
     <li class="page-item">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">5</a>
     </li>
-    <li class="page-item">
+    <li class="page-item active">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">&raquo;</a>
+    <li class="page-item disabled">
+      <a class="page-link" href="#">&raquo;</a>
     </li>
   </ul>
 </div>

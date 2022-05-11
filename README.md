@@ -2,7 +2,7 @@
 
 The `SynExtend` and `DECIPHER` packages for R incorporate a wealth of easy to use functions for comparative genomics analyses. This workshop will introduce users to these packages by walking them through a complete workflow of identifying co-evolving genes from a dataset of genome sequences. 
 
-I've summarized on this page all the skills you can expect to learn by following this workshop. See the [Get Started](https://www.ahl27.com/CompGenomicsBioc2022/articles/Overview.html) page for more information, along with tutorials and code examples you can try for yourself! 
+I've summarized on this page all the skills you can expect to learn by following this workshop. See the [Get Started](https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html) page for more information, along with tutorials and code examples you can try for yourself! 
 
 (Note: I'm still working on the tutorials, but they will be posted by mid-June! Apologies for the delay.)
 

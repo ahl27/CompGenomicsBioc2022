@@ -1,5 +1,5 @@
 ---
-title: "Constructing Phylogenies with `DECIPHER`"
+title: "Constructing Phylogenies with DECIPHER"
 author: Aidan Lakshman^[ahl27@pitt.edu]
 output: rmarkdown::html_vignette
 vignette: >

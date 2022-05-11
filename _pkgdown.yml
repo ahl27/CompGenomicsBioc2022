@@ -14,6 +14,7 @@ home:
 
 navbar:
   structure:
+    left: [intro, articles, reference, news]
     right: [github, home]
   components:
     github:
@@ -21,13 +22,17 @@ navbar:
       href: https://github.com/ahl27/CompGenomicsBioc2022
       aria-label: GitHub
     home:
+      icon: fa-potato
       href: https://www.ahl27.com
       aria-label: Main Website
+    intro:
+      text: Overview
+      href: https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html
     articles:
       text: Workshop
       menu:
         - text: Overview
-          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/Overview.html
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html
         - text: Setup
           href: https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html
         - text: Working with Genomic Data

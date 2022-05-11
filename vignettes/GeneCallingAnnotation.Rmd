@@ -1,5 +1,5 @@
 ---
-title: "Gene Calling and Annotation with `DECIPHER`"
+title: "Gene Calling and Annotation with DECIPHER"
 author: Aidan Lakshman^[ahl27@pitt.edu]
 output: rmarkdown::html_vignette
 vignette: >
