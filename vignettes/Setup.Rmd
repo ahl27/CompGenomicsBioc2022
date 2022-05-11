@@ -18,17 +18,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Setting up your environment
 This tutorial depends on a few key packages to work correctly. This page will outline
 how to install all the necessary components for this workshop. If you're attending
-this tutorial at BioC2022, you can skip directly to the next page.
+this tutorial at Bioconductor 2022, [you can skip directly to the next page](https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html).
 
 ### Prerequisites
-All content will be shown using the `R` programming language. You can install
-`R` at [this website](https://www.r-project.org/) for your operating system. For 
-existing users, note that your version of `R` must be at least version `4.x.x` 
+All content will be shown using the [`R` programming language](https://www.r-project.org/). 
+For existing users, note that your version of `R` must be at least version `4.x.x` 
 for compatibility with the packages we'll be using.
 
-I also recommend using RStudio as a development environment, since it's an 
-excellent IDE with tons of features. This can be downloaded at [this link](https://www.rstudio.com/products/rstudio/). This step is totally optional;
-feel free to use whatever development environment you prefer.
+I also recommend using [RStudio](https://www.rstudio.com/products/rstudio/) as a 
+development environment, since it's an excellent IDE with tons of features. 
+This step is totally optional; feel free to use whatever development environment 
+you prefer.
 
 ### Installing packages
 This workshop depends on two main packages: `DECIPHER` and `SynExtend`. 

@@ -1,5 +1,5 @@
 ---
-title: "Comparative Genomics with SynExtend and DECIPHER"
+title: "Workshop Overview"
 author: Aidan Lakshman^[ahl27@pitt.edu]
 output: rmarkdown::html_vignette
 vignette: >
@@ -24,8 +24,6 @@ Authors: Aidan Lakshman, Nicholas Cooley, Erik S. Wright[^1]. <br/> Last
 modified: 10 May, 2022.
 
 [^1]: All authors affiliated with University of Pittsburgh
-
-## Overview
 
 ### Description
 
@@ -81,7 +79,7 @@ provided in the workshop. Rather than just listening to instruction, attendees
 are expected to run the examples for themselves and ask questions related to either
 steps in the workshop or related problem scenarios these methods could be applicable to.
 
-### *R* / *Bioconductor* packages used
+### *Bioconductor* packages used
 
 -   [`DECIPHER`](http://bioconductor.org/packages/release/bioc/html/DECIPHER.html)
 -   [`SynExtend`](http://bioconductor.org/packages/release/bioc/html/SynExtend.html)
