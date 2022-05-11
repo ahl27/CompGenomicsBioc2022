@@ -2,9 +2,9 @@ url: https://www.ahl27.com/CompGenomicsBioc2022
 
 template:
   bootstrap: 5
-  bootswatch: vapor
-  bslib:
-    pkgdown-nav-height: 122px
+  bootswatch: cyborg
+  #bslib:
+    #pkgdown-nav-height: 122px
     #ganalytics: UA-99999999-9
 
 home:
