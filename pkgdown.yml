@@ -2,8 +2,8 @@ pandoc: 2.17.1.1
 pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
-  workshop_syllabus: workshop_syllabus.html
-last_built: 2022-05-11T02:16Z
+  CompGenomicsBioc2022: CompGenomicsBioc2022.html
+last_built: 2022-05-11T02:56Z
 urls:
   reference: https://www.ahl27.com/CompGenomicsBioc2022/reference
   article: https://www.ahl27.com/CompGenomicsBioc2022/articles
