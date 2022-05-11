@@ -1,7 +1,14 @@
 ---
 title: "Introduction"
-output: html_document
-date: "2022-05-11"
+author: Aidan Lakshman^[ahl27@pitt.edu]
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
