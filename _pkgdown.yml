@@ -4,7 +4,6 @@ template:
   params:
     bootstrap: 5
     bootswatch: quartz
-    theme: monokai
     bslib:
       pkgdown-nav-height: 122px
     #ganalytics: UA-99999999-9
