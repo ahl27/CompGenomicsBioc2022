@@ -136,6 +136,14 @@ deep bioinformatics background.
 
 &nbsp;
 
+```{css, echo=FALSE}
+.btn-lg, .btn-group-lg>.btn{
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+    width: 100%;
+}
+```
 <div class="d-grid gap-2">
   <a href='https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html' class="btn btn-lg btn-primary" type="button">Get Started!</a>
 </div>

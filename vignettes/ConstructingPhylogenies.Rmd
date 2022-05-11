@@ -31,6 +31,15 @@ Cophenetic(tree)
 plot(tree)
 ```
 
+```{css, echo=FALSE}
+.pagination {
+    display: flex;
+    display: -webkit-flex;
+    padding-left: 0;
+    list-style: none;
+    justify-content: center
+}
+```
 
 <div class="center">
   <ul class="pagination pagination-lg">
