@@ -140,6 +140,11 @@ your goals and objectives, although there are others.
     of a set of genomes
 -   Mine big genomic data to find regions with conserved function across organisms
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 <div class="d-grid gap-2">
   <a href='https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html' class="btn btn-lg btn-primary" type="button">Get Started!</a>
