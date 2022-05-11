@@ -13,9 +13,33 @@ home:
 
 
 navbar:
-  right:
-   - icon: fa-github
-     href: https://github.com/ahl27/CompGenomicsBioc2022
+  structure:
+    right: [github, home]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/ahl27/CompGenomicsBioc2022
+      aria-label: GitHub
+    home:
+      href: https://www.ahl27.com
+      aria-label: Main Website
+    articles:
+      text: Workshop
+      menu:
+        - text: Overview
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/Overview.html
+        - text: Setup
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html
+        - text: Working with Genomic Data
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html
+        - text: Gene Calling and Annotation
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html
+        - text: Finding COGs
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html
+        - text: Building Phylogenies
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html
+        - text: Coevolutionary Networks
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/Coevolution Networks.html
      
 reference:
   - title: "Loading Genome Data"

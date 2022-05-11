@@ -39,7 +39,7 @@ ids <- IdTaxa(nogap, TrainingSet_16S)
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">&laquo;</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Introduction.html">1</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">1</a>
     </li>
     <li class="page-item">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">2</a>

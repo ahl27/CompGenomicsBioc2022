@@ -140,10 +140,7 @@ your goals and objectives, although there are others.
     of a set of genomes
 -   Mine big genomic data to find regions with conserved function across organisms
 
-## Workshop
 
-Divide the workshop into sections (`## A Section`). Include
-fully-evaluated *R* code chunks. Develop exercises and solutions, and
-anticipate that your audience will walk through the code with you, or
-work on the code independently -- do not be too ambitious in the material
-that you present.
+<div class="d-grid gap-2">
+  <a href='https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html' class="btn btn-lg btn-primary" type="button">Get Started!</a>
+</div>
