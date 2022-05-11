@@ -31,25 +31,28 @@ BrowseDB(dbConn)
 <div class="center">
   <ul class="pagination pagination-lg">
     <li class="page-item">
-      <a class="page-link" href="#">&laquo;</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Introduction.html">&laquo;</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">1</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Introduction.html">1</a>
     </li>
     <li class="page-item active">
-      <a class="page-link" href="#">2</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">2</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">3</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">3</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">4</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">4</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">5</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">5</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">&raquo;</a>
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">&raquo;</a>
     </li>
   </ul>
 </div>

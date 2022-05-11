@@ -3,7 +3,7 @@ title: "Comparative Genomics with SynExtend and DECIPHER"
 author: Aidan Lakshman^[ahl27@pitt.edu]
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ComparativeGenomicsBioc2022}
+  %\VignetteIndexEntry{Overview}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
