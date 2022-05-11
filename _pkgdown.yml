@@ -24,7 +24,7 @@ navbar:
     home:
       icon: fa-potato
       href: https://www.ahl27.com
-      aria-label: Main Website
+      aria-label: My Website
     intro:
       text: Overview
       href: https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html
