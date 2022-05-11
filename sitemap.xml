@@ -43,6 +43,9 @@
     <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/AlignSeqs.html</loc>
   </url>
   <url>
+    <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/AlignSynteny.html</loc>
+  </url>
+  <url>
     <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/AlignTranslation.html</loc>
   </url>
   <url>
@@ -79,6 +82,9 @@
     <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/FindSets.html</loc>
   </url>
   <url>
+    <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/FindSynteny.html</loc>
+  </url>
+  <url>
     <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/IdClusters.html</loc>
   </url>
   <url>
@@ -107,6 +113,9 @@
   </url>
   <url>
     <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/Seqs2DB.html</loc>
+  </url>
+  <url>
+    <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/Synteny-class.html</loc>
   </url>
   <url>
     <loc>https://www.ahl27.com/CompGenomicsBioc2022/reference/Taxa-class.html</loc>

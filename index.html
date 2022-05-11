@@ -117,7 +117,7 @@
 </h1></div>
 <p>The <code>SynExtend</code> and <code>DECIPHER</code> packages for R incorporate a wealth of easy to use functions for comparative genomics analyses. This interactive tutorial series will introduce users to these packages by walking them through a complete workflow of identifying co-evolving genes from a dataset of genome sequences. This webpage was created for presentation at <a href="https://bioc2022.bioconductor.org/" class="external-link">Bioconductor 2022</a>, but the content will be freely available forever.</p>
 <p>I’ve summarized on this page all the skills you can expect to learn by working through the tutorials on this site. See the <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html">Overview</a> page for more information, along with code examples you can run for yourself!</p>
-<p>(Note: I’m still working on the tutorials, but they will be posted by mid-June! Apologies for the delay.)</p>
+<p>(Note: I’m still working on the tutorials, but they will be posted by mid-June! Code is not guaranteed to work until the tutorials are finished–check the <a href="https://www.ahl27.com/CompGenomicsBioc2022/news/index.html">Changelog</a> for the latest updates).</p>
 <div class="section level3">
 <h3 id="loading-genome-data-with-decipher">
 <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">Loading Genome Data with <code>DECIPHER</code></a><a class="anchor" aria-label="anchor" href="#loading-genome-data-with-decipher"></a>
@@ -129,7 +129,7 @@
 <h3 id="gene-calling-and-annotation-with-decipher">
 <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">Gene Calling and Annotation with <code>DECIPHER</code></a><a class="anchor" aria-label="anchor" href="#gene-calling-and-annotation-with-decipher"></a>
 </h3>
-<p>A natural next step is identifying what elements comprise each genome in our dataset. Users will learn to programmatically identify coding and non-coding regions of genomes, and annotate them with predicted KEGG orthology groups.</p>
+<p>A natural next step is identifying what elements comprise each genome in our dataset. Users will learn to programmatically identify coding and non-coding regions of genomes, and annotate them with predicted KEGG orthology groups using <code>IDTAXA</code>.</p>
 <p><a href="https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#gene-calling-and-annotation"><sup>Function Reference</sup></a></p>
 </div>
 <div class="section level3">
@@ -143,14 +143,14 @@
 <h3 id="constructing-gene-trees-with-decipher">
 <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">Constructing Gene Trees with <code>DECIPHER</code></a><a class="anchor" aria-label="anchor" href="#constructing-gene-trees-with-decipher"></a>
 </h3>
-<p>Each COG comprises sets of conserved orthologs across species. These data, combined with sequencing data for each ortholog, allow us to reconstruct the evolutionary history of each COG. Users will learn how to construct, visualize, and save phylogenetic trees from sets of genomes.</p>
+<p>Each COG comprises sets of conserved orthologs across species. These data, combined with sequencing data for each ortholog, allow us to reconstruct the evolutionary history of each COG. Users will learn how to construct, visualize, and save phylogenetic trees from sets of genomes using the <code><a href="reference/TreeLine.html">TreeLine()</a></code> function.</p>
 <p><a href="https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#constructing-phylogenies"><sup>Function Reference</sup></a></p>
 </div>
 <div class="section level3">
 <h3 id="identifying-co-evolving-gene-collectives-with-synextend">
 <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">Identifying Co-evolving Gene Collectives with <code>SynExtend</code></a><a class="anchor" aria-label="anchor" href="#identifying-co-evolving-gene-collectives-with-synextend"></a>
 </h3>
-<p>With these data, we can analyze patterns in evolutionary signal across COGs. Co-evolutionary signal between genes implies functional association, so finding COGs under shared selective pressure aids us in uncovering the mechanisms of intracellular pathways. Users will learn to tease out subtle evidence of correlated evolutionary pressure in order to create co-evolutionary networks.</p>
+<p>With these data, we can analyze patterns in evolutionary signal across COGs. Co-evolutionary signal between genes implies functional association, so finding COGs under shared selective pressure aids us in uncovering the mechanisms of intracellular pathways. Users will learn to use the <code>ProtWeaver</code> class to tease out subtle evidence of correlated evolutionary pressure in order to create co-evolutionary networks.</p>
 <p><a href="https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#finding-co-evolving-gene-collectives"><sup>Function Reference</sup></a></p>
 </div>
 <div class="section level3">
