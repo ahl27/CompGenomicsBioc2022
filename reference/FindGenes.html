@@ -30,7 +30,7 @@
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">Gene Calling and Annotation</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">Finding COGs</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">Building Phylogenies</a>
-    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Coevolution%20Networks.html">Coevolutionary Networks</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">Coevolutionary Networks</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -133,21 +133,21 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu">FindGenes</span><span class="op">(</span><span class="va">genome</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iter  Models Start Motif  Init  Fold UpsNt  Term   RBS  Auto  Stop Genes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8862         12 18.40  0.48  0.90                                       8883         15 18.38  0.53  1.16  0.39  1.41                           8914         14 15.59  0.51  1.26  0.46  1.76  0.24                     8945         11 15.62  0.51  1.26  0.49  1.82  0.25  0.99  0.10  0.07   8976         13 15.59  0.51  1.25  0.50  1.90  0.25  1.00  0.10  0.07   8987         11 15.58  0.51  1.25  0.49  1.92  0.25  1.04  0.10  0.07   8968         13 15.57  0.51  1.25  0.49  1.95  0.24  1.03  0.10  0.07   8969         12 15.59  0.51  1.25  0.51  1.95  0.25  1.03  0.10  0.07   89610        12 15.58  0.51  1.25  0.50  1.95  0.25  1.04  0.10  0.07   89711        12 15.58  0.51  1.25  0.51  1.95  0.25  1.04  0.10  0.07   89712        12 15.57  0.51  1.26  0.51  1.97  0.25  1.07  0.10  0.07   89813        13 15.57  0.52  1.26  0.52  1.98  0.24  1.08  0.10  0.07   89714        13 15.57  0.52  1.26  0.51  1.98  0.24  1.09  0.10  0.07   896</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8862         12 18.40  0.48  0.90                                       8883         15 18.38  0.53  1.16  0.40  1.41                           8924         13 15.59  0.51  1.27  0.45  1.76  0.24                     8935         12 15.62  0.51  1.25  0.47  1.84  0.25  0.97  0.10  0.07   8956         14 15.58  0.51  1.24  0.52  1.93  0.25  1.07  0.10  0.07   8987         11 15.57  0.51  1.25  0.49  1.95  0.25  1.07  0.10  0.07   8978         12 15.56  0.51  1.25  0.50  1.96  0.26  1.09  0.10  0.07   8979         13 15.56  0.51  1.26  0.50  1.97  0.26  1.08  0.10  0.07   89710        13 15.56  0.51  1.26  0.49  1.98  0.25  1.09  0.10  0.07   89511        13 15.55  0.51  1.26  0.49  1.98  0.26  1.08  0.10  0.07   89612        13 15.55  0.51  1.26  0.51  1.98  0.26  1.11  0.10  0.07   896</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 32.16 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 34.01 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">z</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Genes object of size 896 specifying:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 896 protein coding genes from 66 to 5,361 nucleotides.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Index Strand Begin  End TotalScore ... Gene</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1      0     1 1176      78.31 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1      1  1321 1593      21.23 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1      0  1794 2096      34.26 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1      0  2108 3583     139.67 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     1      0  3585 5051     125.15 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     1      1  5150 6241     105.38 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1      0     1 1176      78.16 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1      1  1321 1593      20.83 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1      0  1794 2096      33.99 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1      0  2108 3583     139.35 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     1      0  3585 5051     125.36 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     1      1  5150 6241      77.87 ...    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ... with 890 more rows.</span>
 <span class="r-in"><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ExtractGenes</span><span class="op">(</span><span class="va">z</span>, <span class="va">genome</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">genes</span></span>

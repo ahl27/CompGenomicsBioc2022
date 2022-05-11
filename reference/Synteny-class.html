@@ -30,7 +30,7 @@
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">Gene Calling and Annotation</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">Finding COGs</a>
     <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">Building Phylogenies</a>
-    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Coevolution%20Networks.html">Coevolutionary Networks</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">Coevolutionary Networks</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -173,12 +173,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Adding 4 sequences to the database.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 total sequences in table Seqs.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.03 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.04 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">syn</span> <span class="op">&lt;-</span> <span class="fu"><a href="FindSynteny.html">FindSynteny</a></span><span class="op">(</span><span class="va">dbConn</span>, minScore<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.3 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.4 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">syn</span> <span class="co"># Note:  &gt; 100% hits because of sequence reuse across blocks</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          s1        s2        s3</span>
@@ -196,7 +196,7 @@
 <span class="r-in"><span class="va">synteny</span> <span class="op">&lt;-</span> <span class="fu"><a href="FindSynteny.html">FindSynteny</a></span><span class="op">(</span><span class="va">db</span>, minScore<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.03 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.38 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">synteny</span><span class="op">)</span> <span class="co"># 'Synteny'</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Synteny"</span>
