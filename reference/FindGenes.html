@@ -25,14 +25,15 @@
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/CreatingCOGs.html">Finding COGs with `SynExtend`</a>
-    <a class="dropdown-item" href="../articles/CreatingTrees.html">Constructing Phylogenies with `DECIPHER`</a>
-    <a class="dropdown-item" href="../articles/GeneCallingAndAnnotation.html">Gene Calling and Annotation with `DECIPHER`</a>
-    <a class="dropdown-item" href="../articles/Introduction.html">Introduction</a>
-    <a class="dropdown-item" href="../articles/ProtWeaver.html">Predicting Functional Association with `SynExtend`</a>
-    <a class="dropdown-item" href="../articles/WorkingWithGenomeData.html">Loading in Genome Data with `DECIPHER`</a>
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-workshop">Workshop</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-workshop">
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Overview.html">Overview</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">Setup</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">Working with Genomic Data</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">Gene Calling and Annotation</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">Finding COGs</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">Building Phylogenies</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Coevolution%20Networks.html">Coevolutionary Networks</a>
   </div>
 </li>
 <li class="nav-item">
@@ -42,10 +43,13 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/ahl27/CompGenomicsBioc2022">
+  <a class="external-link nav-link" href="https://github.com/ahl27/CompGenomicsBioc2022" aria-label="GitHub">
     <span class="fa fa-github"></span>
      
   </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="Main Website"></a>
 </li>
       </ul></div>
 
@@ -126,25 +130,25 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu">FindGenes</span><span class="op">(</span><span class="va">genome</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iter  Models Start Motif  Init  Fold UpsNt  Term   RBS  Auto  Stop Genes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8862         12 18.40  0.48  0.90                                       8883         15 18.38  0.53  1.16  0.41  1.41                           8924         13 15.57  0.52  1.26  0.46  1.75  0.24                     8935         12 15.62  0.52  1.24  0.46  1.83  0.25  0.98  0.10  0.07   8976         13 15.59  0.51  1.24  0.49  1.89  0.25  1.02  0.10  0.07   8977         15 15.57  0.51  1.25  0.50  1.94  0.26  1.06  0.10  0.07   8978         11 15.55  0.51  1.26  0.52  1.96  0.26  1.11  0.10  0.07   8979         11 15.55  0.51  1.26  0.52  1.96  0.26  1.15  0.10  0.07   897</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8862         12 18.40  0.48  0.90                                       8883         15 18.38  0.53  1.16  0.41  1.41                           8904         14 15.66  0.52  1.25  0.46  1.74  0.24                     8945         12 15.68  0.52  1.24  0.48  1.83  0.25  0.94  0.10  0.07   8976         10 15.65  0.51  1.24  0.50  1.91  0.25  1.04  0.10  0.07   8977         11 15.65  0.50  1.24  0.49  1.92  0.25  1.05  0.10  0.07   8978         12 15.65  0.50  1.25  0.51  1.93  0.25  1.05  0.10  0.07   8989         12 15.65  0.50  1.25  0.51  1.93  0.25  1.05  0.10  0.07   89610        13 15.64  0.50  1.25  0.50  1.94  0.25  1.05  0.10  0.07   89611        11 15.64  0.51  1.25  0.49  1.95  0.25  1.05  0.10  0.07   89712        11 15.63  0.51  1.25  0.48  1.96  0.25  1.05  0.10  0.07   89613        10 15.63  0.51  1.25  0.48  1.96  0.25  1.07  0.10  0.07   89714        11 15.63  0.51  1.24  0.49  1.97  0.25  1.05  0.10  0.07   89615        11 15.62  0.51  1.24  0.50  1.98  0.25  1.07  0.10  0.07   89616        11 15.62  0.51  1.25  0.50  1.99  0.25  1.09  0.10  0.08   89617        11 15.62  0.51  1.25  0.51  1.99  0.25  1.10  0.10  0.08   896</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 23.41 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 41.8 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">z</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Genes object of size 897 specifying:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 897 protein coding genes from 66 to 5,361 nucleotides.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Genes object of size 896 specifying:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 896 protein coding genes from 66 to 5,361 nucleotides.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Index Strand Begin  End TotalScore ... Gene</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1      0     1 1176      78.69 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1      1  1321 1593      21.35 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1      0  1794 2096      33.95 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1      0  2108 3583     140.13 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     1      0  3585 5051     124.61 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     1      1  5150 6241      79.15 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ... with 891 more rows.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1      0     1 1176      78.09 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1      1  1321 1593      21.07 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1      0  1794 2096      34.47 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1      0  2108 3583     139.51 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     1      0  3585 5051     124.87 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     1      1  5150 6241      78.84 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... with 890 more rows.</span>
 <span class="r-in"><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ExtractGenes</span><span class="op">(</span><span class="va">z</span>, <span class="va">genome</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">genes</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet object of length 897:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet object of length 896:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       width seq</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  1176 GCGGCCGCCCGGGAAATTGCTAAAAGATGGGAG...GGCGTTGGAATAGAGAAGTCGATAGGGAATAA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [2]   273 ATGCTTTGTAAAGTTTGTAGAGGATTATCTTCT...GATACCACCACCATCATATGGATAGAGAATAA</span>
@@ -152,14 +156,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [4]  1476 ATGTATCGTAAGAGTGCTTTAGAATTAAGAGAT...TGAATGGACTTTTTGACGGAGGAATAGAATAA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [5]  1467 ATGGGCATAGCACATACTGAATGGGAGTCTGTG...AATTGCTATTAGCAGCTATGCGAGATATGTAA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ...   ... ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [893]  3051 ATGCCTTTTTCTTTGAGATCTACATCATTTTGT...TTGTATCCATGGGCTTGAATAGAATCTTTTAA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [894]   303 ATGCTGGCAACAATTAAAAAAATTACTGTGTTG...GAGATTCTCGCCTAGAATGCAAGAAGATATAA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [895]  2637 ATGCGACCTGATCATATGAACTTCTGTTGTCTA...CCCTGGATCTGGGGACCACTTACAGGTTCTAG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [896]    96 ATGTCAAAAAAAAGTAATAATTTACAGACTTTT...ATGAAGAGTTAAGGAAGATTTTTGGATTGTGA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [897]   600 ATGAGCATCAGGGGAGTAGGAGGCAACGGGAAT...AAGCGAACAAGTTGGCTGGCCCTGACGGGGTA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [892]  3051 ATGCCTTTTTCTTTGAGATCTACATCATTTTGT...TTGTATCCATGGGCTTGAATAGAATCTTTTAA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [893]   303 ATGCTGGCAACAATTAAAAAAATTACTGTGTTG...GAGATTCTCGCCTAGAATGCAAGAAGATATAA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [894]  2637 ATGCGACCTGATCATATGAACTTCTGTTGTCTA...CCCTGGATCTGGGGACCACTTACAGGTTCTAG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [895]    96 ATGTCAAAAAAAAGTAATAATTTACAGACTTTT...ATGAAGAGTTAAGGAAGATTTTTGGATTGTGA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [896]   600 ATGAGCATCAGGGGAGTAGGAGGCAACGGGAAT...AAGCGAACAAGTTGGCTGGCCCTGACGGGGTA</span>
 <span class="r-in"><span class="va">proteins</span> <span class="op">&lt;-</span> <span class="fu">ExtractGenes</span><span class="op">(</span><span class="va">z</span>, <span class="va">genome</span>, type<span class="op">=</span><span class="st">"AAStringSet"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">proteins</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAStringSet object of length 897:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAStringSet object of length 896:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       width seq</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1]   392 AAAREIAKRWEQRVRDLQDKGAARKLLNDPLGR...QVEGILRDMLTNGSQTFRDLMRRWNREVDRE*</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [2]    91 MLCKVCRGLSSLIVVLGAINTGILGVTGYKVNL...CLNFLKCCFKKRHGDCCSSKGGYHHHHMDRE*</span>
@@ -167,11 +171,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [4]   492 MYRKSALELRDAVVNRELSVTAITEYFYHRIES...ICQVGYSFQEHSQIKQLYPKAVNGLFDGGIE*</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [5]   489 MGIAHTEWESVIGLEVHVELNTESKLFSPARNH...GFLVGQIMKRTEGKAPPKRVNELLLAAMRDM*</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ...   ... ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [893]  1017 MPFSLRSTSFCFLACLCSYSYGFASSPQVLTPN...HHFGRAYMNYSLDARRRQTAHFVSMGLNRIF*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [894]   101 MLATIKKITVLLLSKRKAGIRIDYCALALDAVE...LDASLESAQVRLAGLMLDYWDGDSRLECKKI*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [895]   879 MRPDHMNFCCLCAAILSSTAVLFGQDPLGETAL...LHRLQTLLNVSYVLRGQSHSYSLDLGTTYRF*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [896]    32 MSKKSNNLQTFSSRALFHVFQDEELRKIFGL*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [897]   200 MSIRGVGGNGNSRIPSHNGDGSNRRSQNTKGNN...NLDVNEARLMAAYTSECADHLEANKLAGPDGV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [892]  1017 MPFSLRSTSFCFLACLCSYSYGFASSPQVLTPN...HHFGRAYMNYSLDARRRQTAHFVSMGLNRIF*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [893]   101 MLATIKKITVLLLSKRKAGIRIDYCALALDAVE...LDASLESAQVRLAGLMLDYWDGDSRLECKKI*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [894]   879 MRPDHMNFCCLCAAILSSTAVLFGQDPLGETAL...LHRLQTLLNVSYVLRGQSHSYSLDLGTTYRF*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [895]    32 MSKKSNNLQTFSSRALFHVFQDEELRKIFGL*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [896]   200 MSIRGVGGNGNSRIPSHNGDGSNRRSQNTKGNN...NLDVNEARLMAAYTSECADHLEANKLAGPDGV</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

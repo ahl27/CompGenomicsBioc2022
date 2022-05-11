@@ -6,10 +6,10 @@ articles:
   CreatingCOGs: CreatingCOGs.html
   CreatingTrees: CreatingTrees.html
   GeneCallingAndAnnotation: GeneCallingAndAnnotation.html
-  Introduction: Introduction.html
   ProtWeaver: ProtWeaver.html
+  Setup: Setup.html
   WorkingWithGenomeData: WorkingWithGenomeData.html
-last_built: 2022-05-11T13:18Z
+last_built: 2022-05-11T13:42Z
 urls:
   reference: https://www.ahl27.com/CompGenomicsBioc2022/reference
   article: https://www.ahl27.com/CompGenomicsBioc2022/articles

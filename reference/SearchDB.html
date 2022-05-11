@@ -25,14 +25,15 @@
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/CreatingCOGs.html">Finding COGs with `SynExtend`</a>
-    <a class="dropdown-item" href="../articles/CreatingTrees.html">Constructing Phylogenies with `DECIPHER`</a>
-    <a class="dropdown-item" href="../articles/GeneCallingAndAnnotation.html">Gene Calling and Annotation with `DECIPHER`</a>
-    <a class="dropdown-item" href="../articles/Introduction.html">Introduction</a>
-    <a class="dropdown-item" href="../articles/ProtWeaver.html">Predicting Functional Association with `SynExtend`</a>
-    <a class="dropdown-item" href="../articles/WorkingWithGenomeData.html">Loading in Genome Data with `DECIPHER`</a>
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-workshop">Workshop</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-workshop">
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Overview.html">Overview</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">Setup</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">Working with Genomic Data</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">Gene Calling and Annotation</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">Finding COGs</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">Building Phylogenies</a>
+    <a class="dropdown-item" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Coevolution%20Networks.html">Coevolutionary Networks</a>
   </div>
 </li>
 <li class="nav-item">
@@ -42,10 +43,13 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/ahl27/CompGenomicsBioc2022">
+  <a class="external-link nav-link" href="https://github.com/ahl27/CompGenomicsBioc2022" aria-label="GitHub">
     <span class="fa fa-github"></span>
      
   </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="Main Website"></a>
 </li>
       </ul></div>
 
@@ -162,7 +166,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> from Seqs where identifier is "Mycobacterium")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet of length: 22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="co"># provide a more complex query:</span></span>
 <span class="r-in"><span class="va">dna</span> <span class="op">&lt;-</span> <span class="fu">SearchDB</span><span class="op">(</span><span class="va">db</span>, nameBy<span class="op">=</span><span class="st">"description"</span>, orderBy<span class="op">=</span><span class="st">"bases"</span>, removeGaps<span class="op">=</span><span class="st">"common"</span>,</span>
@@ -173,7 +177,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> nonbases is 0) order by bases</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet of length: 19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
