@@ -4,7 +4,7 @@ The `SynExtend` and `DECIPHER` packages for R incorporate a wealth of easy to us
 
 I've summarized on this page all the skills you can expect to learn by working through the tutorials on this site. See the [Overview](https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html) page for more information, along with code examples you can run for yourself! 
 
-(Note: I'm still working on the tutorials, but they will be posted by mid-June! Apologies for the delay.)
+(Note: I'm still working on the tutorials, but they will be posted by mid-June! Code is not guaranteed to work until the tutorials are finished--check the [Changelog](https://www.ahl27.com/CompGenomicsBioc2022/news/index.html) for the latest updates).
 
 ### [Loading Genome Data with `DECIPHER`](https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html)
 
@@ -14,7 +14,7 @@ The first step in analyzing genomics data is loading the data itself. Here we wi
 
 ### [Gene Calling and Annotation with `DECIPHER`](https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html)
 
-A natural next step is identifying what elements comprise each genome in our dataset. Users will learn to programmatically identify coding and non-coding regions of genomes, and annotate them with predicted KEGG orthology groups. 
+A natural next step is identifying what elements comprise each genome in our dataset. Users will learn to programmatically identify coding and non-coding regions of genomes, and annotate them with predicted KEGG orthology groups using `IDTAXA`. 
 
 [<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#gene-calling-and-annotation)
 
@@ -26,13 +26,13 @@ Annotated genetic regions can be mapped across organisms into clusters of orthol
 
 ### [Constructing Gene Trees with `DECIPHER`](https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html)
 
-Each COG comprises sets of conserved orthologs across species. These data, combined with sequencing data for each ortholog, allow us to reconstruct the evolutionary history of each COG. Users will learn how to construct, visualize, and save phylogenetic trees from sets of genomes. 
+Each COG comprises sets of conserved orthologs across species. These data, combined with sequencing data for each ortholog, allow us to reconstruct the evolutionary history of each COG. Users will learn how to construct, visualize, and save phylogenetic trees from sets of genomes using the `TreeLine()` function. 
 
 [<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#constructing-phylogenies)
 
 ### [Identifying Co-evolving Gene Collectives with `SynExtend`](https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html)
 
-With these data, we can analyze patterns in evolutionary signal across COGs. Co-evolutionary signal between genes implies functional association, so finding COGs under shared selective pressure aids us in uncovering the mechanisms of intracellular pathways. Users will learn to tease out subtle evidence of correlated evolutionary pressure in order to create co-evolutionary networks. 
+With these data, we can analyze patterns in evolutionary signal across COGs. Co-evolutionary signal between genes implies functional association, so finding COGs under shared selective pressure aids us in uncovering the mechanisms of intracellular pathways. Users will learn to use the `ProtWeaver` class to tease out subtle evidence of correlated evolutionary pressure in order to create co-evolutionary networks. 
 
 [<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#finding-co-evolving-gene-collectives)
 

@@ -51,9 +51,16 @@ reference:
     desc: >
       Functions for loading and visualizing genomic data
     contents:
+      - reverseComplement
+      - XString-class
+      - XStringSet-class
+      - XStringSet-io
+      - BrowseSeqs
+      - FindSynteny
+      - Synteny-class
       - AlignSeqs
       - AlignTranslation
-      - BrowseSeqs
+      - AlignSynteny
       - BrowseDB
       - SearchDB
       - Seqs2DB

@@ -16,7 +16,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Coming Soon!
-This tutorial will be coming soon!
+This tutorial will be coming soon! It will cover the following topics:
+
+* Importing `.fasta` sequences into `R` as an `XStringSet`
+* Basic operations with `XString` objects (ex. `reverseComplement`)
+* Alignment-free analysis with `FindSynteny`
+* Aligning sequences with `AlignSeqs`, `AlignTranslation`, and `AlignSynteny`
+* Exporting sequences to SQLite databases for working at scale
+* Retrieving sequences from SQLite databases
+* Visualizing sequences with `BrowseSeqs` and `BrowseDB`
+
+At the end of this section, we will have successfully imported sequencing data from standard formats into a format conducive to analyses in R. We will also have gained some basic information on the data in our dataset.
+
+Depending on timing, it may be a good idea to skip databases entirely and just
+focus on working with `XStringSets`. We can just use `BrowseSeqs` for visualization, rather than using `BrowseDB`.
 
 ```{r eval=FALSE}
 library(DECIPHER)

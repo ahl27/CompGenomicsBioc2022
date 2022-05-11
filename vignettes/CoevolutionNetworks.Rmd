@@ -16,8 +16,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Coming Soon!
-This tutorial will be coming soon! Code is not guaranteed to work until the 
-tutorial is finished.
+This tutorial will be coming soon! It will begin with the data from the previous step and cover the following topics:
+
+* Analyzing coevolutionary signal with `ProtWeaver`
+* Different predictive models available in `ProtWeaver`
+* Working with `ProtWeb` objects
 
 ```{r eval=FALSE}
 library(SynExtend)

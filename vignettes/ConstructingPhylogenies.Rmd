@@ -16,7 +16,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Coming Soon!
-This tutorial will be coming soon!
+This tutorial will be coming soon! It will begin with the data from the previous step and cover the following topics:
+
+* Phylogenetic reconstruction with `TreeLine`
+* Different input methods for `TreeLine` (ex. `DistanceMatrix`)
+* Different parameters for `TreeLine` (ex. ML vs. MP, models, information criteria)
+
+At the conclusion of this section, we will have constructed gene trees for each of the COGs identified in the previous section.
 
 ```{r eval=FALSE}
 library(DECIPHER)
