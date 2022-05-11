@@ -32,13 +32,13 @@ modified: 10 May, 2022.
 This workshop consists of an interactive, instructor-led demonstration of common
 analyses in comparative genomics. 
 
-The overall goal of the session is to use sequence data to uncover networks of 
+The immediate goal of this session is to use sequence data to uncover networks of 
 functionally associated genes. These networks consist of genetic regions under 
 shared evolutionary pressure, which have previously been shown to imply some 
 degree of conserved function.
 
-While this analysis is useful, the purpose of this workshop is to teach users how
-to utilize a wide variety of tools for computational genomics. Our overarching 
+While this analysis is useful, the overall purpose of this workshop is to teach users how
+to utilize a wide variety of tools for computational genomics. Our immediate 
 goal serves as a convenient mechanism to guide instruction in a set of broadly 
 applicable tools that can easily be repurposed to many other problems.
 
