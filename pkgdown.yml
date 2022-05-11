@@ -3,7 +3,13 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   CompGenomicsBioc2022: CompGenomicsBioc2022.html
-last_built: 2022-05-11T03:28Z
+  CreatingCOGs: CreatingCOGs.html
+  CreatingTrees: CreatingTrees.html
+  GeneCallingAndAnnotation: GeneCallingAndAnnotation.html
+  Introduction: Introduction.html
+  ProtWeaver: ProtWeaver.html
+  WorkingWithGenomeData: WorkingWithGenomeData.html
+last_built: 2022-05-11T12:56Z
 urls:
   reference: https://www.ahl27.com/CompGenomicsBioc2022/reference
   article: https://www.ahl27.com/CompGenomicsBioc2022/articles
