@@ -18,9 +18,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Coming Soon!
 This tutorial will be coming soon! It will begin with data from the previous step, and will cover the following topics:
 
-* Finding protein coding regions in a genome with `FindGenes`
-* Finding non-coding RNAs in a genome with `FindNonCoding`
-* Classifying sequences using `IdTaxa`
+* Finding protein coding regions in a genome with `FindGenes()`
+* Finding non-coding RNAs in a genome with `FindNonCoding()`
+* Classifying sequences using `IdTaxa()`
 
 At the conclusion of this section, we will have identifying coding and non-coding regions in our input genomes along with predicted annotations of coding regions.
 

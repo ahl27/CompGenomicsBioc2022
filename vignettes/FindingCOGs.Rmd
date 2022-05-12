@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Coming Soon!
 This tutorial will be coming soon! It will begin with the data from the previous step and cover the following topics:
 
-* Identifying pairwise orthology between genetic regions with `NucleotideOverlap`
-* Finding clusters of orthologous genes with `DisjointSet`
+* Identifying pairwise orthology between genetic regions with `NucleotideOverlap()`
+* Finding clusters of orthologous genes with `DisjointSet()`
 
 At the conclusion of this section, we will have a set of clusters of orthologous genes derived from our initial genomic data.
 

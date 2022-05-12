@@ -21,7 +21,7 @@ how to install all the necessary components for this workshop. If you're attendi
 this tutorial at Bioconductor 2022, [you can skip directly to the next page](https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html).
 
 ### Prerequisites
-All content will be shown using the [`R` programming language](https://www.r-project.org/). 
+All content will be shown using the [R programming language](https://www.r-project.org/). 
 For existing users, note that your version of `R` must be at least version `4.x.x` 
 for compatibility with the packages we'll be using.
 
