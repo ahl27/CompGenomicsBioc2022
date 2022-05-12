@@ -1,3 +1,8 @@
+# Version 0.4.0
+### General Notes
+* Updated some text to support `pkgdown` automatic reference linking
+* Minor updates to `README`
+
 # Version 0.3.0
 
 ### General Notes
