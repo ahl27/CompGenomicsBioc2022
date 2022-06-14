@@ -22,9 +22,9 @@ navbar:
       href: https://github.com/ahl27/CompGenomicsBioc2022
       aria-label: GitHub
     home:
-      icon: fa-house-chimney
+      icon: fa-house
       href: https://www.ahl27.com/tutorials
-      aria-label: My Website
+      aria-label: Homepage
     intro:
       text: Overview
       href: https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html
