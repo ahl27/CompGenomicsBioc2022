@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -86,20 +86,28 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>myXStringSet</dt>
 <dd><p>A <code>DNAStringSet</code> or <code>RNAStringSet</code> object of aligned sequence representatives belonging to the same non-coding RNA family.</p></dd>
-<dt>threshold</dt>
+
+  <dt>threshold</dt>
 <dd><p>Numeric specifying the minimum relative frequency of patterns to consider during learning.</p></dd>
-<dt>weight</dt>
+
+  <dt>weight</dt>
 <dd><p>Either a numeric vector of weights for each sequence, a single number implying equal weights, or <code>NA</code> (the default) to automatically calculate sequence weights based on <code>myXStringSet</code>.</p></dd>
-<dt>maxLoopLength</dt>
+
+  <dt>maxLoopLength</dt>
 <dd><p>Numeric giving the maximum length of conserved hairpin loops to consider.</p></dd>
-<dt>maxPatterns</dt>
+
+  <dt>maxPatterns</dt>
 <dd><p>A numeric vector of length two specifying the maximum number of motifs and hairpins, respectively, or a single numeric giving the maximum for each.</p></dd>
-<dt>scoreDependence</dt>
+
+  <dt>scoreDependence</dt>
 <dd><p>Logical determining whether to record a log-odds score for dependencies between patterns.  The default (<code>FALSE</code>) is recommended for most non-coding RNA families.</p></dd>
-<dt>structure</dt>
+
+  <dt>structure</dt>
 <dd><p>Either a character string providing the consensus secondary structure in dot bracket notation, a matrix of paired positions in the first two columns, or <code>NULL</code> (the default) to predict the consensus secondary structure with <code>PredictDBN</code>.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -107,7 +115,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>NonCoding</code>.</p>
+    
+
+<p>An object of class <code>NonCoding</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -154,12 +164,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.15 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.11 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -270,7 +280,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

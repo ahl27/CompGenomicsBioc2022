@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -92,32 +92,46 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>myXStringSet</dt>
 <dd><p>An <code>AAStringSet</code>, <code>DNAStringSet</code>, or <code>RNAStringSet</code> object of unaligned sequences.</p></dd>
-<dt>guideTree</dt>
+
+  <dt>guideTree</dt>
 <dd><p>Either <code>NULL</code> or a <code>dendrogram</code> giving the ordered tree structure in which to align profiles.  If <code>NULL</code> then a guide tree will be automatically constructed based on the order of shared k-mers.</p></dd>
-<dt>iterations</dt>
+
+  <dt>iterations</dt>
 <dd><p>Number of iteration steps to perform.  During each iteration step the guide tree is regenerated based on the alignment and the sequences are realigned.</p></dd>
-<dt>refinements</dt>
+
+  <dt>refinements</dt>
 <dd><p>Number of refinement steps to perform.  During each refinement step groups of sequences are realigned to rest of the sequences, and the best of these two alignments (before and after realignment) is kept.</p></dd>
-<dt>gapOpening</dt>
+
+  <dt>gapOpening</dt>
 <dd><p>Single numeric giving the cost for opening a gap in the alignment, or two numbers giving the minimum and maximum costs.  In the latter case the cost will be varied depending upon whether the groups of sequences being aligned are nearly identical or maximally distant.</p></dd>
-<dt>gapExtension</dt>
+
+  <dt>gapExtension</dt>
 <dd><p>Single numeric giving the cost for extending an open gap in the alignment, or two numbers giving the minimum and maximum costs.  In the latter case the cost will be varied depending upon whether the groups of sequences being aligned are nearly identical or maximally distant.</p></dd>
-<dt>useStructures</dt>
+
+  <dt>useStructures</dt>
 <dd><p>Logical indicating whether to use secondary structure predictions during alignment.  If <code>TRUE</code> (the default), secondary structure probabilities will be automatically calculated for amino acid and RNA sequences if they are not provided (i.e., when <code>structures</code> is <code>NULL</code>).</p></dd>
-<dt>structures</dt>
+
+  <dt>structures</dt>
 <dd><p>Either a list of secondary structure probabilities matching the <code>structureMatrix</code>, such as that output by <code>PredictHEC</code> or <code>PredictDBN</code>, or <code>NULL</code> to generate the structures automatically.  Only applicable if <code>myXStringSet</code> is an <code>AAStringSet</code> or <code>RNAStringSet</code>.</p></dd>
-<dt>FUN</dt>
+
+  <dt>FUN</dt>
 <dd><p>A function to be applied after each profile-to-profile alignment.  (See details section below.)</p></dd>
-<dt>levels</dt>
+
+  <dt>levels</dt>
 <dd><p>Numeric with eight elements specifying the levels at which to trigger events.  (See details section below.)</p></dd>
-<dt>alphabet</dt>
+
+  <dt>alphabet</dt>
 <dd><p>Character vector of amino acid groupings used to reduce the 20 standard amino acids into smaller groups.  Alphabet reduction helps to find more distant homologies between sequences.  A non-reduced amino acid alphabet can be used by setting <code>alphabet</code> equal to <code>AA_STANDARD</code>.  Only applicable if <code>myXStringSet</code> is an <code>AAStringSet</code>.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display progress.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Further arguments to be passed directly to <code>AlignProfiles</code>, including <code>perfectMatch</code>, <code>misMatch</code>, <code>gapPower</code>, <code>terminalGap</code>, <code>restrict</code>, <code>anchor</code>, <code>normPower</code>, <code>standardize</code>, <code>substitutionMatrix</code>, and <code>structureMatrix</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -128,7 +142,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An <code>XStringSet</code> of aligned sequences.</p>
+    
+
+<p>An <code>XStringSet</code> of aligned sequences.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -153,66 +169,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> from Seqs)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet of length: 175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.04 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.03 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">alignedDNA</span> <span class="op">&lt;-</span> <span class="fu">AlignSeqs</span><span class="op">(</span><span class="va">dna</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on shared 9-mers:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.78 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.04 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.75 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.12 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.05 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.01 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.12 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.05 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.7 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="fu"><a href="BrowseSeqs.html">BrowseSeqs</a></span><span class="op">(</span><span class="va">alignedDNA</span>, highlight<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># use secondary structure with RNA sequences</span></span>
-<span class="r-in"><span class="va">alignedRNA</span> <span class="op">&lt;-</span> <span class="fu">AlignSeqs</span><span class="op">(</span><span class="fu">RNAStringSet</span><span class="op">(</span><span class="va">dna</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on shared 9-mers:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.78 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.32 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
@@ -222,39 +185,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 3.68 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.22 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Predicting RNA Secondary Structures:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 3.24 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.12 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.06 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.87 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Predicting RNA Secondary Structures:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 3.26 secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.12 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
@@ -264,7 +202,85 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.76 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.61 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.04 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.78 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="BrowseSeqs.html">BrowseSeqs</a></span><span class="op">(</span><span class="va">alignedDNA</span>, highlight<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># use secondary structure with RNA sequences</span></span>
+<span class="r-in"><span class="va">alignedRNA</span> <span class="op">&lt;-</span> <span class="fu">AlignSeqs</span><span class="op">(</span><span class="fu">RNAStringSet</span><span class="op">(</span><span class="va">dna</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on shared 9-mers:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.31 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.03 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.81 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Predicting RNA Secondary Structures:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.45 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.04 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.52 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Predicting RNA Secondary Structures:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.46 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.04 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.59 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="BrowseSeqs.html">BrowseSeqs</a></span><span class="op">(</span><span class="va">alignedRNA</span>, highlight<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 </code></pre></div>
@@ -278,7 +294,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

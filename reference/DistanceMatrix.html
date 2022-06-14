@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -86,20 +86,28 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>myXStringSet</dt>
 <dd><p>A <code>DNAStringSet</code>, <code>RNAStringSet</code>, or <code>AAStringSet</code> object of aligned sequences.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>Character string indicating the type of output desired.  This should be either <code>"matrix"</code> or <code>"dist"</code>.  (See value section below.)</p></dd>
-<dt>includeTerminalGaps</dt>
+
+  <dt>includeTerminalGaps</dt>
 <dd><p>Logical specifying whether or not to include terminal gaps ("-" or "." characters on each end of the sequence) into the calculation of distance.</p></dd>
-<dt>penalizeGapLetterMatches</dt>
+
+  <dt>penalizeGapLetterMatches</dt>
 <dd><p>Logical specifying whether or not to consider gap-to-letter matches as mismatches.  If <code>FALSE</code>, then gap-to-letter matches are not included in the total length used to calculate distance.</p></dd>
-<dt>penalizeGapGapMatches</dt>
+
+  <dt>penalizeGapGapMatches</dt>
 <dd><p>Logical specifying whether or not to consider gap-to-gap matches as mismatches.  If <code>FALSE</code> (the default), then gap-to-gap matches are not included in the total length used to calculate distance.</p></dd>
-<dt>correction</dt>
+
+  <dt>correction</dt>
 <dd><p>The substitution model used for distance correction.  This should be (an abbreviation of) either <code>"none"</code>, <code>"Jukes-Cantor"</code> (i.e., <code>"JC69"</code>), or <code>"F81"</code>.  For <code>"F81"</code> letter frequencies are derived from <code>myXStringSet</code>.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display progress.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -111,8 +119,14 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If <code>type</code> is <code>"matrix"</code>, a symmetric matrix where each element is the distance between the sequences referenced by the respective row and column.  The <code>dimnames</code> of the matrix correspond to the <code>names</code> of the <code>XStringSet</code>.
-If <code>type</code> is <code>"dist"</code>, an object of <code>class</code><code>"dist"</code> that contains one triangle of the distance matrix as a vector.  Since the distance matrix is symmetric, storing only one triangle is more memory efficient.</p>
+    
+
+<p>If <code>type</code> is <code>"matrix"</code>, a symmetric matrix where each element is the distance between the sequences referenced by the respective row and column.  The <code>dimnames</code> of the matrix correspond to the <code>names</code> of the <code>XStringSet</code>.</p>
+
+
+<p>If <code>type</code> is <code>"dist"</code>, an object of <code>class</code></p>
+<p></p>
+<p><code>"dist"</code> that contains one triangle of the distance matrix as a vector.  Since the distance matrix is symmetric, storing only one triangle is more memory efficient.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -272,7 +286,7 @@ If <code>type</code> is <code>"dist"</code>, an object of <code>class</code><cod
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

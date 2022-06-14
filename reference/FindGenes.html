@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -87,22 +87,31 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>myDNAStringSet</dt>
 <dd><p>A <code>DNAStringSet</code> object of unaligned sequences representing a genome.</p></dd>
-<dt>geneticCode</dt>
+
+  <dt>geneticCode</dt>
 <dd><p>A named character vector defining the translation from codons to amino acids.  Optionally, an <code>"alt_init_codons"</code> attribute can be used to specify alternative initiation codons.  By default, the bacterial and archael genetic code is used, which has seven possible initiation codons: ATG, GTG, TTG, CTG, ATA, ATT, and ATC.</p></dd>
-<dt>minGeneLength</dt>
+
+  <dt>minGeneLength</dt>
 <dd><p>Integer specifying the minimum length of genes to find in the genome.</p></dd>
-<dt>includeGenes</dt>
+
+  <dt>includeGenes</dt>
 <dd><p>A <code>Genes</code> object to include as potential genes or <code>NULL</code> (the default) to predict all genes <code>de novo</code>.</p></dd>
-<dt>allowEdges</dt>
+
+  <dt>allowEdges</dt>
 <dd><p>Logical determining whether to allow genes that run off the edge of the sequences.  If <code>TRUE</code> (the default), genes can be identified with implied starts or ends outside the boundaries of <code>myDNAStringSet</code>, although the boundary will be set to the last possible codon position.  This is useful when genome sequences are circular or incomplete.</p></dd>
-<dt>allScores</dt>
+
+  <dt>allScores</dt>
 <dd><p>Logical indicating whether to return information about all possible open reading frames or only the predicted genes (the default).</p></dd>
-<dt>showPlot</dt>
+
+  <dt>showPlot</dt>
 <dd><p>Logical determining whether a plot is displayed with the distribution of gene lengths and scores.  (See details section below.)</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to print information about the predictions on each iteration.  (See details section below.)</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -112,7 +121,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>Genes</code>.</p>
+    
+
+<p>An object of class <code>Genes</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -133,25 +144,25 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu">FindGenes</span><span class="op">(</span><span class="va">genome</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iter  Models Start Motif  Init  Fold UpsNt  Term   RBS  Auto  Stop Genes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8862         12 18.40  0.48  0.90                                       8883         15 18.38  0.53  1.16  0.40  1.41                           8924         14 15.59  0.51  1.26  0.48  1.76  0.24                     8935         13 15.65  0.51  1.23  0.48  1.83  0.25  0.99  0.10  0.07   8976         11 15.61  0.50  1.24  0.50  1.92  0.25  1.04  0.10  0.07   8977         13 15.60  0.50  1.24  0.51  1.93  0.25  1.03  0.10  0.07   8978         10 15.59  0.50  1.26  0.50  1.94  0.26  1.07  0.10  0.07   8979         11 15.58  0.51  1.25  0.50  1.95  0.26  1.10  0.10  0.07   89910        12 15.58  0.51  1.26  0.50  1.97  0.25  1.10  0.11  0.07   89711        14 15.57  0.51  1.26  0.51  1.98  0.25  1.11  0.11  0.07   89712        13 15.57  0.51  1.26  0.51  1.99  0.25  1.11  0.11  0.07   89613        11 15.56  0.51  1.26  0.52  2.00  0.25  1.14  0.11  0.07   89614        11 15.56  0.51  1.26  0.52  2.00  0.25  1.13  0.11  0.07   899</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8861          1 18.40                 \                                 8861          1 18.40                 |                                 8861          1 18.40                 /                                 8861          1 18.40                 _                                 8862         12 18.40  0.48  0.90                                       8883         15 18.38  0.53  1.16  0.40  1.41                           8904         14 15.61  0.51  1.25  0.45  1.78  0.24                     8945         10 15.64  0.51  1.25  0.47  1.86  0.25  0.96  0.10  0.07   8976         13 15.60  0.50  1.25  0.50  1.93  0.25  1.03  0.10  0.07   8987         13 15.60  0.50  1.26  0.50  1.94  0.25  1.08  0.10  0.07   8978         12 15.59  0.50  1.26  0.49  1.96  0.25  1.08  0.10  0.07   8979         14 15.59  0.50  1.26  0.52  1.97  0.25  1.08  0.10  0.07   89710        11 15.58  0.50  1.26  0.51  1.98  0.25  1.07  0.10  0.07   89811        10 15.58  0.50  1.26  0.51  1.98  0.25  1.10  0.10  0.07   89712        10 15.57  0.50  1.26  0.51  1.99  0.25  1.11  0.10  0.07   89613        10 15.57  0.50  1.26  0.52  1.99  0.25  1.13  0.10  0.07   896</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 37.75 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 28.28 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">z</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Genes object of size 899 specifying:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 899 protein coding genes from 66 to 5,361 nucleotides.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Genes object of size 896 specifying:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 896 protein coding genes from 66 to 5,361 nucleotides.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Index Strand Begin  End TotalScore ... Gene</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1      0     1 1176      78.10 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1      1  1321 1593      21.54 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1      0  1794 2096      34.42 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1      0  2108 3583     139.76 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     1      0  3585 5051     125.25 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     1      1  5150 6241      78.64 ...    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ... with 893 more rows.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1      0     1 1176      78.21 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1      1  1321 1593      21.36 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     1      0  1794 2096      34.26 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     1      0  2108 3583     139.84 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     1      0  3585 5051     124.82 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     1      1  5150 6241      78.69 ...    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... with 890 more rows.</span>
 <span class="r-in"><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ExtractGenes</span><span class="op">(</span><span class="va">z</span>, <span class="va">genome</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">genes</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet object of length 899:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet object of length 896:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       width seq</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  1176 GCGGCCGCCCGGGAAATTGCTAAAAGATGGGAG...GGCGTTGGAATAGAGAAGTCGATAGGGAATAA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [2]   273 ATGCTTTGTAAAGTTTGTAGAGGATTATCTTCT...GATACCACCACCATCATATGGATAGAGAATAA</span>
@@ -159,14 +170,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [4]  1476 ATGTATCGTAAGAGTGCTTTAGAATTAAGAGAT...TGAATGGACTTTTTGACGGAGGAATAGAATAA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [5]  1467 ATGGGCATAGCACATACTGAATGGGAGTCTGTG...AATTGCTATTAGCAGCTATGCGAGATATGTAA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ...   ... ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [895]  3051 ATGCCTTTTTCTTTGAGATCTACATCATTTTGT...TTGTATCCATGGGCTTGAATAGAATCTTTTAA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [896]   303 ATGCTGGCAACAATTAAAAAAATTACTGTGTTG...GAGATTCTCGCCTAGAATGCAAGAAGATATAA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [897]  2637 ATGCGACCTGATCATATGAACTTCTGTTGTCTA...CCCTGGATCTGGGGACCACTTACAGGTTCTAG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [898]    96 ATGTCAAAAAAAAGTAATAATTTACAGACTTTT...ATGAAGAGTTAAGGAAGATTTTTGGATTGTGA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [899]   600 ATGAGCATCAGGGGAGTAGGAGGCAACGGGAAT...AAGCGAACAAGTTGGCTGGCCCTGACGGGGTA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [892]  3051 ATGCCTTTTTCTTTGAGATCTACATCATTTTGT...TTGTATCCATGGGCTTGAATAGAATCTTTTAA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [893]   303 ATGCTGGCAACAATTAAAAAAATTACTGTGTTG...GAGATTCTCGCCTAGAATGCAAGAAGATATAA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [894]  2637 ATGCGACCTGATCATATGAACTTCTGTTGTCTA...CCCTGGATCTGGGGACCACTTACAGGTTCTAG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [895]    96 ATGTCAAAAAAAAGTAATAATTTACAGACTTTT...ATGAAGAGTTAAGGAAGATTTTTGGATTGTGA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [896]   600 ATGAGCATCAGGGGAGTAGGAGGCAACGGGAAT...AAGCGAACAAGTTGGCTGGCCCTGACGGGGTA</span>
 <span class="r-in"><span class="va">proteins</span> <span class="op">&lt;-</span> <span class="fu">ExtractGenes</span><span class="op">(</span><span class="va">z</span>, <span class="va">genome</span>, type<span class="op">=</span><span class="st">"AAStringSet"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">proteins</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AAStringSet object of length 899:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AAStringSet object of length 896:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       width seq</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1]   392 AAAREIAKRWEQRVRDLQDKGAARKLLNDPLGR...QVEGILRDMLTNGSQTFRDLMRRWNREVDRE*</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [2]    91 MLCKVCRGLSSLIVVLGAINTGILGVTGYKVNL...CLNFLKCCFKKRHGDCCSSKGGYHHHHMDRE*</span>
@@ -174,11 +185,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [4]   492 MYRKSALELRDAVVNRELSVTAITEYFYHRIES...ICQVGYSFQEHSQIKQLYPKAVNGLFDGGIE*</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [5]   489 MGIAHTEWESVIGLEVHVELNTESKLFSPARNH...GFLVGQIMKRTEGKAPPKRVNELLLAAMRDM*</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ...   ... ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [895]  1017 MPFSLRSTSFCFLACLCSYSYGFASSPQVLTPN...HHFGRAYMNYSLDARRRQTAHFVSMGLNRIF*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [896]   101 MLATIKKITVLLLSKRKAGIRIDYCALALDAVE...LDASLESAQVRLAGLMLDYWDGDSRLECKKI*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [897]   879 MRPDHMNFCCLCAAILSSTAVLFGQDPLGETAL...LHRLQTLLNVSYVLRGQSHSYSLDLGTTYRF*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [898]    32 MSKKSNNLQTFSSRALFHVFQDEELRKIFGL*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [899]   200 MSIRGVGGNGNSRIPSHNGDGSNRRSQNTKGNN...NLDVNEARLMAAYTSECADHLEANKLAGPDGV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [892]  1017 MPFSLRSTSFCFLACLCSYSYGFASSPQVLTPN...HHFGRAYMNYSLDARRRQTAHFVSMGLNRIF*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [893]   101 MLATIKKITVLLLSKRKAGIRIDYCALALDAVE...LDASLESAQVRLAGLMLDYWDGDSRLECKKI*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [894]   879 MRPDHMNFCCLCAAILSSTAVLFGQDPLGETAL...LHRLQTLLNVSYVLRGQSHSYSLDLGTTYRF*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [895]    32 MSKKSNNLQTFSSRALFHVFQDEELRKIFGL*</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [896]   200 MSIRGVGGNGNSRIPSHNGDGSNRRSQNTKGNN...NLDVNEARLMAAYTSECADHLEANKLAGPDGV</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -190,7 +201,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

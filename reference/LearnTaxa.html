@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -90,28 +90,40 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>train</dt>
 <dd><p>An <code>AAStringSet</code>, <code>DNAStringSet</code>, or <code>RNAStringSet</code> of unaligned sequences.</p></dd>
-<dt>taxonomy</dt>
+
+  <dt>taxonomy</dt>
 <dd><p>Character string providing the reference taxonomic assignment for each sequence in <code>train</code>.  Taxonomic ranks are separated by semicolons (``;'') beginning with ``Root''.</p></dd>
-<dt>rank</dt>
+
+  <dt>rank</dt>
 <dd><p>Optionally, a <code>data.frame</code> with 5 named columns giving the ``Index'' (i.e., 0 to the number of unique taxa), ``Name'' (i.e., taxon name), ``Parent'' (i.e., ``Index'' of the parent taxon), ``Level'' (i.e., integer rank level), and ``Rank'' (e.g., ``genus'') of each taxonomic rank.  This information is often provided in a separate ``taxid'' file along with publicly available training sequence sets.</p></dd>
-<dt>K</dt>
+
+  <dt>K</dt>
 <dd><p>Integer specifying the k-mer size or <code>NULL</code> (the default) to calculate the k-mer size automatically.  The default value of <code>K</code> is such that matches between sequences are found by chance every <code>N</code> k-mers.</p></dd>
-<dt>N</dt>
+
+  <dt>N</dt>
 <dd><p>Numeric indicating the approximate number of k-mers that can be randomly selected before one is found by chance on average. For example, the default value of <code>500</code> will set <code>K</code> (when <code>K</code> is unspecified) so that every 500th k-mer is expected to match by chance.</p></dd>
-<dt>minFraction</dt>
+
+  <dt>minFraction</dt>
 <dd><p>Numeric giving the minimum fraction of k-mers to sample during the initial tree descent phase of the classification algorithm.  (See details section below.)</p></dd>
-<dt>maxFraction</dt>
+
+  <dt>maxFraction</dt>
 <dd><p>Numeric giving the maximum fraction of k-mers to sample during the initial tree descent phase of the classification algorithm.  (See details section below.)</p></dd>
-<dt>maxIterations</dt>
+
+  <dt>maxIterations</dt>
 <dd><p>Integer specifying the maximum number of iterations to attempt re-classification of a training sequence before declaring it a ``problem sequence''.  (See details section below.)</p></dd>
-<dt>multiplier</dt>
+
+  <dt>multiplier</dt>
 <dd><p>Numeric indicating the degree to which individual sequences have control over the fraction of k-mers sampled at any edge during the initial tree descent phase of the classification algorithm.  (See details section below.)</p></dd>
-<dt>maxChildren</dt>
+
+  <dt>maxChildren</dt>
 <dd><p>Integer giving the maximum number of child taxa of any taxon at which to consider further descending the taxonomic tree.  A value of <code>1</code> will prevent use of the tree descent algorithm altogether.  Lower values may decrease classification speed, but result in output objects that require less memory.</p></dd>
-<dt>alphabet</dt>
+
+  <dt>alphabet</dt>
 <dd><p>Character vector of amino acid groupings used to reduce the 20 standard amino acids into smaller groups.  Alphabet reduction helps to find more distant homologies between sequences.  A non-reduced amino acid alphabet can be used by setting <code>alphabet</code> equal to <code>AA_STANDARD</code>.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display progress.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -124,39 +136,57 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>Taxa</code> and subclass Train, which is stored as a list with components:</p>
+    
+
+<p>An object of class <code>Taxa</code> and subclass Train, which is stored as a list with components:</p>
 <dl><dt>taxonomy</dt>
 <dd><p>A character vector containing all possible groups in the taxonomy.</p></dd>
-<dt>taxa</dt>
+
+  <dt>taxa</dt>
 <dd><p>A character vector containing the basal taxon in each taxonomy.</p></dd>
-<dt>ranks</dt>
+
+  <dt>ranks</dt>
 <dd><p>A character vector of rank names for each taxon, or <code>NULL</code> if <code>rank</code> information was not supplied.</p></dd>
-<dt>levels</dt>
+
+  <dt>levels</dt>
 <dd><p>Integer giving the rank level of each taxon.</p></dd>
-<dt>children</dt>
+
+  <dt>children</dt>
 <dd><p>A list containing the index of all children in the taxonomy for each taxon.</p></dd>
-<dt>parents</dt>
+
+  <dt>parents</dt>
 <dd><p>An integer providing the index of the parent for each taxon.</p></dd>
-<dt>fraction</dt>
+
+  <dt>fraction</dt>
 <dd><p>A numeric between <code>minFraction</code> and <code>maxFraction</code> that represents the learned fraction of informative k-mers to sample for each taxon during the initial tree descent phase of the classification algorithm.  Problem groups are marked by a fraction of <code>NA</code>.</p></dd>
-<dt>sequences</dt>
+
+  <dt>sequences</dt>
 <dd><p>List containing the integer indices of sequences in <code>train</code> belonging to each taxon.</p></dd>
-<dt>kmers</dt>
+
+  <dt>kmers</dt>
 <dd><p>List containing the unique sorted k-mers (converted to integers) belonging to each sequence in <code>train</code>.</p></dd>
-<dt>crossIndex</dt>
+
+  <dt>crossIndex</dt>
 <dd><p>Integer indicating the index in taxonomy of each sequence's taxonomic label.</p></dd>
-<dt>K</dt>
+
+  <dt>K</dt>
 <dd><p>The value of <code>K</code> provided as input.</p></dd>
-<dt>IDFweights</dt>
+
+  <dt>IDFweights</dt>
 <dd><p>Numeric vector of length <code>4^K</code> providing the inverse document frequency weight for each k-mer.</p></dd>
-<dt>decisionKmers</dt>
+
+  <dt>decisionKmers</dt>
 <dd><p>List of informative k-mers and their associated relative frequencies for each internal edge in the taxonomy.</p></dd>
-<dt>problemSequences</dt>
+
+  <dt>problemSequences</dt>
 <dd><p>A <code>data.frame</code> providing the ``Index'', ``Expected'' label, and ``Predicted'' taxon for sequences that could not be correctly classified during the initial tree descent phase of the algorithm.</p></dd>
-<dt>problemGroups</dt>
+
+  <dt>problemGroups</dt>
 <dd><p>Character vector containing any taxonomic groups that repeatedly had problems with correctly re-classifying sequences in <code>train</code> during the initial tree descent phase of the classification algorithm.  Problem groups likely indicate that a number of the sequences (or an entire group of sequences) assigned to the problem group are incorrectly placed in the taxonomic tree.</p></dd>
-<dt>alphabet</dt>
+
+  <dt>alphabet</dt>
 <dd><p>The <code>alphabet</code> when <code>train</code> is an ``AAStringSet'', otherwise <code>NULL</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -195,7 +225,7 @@
 <span class="r-in"><span class="va">trainingSet</span> <span class="op">&lt;-</span> <span class="fu">LearnTaxa</span><span class="op">(</span><span class="va">dna</span>, <span class="va">taxonomy</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 6.52 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 6.55 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">trainingSet</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A training set of class 'Taxa'</span>
@@ -227,7 +257,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

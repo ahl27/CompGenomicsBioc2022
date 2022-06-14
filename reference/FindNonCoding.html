@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -84,16 +84,22 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>A <code>NonCoding</code> object or a list of <code>NonCoding</code> objects for searching.</p></dd>
-<dt>myXStringSet</dt>
+
+  <dt>myXStringSet</dt>
 <dd><p>A <code>DNAStringSet</code> or <code>RNAStringSet</code> object of unaligned sequences, typically representing a genome.</p></dd>
-<dt>minScore</dt>
+
+  <dt>minScore</dt>
 <dd><p>Numeric giving the minimum log-odds score of matches to <code>x</code> in <code>myXStringSet</code> to report, or a vector of numerics specifying the minimum score per <code>NonCoding</code> object in <code>x</code>.  The maximum false discovery rate is approximately <code>exp(-minScore)</code> per nucleotide per object in <code>x</code>.</p></dd>
-<dt>allScores</dt>
+
+  <dt>allScores</dt>
 <dd><p>Logical specifying whether all matches should be returned (<code>TRUE</code>) or only the top matches when there are multiple matches in the same region.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display progress.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -101,7 +107,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>Genes</code>.</p>
+    
+
+<p>An object of class <code>Genes</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -177,7 +185,7 @@
 <span class="r-in"><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu">FindNonCoding</span><span class="op">(</span><span class="va">x</span>, <span class="va">genome</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 49.9 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 39.13 secs</span>
 <span class="r-in"><span class="va">z</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Genes object of size 46 specifying:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 46 non-coding RNAs from 72 to 2,938 nucleotides.</span>
@@ -240,7 +248,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

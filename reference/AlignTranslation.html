@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -85,18 +85,25 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>myXStringSet</dt>
 <dd><p>A <code>DNAStringSet</code> or <code>RNAStringSet</code> object of unaligned sequences.</p></dd>
-<dt>sense</dt>
+
+  <dt>sense</dt>
 <dd><p>Single character specifying sense of the input sequences, either the positive (<code>"+"</code>) coding strand or negative (<code>"-"</code>) non-coding strand.</p></dd>
-<dt>direction</dt>
+
+  <dt>direction</dt>
 <dd><p>Direction of the input sequences, either <code>"5' to 3'"</code> or <code>"3' to 5'"</code>.</p></dd>
-<dt>readingFrame</dt>
+
+  <dt>readingFrame</dt>
 <dd><p>Numeric vector giving a single reading frame for all of the sequences, or an individual reading frame for each sequence in <code>myXStringSet</code>.  The <code>readingFrame</code> can be either <code>1</code>, <code>2</code>, <code>3</code> to begin translating on the first, second, and third nucleotide position, or <code>NA</code> (the default) to guess the reading frame.  (See details section below.)</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>Character string indicating the type of output desired.  This should be (an abbreviation of) one of <code>"DNAStringSet"</code>, <code>"RNAStringSet"</code>, <code>"AAStringSet"</code>, or <code>"both"</code>.  (See value section below.)</p></dd>
-<dt>geneticCode</dt>
+
+  <dt>geneticCode</dt>
 <dd><p>Either a character vector giving the genetic code in the same format as <code>GENETIC_CODE</code> (the default), or a list containing one genetic code for each sequence in <code>myXStringSet</code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Further arguments to be passed directly to <code><a href="AlignSeqs.html">AlignSeqs</a></code>, including <code>gapOpening</code>, <code>gapExtension</code>, <code>gapPower</code>, <code>terminalGap</code>, <code>restrict</code>, <code>anchor</code>, <code>normPower</code>, <code>substitutionMatrix</code>, <code>structureMatrix</code>, <code>standardize</code>, <code>alphabet</code>, <code>guideTree</code>, <code>iterations</code>, <code>refinements</code>, <code>useStructures</code>, <code>structures</code>, <code>FUN</code>, and <code>levels</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -105,7 +112,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An <code>XStringSet</code> of the class specified by <code>type</code>, or a list of two components (nucleotides and amino acids) if <code>type</code> is <code>"both"</code>.  Note that incomplete starting and ending codons will be translated into the mask character ("+") if the result includes an <code>AAStringSet</code>.</p>
+    
+
+<p>An <code>XStringSet</code> of the class specified by <code>type</code>, or a list of two components (nucleotides and amino acids) if <code>type</code> is <code>"both"</code>.  Note that incomplete starting and ending codons will be translated into the mask character ("+") if the result includes an <code>AAStringSet</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -179,51 +188,51 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on shared 5-mers:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.83 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.56 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.05 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.95 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.48 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.13 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.85 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.65 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.13 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.1 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.11 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">DNA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet object of length 317:</span>
@@ -252,7 +261,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on shared 5-mers:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.78 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.56 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
@@ -262,41 +271,41 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 2.19 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.49 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.13 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.84 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.68 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 2 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Determining distance matrix based on alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.13 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reclustering into groups by similarity:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.07 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Realigning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.12 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="BrowseSeqs.html">BrowseSeqs</a></span><span class="op">(</span><span class="va">AA</span><span class="op">)</span></span>
 </code></pre></div>
@@ -310,7 +319,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

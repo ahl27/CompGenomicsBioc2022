@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -92,32 +92,46 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>dbFile</dt>
 <dd><p>A SQLite connection object or a character string specifying the path to the database file.</p></dd>
-<dt>tblName</dt>
+
+  <dt>tblName</dt>
 <dd><p>Character string specifying the table where the sequences are located.</p></dd>
-<dt>identifier</dt>
+
+  <dt>identifier</dt>
 <dd><p>Optional character string used to narrow the search results to those matching a specific identifier.  If "" (the default) then all identifiers are selected.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>The type of <code>XStringSet</code> (sequences) to return.  This should be (an unambiguous abbreviation of) one of <code>"XStringSet"</code>, <code>"DNAStringSet"</code>, <code>"RNAStringSet"</code>, <code>"AAStringSet"</code>, <code>"BStringSet"</code>, <code>"QualityScaledXStringSet"</code>, <code>"QualityScaledDNAStringSet"</code>, <code>"QualityScaledRNAStringSet"</code>, <code>"QualityScaledAAStringSet"</code>, or <code>"QualityScaledBStringSet"</code>.  If <code>type</code> is <code>"XStringSet"</code> or <code>"QualityScaledXStringSet"</code> then an attempt is made to guess the type of sequences based on their composition.</p></dd>
-<dt>limit</dt>
+
+  <dt>limit</dt>
 <dd><p>Number of results to display.  The default (<code>-1</code>) does not limit the number of results.</p></dd>
-<dt>replaceChar</dt>
+
+  <dt>replaceChar</dt>
 <dd><p>Optional character used to replace any characters of the sequence that are not present in the <code>XStringSet</code>'s alphabet.  Not applicable if <code>type=="BStringSet"</code>.  The default (<code>NA</code>) results in an error if an incompatible character exist.  (See details section below.)</p></dd>
-<dt>nameBy</dt>
+
+  <dt>nameBy</dt>
 <dd><p>Character string giving the column name for naming the <code>XStringSet</code>.</p></dd>
-<dt>orderBy</dt>
+
+  <dt>orderBy</dt>
 <dd><p>Character string giving the column name for sorting the results.  Defaults to the order of entries in the database.  Optionally can be followed by <code>" ASC"</code> or <code>" DESC"</code> to specify ascending (the default) or descending order.</p></dd>
-<dt>countOnly</dt>
+
+  <dt>countOnly</dt>
 <dd><p>Logical specifying whether to return only the number of sequences.</p></dd>
-<dt>removeGaps</dt>
+
+  <dt>removeGaps</dt>
 <dd><p>Determines how gaps ("-" or "." characters) are removed in the sequences.  This should be (an unambiguous abbreviation of) one of <code>"none"</code>, <code>"all"</code> or <code>"common"</code>.</p></dd>
-<dt>clause</dt>
+
+  <dt>clause</dt>
 <dd><p>An optional character string to append to the query as part of a ``where clause''.</p></dd>
-<dt>quality</dt>
+
+  <dt>quality</dt>
 <dd><p>The type of quality object to return if <code>type</code> is a <code>QualityScaledXStringSet</code>.  This should be (an unambiguous abbreviation of) one of <code>"Phred"</code>, <code>"Solexa"</code>, or <code>"Illumina"</code>.  Note that recent versions of Illumina software provide <code>"Phred"</code> formatted quality scores.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display queries as they are sent to the database.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -125,7 +139,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An <code>XStringSet</code> or <code>QualityScaledXStringSet</code> with the sequences that meet the specified criteria.  The <code>names</code> of the object correspond to the value in the <code>nameBy</code> column of the database.</p>
+    
+
+<p>An <code>XStringSet</code> or <code>QualityScaledXStringSet</code> with the sequences that meet the specified criteria.  The <code>names</code> of the object correspond to the value in the <code>nameBy</code> column of the database.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -169,7 +185,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> from Seqs where identifier is "Mycobacterium")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet of length: 22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="co"># provide a more complex query:</span></span>
 <span class="r-in"><span class="va">dna</span> <span class="op">&lt;-</span> <span class="fu">SearchDB</span><span class="op">(</span><span class="va">db</span>, nameBy<span class="op">=</span><span class="st">"description"</span>, orderBy<span class="op">=</span><span class="st">"bases"</span>, removeGaps<span class="op">=</span><span class="st">"common"</span>,</span>
@@ -180,7 +196,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> nonbases is 0) order by bases</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet of length: 19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
@@ -193,7 +209,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

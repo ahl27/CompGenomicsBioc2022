@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -89,26 +89,37 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>seqs</dt>
 <dd><p>A connection object or a character string specifying the file path to the file containing the sequences, an <code>XStringSet</code> object if <code>type</code> is <code>XStringSet</code>, or a <code>QualityScaledXStringSet</code> object if <code>type</code> is <code>QualityScaledXStringSet</code>. Files compressed with <code>gzip</code>, <code>bzip2</code>, <code>xz</code>, or <code>lzma</code> compression are automatically detected and decompressed during import.  Full URL paths (e.g., "http://" or "ftp://") to uncompressed text files or <code>gzip</code> compressed text files can also be used.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>The type of the sequences (<code>seqs</code>) being imported.  This should be (an unambiguous abbreviation of) one of <code>"FASTA"</code>, <code>"FASTQ"</code>, <code>"GenBank"</code>, <code>"XStringSet"</code>, or <code>"QualityScaledXStringSet"</code>.</p></dd>
-<dt>dbFile</dt>
+
+  <dt>dbFile</dt>
 <dd><p>A SQLite connection object or a character string specifying the path to the database file.  If the <code>dbFile</code> does not exist then a new database is created at this location.</p></dd>
-<dt>identifier</dt>
+
+  <dt>identifier</dt>
 <dd><p>Character string specifying the <code>"id"</code> to give the imported sequences in the database.</p></dd>
-<dt>tblName</dt>
+
+  <dt>tblName</dt>
 <dd><p>Character string specifying the table in which to add the sequences.</p></dd>
-<dt>chunkSize</dt>
+
+  <dt>chunkSize</dt>
 <dd><p>Number of characters to read at a time.</p></dd>
-<dt>replaceTbl</dt>
+
+  <dt>replaceTbl</dt>
 <dd><p>Logical indicating whether to overwrite the entire table in the database.  If <code>FALSE</code> (the default) then the sequences are appended to any already existing in the <code>tblName</code>.  If <code>TRUE</code> the entire table is dropped, removing any existing sequences before adding any new sequences.</p></dd>
-<dt>fields</dt>
+
+  <dt>fields</dt>
 <dd><p>Named character vector providing the fields to import from a <code>"GenBank"</code> formatted file as text columns in the database (not applicable for other <code>"type"</code>s).  The default is to import the <code>"ACCESSION"</code> field as a column named <code>"accession"</code> and the <code>"ORGANISM"</code> field as a column named <code>"rank"</code>.  Other uppercase fields, such as <code>"LOCUS"</code> or <code>"VERSION"</code>, can be specified in similar manner.  Note that the <code>"DEFINITION"</code> field is automatically imported as a column named <code>"description"</code> in the database.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display each query as it is sent to the database.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Further arguments to be passed directly to <code>Codec</code> for compressing sequence information.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -116,7 +127,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The total number of sequences in the database table is returned after import.</p>
+    
+
+<p>The total number of sequences in the database table is returned after import.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -143,7 +156,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reading GenBank file chunk 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 175 total sequences in table Seqs.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.11 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="BrowseDB.html">BrowseDB</a></span><span class="op">(</span><span class="va">dbConn</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">dna</span> <span class="op">&lt;-</span> <span class="fu"><a href="SearchDB.html">SearchDB</a></span><span class="op">(</span><span class="va">dbConn</span>, nameBy<span class="op">=</span><span class="st">"description"</span><span class="op">)</span></span>
@@ -166,7 +179,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

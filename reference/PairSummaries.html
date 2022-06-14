@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -90,28 +90,40 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>SyntenyLinks</dt>
 <dd><p>A <code>LinkedPairs</code> object. In previous versions of this function, a <code>GeneCalls</code> object was also required, but this object is now carried forward from <code>NucleotideOverlap</code> inside the <code>LinkedPairs</code> object.</p></dd>
-<dt>DBPATH</dt>
+
+  <dt>DBPATH</dt>
 <dd><p>A SQLite connection object or a character string specifying the path to the database file constructed from DECIPHER's <code>Seqs2DB</code> function. This path is always required as ``PairsSummaries'' always computes the tetramer distance between paired sequences.</p></dd>
-<dt>PIDs</dt>
+
+  <dt>PIDs</dt>
 <dd><p>Logical indicating whether to provide a PID for each pair. If <code>TRUE</code> all pairs will be aligned using DECIPHER's <code>AlignProfiles</code>. This step can be time consuming, especially for large numbers of pairs. Default is <code>FALSE</code>.</p></dd>
-<dt>Score</dt>
+
+  <dt>Score</dt>
 <dd><p>Logical indicating whether to provide a length normalized score with DECIPHER's <code>ScoreAlignment</code> function. If <code>TRUE</code> all pairs will be aligned using DECIPHER's <code>AlignProfiles</code>. This step can be time consuming, especially for large numbers of pairs. Default is <code>FALSE</code>.</p></dd>
-<dt>IgnoreDefaultStringSet</dt>
+
+  <dt>IgnoreDefaultStringSet</dt>
 <dd><p>Logical indicating alignment type preferences. If <code>FALSE</code> (the default) pairs that can be aligned in amino acid space will be aligned as an <code>AAStringSet</code>. If <code>TRUE</code> all pairs will be aligned in nucleotide space. For <code>PairSummaries</code> to align the translation of a pair of sequences, both sequences must be tagged as coding in the ``GeneCalls'' object, and be the correct width for translation.</p></dd>
-<dt>Verbose</dt>
+
+  <dt>Verbose</dt>
 <dd><p>Logical indicating whether or not to display a progress bar and print the time difference upon completion.</p></dd>
-<dt>Model</dt>
+
+  <dt>Model</dt>
 <dd><p>A character string specifying a model to use to predict PIDs without performing an alignment. By default this argument is ``Generic'' specifying a generic PID prediction model based on PIDs computed from a randomly selected set of genomes. Currently no other models are included. Users may also supply their own model of type ``glm'' if they so desire in the form of an RData file. This model will need to take in some, or of the columns of statistics per pair that PairSummaries supplies.</p></dd>
-<dt>DefaultTranslationTable</dt>
+
+  <dt>DefaultTranslationTable</dt>
 <dd><p>A character used to set the default translation table for <code>translate</code>. Is passed to <code>getGeneticCode</code>. Used when no translation table is specified in the ``GeneCalls'' object.</p></dd>
-<dt>AcceptContigNames</dt>
+
+  <dt>AcceptContigNames</dt>
 <dd><p>Match names of contigs between gene calls object and synteny object. Where relevant, the first white space and everything following are removed from contig names. If <code>TRUE</code>, PairSummaries assumes that the contigs at each position in the synteny object and ``GeneCalls'' object are in the same order. Is automatically set to <code>TRUE</code> when ``GeneCalls'' are of class ``GRanges''. Is currently <code>TRUE</code> by default.</p></dd>
-<dt>OffSetsAllowed</dt>
+
+  <dt>OffSetsAllowed</dt>
 <dd><p>Defaults to <code>NULL</code>. Supplying an integer vector will indicate gap sizes to attempt to fill. A value of <code>2</code> will attempt to span gaps of size 1. If a vector larger than 1 is provided, i.e. <code>c(2, 3)</code>, will attempt to query all gap sizes implied by the vector, in this case gaps of size 1 and 2.</p></dd>
-<dt>Storage</dt>
+
+  <dt>Storage</dt>
 <dd><p>Numeric indicating the approximate size a user wishes to allow for holding <code>StringSet</code>s in memory to extract gene sequences, in ``Gigabytes''. The lower <code>Storage</code> is set, the more likely that <code>PairSummaries</code> will need to reaccess <code>StringSet</code>s when extracting gene sequences. The higher <code>Storage</code> is set, the more sequences <code>PairSummaries</code> will attempt to hold in memory, avoiding the need to re-access the source database many times. Set to 1 by default, indicating that <code>PairSummaries</code> can store a ``Gigabyte'' of sequences in memory at a time.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Arguments to be passed to <code>AlignProfiles</code>, and <code>DistanceMatrix</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -119,7 +131,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data.frame of class ``data.frame'' and ``PairSummaries'' of paired genes that are connected by syntenic hits. Contains columns describing the k-mers that link the pair. Columns ``p1'' and ``p2'' give the location ids of the the genes in the pair in the form ``DatabaseIdentifier_ContigIdentifier_GeneIdentifier''. ``ExactMatch'' provides an integer representing the exact number of nucleotides contained in the linking k-mers. ``TotalKmers'' provides an integer describing the number of distinct k-mers linking the pair. ``MaxKmer'' provides an integer describing the largest k-mer that links the pair. A column titled ``Consensus'' provides a value between zero and 1 indicating whether the kmers that link a pair of features are in the same position in each feature, with 1 indicating they are in exactly the same position and 0 indicating they are in as different a position as is possible. The ``Adjacent'' column provides an integer value ranging between 0 and 2 denoting whether a feature pair's direct neighbors are also paired. Gap filled pairs neither have neighbors, or are included as neighbors. The ``TetDist'' column provides the euclidean distance between oligonucleotide - of size 4 - frequences between predicted pairs. ``PIDType'' provides a character vector with values of ``NT'' where either of the pair indicates it is not a translatable sequence or ``AA'' where both sequences are translatable. If users choose to perform pairwise alignments there will be a ``PID'' column providing a numeric describing the percent identity between the two sequences. If users choose to predict PIDs using their own, or a provided model, a ``PredictedPID'' column will be provided.</p>
+    
+
+<p>A data.frame of class ``data.frame'' and ``PairSummaries'' of paired genes that are connected by syntenic hits. Contains columns describing the k-mers that link the pair. Columns ``p1'' and ``p2'' give the location ids of the the genes in the pair in the form ``DatabaseIdentifier_ContigIdentifier_GeneIdentifier''. ``ExactMatch'' provides an integer representing the exact number of nucleotides contained in the linking k-mers. ``TotalKmers'' provides an integer describing the number of distinct k-mers linking the pair. ``MaxKmer'' provides an integer describing the largest k-mer that links the pair. A column titled ``Consensus'' provides a value between zero and 1 indicating whether the kmers that link a pair of features are in the same position in each feature, with 1 indicating they are in exactly the same position and 0 indicating they are in as different a position as is possible. The ``Adjacent'' column provides an integer value ranging between 0 and 2 denoting whether a feature pair's direct neighbors are also paired. Gap filled pairs neither have neighbors, or are included as neighbors. The ``TetDist'' column provides the euclidean distance between oligonucleotide - of size 4 - frequences between predicted pairs. ``PIDType'' provides a character vector with values of ``NT'' where either of the pair indicates it is not a translatable sequence or ``AA'' where both sequences are translatable. If users choose to perform pairwise alignments there will be a ``PID'' column providing a numeric describing the percent identity between the two sequences. If users choose to predict PIDs using their own, or a provided model, a ``PredictedPID'' column will be provided.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -147,7 +161,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Overhead complete.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Collecting pairs.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.647005 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.248288 secs</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -160,7 +174,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -97,42 +97,61 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>dbFile</dt>
 <dd><p>A SQLite connection object or a character string specifying the path to the database file.</p></dd>
-<dt>tblName</dt>
+
+  <dt>tblName</dt>
 <dd><p>Character string specifying the table where the sequences are located.</p></dd>
-<dt>identifier</dt>
+
+  <dt>identifier</dt>
 <dd><p>Optional character string used to narrow the search results to those matching a specific identifier.  If <code>""</code> then all identifiers are selected.  Repeated identifiers will find synteny between a sequence and itself, while blocking identical positions from matching in both sequences.</p></dd>
-<dt>useFrames</dt>
+
+  <dt>useFrames</dt>
 <dd><p>Logical specifying whether to use 6-frame amino acid translations to help find more distant hits.  Using the <code>alphabet</code> is helpful when the genome is largely composed of coding DNA.  If <code>FALSE</code> then faster but less sensitive to distant homology.</p></dd>
-<dt>alphabet</dt>
+
+  <dt>alphabet</dt>
 <dd><p>Character vector of amino acid groupings used to reduce the 20 standard amino acids into smaller groups.  Alphabet reduction helps to find more distant homologies between sequences.  A non-reduced amino acid alphabet can be used by setting <code>alphabet</code> equal to <code>AA_STANDARD</code>.</p></dd>
-<dt>geneticCode</dt>
+
+  <dt>geneticCode</dt>
 <dd><p>Either a character vector giving the genetic code to use in translation, or a list containing one genetic code for each identifier.  If a list is provided then it must be named by the corresponding identifiers in the database.</p></dd>
-<dt>sepCost</dt>
+
+  <dt>sepCost</dt>
 <dd><p>Cost per nucleotide separation between hits to apply when chaining hits into blocks.</p></dd>
-<dt>gapCost</dt>
+
+  <dt>gapCost</dt>
 <dd><p>Cost for gaps between hits to apply when chaining hits into blocks.</p></dd>
-<dt>shiftCost</dt>
+
+  <dt>shiftCost</dt>
 <dd><p>Cost for shifting between different reading frames when chaining reduced amino acid hits into blocks.</p></dd>
-<dt>codingCost</dt>
+
+  <dt>codingCost</dt>
 <dd><p>Cost for switching between coding and non-coding hits when chaining hits into blocks.</p></dd>
-<dt>maxSep</dt>
+
+  <dt>maxSep</dt>
 <dd><p>Maximal separation (in nucleotides) between hits in the same block.</p></dd>
-<dt>maxGap</dt>
+
+  <dt>maxGap</dt>
 <dd><p>The maximum number of gaps between hits in the same block.</p></dd>
-<dt>minScore</dt>
+
+  <dt>minScore</dt>
 <dd><p>The minimum score required for a chain of hits to become a block.  Higher values of <code>minScore</code> are less likely to yield false positives.</p></dd>
-<dt>dropScore</dt>
+
+  <dt>dropScore</dt>
 <dd><p>The change from maximal score required to stop extending blocks.</p></dd>
-<dt>maskRepeats</dt>
+
+  <dt>maskRepeats</dt>
 <dd><p>Logical specifying whether to ``soft'' mask repeats when searching for hits.</p></dd>
-<dt>allowOverlap</dt>
+
+  <dt>allowOverlap</dt>
 <dd><p>Logical specifying whether to permit blocks to overlap on the same sequence.</p></dd>
-<dt>storage</dt>
+
+  <dt>storage</dt>
 <dd><p>Excess gigabytes available to store objects so that they do not need to be recomputed in later steps.  This should be a number between zero and a (modest) fraction of the available system memory.  Note that more than <code>storage</code> gigabytes may be required, but will not be stored for later reuse.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display progress.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -140,7 +159,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class ``Synteny''.</p>
+    
+
+<p>An object of class ``Synteny''.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -161,7 +182,7 @@
 <span class="r-in"><span class="va">synteny</span> <span class="op">&lt;-</span> <span class="fu">FindSynteny</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.2 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.94 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">synteny</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          H9N2     H5N1     H2N2     H7N9     H1N1</span>
@@ -183,7 +204,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

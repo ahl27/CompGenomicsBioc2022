@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -109,40 +109,58 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>An object of class <code>Synteny</code>.</p></dd>
-<dt>bounds</dt>
+
+  <dt>bounds</dt>
 <dd><p>Logical specifying whether to plot sequence boundaries as horizontal or vertical lines.</p></dd>
-<dt>boxBlocks</dt>
+
+  <dt>boxBlocks</dt>
 <dd><p>Logical indicating whether to draw a rectangle around hits belonging to the same block of synteny.</p></dd>
-<dt>colorBy</dt>
+
+  <dt>colorBy</dt>
 <dd><p>Numeric giving the index of a reference sequence, or a character string indicating to color by ``neighbor'', ``frequency'', or ``none''.  (See details section below.)</p></dd>
-<dt>colorRamp</dt>
+
+  <dt>colorRamp</dt>
 <dd><p>A function that will return <code>n</code> colors when given a number <code>n</code>.  Examples are <code>rainbow</code>, <code>heat.colors</code>, <code>terrain.colors</code>, <code>cm.colors</code>, or (the default) <code>colorRampPalette</code>.</p></dd>
-<dt>barColor</dt>
+
+  <dt>barColor</dt>
 <dd><p>Character string giving the background color of each bar.</p></dd>
-<dt>barSides</dt>
+
+  <dt>barSides</dt>
 <dd><p>Logical indicating whether to draw black lines along the long-sides of each bar.</p></dd>
-<dt>horizontal</dt>
+
+  <dt>horizontal</dt>
 <dd><p>Logical indicating whether to plot the sequences horizontally (<code>TRUE</code>) or vertically (<code>FALSE</code>).</p></dd>
-<dt>labels</dt>
+
+  <dt>labels</dt>
 <dd><p>Character vector providing names corresponding to each ``identifier'' for labels on the diagonal.</p></dd>
-<dt>width</dt>
+
+  <dt>width</dt>
 <dd><p>Numeric giving the fractional width of each bar between zero and one.</p></dd>
-<dt>scaleBar</dt>
+
+  <dt>scaleBar</dt>
 <dd><p>Logical controlling whether a scale bar is drawn when <code>colorBy</code> is ``frequency''.  The scale bar displays the mapping between color and the level of sequence conservation.  Not applicable when <code>colorBy</code> is a value other than ``frequency''.</p></dd>
-<dt>gap</dt>
+
+  <dt>gap</dt>
 <dd><p>Distance between subplots, in margin lines.</p></dd>
-<dt>line.main</dt>
+
+  <dt>line.main</dt>
 <dd><p>If <code>main</code> is specified, <code>line.main</code> provides the <code>line</code> argument to <code>mtext</code>.</p></dd>
-<dt>cex.labels</dt>
+
+  <dt>cex.labels</dt>
 <dd><p>Magnification of the labels.</p></dd>
-<dt>font.labels</dt>
+
+  <dt>font.labels</dt>
 <dd><p>Font of labels on the diagonal.</p></dd>
-<dt>quote</dt>
+
+  <dt>quote</dt>
 <dd><p>Logical indicating whether to print the output surrounded by quotes.</p></dd>
-<dt>right</dt>
+
+  <dt>right</dt>
 <dd><p>Logical specifying whether to right align strings.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Other graphical parameters for <code>pairs</code> or <code>plot</code>, including:  <code>main</code>, <code>cex.main</code>, <code>font.main</code>, and <code>oma</code>.  Other arguments for <code>print</code>, including <code>print.gap</code> and <code>max</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -178,7 +196,7 @@
 <span class="r-in"><span class="va">syn</span> <span class="op">&lt;-</span> <span class="fu"><a href="FindSynteny.html">FindSynteny</a></span><span class="op">(</span><span class="va">dbConn</span>, minScore<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.32 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.26 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">syn</span> <span class="co"># Note:  &gt; 100% hits because of sequence reuse across blocks</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          s1        s2        s3</span>
@@ -196,7 +214,7 @@
 <span class="r-in"><span class="va">synteny</span> <span class="op">&lt;-</span> <span class="fu"><a href="FindSynteny.html">FindSynteny</a></span><span class="op">(</span><span class="va">db</span>, minScore<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 1.18 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.92 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">synteny</span><span class="op">)</span> <span class="co"># 'Synteny'</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Synteny"</span>
@@ -291,7 +309,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

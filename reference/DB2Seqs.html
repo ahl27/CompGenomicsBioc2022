@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -95,38 +95,55 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>file</dt>
 <dd><p>Character string giving the location where the file should be written.</p></dd>
-<dt>dbFile</dt>
+
+  <dt>dbFile</dt>
 <dd><p>A SQLite connection object or a character string specifying the path to the database file.</p></dd>
-<dt>tblName</dt>
+
+  <dt>tblName</dt>
 <dd><p>Character string specifying the table in which to extract the data.</p></dd>
-<dt>identifier</dt>
+
+  <dt>identifier</dt>
 <dd><p>Optional character string used to narrow the search results to those matching a specific identifier.  If "" then all identifiers are selected.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>The type of <code>XStringSet</code> (sequences) to export to a FASTA formatted file or <code>QualityScaledXStringSet</code> to export to a FASTQ formatted file.  This should be (an unambiguous abbreviation of) one of <code>"DNAStringSet"</code>, <code>"RNAStringSet"</code>, <code>"AAStringSet"</code>, <code>"BStringSet"</code>, <code>"QualityScaledDNAStringSet"</code>, <code>"QualityScaledRNAStringSet"</code>, <code>"QualityScaledAAStringSet"</code>, or <code>"QualityScaledBStringSet"</code>.  (See details section below.)</p></dd>
-<dt>limit</dt>
+
+  <dt>limit</dt>
 <dd><p>Number of results to display.  The default (<code>-1</code>) does not limit the number of results.</p></dd>
-<dt>replaceChar</dt>
+
+  <dt>replaceChar</dt>
 <dd><p>Optional character used to replace any characters of the sequence that are not present in the <code>XStringSet</code>'s alphabet.  Not applicable if <code>type=="BStringSet"</code>.  The default (<code>NA</code>) results in an error if an incompatible character exist.  (See details section below.)</p></dd>
-<dt>nameBy</dt>
+
+  <dt>nameBy</dt>
 <dd><p>Character string giving the column name(s) for identifying each sequence record.  If more than one column name is provided, the information in each column is concatenated, separated by <code>sep</code>, in the order specified.</p></dd>
-<dt>orderBy</dt>
+
+  <dt>orderBy</dt>
 <dd><p>Character string giving the column name for sorting the results.  Defaults to the order of entries in the database.  Optionally can be followed by <code>" ASC"</code> or <code>" DESC"</code> to specify ascending (the default) or descending order.</p></dd>
-<dt>removeGaps</dt>
+
+  <dt>removeGaps</dt>
 <dd><p>Determines how gaps ("-" or "." characters) are removed in the sequences.  This should be (an unambiguous abbreviation of) one of <code>"none"</code>, <code>"all"</code> or <code>"common"</code>.</p></dd>
-<dt>append</dt>
+
+  <dt>append</dt>
 <dd><p>Logical indicating whether to append the output to the existing <code>file</code>.</p></dd>
-<dt>width</dt>
+
+  <dt>width</dt>
 <dd><p>Integer specifying the maximum number of characters per line of sequence.  Not applicable when exporting to a FASTQ formatted file.</p></dd>
-<dt>compress</dt>
+
+  <dt>compress</dt>
 <dd><p>Logical specifying whether to compress the output file using gzip compression.</p></dd>
-<dt>chunkSize</dt>
+
+  <dt>chunkSize</dt>
 <dd><p>Number of sequences to write to the <code>file</code> at a time.  Cannot be less than the total number of sequences if <code>removeGaps</code> is <code>"common"</code>.</p></dd>
-<dt>sep</dt>
+
+  <dt>sep</dt>
 <dd><p>Character string providing the separator between fields in each sequence's name, by default pairs of colons (``::'').</p></dd>
-<dt>clause</dt>
+
+  <dt>clause</dt>
 <dd><p>An optional character string to append to the query as part of a ``where clause''.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display status.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -135,8 +152,12 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Writes a FASTA or FASTQ formatted file containing the sequence records in the database.
-Returns the number of sequence records written to the <code>file</code>.</p>
+    
+
+<p>Writes a FASTA or FASTQ formatted file containing the sequence records in the database.</p>
+
+
+<p>Returns the number of sequence records written to the <code>file</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -170,7 +191,7 @@ Returns the number of sequence records written to the <code>file</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

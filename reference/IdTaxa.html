@@ -49,8 +49,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.ahl27.com" aria-label="My Website">
-    <span class="fa fa-potato"></span>
+  <a class="external-link nav-link" href="https://www.ahl27.com/tutorials" aria-label="My Website">
+    <span class="fa fa-house-chimney"></span>
      
   </a>
 </li>
@@ -89,26 +89,37 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>test</dt>
 <dd><p>An <code>AAStringSet</code>, <code>DNAStringSet</code>, or <code>RNAStringSet</code> of unaligned sequences.</p></dd>
-<dt>trainingSet</dt>
+
+  <dt>trainingSet</dt>
 <dd><p>An object of class <code>Taxa</code> and subclass Train.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>Character string indicating the type of output desired.  This should be (an abbreviation of) one of <code>"extended"</code> or <code>"collapsed"</code>.  (See value section below.)</p></dd>
-<dt>strand</dt>
+
+  <dt>strand</dt>
 <dd><p>Character string indicating the orientation of the <code>test</code> sequences relative to the <code>trainingSet</code>.  This should be (an abbreviation of) one of <code>"both"</code>, <code>"top"</code>, or <code>"bottom"</code>.  The top strand is defined as the input <code>test</code> sequences being in the same orientation as the <code>trainingSet</code>, and the bottom strand is its reverse complement orientation.  The default of <code>"both"</code> will classify using both orientations and choose the result with highest confidence.  Choosing the correct <code>strand</code> will make classification over 2-fold faster, assuming that all of the reads are in the same orientation. Note that <code>strand</code> is ignored when <code>test</code> is an <code>AAStringSet</code>.</p></dd>
-<dt>threshold</dt>
+
+  <dt>threshold</dt>
 <dd><p>Numeric specifying the confidence at which to truncate the output taxonomic classifications.  Lower values of <code>threshold</code> will classify deeper into the taxonomic tree at the expense of accuracy, and vise-versa for higher values of <code>threshold</code>.</p></dd>
-<dt>bootstraps</dt>
+
+  <dt>bootstraps</dt>
 <dd><p>Integer giving the maximum number of bootstrap replicates to perform for each sequence.  The number of bootstrap replicates is set automatically such that (on average) 99% of k-mers are sampled in each <code>test</code> sequence.</p></dd>
-<dt>samples</dt>
+
+  <dt>samples</dt>
 <dd><p>A function or call written as a function of `L', which will evaluate to a numeric vector the same length as `L'.  Typically of the form ``<code>A + B*L^C</code>'', where `A', `B', and `C' are constants.</p></dd>
-<dt>minDescend</dt>
+
+  <dt>minDescend</dt>
 <dd><p>Numeric giving the minimum fraction of <code>bootstraps</code> required to descend the tree during the initial tree descend phase of the algorithm.  Higher values are less likely to descend the tree, causing direct comparison against more sequences in the <code>trainingSet</code>.  Lower values may increase classification speed at the expense of accuracy.  Suggested values are between <code>1.0</code> and <code>0.9</code>.</p></dd>
-<dt>fullLength</dt>
+
+  <dt>fullLength</dt>
 <dd><p>Numeric specifying the fold-difference in sequence lengths between sequences in <code>test</code> and <code>trainingSet</code> that is allowable, or <code>0</code> (the default) to consider all sequences in <code>trainingSet</code> regardless of length.  Can be specified as either a single numeric (&gt; 1), or two numerics specifying the upper and lower fold-difference.  If <code>fullLength</code> is between <code>0</code> and <code>1</code> (exclusive), the fold-difference is inferred from the length variability among sequences belonging to each class based on the <code>foldDifference</code> quantiles.  For example, setting <code>fullLength</code> to <code>0.99</code> would use the 1st and 99th percentile of intra-group length variability from the <code>trainingSet</code>.  In the case of full-length sequences, specifying <code>fullLength</code> can improve both speed and accuracy by using sequence length as a pre-filter to classification.  Note that <code>fullLength</code> should only be greater than <code>0</code> when both the <code>test</code> and <code>trainingSet</code> consist of full-length sequences.</p></dd>
-<dt>processors</dt>
+
+  <dt>processors</dt>
 <dd><p>The number of processors to use, or <code>NULL</code> to automatically detect and use all available processors.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>Logical indicating whether to display progress.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -116,13 +127,19 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If <code>type</code> is <code>"extended"</code> (the default) then an object of class <code>Taxa</code> and subclass Train is returned.  This is stored as a list with elements corresponding to their respective sequence in <code>test</code>.  Each list element contains components:</p>
+    
+
+<p>If <code>type</code> is <code>"extended"</code> (the default) then an object of class <code>Taxa</code> and subclass Train is returned.  This is stored as a list with elements corresponding to their respective sequence in <code>test</code>.  Each list element contains components:</p>
 <dl><dt>taxon</dt>
 <dd><p>A character vector containing the taxa to which the sequence was assigned.</p></dd>
-<dt>confidence</dt>
+
+  <dt>confidence</dt>
 <dd><p>A numeric vector giving the corresponding percent confidence for each taxon.</p></dd>
-<dt>rank</dt>
+
+  <dt>rank</dt>
 <dd><p>If the classifier was trained with a set of <code>rank</code>s, a character vector containing the rank name of each taxon.</p></dd>
+
+
 </dl><p>If <code>type</code> is <code>"collapsed"</code> then a character vector is returned with the taxonomic assignment for each sequence.  This takes the repeating form ``Taxon name [rank, confidence%]; ...'' if <code>rank</code>s were supplied during training, or ``Taxon name [confidence%]; ...'' otherwise.</p>
     </div>
     <div class="section level2">
@@ -154,7 +171,7 @@
 <span class="r-in"><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu">IdTaxa</span><span class="op">(</span><span class="va">dna</span>, <span class="va">TrainingSet_16S</span>, strand<span class="op">=</span><span class="st">"top"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 9.3 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 8.61 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="va">ids</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A test set of class 'Taxa' with length 175</span>
@@ -185,7 +202,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>
