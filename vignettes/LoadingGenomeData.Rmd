@@ -32,7 +32,7 @@ package.
 When `XString` objects of the same type are combined, they become an `XStringSet`. 
 This provides an easy way to store and work with genomics data. Below is an
 example of manually creating an `XStringSet`:
-```{r eval=FALSE}
+```{r}
 library(DECIPHER)
 
 sequences <- c('AGACT',
