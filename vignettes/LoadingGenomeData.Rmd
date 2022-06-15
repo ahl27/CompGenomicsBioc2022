@@ -108,6 +108,7 @@ Seqs2DB(synData, "XStringSet", dbConn, identifier=as.character(to_select))
 
 syn <- FindSynteny(dbConn, verbose=FALSE)
 dbDisconnect(dbConn)
+
 syn
 pairs(syn)
 ```
