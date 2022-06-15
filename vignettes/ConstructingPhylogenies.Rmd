@@ -76,11 +76,11 @@ that goes into the mathematics of how these methods work.
 Example code for each of these:
 ```{r results='hide',fig.keep='all'}
 treeMP <- TreeLine(testSeqs, method='MP')
-plot_tree_unrooted(treeMP)
+plot_tree_unrooted(treeMP, title='MP')
 treeNJ <- TreeLine(testSeqs, method='NJ')
-plot_tree_unrooted(treeNJ)
+plot_tree_unrooted(treeNJ, title='NJ')
 treeUltra <- TreeLine(testSeqs, method='complete')
-plot(treeUltra)
+plot(treeUltra, title='Ultrametric')
 ```
 
 Maximum-Likelihood trees are the most accurate, but also the slowest to create. 
@@ -92,7 +92,7 @@ demo will set the `maxTime` argument to prevent the algorithm from taking too lo
 # Max runtime is a minute
 # Note that method='ML' is the default setting
 treeML <- TreeLine(testSeqs, maxTime=60)
-plot_tree_unrooted(treeML)
+plot_tree_unrooted(treeML, title='Maximum-Likelihood')
 ```
 
 ## Sequence Evolution Models
@@ -127,14 +127,14 @@ and remove the entries you don't want.
 # Using a specific set of models
 mySpecificModel <- list(Nucleotide=c('JC69', 'HKY85'))
 specTree <- TreeLine(testSeqs, model=mySpecificModel, maxTime=60)
-plot_tree_unrooted(specTree)
+plot_tree_unrooted(specTree, title='Specific Set ML')
 
 # Excluding Specific Models
 myExcludedModel <- DECIPHER::MODELS
 myExcludedModel$Protein <- NULL # Remove all protein models
 myExcludedModel$Nucleotide <- myExcludedModel$Nucleotide[-1] # Remove JC69
 exclTree <- TreeLine(testSeqs, model=myExcludedModel, maxTime=60)
-plot_tree_unrooted(exclTree)
+plot_tree_unrooted(exclTree, title='Excluded Set ML')
 ```
 
 ## Closing Thoughts

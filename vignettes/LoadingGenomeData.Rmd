@@ -100,12 +100,14 @@ two sequences without having to align them. Let's look at an example of finding
 syntenic hits between the first 6 sequences in our set.
 
 ```{r}
-synData <- exSSet[1:6]
-names(synData) <- 1:6
+to_select <- 1:3
+synData <- exSSet[to_select]
+names(synData) <- as.character(to_select)
 dbConn <- dbConnect(SQLite(), ":memory:")
-Seqs2DB(synData, "XStringSet", dbConn, "example")
+Seqs2DB(synData, "XStringSet", dbConn, identifier=as.character(to_select))
 
 syn <- FindSynteny(dbConn, verbose=FALSE)
+dbDisconnect(dbConn)
 syn
 pairs(syn)
 ```
@@ -114,7 +116,9 @@ What are we looking at with this plot? Each plot compares two genomes, and each
 dot is a syntenic hit between the two genomes. The X position of the dot is its
 location on the first genome, and the Y position is its position on the second genome.
 If we had identical genomes, we would expect to see a diagonal line $y=x$, indicating
-that all bases occur at the same place in both genomes. 
+that all bases occur at the same place in both genomes. Gaps indicate areas that 
+do not match, and points off the diagonal indicate matching areas in different places on 
+each genomes.
 
 You may also notice that this example creates a SQLite table prior to running `FindSynteny()`.
 `DECIPHER` is built around working with sequences via SQLite tables to allow for 
