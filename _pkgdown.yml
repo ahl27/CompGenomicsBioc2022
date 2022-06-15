@@ -15,16 +15,16 @@ home:
 navbar:
   structure:
     left: [intro, articles, reference, news]
-    right: [github, home]
+    right: [home, github]
   components:
     github:
       icon: fa-github
       href: https://github.com/ahl27/CompGenomicsBioc2022
       aria-label: GitHub
     home:
-      icon: fa-potato
-      href: https://www.ahl27.com
-      aria-label: My Website
+      icon: fa-user
+      href: https://www.ahl27.com/tutorials
+      aria-label: Homepage
     intro:
       text: Overview
       href: https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html

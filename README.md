@@ -6,6 +6,12 @@ I've summarized on this page all the skills you can expect to learn by working t
 
 (Note: I'm still working on the tutorials, but they will be posted by mid-June! Code is not guaranteed to work until the tutorials are finished--check the [Changelog](https://www.ahl27.com/CompGenomicsBioc2022/news/index.html) for the latest updates).
 
+----------------------------------
+
+## Topics Covered
+
+&nbsp;
+
 ### [Loading Genome Data with `DECIPHER`](https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html)
 
 The first step in analyzing genomics data is loading the data itself. Here we will download sequencing data from NCBI as a `.fasta`, load it into R, then perform some basic operations with the data. Users will learn to efficiently work with large scale genomics data, including visualization and alignment of sequencing data. 

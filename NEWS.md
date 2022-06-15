@@ -1,4 +1,5 @@
-# Version 0.4.0
+# Version 0.5.0
+
 ### General Notes
 * Updates `LoadingGenomeData` with code
 * Updates `ConstructingPhylogenies` with code
@@ -8,6 +9,11 @@
 * Data used in code examples is neither consisent nor final
 * Several tutorials still missing code
 
+# Version 0.4.0
+
+### Bugfixes
+* Updated some text to support `pkgdown` automatic reference linking
+* Minor updates to `README`
 
 # Version 0.3.0
 
