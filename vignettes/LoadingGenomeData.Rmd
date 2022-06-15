@@ -101,6 +101,7 @@ syntenic hits between the first 6 sequences in our set.
 
 ```{r}
 synData <- exSSet[1:6]
+names(synData) <- 1:6
 dbConn <- dbConnect(SQLite(), ":memory:")
 Seqs2DB(synData, "XStringSet", dbConn, "example")
 

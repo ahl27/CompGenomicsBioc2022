@@ -28,7 +28,8 @@ dataset.
 Generating a `ProtWeaver` object from this is simple:
 ```{r}
 library(SynExtend)
-datafile <- system.file('extdata', 'treesFromCOGs.RData', mustWork=TRUE)
+datafile <- system.file('extdata', 'treesFromCOGs.RData', 
+                        package='CompGenomicsBioc2022',mustWork=TRUE)
 load(datafile, verbose=TRUE)
 
 pw <- ProtWeaver(treesFromCOGs)

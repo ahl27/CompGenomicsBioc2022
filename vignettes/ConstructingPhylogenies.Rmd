@@ -36,7 +36,8 @@ just prefer visualize unrooted trees without an arbitrary root.
 ```{r}
 library(DECIPHER)
 library(ape)
-datafile <- system.file('extdata', 'phyloInputData', package='CompGenomicsBioc2022')
+datafile <- system.file('extdata', 'phyloInputData.RData', 
+                        package='CompGenomicsBioc2022', mustWork=TRUE)
 load(datafile, verbose=TRUE) # Should load 'AlignedSequences'
 
 # Helper plotting function
