@@ -15,20 +15,94 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Coming Soon!
-This tutorial will be coming soon! It will begin with the data from the previous step and cover the following topics:
+## Coevolutionary Analysis
 
-* Analyzing coevolutionary signal with `ProtWeaver()`
-* Different predictive models available in `predict.ProtWeaver()`
-* Working with `ProtWeb` objects
+At this point, we've learned how to generate gene trees for a set of COGs.
+We're now ready to look for signals of coevolution, which imply functional associations.
+These methods are implemented via the `ProtWeaver` class in `SynExtend`, which 
+includes many commonly used methods for detecting coevolutionary patterns.
+While the previous step only generated a few gene trees, I've included an 
+`RData` file with the results if we had generated gene trees for all COGs in the
+dataset.
 
-```{r eval=FALSE}
+Generating a `ProtWeaver` object from this is simple:
+```{r}
 library(SynExtend)
+datafile <- system.file('extdata', 'treesFromCOGs.RData', mustWork=TRUE)
+load(datafile, verbose=TRUE)
 
 pw <- ProtWeaver(treesFromCOGs)
-res <- predict(pw)
-res
+pw
 ```
+
+The `ProtWeaver` constuctor automatically detects the type of data you have and 
+adjusts available predictors accordingly. While it functions best with a list
+of dendrograms for each COG, it can also run with simple presence/absence patterns.
+See the documentation file for `ProtWeaver` for more information on this functionality.
+
+We're now ready to make predictions. Predicting functional associations is done
+with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations 
+between the first 100 COGs we have.
+
+```{r}
+preds <- predict(pw)
+preds
+```
+
+
+## Viewing our results
+
+Notice that `preds` is a `ProtWeb` object. This is just a simple S3 class with a 
+pretty print method wrapping a matrix of pairwise association scores. We can get
+the raw data with `GetProtWebData()`:
+
+```{r}
+GetProtWebData(preds)
+```
+
+The `ProtWeb` class will be updated next release cycle to include more methods, 
+including a custom plotting function. The current `plot.ProtWeb` S3 method 
+implements a force-directed embedding of the pairwise scores, but it's a
+big work-in-progress. Stay tuned for the next release cycle for more functionality
+regarding `ProtWeb`.
+
+## Methods Implemented in ProtWeaver
+
+By default, `predict.ProtWeaver` makes an ensemble prediction using as many individual
+models as it can run with the data provided. However, users are free to use any of 
+the individual models without the ensemble predictor. The methods implemented are 
+the following:
+
+```{r}
+# Phylogenetic Profiling Methods:
+  ## P/A = Presence/Absence Profiles
+Jaccard <- predict(pw, method='Jaccard') # Jaccard distance of P/A
+Hamming <- predict(pw, method='Hamming') # Hamming distance of P/A
+MutualInf <- predict(pw, method='MutualInformation') # MutualInformation of P/A
+ProfDCA <- predict(pw, method='ProfDCA') # Direct Coupling Analysis of P/A
+Behdenna <- predict(pw, method='Behdenna', mySpeciesTree=exSpeciesTree)
+  # Correlation of gain/loss events on phylogeny, requires Species Tree
+
+# Co-localization Methods:
+Colocalization <- predict(pw, method='Coloc') # Co-localization analysis
+
+# Distance Matrix Methods:
+MirrorTree <- predict(pw, method='MirrorTree') # MirrorTree analysis
+ContextTree <- predict(pw, method='ContextTree') # ContextTree analysis
+
+# Residue Methods: (ONLY AVAILABLE IN DEV VERSION)
+#ResidueMI <- predict(pw, method='ResidueMI') # MutualInf of residues
+#DendroMI <- predict(pw, method='DendroMI') # MutualInf of changes on phylogeny
+```
+
+## Thank you!
+
+If you've made it through this entire tutorial, thank you for following along!
+I hope this series was informative and useful to your analyses. All code showcased
+here is actively being worked on by members of our lab, especially the `ProtWeaver`
+and `ProtWeb` functionalities. If you have any comments, suggestions, or feature requests
+for `ProtWeaver`, `ProtWeb`, or this tutorial, please feel free to either email me at 
+ahl27@pitt.edu or open an issue on GitHub.
 
 ```{css, echo=FALSE}
 .pagination {

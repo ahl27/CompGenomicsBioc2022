@@ -1,3 +1,14 @@
+# Version 0.4.0
+### General Notes
+* Updates `LoadingGenomeData` with code
+* Updates `ConstructingPhylogenies` with code
+* Updates `CoevolutionNetworks` with code
+
+### Known Issues
+* Data used in code examples is neither consisent nor final
+* Several tutorials still missing code
+
+
 # Version 0.3.0
 
 ### General Notes

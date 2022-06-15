@@ -15,27 +15,141 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Coming Soon!
-This tutorial will be coming soon! It will begin with the data from the previous step and cover the following topics:
+## Phylogenetic Reconstruction
 
-* Phylogenetic reconstruction with `TreeLine()`
-* Different input methods for `TreeLine()` (ex. `DistanceMatrix`)
-* Different parameters for `TreeLine()` (ex. ML vs. MP, models, information criteria)
+We've now learned how to find Clusters of Orthologous Genes (COGs) from a set of 
+sequences. The last thing we need for our final analysis are phylogenetic 
+reconstructions of each gene cluster. In this step, we'll build phylogenies for
+our COGs using the new `TreeLine()` function introduced in the latest update 
+of `DECIPHER`.
 
-At the conclusion of this section, we will have constructed gene trees for each of the COGs identified in the previous section.
+In the last step, we constructed COGs for a small subset of our data to learn the
+algorithmic flow of that portion of the pipeline. Since analyzing the entire
+dataset is time-prohibitive for this workshop, we'll work with a pre-calculated
+`RData` file containing the results we would have gotten if we had run the same
+calculation on the entire dataset.
 
-```{r eval=FALSE}
+*Small note:* the setup for this page includes a helper function to plot the
+phylogenies without rooting them. You can plot them just as well with `plot`, I
+just prefer visualize unrooted trees without an arbitrary root.
+
+```{r}
 library(DECIPHER)
+library(ape)
+datafile <- system.file('extdata', 'phyloInputData', package='CompGenomicsBioc2022')
+load(datafile, verbose=TRUE) # Should load 'AlignedSequences'
 
-dna
-ali <- AlignSeqs(dna)
-DistanceMatrix(ali)
+# Helper plotting function
+plot_tree_unrooted <- function(dend, title){
+  tf <- tempfile()
+  WriteDendrogram(dend, file=tf, quoteLabels=FALSE)
+  predTree <- read.tree(tf)
+  plot(predTree, 'unrooted', main=title)
+}
 
-tree <- TreeLine(ali, maxTime=0)
-Cophenetic(tree)
+testSeqs <- AlignedSequences
 
-plot(tree)
+treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE, verbose=FALSE)
+plot(treeCOG1)
 ```
+
+That's all we need to construct a quick phylogenenetic tree in R! I've set
+`reconstruct=TRUE` to have `TreeLine` automatically reconstruct ancestral states 
+at each node.
+
+However, `TreeLine` incorporates a wealth of functionality past what is detailed here. 
+In fact, this tree isn't even the best tree we can make! Let's take a look at all 
+the new features included in the `TreeLine()` function.
+
+## Tree-Building Methods
+
+Our first example used `method='MP'`, meaning it constructed a phyletic tree
+using a Maximum Parsimony method. However, many more methods are available. 
+`TreeLine()` implements Maximum Parsimony (`MP`), Neighbor-Joining (`NJ`), 
+Ultrametric (`complete`, `single`, `UPGMA`, `WPGMA`), and Maximum Likelihood (`ML`)
+methods. Each of these have different strengths, weaknesses, and assumptions. While
+an in-depth look at the difference between these methods is outside the scope of
+this tutorial, I recently published [another tutorial](https://ahl27.com/IntroPhylogenetics)
+that goes into the mathematics of how these methods work.
+
+Example code for each of these:
+```{r results='hide',fig.keep='all'}
+treeMP <- TreeLine(testSeqs, method='MP')
+plot_tree_unrooted(treeMP)
+treeNJ <- TreeLine(testSeqs, method='NJ')
+plot_tree_unrooted(treeNJ)
+treeUltra <- TreeLine(testSeqs, method='complete')
+plot(treeUltra)
+```
+
+Maximum-Likelihood trees are the most accurate, but also the slowest to create. 
+This method iteratively maximizes the likelihood of the tree under a given sequence
+evolution model for a set of aligned sequences. In the interest of time, this 
+demo will set the `maxTime` argument to prevent the algorithm from taking too long.
+
+```{r results='hide', fig.keep='all', eval=FALSE}
+# Max runtime is a minute
+# Note that method='ML' is the default setting
+treeML <- TreeLine(testSeqs, maxTime=60)
+plot_tree_unrooted(treeML)
+```
+
+## Sequence Evolution Models
+
+One question you're probably asking is, "What is this 'given sequence evolution
+model'?" That's an excellent question--by default, `TreeLine()` will test a variety
+of sequence evolution models and pick the one that works best for your data. 
+This means that you shouldn't typically have to worry about which model to use.
+
+However, what if we wanted to explicitly pick a certain model? What if we wanted
+to exclude a handful of models? Or what if we're just curious what models are even
+being tested?
+
+Fret not, for there is a solution. Models are passed to `TreeLine()` as a list
+with two named entries, `$Nucleotide` and `$Protein`. To look at the default 
+models tested, simply print out the `MODELS` variable included from `DECIPHER`:
+
+```{r}
+DECIPHER::MODELS
+```
+
+Nucleotide models include classic names like Jukes-Cantor (`JC69`) and Felsenstein
+1981 (`F81`), as well as many others. The amino acid substitution models contain
+a mixture of general models (e.g. `BLOSUM62`, `Dayhoff`), as well as models tailored
+towards specific organisms (e.g. `Q.insect`, `HIVb`).
+
+To use a single model, simply create a list matching the structure of `MODELS`, 
+just with the models you want to include. To exclude certain models, copy `MODELS` 
+and remove the entries you don't want. 
+
+```{r results='hide',fig.keep='all'}
+# Using a specific set of models
+mySpecificModel <- list(Nucleotide=c('JC69', 'HKY85'))
+specTree <- TreeLine(testSeqs, model=mySpecificModel, maxTime=60)
+plot_tree_unrooted(specTree)
+
+# Excluding Specific Models
+myExcludedModel <- DECIPHER::MODELS
+myExcludedModel$Protein <- NULL # Remove all protein models
+myExcludedModel$Nucleotide <- myExcludedModel$Nucleotide[-1] # Remove JC69
+exclTree <- TreeLine(testSeqs, model=myExcludedModel, maxTime=60)
+plot_tree_unrooted(exclTree)
+```
+
+## Closing Thoughts
+
+That's all we need to know how to do to generate phylogenies for our dataset. 
+In order to conduct our final coevolutionary analysis, we're going to need 
+to build a gene tree for all of our COGs. I've precomputed these trees for us,
+so we can load those in in the next step without having to worry about long runtimes.
+
+There are a few other parameters I didn't mention in this writeup. The most significant
+one for our use is `reconstruct=TRUE`, as this reconstructs ancestral states (which
+will be important for later analyses). There are also additional arguments for 
+multiprocessing (`processors=1`), using Laguerre quadrature for likelihoods 
+(`quadrature=T/F`), switching the type of information criterion for ML trees
+(`informationCriterion=c('AICc', 'BIC')`), and many others. See the documentation
+page for more information on these--for now, we'll continue on to our final goal.
 
 ```{css, echo=FALSE}
 .pagination {

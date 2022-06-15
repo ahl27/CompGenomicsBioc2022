@@ -13,32 +13,115 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
-## Coming Soon!
-This tutorial will be coming soon! It will cover the following topics:
+## Reading in Sequencing Data
 
-* Importing `.fasta` sequences into `R` as an `XStringSet`
-* Basic operations with `XString` objects (ex. `reverseComplement`)
-* Alignment-free analysis with `FindSynteny()`
-* Aligning sequences with `AlignSeqs()`, `AlignTranslation()`, and `AlignSynteny()`
-* Exporting sequences to SQLite databases for working at scale
-* Retrieving sequences from SQLite databases
-* Visualizing sequences with `BrowseSeqs()` and `BrowseDB()`
+In order to work with sequencing data, we first have to get it into R in a format
+that allows us to work with it. The most commonly used format for genomic data is
+the `XString` and `XStringSet` classes, which are available through the `Biostrings`
+package.
 
-At the end of this section, we will have successfully imported sequencing data from standard formats into a format conducive to analyses in R. We will also have gained some basic information on the data in our dataset.
+`XString`s come in 4 distinct flavors, depending on the characters allowed:
+- `DNAString`, for DNA data (ATGC, plus gaps and ambiguity codes)
+- `RNAString`, for RNA data (AUGC, plus gaps and ambiguity codes)
+- `AAString`, for amino acid data (20 amino acids plus ambiguity codes, U, O, and unknown/gaps)
+- `BString`, for any combination of any letters
 
-Depending on timing, it may be a good idea to skip databases entirely and just
-focus on working with `XStringSets`. We can just use `BrowseSeqs()` for visualization, rather than using `BrowseDB()`.
-
+When `XString` objects of the same type are combined, they become an `XStringSet`. 
+This provides an easy way to store and work with genomics data. Below is an
+example of manually creating an `XStringSet`:
 ```{r eval=FALSE}
 library(DECIPHER)
 
-dna
-dbConn <- dbConnect(SQLite(), ":memory:")
-Seqs2DB(dna, "FASTA", dbConn, "Seq")
-BrowseDB(dbConn)
+sequences <- c('AGACT',
+               'AGACG',
+               'TCATT',
+               'TGCTG',
+               'AGCTG')
+
+sequenceSet <- DNAStringSet(sequences)
+sequenceSet
 ```
+
+Manually typing in sequences obviously isn't a great system. Most sequencing data 
+are downloadable as `.fasta` or `.fastq` files, so let's look at a more realistic
+use-case that reads in a data from a `.fasta`.
+
+```{r}
+exampledata <- system.file('extdata', '50S_ribosomal_protein_L2.fas', 
+                            package='CompGenomicsBioc2022', mustWork=TRUE)
+
+# note that we can also use format='fastq' for FASTQ datasets
+exStringSet <- readDNAStringSet(exampledata, format="fasta")
+exSSet <- exStringSet[1:100]
+exSSet
+```
+
+Success! Now we have a large example dataset to work with.
+
+If we wanted to visualize these sequences, we can open them in a web browser
+using `BrowseSeqs()` from `DECIPHER`:
+
+```{r, eval=FALSE}
+BrowseSeqs(exSSet)
+```
+
+## Aligning Sequences
+
+Now that we have some sequences, let's explore some of the ways we can manipulate
+them. A complete demo of `Biostrings` is outside the scope of this workshop, so
+we'll just focus on functionality added via `DECIPHER`. A common analysis in 
+bioinformatics is aligning sequences. This is easily achievable with either the 
+`AlignSeqs()` function or the `AlignTranslation()` functions from `DECIPHER`. 
+`AlignTranslation()` aligns sequences based on their translated amino acid sequences, 
+and is significantly more accurate for DNA or RNA sequences.
+
+```{r}
+ali1 <- AlignSeqs(exSSet, verbose=FALSE)
+ali2 <- AlignTranslation(exSSet, verbose=FALSE)
+
+ali1
+ali2
+```
+
+As before, we can visualize this alignment sequences using `BrowseSeqs()`:
+
+```{r, eval=FALSE}
+BrowseSeqs(ali2)
+```
+
+## Alignment-Free Analysis
+
+Another common analysis is to look at syntenic hits between sequences without 
+aligning them. The result allows us to easily visualize differences between 
+two sequences without having to align them. Let's look at an example of finding
+syntenic hits between the first 6 sequences in our set.
+
+```{r}
+synData <- exSSet[1:6]
+dbConn <- dbConnect(SQLite(), ":memory:")
+Seqs2DB(synData, "XStringSet", dbConn, "example")
+
+syn <- FindSynteny(dbConn, verbose=FALSE)
+syn
+pairs(syn)
+```
+
+What are we looking at with this plot? Each plot compares two genomes, and each
+dot is a syntenic hit between the two genomes. The X position of the dot is its
+location on the first genome, and the Y position is its position on the second genome.
+If we had identical genomes, we would expect to see a diagonal line $y=x$, indicating
+that all bases occur at the same place in both genomes. 
+
+You may also notice that this example creates a SQLite table prior to running `FindSynteny()`.
+`DECIPHER` is built around working with sequences via SQLite tables to allow for 
+analysis at scale. When working with hundreds of thousands of genomes, we can't always
+just store the files within memory on our computer. This won't be covered in this
+tutorial, but advanced users can refer to the `DECIPHER` docs to find out more about
+using database files. I've also included more information on these in the Function
+Reference page for this section.
 
 ```{css, echo=FALSE}
 .pagination {
