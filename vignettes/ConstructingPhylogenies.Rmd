@@ -133,7 +133,7 @@ To use a single model, simply create a list matching the structure of `MODELS`,
 just with the models you want to include. To exclude certain models, copy `MODELS` 
 and remove the entries you don't want. 
 
-```{r results='hide',fig.keep='all'}
+```{r results='hide',fig.keep='all', eval=FALSE}
 # Using a specific set of models
 mySpecificModel <- list(Nucleotide=c('JC69', 'HKY85'))
 specTree <- TreeLine(testSeqs, model=mySpecificModel, maxTime=60)
