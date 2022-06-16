@@ -50,13 +50,12 @@ are downloadable as `.fasta` or `.fastq` files, so let's look at a more realisti
 use-case that reads in a data from a `.fasta`.
 
 ```{r}
-exampledata <- system.file('extdata', '50S_ribosomal_protein_L2.fas', 
-                            package='CompGenomicsBioc2022', mustWork=TRUE)
+exampledata <- system.file('extdata', 'EX_Strepto_COG.fasta', 
+                            package='CompGenomicsBioc2022')
 
 # note that we can also use format='fastq' for FASTQ datasets
 exStringSet <- readDNAStringSet(exampledata, format="fasta")
-exSSet <- exStringSet[1:100]
-exSSet
+exStringSet <- exStringSet[1:50]
 ```
 
 Success! Now we have a large example dataset to work with.
@@ -65,7 +64,7 @@ If we wanted to visualize these sequences, we can open them in a web browser
 using `BrowseSeqs()` from `DECIPHER`:
 
 ```{r, eval=FALSE}
-BrowseSeqs(exSSet)
+BrowseSeqs(exStringSet)
 ```
 
 ## Aligning Sequences
@@ -79,10 +78,10 @@ bioinformatics is aligning sequences. This is easily achievable with either the
 and is significantly more accurate for DNA or RNA sequences.
 
 ```{r}
-ali1 <- AlignSeqs(exSSet, verbose=FALSE)
-ali2 <- AlignTranslation(exSSet, verbose=FALSE)
-
+ali1 <- AlignSeqs(exStringSet, verbose=FALSE)
 ali1
+
+ali2 <- AlignTranslation(exStringSet, verbose=FALSE)
 ali2
 ```
 
@@ -99,9 +98,9 @@ aligning them. The result allows us to easily visualize differences between
 two sequences without having to align them. Let's look at an example of finding
 syntenic hits between the first 6 sequences in our set.
 
-```{r}
-to_select <- 1:3
-synData <- exSSet[to_select]
+```{r results='hide', fig.keep='all'}
+to_select <- c(4,6,8,9)
+synData <- exStringSet[to_select]
 names(synData) <- as.character(to_select)
 dbConn <- dbConnect(SQLite(), ":memory:")
 Seqs2DB(synData, "XStringSet", dbConn, identifier=as.character(to_select))
@@ -109,7 +108,6 @@ Seqs2DB(synData, "XStringSet", dbConn, identifier=as.character(to_select))
 syn <- FindSynteny(dbConn, verbose=FALSE)
 dbDisconnect(dbConn)
 
-syn
 pairs(syn)
 ```
 

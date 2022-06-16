@@ -13,6 +13,8 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(DECIPHER)
+library(SynExtend)
 ```
 
 ## Coevolutionary Analysis
@@ -26,16 +28,17 @@ While the previous step only generated a few gene trees, I've included an
 dataset.
 
 Generating a `ProtWeaver` object from this is simple:
-```{r}
-library(SynExtend)
+```{r results='hide', fig.keep='all'}
 datafile <- system.file('extdata', 'treesFromCOGs.RData', 
-                        package='CompGenomicsBioc2022',mustWork=TRUE)
+                        package='CompGenomicsBioc2022')
 load(datafile, verbose=TRUE)
 
-pw <- ProtWeaver(treesFromCOGs)
-pw
+pw <- ProtWeaver(treesFromCOGs[1:25])
 ```
 
+```{r}
+print(pw)
+```
 The `ProtWeaver` constuctor automatically detects the type of data you have and 
 adjusts available predictors accordingly. While it functions best with a list
 of dendrograms for each COG, it can also run with simple presence/absence patterns.
@@ -45,12 +48,13 @@ We're now ready to make predictions. Predicting functional associations is done
 with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations 
 between the first 100 COGs we have.
 
-```{r}
+```{r results='hide'}
 preds <- predict(pw)
-preds
 ```
 
-
+```{r}
+print(preds)
+```
 ## Viewing our results
 
 Notice that `preds` is a `ProtWeb` object. This is just a simple S3 class with a 
@@ -74,7 +78,7 @@ models as it can run with the data provided. However, users are free to use any 
 the individual models without the ensemble predictor. The methods implemented are 
 the following:
 
-```{r}
+```{r results='hide'}
 # Phylogenetic Profiling Methods:
   ## P/A = Presence/Absence Profiles
 Jaccard <- predict(pw, method='Jaccard') # Jaccard distance of P/A

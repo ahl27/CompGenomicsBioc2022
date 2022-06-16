@@ -1,3 +1,9 @@
+# Version 0.6.0
+
+### General Notes
+* Updates `GeneCallingAnnotation` with rough draft of code
+* Adds some new datafiles for use in tutorials
+
 # Version 0.5.0
 
 ### General Notes

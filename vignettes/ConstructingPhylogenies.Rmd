@@ -13,6 +13,9 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(DECIPHER)
+library(SynExtend)
 ```
 
 ## Phylogenetic Reconstruction
@@ -34,24 +37,23 @@ phylogenies without rooting them. You can plot them just as well with `plot`, I
 just prefer visualize unrooted trees without an arbitrary root.
 
 ```{r}
-library(DECIPHER)
-library(ape)
 datafile <- system.file('extdata', 'phyloInputData.RData', 
-                        package='CompGenomicsBioc2022', mustWork=TRUE)
+                        package='CompGenomicsBioc2022')
 load(datafile, verbose=TRUE) # Should load 'AlignedSequences'
 
 # Helper plotting function
-plot_tree_unrooted <- function(dend, title){
+plot_tree_unrooted <- function(dend, main){
+  stopifnot(require(ape))
   tf <- tempfile()
   WriteDendrogram(dend, file=tf, quoteLabels=FALSE)
   predTree <- read.tree(tf)
-  plot(predTree, 'unrooted', main=title)
+  plot(predTree, 'unrooted', main=main)
 }
 
 testSeqs <- AlignedSequences
 
 treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE, verbose=FALSE)
-plot(treeCOG1)
+plot_tree_unrooted(treeCOG1, main='MP')
 ```
 
 That's all we need to construct a quick phylogenenetic tree in R! I've set
@@ -77,19 +79,19 @@ Example code for each of these:
 ```{r results='hide', fig.keep='all'}
 # Maximum Parsimony
 treeMP <- TreeLine(myXStringSet=testSeqs, method='MP')
-plot_tree_unrooted(treeMP, title='MP')
+plot_tree_unrooted(treeMP, main='MP')
 ```
 ```{r results='hide', fig.keep='all'}
 # Neighbor-Joining
 distMatrix <- DistanceMatrix(testSeqs, correction='Jukes-Cantor')
 treeNJ <- TreeLine(myDistMatrix=distMatrix, method='NJ')
-plot_tree_unrooted(treeNJ, title='NJ')
+plot_tree_unrooted(treeNJ, main='NJ')
 ```
 ```{r results='hide', fig.keep='all'}
 # UPGMA tree
 distMatrix <- DistanceMatrix(testSeqs, correction='Jukes-Cantor')
 treeUltra <- TreeLine(myDistMatrix=distMatrix, method='UPGMA')
-plot(treeUltra, title='UPGMA')
+plot(treeUltra, main='UPGMA')
 ```
 
 Maximum-Likelihood trees are the most accurate, but also the slowest to create. 
@@ -97,12 +99,12 @@ This method iteratively maximizes the likelihood of the tree under a given seque
 evolution model for a set of aligned sequences. In the interest of time, this 
 demo will set the `maxTime` argument to prevent the algorithm from taking too long.
 
-```{r results='hide', fig.keep='all', eval=FALSE}
+```{r results='hide', fig.keep='all'}
 # Maximum Likehood
 #   - Max runtime is set here to a minute, default is as long as it takes
 #   - Note that method='ML' is the default setting
 treeML <- TreeLine(testSeqs, maxTime=60)
-plot_tree_unrooted(treeML, title='Maximum-Likelihood')
+plot_tree_unrooted(treeML, main='Maximum-Likelihood')
 ```
 
 ## Sequence Evolution Models
@@ -137,14 +139,14 @@ and remove the entries you don't want.
 # Using a specific set of models
 mySpecificModel <- list(Nucleotide=c('JC69', 'HKY85'))
 specTree <- TreeLine(testSeqs, model=mySpecificModel, maxTime=60)
-plot_tree_unrooted(specTree, title='Specific Set ML')
+plot_tree_unrooted(specTree, main='Specific Set ML')
 
 # Excluding Specific Models
 myExcludedModel <- DECIPHER::MODELS
 myExcludedModel$Protein <- NULL # Remove all protein models
 myExcludedModel$Nucleotide <- myExcludedModel$Nucleotide[-1] # Remove JC69
 exclTree <- TreeLine(testSeqs, model=myExcludedModel, maxTime=60)
-plot_tree_unrooted(exclTree, title='Excluded Set ML')
+plot_tree_unrooted(exclTree, main='Excluded Set ML')
 ```
 
 ## Conclusion
