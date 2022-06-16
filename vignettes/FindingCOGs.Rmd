@@ -90,20 +90,21 @@ improves accuracy of our final identified orthologous regions at the cost of run
 I encourage readers to try out this functionality on their own in the absence
 of tight time constraints.
 
-```{r eval=FALSE}
+```{r results='hide'}
 Syn <- FindSynteny(dbFile = DBPATH,
                    verbose = TRUE,
                    processors = NULL)
-
-Syn
 
 Overlaps <- NucleotideOverlap(SyntenyObject = Syn,
                                GeneCalls = GeneCalls,
                                LimitIndex = FALSE,
                                AcceptContigNames = TRUE,
                                Verbose = TRUE)
-Overlaps
-
+```
+```{r}
+head(Overlaps)
+```
+```{r results='hide'}
 Pairs <- PairSummaries(SyntenyLinks = Overlaps,
                      GeneCalls = GeneCalls,
                      DBPATH = DBPATH,
@@ -124,8 +125,9 @@ Pairs <- PairSummaries(SyntenyLinks = Overlaps,
 #                            SCOREThreshold = 200,
 #                            Verbose = TRUE)
 # Pairs <- P03[P03$PID > 0.4, ]
-
-Pairs
+```
+```{r}
+head(Pairs)
 ```
 
 ## Finding COGs
@@ -136,16 +138,17 @@ determine which orthologs are (dis)connected. Future work will look into smarter
 ways to determine COGs from pairwise orthologies, but this analysis is already highly
 accurate. We also use `ExtractBy` to pull out the sequences corresponding to each
 genomic region in each COG.
-```{r}
+```{r results='hide'}
 COGSets <- DisjointSet(Pairs = Pairs,
                         Verbose = TRUE)
 Sequences <- ExtractBy(x = Pairs,
-                       y = path_to_db,
+                       y = DBPATH,
                        z = COGSets[lengths(COGSets) == 5],
                        Verbose = TRUE)
-
-COGSets
-Sequences
+```
+```{r}
+COGSets[[1]]
+Sequences[[1]]
 ```
 
 ## Conclusion
