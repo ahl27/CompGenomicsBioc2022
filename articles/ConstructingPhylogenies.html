@@ -130,11 +130,14 @@ trees without arbitrarily rooting them.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Helper plotting function</span>
 <span class="va">plot_tree_unrooted</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dend</span>, <span class="va">main</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://ape-package.ird.fr/" class="external-link">ape</a></span><span class="op">)</span><span class="op">)</span>
-  <span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/WriteDendrogram.html" class="external-link">WriteDendrogram</a></span><span class="op">(</span><span class="va">dend</span>, file<span class="op">=</span><span class="va">tf</span>, quoteLabels<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-  <span class="va">predTree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.tree.html" class="external-link">read.tree</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">predTree</span>, <span class="st">'unrooted'</span>, main<span class="op">=</span><span class="va">main</span><span class="op">)</span>
+  <span class="kw">if</span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://ape-package.ird.fr/" class="external-link">ape</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/WriteDendrogram.html" class="external-link">WriteDendrogram</a></span><span class="op">(</span><span class="va">dend</span>, file<span class="op">=</span><span class="va">tf</span>, quoteLabels<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+    <span class="va">predTree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.tree.html" class="external-link">read.tree</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">predTree</span>, <span class="st">'unrooted'</span>, main<span class="op">=</span><span class="va">main</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dend</span>, main<span class="op">=</span><span class="va">main</span><span class="op">)</span>
+  <span class="op">}</span>
 <span class="op">}</span>
 
 <span class="va">testSeqs</span> <span class="op">&lt;-</span> <span class="va">AlignedSequences</span>

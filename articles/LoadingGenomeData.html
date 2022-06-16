@@ -107,12 +107,21 @@ in a format that allows us to work with it. The most commonly used
 format for genomic data is the <code>XString</code> and
 <code>XStringSet</code> classes, which are available through the
 <code>Biostrings</code> package.</p>
-<p><code>XString</code>s come in 4 distinct flavors, depending on the
-characters allowed: - <code>DNAString</code>, for DNA data (ATGC, plus
-gaps and ambiguity codes) - <code>RNAString</code>, for RNA data (AUGC,
-plus gaps and ambiguity codes) - <code>AAString</code>, for amino acid
-data (20 amino acids plus ambiguity codes, U, O, and unknown/gaps) -
-<code>BString</code>, for any combination of any letters</p>
+<p><code>XStrings</code> come in 4 distinct flavors, depending on the
+characters allowed:</p>
+<ul>
+<li>
+<code>DNAString</code>, for DNA data (ATGC, plus gaps and ambiguity
+codes)</li>
+<li>
+<code>RNAString</code>, for RNA data (AUGC, plus gaps and ambiguity
+codes)</li>
+<li>
+<code>AAString</code>, for amino acid data (20 amino acids plus
+ambiguity codes, U, O, and unknown/gaps)</li>
+<li>
+<code>BString</code>, for any combination of any letters</li>
+</ul>
 <p>When <code>XString</code> objects of the same type are combined, they
 become an <code>XStringSet</code>. This provides an easy way to store
 and work with genomics data. Below is an example of manually creating an

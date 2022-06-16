@@ -174,10 +174,15 @@ actually translated into proteins, since these are what we’ll try to
 annotate later. For this, we’ll use the <code><a href="https://rdrr.io/pkg/DECIPHER/man/FindNonCoding.html" class="external-link">FindNonCoding()</a></code>
 function.</p>
 <p><code><a href="https://rdrr.io/pkg/DECIPHER/man/FindNonCoding.html" class="external-link">FindNonCoding()</a></code> is used with three main datafiles
-depending on the data to analyze: *
-<code>data("NonCodingRNA_Archaea")</code> for Archaeal data *
-<code>data("NonCodingRNA_Bacteria")</code> for Bacterial data *
-<code>data("NonCodingRNA_Archaea")</code> for Eukaryotic data</p>
+depending on the data to analyze:</p>
+<ul>
+<li>
+<code>data("NonCodingRNA_Archaea")</code> for Archaeal data</li>
+<li>
+<code>data("NonCodingRNA_Bacteria")</code> for Bacterial data</li>
+<li>
+<code>data("NonCodingRNA_Archaea")</code> for Eukaryotic data</li>
+</ul>
 <p>These include pretrained models with common non-coding patterns for
 the relevant domain of life. If these pretrained models are insuffient,
 you can train your own dataset using <code><a href="https://rdrr.io/pkg/DECIPHER/man/LearnNonCoding.html" class="external-link">LearnNonCoding()</a></code>
@@ -265,16 +270,16 @@ directly, or plot them as a taxonomy.</p>
 <pre><code><span class="co">##   A test set of class 'Taxa' with length 113</span>
 <span class="co">##       confidence name                 taxon</span>
 <span class="co">##   [1]        15% 55                   Root; unclassified_Root                   </span>
-<span class="co">##   [2]        17% 12664                Root; unclassified_Root                   </span>
+<span class="co">##   [2]        16% 12664                Root; unclassified_Root                   </span>
 <span class="co">##   [3]        15% 83844                Root; unclassified_Root                   </span>
-<span class="co">##   [4]        14% 99294                Root; unclassified_Root                   </span>
+<span class="co">##   [4]        15% 99294                Root; unclassified_Root                   </span>
 <span class="co">##   [5]        14% 106117               Root; unclassified_Root                   </span>
 <span class="co">##   ...        ... ...                  ...</span>
 <span class="co">## [109]        15% 2089915              Root; unclassified_Root                   </span>
 <span class="co">## [110]        14% 2107888              Root; unclassified_Root                   </span>
-<span class="co">## [111]        15% 2123429              Root; unclassified_Root                   </span>
-<span class="co">## [112]        14% 2146854              Root; unclassified_Root                   </span>
-<span class="co">## [113]        18% 2172235              Root; unclassified_Root</span></code></pre>
+<span class="co">## [111]        14% 2123429              Root; unclassified_Root                   </span>
+<span class="co">## [112]        15% 2146854              Root; unclassified_Root                   </span>
+<span class="co">## [113]        19% 2172235              Root; unclassified_Root</span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ids</span>, <span class="va">TrainingSet_16S</span><span class="op">)</span></code></pre></div>
 <p><img src="GeneCallingAnnotation_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
@@ -290,28 +295,28 @@ directly, or plot them as a taxonomy.</p>
 <div class="center">
 <ul class="pagination pagination-lg">
 <li class="page-item">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">«</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">«</a></p>
 </li>
 <li class="page-item">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">1</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">1</a></p>
 </li>
 <li class="page-item">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">2</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">2</a></p>
 </li>
 <li class="page-item active">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">3</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">3</a></p>
 </li>
 <li class="page-item">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">4</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">4</a></p>
 </li>
 <li class="page-item">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">5</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">5</a></p>
 </li>
 <li class="page-item">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a></p>
 </li>
 <li class="page-item">
-<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">»</a>
+<p><a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">»</a></p>
 </li>
 </ul>
 </div>

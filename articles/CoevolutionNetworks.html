@@ -155,13 +155,13 @@ of pairwise association scores. We can get the raw data with
 <code class="sourceCode R"><span class="co"># Subset so the output is actually readable</span>
 <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/getProtWebData.ProtWeb.html" class="external-link">GetProtWebData</a></span><span class="op">(</span><span class="va">preds</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">##           1         2         3         4         5         6         7</span>
-<span class="co">## 1 1.0000000 0.5453093 0.5220339 0.3495290 0.2864437 0.5411136 0.3471224</span>
-<span class="co">## 2 0.5453093 1.0000000 0.2709793 0.3182296 0.2086010 0.4110484 0.1796547</span>
-<span class="co">## 3 0.5220339 0.2709793 1.0000000 0.9998540 0.1305225 0.2478214 0.1674778</span>
-<span class="co">## 4 0.3495290 0.3182296 0.9998540 1.0000000 0.1341890 0.2595834 0.1141384</span>
-<span class="co">## 5 0.2864437 0.2086010 0.1305225 0.1341890 1.0000000 0.2065372 0.1055087</span>
-<span class="co">## 6 0.5411136 0.4110484 0.2478214 0.2595834 0.2065372 1.0000000 0.2037752</span>
-<span class="co">## 7 0.3471224 0.1796547 0.1674778 0.1141384 0.1055087 0.2037752 1.0000000</span></code></pre>
+<span class="co">## 1 1.0000000 0.4969302 0.4170682 0.3996422 0.2864437 0.6710642 0.2925028</span>
+<span class="co">## 2 0.4969302 1.0000000 0.2709793 0.3839293 0.1762943 0.5185715 0.2018975</span>
+<span class="co">## 3 0.4170682 0.2709793 1.0000000 0.9998540 0.1305225 0.2478214 0.1369708</span>
+<span class="co">## 4 0.3996422 0.3839293 0.9998540 1.0000000 0.1420563 0.2240275 0.1486160</span>
+<span class="co">## 5 0.2864437 0.1762943 0.1305225 0.1420563 1.0000000 0.2065372 0.1264519</span>
+<span class="co">## 6 0.6710642 0.5185715 0.2478214 0.2240275 0.2065372 1.0000000 0.2623273</span>
+<span class="co">## 7 0.2925028 0.2018975 0.1369708 0.1486160 0.1264519 0.2623273 1.0000000</span></code></pre>
 <p>The <code>ProtWeb</code> class will be updated next release cycle to
 include more methods, including a custom plotting function. The current
 <code>plot.ProtWeb</code> S3 method implements a force-directed
