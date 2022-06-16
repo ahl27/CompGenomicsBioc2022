@@ -53,8 +53,8 @@ genomedirs <- dir(COGExampleDir, full.names = TRUE)
 # Initializing our GeneCalls list
 GeneCalls <- vector('list', length=length(genomedirs))
 
-for (i in seq_along(genomes)){
-  subfiles <- list.files(genomedirs, full.names = TRUE)
+for (i in seq_along(genomedirs)){
+  subfiles <- list.files(genomedirs[i], full.names = TRUE)
   
   # Find the FASTA file and the GFF annotations file
   fna_file <- subfiles[which(grepl('.*fna$', subfiles))]
