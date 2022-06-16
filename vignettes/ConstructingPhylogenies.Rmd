@@ -13,9 +13,12 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 library(DECIPHER)
 library(SynExtend)
+
+newTreeLine <- system.file('extdata', 'TreeLine.R', 
+                            package='CompGenomicsBioc2022')
+source(newTreeLine, local=knitr::knit_global())
 ```
 
 ## Phylogenetic Reconstruction
@@ -101,9 +104,10 @@ demo will set the `maxTime` argument to prevent the algorithm from taking too lo
 
 ```{r results='hide', fig.keep='all'}
 # Maximum Likehood
-#   - Max runtime is set here to a minute, default is as long as it takes
+#   - Max runtime is set here to 30sec, default is as long as it takes
+#   - maxTime expresses time in HOURS, not sec/min
 #   - Note that method='ML' is the default setting
-treeML <- TreeLine(testSeqs, maxTime=60)
+treeML <- TreeLine(testSeqs, maxTime=(30/3600))
 plot_tree_unrooted(treeML, main='Maximum-Likelihood')
 ```
 
@@ -135,17 +139,17 @@ To use a single model, simply create a list matching the structure of `MODELS`,
 just with the models you want to include. To exclude certain models, copy `MODELS` 
 and remove the entries you don't want. 
 
-```{r results='hide',fig.keep='all', eval=FALSE}
+```{r results='hide',fig.keep='all'}
 # Using a specific set of models
 mySpecificModel <- list(Nucleotide=c('JC69', 'HKY85'))
-specTree <- TreeLine(testSeqs, model=mySpecificModel, maxTime=60)
+specTree <- TreeLine(testSeqs, model=mySpecificModel, maxTime=(30/3600))
 plot_tree_unrooted(specTree, main='Specific Set ML')
 
 # Excluding Specific Models
 myExcludedModel <- DECIPHER::MODELS
 myExcludedModel$Protein <- NULL # Remove all protein models
 myExcludedModel$Nucleotide <- myExcludedModel$Nucleotide[-1] # Remove JC69
-exclTree <- TreeLine(testSeqs, model=myExcludedModel, maxTime=60)
+exclTree <- TreeLine(testSeqs, model=myExcludedModel, maxTime=(30/3600))
 plot_tree_unrooted(exclTree, main='Excluded Set ML')
 ```
 
