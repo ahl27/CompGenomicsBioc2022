@@ -96,23 +96,176 @@
 
     
     
+<p>We’ve now learned some ways to load genomic data into R, as well as
+ways to find and annotate genomic sequences. Once we have annotated
+sequence data, we’ll want to find genes that are orthologous.
+Orthologous genes are genes that derive from some common ancestral gene
+in the past. This is how we can “match” up genes from different
+organisms. It isn’t guaranteed that these genes have preserved function
+since diverging from their ancestral state, but it does give us insight
+into the evolution of genes over time. Sets of orthologous genes will
+referred to as COGs (Clusters of Orthologous Genes).</p>
 <div class="section level2">
-<h2 id="coming-soon">Coming Soon!<a class="anchor" aria-label="anchor" href="#coming-soon"></a>
+<h2 id="building-our-dataset">Building Our Dataset<a class="anchor" aria-label="anchor" href="#building-our-dataset"></a>
 </h2>
-<p>This tutorial will be coming soon! It will begin with the data from
-the previous step and cover the following topics:</p>
-<ul>
-<li>Identifying pairwise orthology between genetic regions with
-<code><a href="https://rdrr.io/pkg/SynExtend/man/NucleotideOverlap.html" class="external-link">NucleotideOverlap()</a></code>
-</li>
-<li>Finding clusters of orthologous genes with
-<code><a href="https://rdrr.io/pkg/SynExtend/man/DisjointSet.html" class="external-link">DisjointSet()</a></code>
-</li>
-</ul>
-<p>At the conclusion of this section, we will have a set of clusters of
-orthologous genes derived from our initial genomic data.</p>
+<p>Before we can get to looking for COGs, we first need a dataset to
+use. We’ll be using real Cyanobacteria genomes taken from NCBI. I’ve
+selected 5 genomes to work with due to their relative small size since
+we have limited time in this workshop. However, the complete data are
+available <a href="https://www.ncbi.nlm.nih.gov/datasets/genomes/?taxon=1117&amp;utm_source=gquery&amp;utm_medium=referral" class="external-link">here</a>,
+and you are more than welcome to try these analyses out with more
+genomes at any time! All the code in this section will work on larger
+datasets, you may just have to wait a little while.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SynExtend</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SynExtend</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">COGExampleDir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'COGex'</span>, package<span class="op">=</span><span class="st">'CompGenomicsBioc2022'</span><span class="op">)</span>
+
+<span class="co"># We're going to be using the database API for DECIPHER since this is designed for</span>
+<span class="co"># larger scale analyses. See code below for how we do this!</span>
+<span class="va">DBPATH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">genomedirs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">COGExampleDir</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># Initializing our GeneCalls list</span>
+<span class="va">GeneCalls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="st">'list'</span>, length<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">genomedirs</span><span class="op">)</span><span class="op">)</span>
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">genomedirs</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">subfiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">genomedirs</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  
+  <span class="co"># Find the FASTA file and the GFF annotations file</span>
+  <span class="va">fna_file</span> <span class="op">&lt;-</span> <span class="va">subfiles</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">'.*fna$'</span>, <span class="va">subfiles</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+  <span class="va">gff_file</span> <span class="op">&lt;-</span> <span class="va">subfiles</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">'.*gff$'</span>, <span class="va">subfiles</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+  
+  <span class="co"># Read in sequence to database</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/Seqs2DB.html" class="external-link">Seqs2DB</a></span><span class="op">(</span>seqs <span class="op">=</span> <span class="va">fna_file</span>,
+          type <span class="op">=</span> <span class="st">"FASTA"</span>,
+          dbFile <span class="op">=</span> <span class="va">DBPATH</span>,
+          identifier <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="co"># Sequences must be identified by number</span>
+          verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  
+  <span class="co"># Read in annotations</span>
+  <span class="va">GeneCalls</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/gffToDataFrame.html" class="external-link">gffToDataFrame</a></span><span class="op">(</span>GFF <span class="op">=</span> <span class="va">gff_file</span>,
+                                    Verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">GeneCalls</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">GeneCalls</span><span class="op">)</span> <span class="co"># Also must have numbers here too</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="finding-orthologous-pairs">Finding Orthologous Pairs<a class="anchor" aria-label="anchor" href="#finding-orthologous-pairs"></a>
+</h2>
+<p>Now we have all of our data read in successfully. Next, we’ll have to
+find pairs of orthologous genes. This is accomplished by means of the
+<code><a href="https://rdrr.io/pkg/SynExtend/man/NucleotideOverlap.html" class="external-link">NucleotideOverlap()</a></code> and <code><a href="https://rdrr.io/pkg/SynExtend/man/PairSummaries.html" class="external-link">PairSummaries()</a></code>
+functions from <code>SynExtend</code>. <code><a href="https://rdrr.io/pkg/SynExtend/man/NucleotideOverlap.html" class="external-link">NucleotideOverlap()</a></code>
+uses a <code>Synteny</code> object and determines where genomic features
+are connected by syntenic hits. <code>PairSummaries</code> determines
+pairs of genes that are orthologous by parsing these connected
+regions.</p>
+<p><em>Note:</em> Several methods here are commented out. This is to
+save time within the workshop, since we have a lot to cover in a
+relatively short time. Running the output of
+<code><a href="https://rdrr.io/pkg/SynExtend/man/PairSummaries.html" class="external-link">PairSummaries()</a></code> through <code><a href="https://rdrr.io/pkg/SynExtend/man/BlockExpansion.html" class="external-link">BlockExpansion()</a></code> and
+<code><a href="https://rdrr.io/pkg/SynExtend/man/BlockReconciliation.html" class="external-link">BlockReconciliation()</a></code> improves accuracy of our final
+identified orthologous regions at the cost of runtime. I encourage
+readers to try out this functionality on their own in the absence of
+tight time constraints.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Syn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/FindSynteny.html" class="external-link">FindSynteny</a></span><span class="op">(</span>dbFile <span class="op">=</span> <span class="va">DBPATH</span>,
+                   verbose <span class="op">=</span> <span class="cn">TRUE</span>,
+                   processors <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+
+<span class="va">Overlaps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/NucleotideOverlap.html" class="external-link">NucleotideOverlap</a></span><span class="op">(</span>SyntenyObject <span class="op">=</span> <span class="va">Syn</span>,
+                               GeneCalls <span class="op">=</span> <span class="va">GeneCalls</span>,
+                               LimitIndex <span class="op">=</span> <span class="cn">FALSE</span>,
+                               AcceptContigNames <span class="op">=</span> <span class="cn">TRUE</span>,
+                               Verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Overlaps</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##   1             2             3             4             5            </span>
+<span class="co">## 1 1751080       integer,6072  integer,5357  integer,12067 integer,5786 </span>
+<span class="co">## 2 integer,29007 2593857       integer,7436  integer,10670 integer,9933 </span>
+<span class="co">## 3 integer,25506 integer,35964 1443806       integer,5104  integer,10054</span>
+<span class="co">## 4 integer,53802 integer,49419 integer,25182 3342364       integer,7150 </span>
+<span class="co">## 5 integer,26694 integer,47916 integer,59661 integer,32130 2794318</span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Pairs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/PairSummaries.html" class="external-link">PairSummaries</a></span><span class="op">(</span>SyntenyLinks <span class="op">=</span> <span class="va">Overlaps</span>,
+                     GeneCalls <span class="op">=</span> <span class="va">GeneCalls</span>,
+                     DBPATH <span class="op">=</span> <span class="va">DBPATH</span>,
+                     PIDs <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Set to TRUE for better accuracy (slower) </span>
+                     Score <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Set to TRUE for better accuracy (slower)</span>
+                     Verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># These methods only work if we set PIDs and Score to TRUE</span>
+<span class="co"># Unfortunately we don't have time in this workshop to use these</span>
+<span class="co"># Feel free to try them out on your own with a larger dataset!</span>
+
+<span class="co"># P02 &lt;- BlockExpansion(Pairs = P01,</span>
+<span class="co">#                       DBPATH = DBPATH,</span>
+<span class="co">#                       Verbose = TRUE,</span>
+<span class="co">#                       NewPairsOnly = FALSE)</span>
+<span class="co"># P03 &lt;- BlockReconciliation(Pairs = P02,</span>
+<span class="co">#                            PIDThreshold = 0.75,</span>
+<span class="co">#                            SCOREThreshold = 200,</span>
+<span class="co">#                            Verbose = TRUE)</span>
+<span class="co"># Pairs &lt;- P03[P03$PID &gt; 0.4, ]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Pairs</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##      p1       p2 ExactMatch Consensus TotalKmers MaxKmer p1FeatureLength</span>
+<span class="co">## 1 1_1_1 2_1_2393          3 0.9751676          1       3            1158</span>
+<span class="co">## 2 1_1_1 2_1_2394        149 0.9952341          5      33            1158</span>
+<span class="co">## 3 1_1_3 2_1_1715        699 0.9944594         15     132            2406</span>
+<span class="co">## 4 1_1_4 2_1_1716         62 0.9996400          2      38            1458</span>
+<span class="co">## 5 1_1_5 2_1_1395        119 0.9973530          4      38            2487</span>
+<span class="co">## 6 1_1_5 2_1_1648        152 0.9831189          6      36            2487</span>
+<span class="co">##   p2FeatureLength Adjacent    TetDist PIDType PredictedPID</span>
+<span class="co">## 1             633        0 0.08269544      AA    0.3212880</span>
+<span class="co">## 2            1113        0 0.07577384      AA    0.5203286</span>
+<span class="co">## 3            2286        1 0.07529888      AA    0.5164381</span>
+<span class="co">## 4            1449        1 0.07442340      AA    0.3365680</span>
+<span class="co">## 5            2562        0 0.08291266      AA    0.2642923</span>
+<span class="co">## 6            2400        0 0.08862774      AA    0.3245199</span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="finding-cogs">Finding COGs<a class="anchor" aria-label="anchor" href="#finding-cogs"></a>
+</h2>
+<p>From these pairwise orthologous regions, we can finally determine
+COGs using the <code><a href="https://rdrr.io/pkg/SynExtend/man/DisjointSet.html" class="external-link">DisjointSet()</a></code> function from
+<code>SynExtend</code>. This function analyzes pairs to find determine
+which orthologs are (dis)connected. Future work will look into smarter
+ways to determine COGs from pairwise orthologies, but this analysis is
+already highly accurate. We also use <code>ExtractBy</code> to pull out
+the sequences corresponding to each genomic region in each COG.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">COGSets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/DisjointSet.html" class="external-link">DisjointSet</a></span><span class="op">(</span>Pairs <span class="op">=</span> <span class="va">Pairs</span>,
+                        Verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">Sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/ExtractBy.html" class="external-link">ExtractBy</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Pairs</span>,
+                       y <span class="op">=</span> <span class="va">DBPATH</span>,
+                       z <span class="op">=</span> <span class="va">COGSets</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html" class="external-link">lengths</a></span><span class="op">(</span><span class="va">COGSets</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span><span class="op">]</span>,
+                       Verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">COGSets</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code><span class="co">## [1] "1_1_1"    "2_1_2393" "3_1_120"  "2_1_2394" "4_1_2373" "5_1_29"   "4_1_665" </span>
+<span class="co">## [8] "5_1_948"</span></code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Sequences</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code><span class="co">## DNAStringSet object of length 5:</span>
+<span class="co">##     width seq                                               names               </span>
+<span class="co">## [1]   750 <span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFFF;">GG</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span>...<span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AAAAAAA</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #FFAFAF;">AA</span> 1_1_8</span>
+<span class="co">## [2]   681 <span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span>...<span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #AFFFFF;">GG</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">CCC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span> 2_1_805</span>
+<span class="co">## [3]   753 <span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">TTT</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span>...<span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">TTT</span><span style="color: #000000; background-color: #FFAFAF;">AAAAAA</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #FFAFAF;">AA</span> 3_1_529</span>
+<span class="co">## [4]   732 <span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFFF;">GG</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CCC</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CCC</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span>...<span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">CCCCCC</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">CCC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span> 4_1_2332</span>
+<span class="co">## [5]   744 <span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span>...<span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">GG</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">AAAA</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span> 5_1_1696</span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</h2>
+<p>Now we know how to generate COGs from a dataset of genomes and gene
+calls. We could have also generated gene calls ourselves, but if high
+quality gene annotations are already available (e.g. on NCBI), it makes
+sense to use them. Remember that this example is intentionally small so
+it can fit into our workshop within the time constraints–I highly
+encourage experimenting with other, larger datasets!</p>
 <style type="text/css">
 .pagination {
     display: flex;
@@ -151,7 +304,8 @@ orthologous genes derived from our initial genomic data.</p>
 </ul>
 </div>
 </div>
-  </main>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
