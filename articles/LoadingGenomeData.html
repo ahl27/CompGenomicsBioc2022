@@ -118,40 +118,8 @@ become an <code>XStringSet</code>. This provides an easy way to store
 and work with genomics data. Below is an example of manually creating an
 <code>XStringSet</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Loading required package: Biostrings</span></code></pre>
-<pre><code><span class="co">## Loading required package: BiocGenerics</span></code></pre>
-<pre><code><span class="co">## </span>
-<span class="co">## Attaching package: 'BiocGenerics'</span></code></pre>
-<pre><code><span class="co">## The following objects are masked from 'package:stats':</span>
-<span class="co">## </span>
-<span class="co">##     IQR, mad, sd, var, xtabs</span></code></pre>
-<pre><code><span class="co">## The following objects are masked from 'package:base':</span>
-<span class="co">## </span>
-<span class="co">##     anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span>
-<span class="co">##     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span>
-<span class="co">##     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span>
-<span class="co">##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span>
-<span class="co">##     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span>
-<span class="co">##     union, unique, unsplit, which.max, which.min</span></code></pre>
-<pre><code><span class="co">## Loading required package: S4Vectors</span></code></pre>
-<pre><code><span class="co">## Loading required package: stats4</span></code></pre>
-<pre><code><span class="co">## </span>
-<span class="co">## Attaching package: 'S4Vectors'</span></code></pre>
-<pre><code><span class="co">## The following objects are masked from 'package:base':</span>
-<span class="co">## </span>
-<span class="co">##     expand.grid, I, unname</span></code></pre>
-<pre><code><span class="co">## Loading required package: IRanges</span></code></pre>
-<pre><code><span class="co">## Loading required package: XVector</span></code></pre>
-<pre><code><span class="co">## Loading required package: GenomeInfoDb</span></code></pre>
-<pre><code><span class="co">## </span>
-<span class="co">## Attaching package: 'Biostrings'</span></code></pre>
-<pre><code><span class="co">## The following object is masked from 'package:base':</span>
-<span class="co">## </span>
-<span class="co">##     strsplit</span></code></pre>
-<pre><code><span class="co">## Loading required package: RSQLite</span></code></pre>
-<pre><code><span class="co">## Loading required package: parallel</span></code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span> <span class="co"># Auto-imports Biostrings</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'AGACT'</span>,
                <span class="st">'AGACG'</span>,
                <span class="st">'TCATT'</span>,
@@ -171,7 +139,7 @@ and work with genomics data. Below is an example of manually creating an
 sequencing data are downloadable as <code>.fasta</code> or
 <code>.fastq</code> files, so let’s look at a more realistic use-case
 that reads in a data from a <code>.fasta</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">exampledata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'EX_Strepto_COG.fasta'</span>, 
                             package<span class="op">=</span><span class="st">'CompGenomicsBioc2022'</span><span class="op">)</span>
 
@@ -181,7 +149,7 @@ that reads in a data from a <code>.fasta</code>.</p>
 <p>Success! Now we have a large example dataset to work with.</p>
 <p>If we wanted to visualize these sequences, we can open them in a web
 browser using <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code> from <code>DECIPHER</code>:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs</a></span><span class="op">(</span><span class="va">exStringSet</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
@@ -195,10 +163,13 @@ aligning sequences. This is easily achievable with either the
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignSeqs.html" class="external-link">AlignSeqs()</a></code> function or the <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation()</a></code>
 functions from <code>DECIPHER</code>. <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation()</a></code>
 aligns sequences based on their translated amino acid sequences, and is
-significantly more accurate for DNA or RNA sequences.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+significantly more accurate for DNA or RNA sequences. This code block
+will also use <code><a href="https://rdrr.io/pkg/DECIPHER/man/RemoveGaps.html" class="external-link">RemoveGaps()</a></code> from <code>DECIPHER</code> to
+remove gaps that are shared by all sequences, in an effort to make the R
+printout a little more informative.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ali1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/AlignSeqs.html" class="external-link">AlignSeqs</a></span><span class="op">(</span><span class="va">exStringSet</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">ali1</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/RemoveGaps.html" class="external-link">RemoveGaps</a></span><span class="op">(</span><span class="va">ali1</span>, removeGaps<span class="op">=</span><span class="st">'common'</span><span class="op">)</span> <span class="co"># Better visualization</span></code></pre></div>
 <pre><code><span class="co">## DNAStringSet object of length 50:</span>
 <span class="co">##      width seq                                              names               </span>
 <span class="co">##  [1]  1089 -----------------------...---------------------- 55</span>
@@ -212,9 +183,9 @@ significantly more accurate for DNA or RNA sequences.</p>
 <span class="co">## [48]  1089 -----------------------...---------------------- 1099095</span>
 <span class="co">## [49]  1089 -----------------------...---------------------- 1101364</span>
 <span class="co">## [50]  1089 -----------------------...---------------------- 1114177</span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ali2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation</a></span><span class="op">(</span><span class="va">exStringSet</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">ali2</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/RemoveGaps.html" class="external-link">RemoveGaps</a></span><span class="op">(</span><span class="va">ali2</span>, removeGaps<span class="op">=</span><span class="st">'common'</span><span class="op">)</span> <span class="co"># Better visualization</span></code></pre></div>
 <pre><code><span class="co">## DNAStringSet object of length 50:</span>
 <span class="co">##      width seq                                              names               </span>
 <span class="co">##  [1]  1224 -----------------------...---------------------- 55</span>
@@ -228,9 +199,11 @@ significantly more accurate for DNA or RNA sequences.</p>
 <span class="co">## [48]  1224 -----------------------...---------------------- 1099095</span>
 <span class="co">## [49]  1224 -----------------------...---------------------- 1101364</span>
 <span class="co">## [50]  1224 -----------------------...---------------------- 1114177</span></code></pre>
-<p>As before, we can visualize this alignment sequences using
+<p>Alignments tend to start with a lot of gaps, and as a result viewing
+them through R isn’t always super informative. As before, we can
+visualize this alignment in a much better way using
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code>:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs</a></span><span class="op">(</span><span class="va">ali2</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
@@ -241,7 +214,7 @@ without aligning them. The result allows us to easily visualize
 differences between two sequences without having to align them. Let’s
 look at an example of finding syntenic hits between the first 6
 sequences in our set.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">to_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span>
 <span class="va">synData</span> <span class="op">&lt;-</span> <span class="va">exStringSet</span><span class="op">[</span><span class="va">to_select</span><span class="op">]</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">synData</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">to_select</span><span class="op">)</span>
@@ -252,7 +225,7 @@ sequences in our set.</p>
 <span class="fu">dbDisconnect</span><span class="op">(</span><span class="va">dbConn</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">syn</span><span class="op">)</span></code></pre></div>
-<p><img src="LoadingGenomeData_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="LoadingGenomeData_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>What are we looking at with this plot? Each plot compares two
 genomes, and each dot is a syntenic hit between the two genomes. The X
 position of the dot is its location on the first genome, and the Y
