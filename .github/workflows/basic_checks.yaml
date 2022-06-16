@@ -47,11 +47,12 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Check
-        env:
-          _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--no-examples", "--no-tests", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
+# Takes forever and I can do this locally much faster
+#      - name: Check
+#        env:
+#          _R_CHECK_CRAN_INCOMING_REMOTE_: false
+#        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--no-examples", "--no-tests", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
+#        shell: Rscript {0}
       
 
       - name: Build pkgdown
