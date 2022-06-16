@@ -1,3 +1,13 @@
+# Version 1.0.0
+### General Notes
+* All tutorials are now complete with dataset and code!
+
+### Future Work
+* Datasets will be updated prior to conference for consistency
+* Language/explanations will be updated
+* May include a photo of downloading dataset for `FindingCOGs` page
+
+
 # Version 0.7.0
 
 ### General Notes

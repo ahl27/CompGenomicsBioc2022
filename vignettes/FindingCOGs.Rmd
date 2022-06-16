@@ -12,20 +12,149 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(DECIPHER)
+library(SynExtend)
 ```
 
-## Coming Soon!
-This tutorial will be coming soon! It will begin with the data from the previous step and cover the following topics:
+We've now learned some ways to load genomic data into R, as well as ways to find
+and annotate genomic sequences. Once we have annotated sequence data, we'll want 
+to find genes that are orthologous. Orthologous genes are genes that derive
+from some common ancestral gene in the past. This is how we can "match" up genes 
+from different organisms. It isn't guaranteed that these genes have preserved
+function since diverging from their ancestral state, but it does give us insight
+into the evolution of genes over time. Sets of orthologous genes will 
+referred to as COGs (Clusters of Orthologous Genes).
 
-* Identifying pairwise orthology between genetic regions with `NucleotideOverlap()`
-* Finding clusters of orthologous genes with `DisjointSet()`
+## Building Our Dataset
 
-At the conclusion of this section, we will have a set of clusters of orthologous genes derived from our initial genomic data.
+Before we can get to looking for COGs, we first need a dataset to use. We'll 
+be using real Cyanobacteria genomes taken from NCBI. I've selected 5 genomes to
+work with due to their relative small size since we have limited time in this workshop. 
+However, the complete data are available [here](https://www.ncbi.nlm.nih.gov/datasets/genomes/?taxon=1117&utm_source=gquery&utm_medium=referral),
+and you are more than welcome to try these analyses out with more genomes at any time!
+All the code in this section will work on larger datasets, you may just have to wait
+a little while.
+
 
 ```{r eval=FALSE}
+library(DECIPHER)
 library(SynExtend)
-
 ```
+
+```{r eval=FALSE}
+COGExampleDir <- system.file('extdata', 'COGex', package='CompGenomicsBioc2022')
+
+# We're going to be using the database API for DECIPHER since this is designed for
+# larger scale analyses. See code below for how we do this!
+DBPATH <- tempfile()
+
+genomedirs <- dir(COGExampleDir, full.names = TRUE)
+
+# Initializing our GeneCalls list
+GeneCalls <- vector('list', length=length(genomedirs))
+
+for (i in seq_along(genomes)){
+  subfiles <- list.files(genomedirs, full.names = TRUE)
+  
+  # Find the FASTA file and the GFF annotations file
+  fna_file <- subfiles[which(grepl('.*fna$', subfiles))]
+  gff_file <- subfiles[which(grepl('.*gff$', subfiles))]
+  
+  # Read in sequence to database
+  Seqs2DB(seqs = fna_file,
+          type = "FASTA",
+          dbFile = DBPATH,
+          identifier = as.character(i), # Sequences must be identified by number
+          verbose = TRUE)
+  
+  # Read in annotations
+  GeneCalls[[i]] <- gffToDataFrame(GFF = gff_file,
+                                    Verbose = TRUE)
+}
+names(GeneCalls) <- seq_along(GeneCalls) # Also must have numbers here too
+```
+
+## Finding Orthologous Pairs
+
+Now we have all of our data read in successfully. Next, we'll have to find
+pairs of orthologous genes. This is accomplished by means of the `NucleotideOverlap()`
+and `PairSummaries()` functions from `SynExtend`. `NucleotideOverlap()` uses
+a `Synteny` object and determines where genomic features are connected by syntenic hits.
+`PairSummaries` determines pairs of genes that are orthologous by parsing these
+connected regions.
+
+*Note:* Several methods here are commented out. This is to save time within the 
+workshop, since we have a lot to cover in a relatively short time. Running the
+output of `PairSummaries()` through `BlockExpansion()` and `BlockReconciliation()`
+improves accuracy of our final identified orthologous regions at the cost of runtime. 
+I encourage readers to try out this functionality on their own in the absence
+of tight time constraints.
+
+```{r eval=FALSE}
+Syn <- FindSynteny(dbFile = DBPATH,
+                   verbose = TRUE,
+                   processors = NULL)
+
+Syn
+
+Overlaps <- NucleotideOverlap(SyntenyObject = Syn,
+                               GeneCalls = GeneCalls,
+                               LimitIndex = FALSE,
+                               AcceptContigNames = TRUE,
+                               Verbose = TRUE)
+Overlaps
+
+Pairs <- PairSummaries(SyntenyLinks = Overlaps,
+                     GeneCalls = GeneCalls,
+                     DBPATH = DBPATH,
+                     PIDs = FALSE, # Set to TRUE for better accuracy (slower) 
+                     Score = FALSE, # Set to TRUE for better accuracy (slower)
+                     Verbose = TRUE)
+
+# These methods only work if we set PIDs and Score to TRUE
+# Unfortunately we don't have time in this workshop to use these
+# Feel free to try them out on your own with a larger dataset!
+
+# P02 <- BlockExpansion(Pairs = P01,
+#                       DBPATH = DBPATH,
+#                       Verbose = TRUE,
+#                       NewPairsOnly = FALSE)
+# P03 <- BlockReconciliation(Pairs = P02,
+#                            PIDThreshold = 0.75,
+#                            SCOREThreshold = 200,
+#                            Verbose = TRUE)
+# Pairs <- P03[P03$PID > 0.4, ]
+
+Pairs
+```
+
+## Finding COGs
+
+From these pairwise orthologous regions, we can finally determine COGs using the
+`DisjointSet()` function from `SynExtend`. This function analyzes pairs to find
+determine which orthologs are (dis)connected. Future work will look into smarter
+ways to determine COGs from pairwise orthologies, but this analysis is already highly
+accurate. We also use `ExtractBy` to pull out the sequences corresponding to each
+genomic region in each COG.
+```{r}
+COGSets <- DisjointSet(Pairs = Pairs,
+                        Verbose = TRUE)
+Sequences <- ExtractBy(x = Pairs,
+                       y = path_to_db,
+                       z = COGSets[lengths(COGSets) == 5],
+                       Verbose = TRUE)
+
+COGSets
+Sequences
+```
+
+## Conclusion
+
+Now we know how to generate COGs from a dataset of genomes and gene calls. We 
+could have also generated gene calls ourselves, but if high quality gene annotations
+are already available (e.g. on NCBI), it makes sense to use them. Remember that this
+example is intentionally small so it can fit into our workshop within the time 
+constraints--I highly encourage experimenting with other, larger datasets!
 
 ```{css, echo=FALSE}
 .pagination {
