@@ -120,10 +120,7 @@ for all COGs in the dataset.</p>
 <span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="va">datafile</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">pw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/ProtWeaver.html" class="external-link">ProtWeaver</a></span><span class="op">(</span><span class="va">treesFromCOGs</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning in validate_ProtWeaver(ListOfData, noWarn = NoWarn): Disabling</span>
-<span class="co">## MirrorTree-based algorithms. Input list must include inputs of type "dendrogram"</span>
-<span class="co">## for MT algorithms. Consult the documentation for more info.</span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pw</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## a ProtWeaver object with 25 groups and 301 genomes.</span></code></pre>
 <p>The <code>ProtWeaver</code> constuctor automatically detects the type
@@ -135,9 +132,9 @@ with simple presence/absence patterns. See the documentation file for
 associations is done with the <code>predict.ProtWeaver</code> S3 method.
 Let’s examine possible functional associations between the first 100
 COGs we have.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">pw</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">preds</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## a ProtWeb object.</span>
 <span class="co">##  Method used: Ensemble </span>
@@ -151,17 +148,17 @@ COGs we have.</p>
 is just a simple S3 class with a pretty print method wrapping a matrix
 of pairwise association scores. We can get the raw data with
 <code><a href="https://rdrr.io/pkg/SynExtend/man/getProtWebData.ProtWeb.html" class="external-link">GetProtWebData()</a></code>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Subset so the output is actually readable</span>
 <span class="fu"><a href="https://rdrr.io/pkg/SynExtend/man/getProtWebData.ProtWeb.html" class="external-link">GetProtWebData</a></span><span class="op">(</span><span class="va">preds</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">##           1         2         3         4         5         6         7</span>
-<span class="co">## 1 1.0000000 0.4969302 0.4170682 0.3996422 0.2864437 0.6710642 0.2925028</span>
-<span class="co">## 2 0.4969302 1.0000000 0.2709793 0.3839293 0.1762943 0.5185715 0.2018975</span>
+<span class="co">## 1 1.0000000 0.4969302 0.4170682 0.4285390 0.2864437 0.5411136 0.2860832</span>
+<span class="co">## 2 0.4969302 1.0000000 0.2709793 0.3777730 0.1762943 0.4110484 0.1888778</span>
 <span class="co">## 3 0.4170682 0.2709793 1.0000000 0.9998540 0.1305225 0.2478214 0.1369708</span>
-<span class="co">## 4 0.3996422 0.3839293 0.9998540 1.0000000 0.1420563 0.2240275 0.1486160</span>
-<span class="co">## 5 0.2864437 0.1762943 0.1305225 0.1420563 1.0000000 0.2065372 0.1264519</span>
-<span class="co">## 6 0.6710642 0.5185715 0.2478214 0.2240275 0.2065372 1.0000000 0.2623273</span>
-<span class="co">## 7 0.2925028 0.2018975 0.1369708 0.1486160 0.1264519 0.2623273 1.0000000</span></code></pre>
+<span class="co">## 4 0.4285390 0.3777730 0.9998540 1.0000000 0.1077506 0.2697997 0.1141384</span>
+<span class="co">## 5 0.2864437 0.1762943 0.1305225 0.1077506 1.0000000 0.2423908 0.1367688</span>
+<span class="co">## 6 0.5411136 0.4110484 0.2478214 0.2697997 0.2423908 1.0000000 0.2037752</span>
+<span class="co">## 7 0.2860832 0.1888778 0.1369708 0.1141384 0.1367688 0.2037752 1.0000000</span></code></pre>
 <p>The <code>ProtWeb</code> class will be updated next release cycle to
 include more methods, including a custom plotting function. The current
 <code>plot.ProtWeb</code> S3 method implements a force-directed
@@ -177,7 +174,7 @@ prediction using as many individual models as it can run with the data
 provided. However, users are free to use any of the individual models
 without the ensemble predictor. The methods implemented are the
 following:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># PHYLOGENETIC PROFILING METHODS:</span>
   <span class="co">## P/A = Presence/Absence Profiles</span>
   <span class="co">## Jaccard distance of P/A</span>

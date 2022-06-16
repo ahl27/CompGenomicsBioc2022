@@ -115,9 +115,11 @@ we’ll work with a pre-calculated <code>RData</code> file containing the
 results we would have gotten if we had run the same calculation on the
 entire dataset.</p>
 <p><em>Small note:</em> the setup for this page includes a helper
-function to plot the phylogenies without rooting them. You can plot them
-just as well with <code>plot</code>, I just prefer visualize unrooted
-trees without arbitrarily rooting them.</p>
+function to plot the phylogenies as a circular plot. You can plot them
+just as well with <code>plot</code>, I just prefer this visualization.
+You can also use <code>plottype='unrooted'</code> for a different
+visualization, though labels are often hard to read in that
+visualization.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"TreeLine.R"</span><span class="op">)</span> <span class="co"># Shouldn't be necessary if using dev version</span></code></pre></div>
@@ -129,12 +131,12 @@ trees without arbitrarily rooting them.</p>
 <span class="co">##   AlignedSequences</span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Helper plotting function</span>
-<span class="va">plot_tree_unrooted</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dend</span>, <span class="va">main</span><span class="op">)</span><span class="op">{</span>
+<span class="va">plot_tree_unrooted</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dend</span>, <span class="va">main</span>, <span class="va">plottype</span><span class="op">=</span><span class="st">'fan'</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">if</span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://ape-package.ird.fr/" class="external-link">ape</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
     <span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/WriteDendrogram.html" class="external-link">WriteDendrogram</a></span><span class="op">(</span><span class="va">dend</span>, file<span class="op">=</span><span class="va">tf</span>, quoteLabels<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
     <span class="va">predTree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.tree.html" class="external-link">read.tree</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">predTree</span>, <span class="st">'unrooted'</span>, main<span class="op">=</span><span class="va">main</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">predTree</span>, <span class="va">plottype</span>, main<span class="op">=</span><span class="va">main</span><span class="op">)</span>
   <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dend</span>, main<span class="op">=</span><span class="va">main</span><span class="op">)</span>
   <span class="op">}</span>
