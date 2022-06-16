@@ -37,8 +37,9 @@ dataset is time-prohibitive for this workshop, we'll work with a pre-calculated
 calculation on the entire dataset.
 
 *Small note:* the setup for this page includes a helper function to plot the
-phylogenies without rooting them. You can plot them just as well with `plot`, I
-just prefer visualize unrooted trees without arbitrarily rooting them.
+phylogenies as a circular plot. You can plot them just as well with `plot`, I
+just prefer this visualization. You can also use `plottype='unrooted'` for a 
+different visualization, though labels are often hard to read in that visualization.
 
 ```{r eval=FALSE}
 library(DECIPHER)
@@ -51,12 +52,12 @@ datafile <- system.file('extdata', 'phyloInputData.RData',
 load(datafile, verbose=TRUE) # Should load 'AlignedSequences'
 
 # Helper plotting function
-plot_tree_unrooted <- function(dend, main){
+plot_tree_unrooted <- function(dend, main, plottype='fan'){
   if(require(ape)){
     tf <- tempfile()
     WriteDendrogram(dend, file=tf, quoteLabels=FALSE)
     predTree <- read.tree(tf)
-    plot(predTree, 'unrooted', main=main)
+    plot(predTree, plottype, main=main)
   } else {
     plot(dend, main=main)
   }

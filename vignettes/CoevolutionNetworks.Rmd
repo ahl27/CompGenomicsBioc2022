@@ -33,7 +33,7 @@ Generating a `ProtWeaver` object from this is simple:
 library(DECIPHER)
 library(SynExtend)
 ```
-```{r results='hide', fig.keep='all'}
+```{r results='hide', fig.keep='all', warning=FALSE}
 datafile <- system.file('extdata', 'treesFromCOGs.RData', 
                         package='CompGenomicsBioc2022')
 load(datafile, verbose=TRUE)
