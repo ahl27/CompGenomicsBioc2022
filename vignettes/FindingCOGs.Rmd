@@ -41,7 +41,7 @@ library(DECIPHER)
 library(SynExtend)
 ```
 
-```{r eval=FALSE}
+```{r results='hide'}
 COGExampleDir <- system.file('extdata', 'COGex', package='CompGenomicsBioc2022')
 
 # We're going to be using the database API for DECIPHER since this is designed for
