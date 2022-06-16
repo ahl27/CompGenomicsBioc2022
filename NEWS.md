@@ -1,3 +1,10 @@
+# Version 0.7.0
+
+### General Notes
+* Adds download button in Setup page for datafiles
+* Minor formatting fixes and adjustments
+* Examples with `TreeLine` now use the correct version
+
 # Version 0.6.0
 
 ### General Notes

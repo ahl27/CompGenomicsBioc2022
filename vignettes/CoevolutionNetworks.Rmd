@@ -67,7 +67,8 @@ pretty print method wrapping a matrix of pairwise association scores. We can get
 the raw data with `GetProtWebData()`:
 
 ```{r}
-GetProtWebData(preds)
+# Subset so the output is actually readable
+GetProtWebData(preds)[1:7, 1:7]
 ```
 
 The `ProtWeb` class will be updated next release cycle to include more methods, 

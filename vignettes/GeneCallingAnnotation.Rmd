@@ -105,8 +105,10 @@ annots <- sort(table(names(annotations)[geneMatches]))
 genes <- ExtractGenes(codingRegions, archaealGenome, type="DNAStringSet")
 ```
 ```{r}
+# What genes have we found and successfully annotated?
 annots
-# sequences corresponding to coding regions
+
+# Sequences corresponding to coding regions
 genes 
 ```
 

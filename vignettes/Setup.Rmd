@@ -66,8 +66,9 @@ Click the below button to download all datafiles used in this workshop.
 }
 ```
 ```{r echo=FALSE}
-dir <- system.file('extdata', package='CompGenomicsBioc2022')
-downloadthis::download_dir(
+dir <- list.files(path=system.file('extdata', package='CompGenomicsBioc2022'),
+                  full.names=TRUE)
+downloadthis::download_file(
   path = dir,
   output_name = "exampleDataCGBioc2022",
   button_label = "Download example datafiles",
@@ -78,6 +79,15 @@ downloadthis::download_dir(
   class = "hvr-grow-shadow"
 )
 ```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 
 ```{css, echo=FALSE}
 .pagination {
