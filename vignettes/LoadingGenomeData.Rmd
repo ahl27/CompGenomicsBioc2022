@@ -13,7 +13,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
+library(DECIPHER)
 ```
 
 ## Reading in Sequencing Data
@@ -32,8 +32,11 @@ package.
 When `XString` objects of the same type are combined, they become an `XStringSet`. 
 This provides an easy way to store and work with genomics data. Below is an
 example of manually creating an `XStringSet`:
+```{r eval=FALSE}
+library(DECIPHER) # Auto-imports Biostrings
+```
+
 ```{r}
-library(DECIPHER)
 
 sequences <- c('AGACT',
                'AGACG',
@@ -75,17 +78,21 @@ we'll just focus on functionality added via `DECIPHER`. A common analysis in
 bioinformatics is aligning sequences. This is easily achievable with either the 
 `AlignSeqs()` function or the `AlignTranslation()` functions from `DECIPHER`. 
 `AlignTranslation()` aligns sequences based on their translated amino acid sequences, 
-and is significantly more accurate for DNA or RNA sequences.
+and is significantly more accurate for DNA or RNA sequences. This code block will
+also use `RemoveGaps()` from `DECIPHER` to remove gaps that are shared by all
+sequences, in an effort to make the R printout a little more informative. 
 
 ```{r}
 ali1 <- AlignSeqs(exStringSet, verbose=FALSE)
-ali1
+RemoveGaps(ali1, removeGaps='common') # Better visualization
 
 ali2 <- AlignTranslation(exStringSet, verbose=FALSE)
-ali2
+RemoveGaps(ali2, removeGaps='common') # Better visualization
 ```
 
-As before, we can visualize this alignment sequences using `BrowseSeqs()`:
+Alignments tend to start with a lot of gaps, and as a result viewing them through
+R isn't always super informative.
+As before, we can visualize this alignment in a much better way using `BrowseSeqs()`:
 
 ```{r, eval=FALSE}
 BrowseSeqs(ali2)

@@ -28,6 +28,11 @@ While the previous step only generated a few gene trees, I've included an
 dataset.
 
 Generating a `ProtWeaver` object from this is simple:
+
+```{r eval=FALSE}
+library(DECIPHER)
+library(SynExtend)
+```
 ```{r results='hide', fig.keep='all'}
 datafile <- system.file('extdata', 'treesFromCOGs.RData', 
                         package='CompGenomicsBioc2022')
@@ -79,25 +84,35 @@ the individual models without the ensemble predictor. The methods implemented ar
 the following:
 
 ```{r results='hide'}
-# Phylogenetic Profiling Methods:
+# PHYLOGENETIC PROFILING METHODS:
   ## P/A = Presence/Absence Profiles
-Jaccard <- predict(pw, method='Jaccard') # Jaccard distance of P/A
-Hamming <- predict(pw, method='Hamming') # Hamming distance of P/A
-MutualInf <- predict(pw, method='MutualInformation') # MutualInformation of P/A
-ProfDCA <- predict(pw, method='ProfDCA') # Direct Coupling Analysis of P/A
-Behdenna <- predict(pw, method='Behdenna', mySpeciesTree=exSpeciesTree)
-  # Correlation of gain/loss events on phylogeny, requires Species Tree
+  ## Jaccard distance of P/A
+Jaccard <- predict(pw, method='Jaccard') 
 
-# Co-localization Methods:
+  ## Hamming distance of P/A
+Hamming <- predict(pw, method='Hamming') 
+
+  ## MutualInformation of P/A
+MutualInf <- predict(pw, method='MutualInformation')
+
+  ## Direct Coupling Analysis of P/A
+ProfDCA <- predict(pw, method='ProfDCA') 
+
+  ## Correlation of gain/loss events on phylogeny, requires Species Tree
+Behdenna <- predict(pw, method='Behdenna', mySpeciesTree=exSpeciesTree)
+
+# CO-LOCALIZATION METHODS:
 Colocalization <- predict(pw, method='Coloc') # Co-localization analysis
 
-# Distance Matrix Methods:
-MirrorTree <- predict(pw, method='MirrorTree') # MirrorTree analysis
-ContextTree <- predict(pw, method='ContextTree') # ContextTree analysis
+# DISTANCE MATRIX METHDOS:
+MirrorTree <- predict(pw, method='MirrorTree')
+ContextTree <- predict(pw, method='ContextTree')
 
 # Residue Methods: (ONLY AVAILABLE IN DEV VERSION)
-#ResidueMI <- predict(pw, method='ResidueMI') # MutualInf of residues
-#DendroMI <- predict(pw, method='DendroMI') # MutualInf of changes on phylogeny
+#   ## MutualInf of residues
+#ResidueMI <- predict(pw, method='ResidueMI') 
+#   ## MutualInf of phyletic changes
+#DendroMI <- predict(pw, method='DendroMI')
 ```
 
 ## Thank you!
