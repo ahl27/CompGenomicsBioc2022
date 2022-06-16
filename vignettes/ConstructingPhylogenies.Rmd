@@ -52,11 +52,14 @@ load(datafile, verbose=TRUE) # Should load 'AlignedSequences'
 
 # Helper plotting function
 plot_tree_unrooted <- function(dend, main){
-  stopifnot(require(ape))
-  tf <- tempfile()
-  WriteDendrogram(dend, file=tf, quoteLabels=FALSE)
-  predTree <- read.tree(tf)
-  plot(predTree, 'unrooted', main=main)
+  if(require(ape)){
+    tf <- tempfile()
+    WriteDendrogram(dend, file=tf, quoteLabels=FALSE)
+    predTree <- read.tree(tf)
+    plot(predTree, 'unrooted', main=main)
+  } else {
+    plot(dend, main=main)
+  }
 }
 
 testSeqs <- AlignedSequences

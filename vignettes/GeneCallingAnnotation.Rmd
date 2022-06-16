@@ -21,42 +21,45 @@ source(newTreeLine, local=knitr::knit_global())
 
 ## Gene Calling and Annotation
 
-At this point, we've learned how to read in some genomic data, and have gained
-some basic familiarity working with it. The next step in our pipeline is to 
-take a set of genomes, identify the coding regions in them, and predict the function
-of as many genetic regions as we can. We'll start off by identifying the genes themselves.
-
+At this point, we've learned how to read in some genomic data, and have
+gained some basic familiarity working with it. The next step in our
+pipeline is to take a set of genomes, identify the coding regions in
+them, and predict the function of as many genetic regions as we can.
+We'll start off by identifying the genes themselves.
 
 ## Finding Genes
 
-In the interest of time, we're going to be using plasmid sequences from a 
-dataset of Archaeal genomes. Plasmids are small enough that we can quickly execute
-our queries. We'll begin by reading in the data from a `.fasta` file, as we did
-in the previous section.
+In the interest of time, we're going to be using plasmid sequences from
+a dataset of Archaeal genomes. Plasmids are small enough that we can
+quickly execute our queries. We'll begin by reading in the data from a
+`.fasta` file, as we did in the previous section.
 
 ```{r eval=FALSE}
 library(DECIPHER)
 source("TreeLine.R") # Shouldn't be necessary if using dev version
 ```
+
 ```{r}
 datafile <- system.file('extdata', 'EX_plasmids.fasta', 
                         package='CompGenomicsBioc2022')
 seqs <- readDNAStringSet(datafile)
 ```
 
-Next, we're going to identify the genes in the first sequence in our sequence set.
-We'll mark this as our 'genome' (although it's really a plasmid), and predict
-genes within it using `FindGenes()` from the `DECIPHER` package. 
+Next, we're going to identify the genes in the first sequence in our
+sequence set. We'll mark this as our 'genome' (although it's really a
+plasmid), and predict genes within it using `FindGenes()` from the
+`DECIPHER` package.
 
-`FindGenes()` returns a `Genes` object with information on where genes start and 
-end in the genome. We can then extract the sequences corresponding to each gene
-using the `ExtractGenes()` function. 
+`FindGenes()` returns a `Genes` object with information on where genes
+start and end in the genome. We can then extract the sequences
+corresponding to each gene using the `ExtractGenes()` function.
 
 ```{r results='hide'}
 genome <- seqs[1]
 geneLocs <- FindGenes(genome)
 genes <- ExtractGenes(geneLocs, genome)
 ```
+
 ```{r}
 # `Genes` object
 geneLocs
@@ -65,26 +68,27 @@ geneLocs
 genes
 ```
 
-
 ## Removing Non-Coding Regions
 
-`FindGenes()` finds the genes themselves, but these may not encode coding regions.
-We're more interested in the regions that are actually translated into proteins,
-since these are what we'll try to annotate later. For this, we'll use the 
-`FindNonCoding()` function. 
+`FindGenes()` finds the genes themselves, but these may not encode
+coding regions. We're more interested in the regions that are actually
+translated into proteins, since these are what we'll try to annotate
+later. For this, we'll use the `FindNonCoding()` function.
 
-`FindNonCoding()` is used with three main datafiles depending on the data to analyze:
-* `data("NonCodingRNA_Archaea")` for Archaeal data
-* `data("NonCodingRNA_Bacteria")` for Bacterial data
-* `data("NonCodingRNA_Archaea")` for Eukaryotic data
+`FindNonCoding()` is used with three main datafiles depending on the
+data to analyze:
 
-These include pretrained models with common non-coding patterns for the relevant 
-domain of life. If these pretrained models are insuffient, you can train your own
-dataset using `LearnNonCoding()` (though this is outside the scope of this workshop).
+-   `data("NonCodingRNA_Archaea")` for Archaeal data
+-   `data("NonCodingRNA_Bacteria")` for Bacterial data
+-   `data("NonCodingRNA_Archaea")` for Eukaryotic data
 
+These include pretrained models with common non-coding patterns for the
+relevant domain of life. If these pretrained models are insuffient, you
+can train your own dataset using `LearnNonCoding()` (though this is
+outside the scope of this workshop).
 
-Once we've run `FindNonCoding()`, we can use `ExtractGenes()` as before to pull
-out the coding regions.
+Once we've run `FindNonCoding()`, we can use `ExtractGenes()` as before
+to pull out the coding regions.
 
 ```{r results='hide'}
 datafile <- system.file('extdata', 'EX_archaealGenome.RData', 
@@ -104,6 +108,7 @@ annots <- sort(table(names(annotations)[geneMatches]))
 # Extract the coding regions
 genes <- ExtractGenes(codingRegions, archaealGenome, type="DNAStringSet")
 ```
+
 ```{r}
 # What genes have we found and successfully annotated?
 annots
@@ -112,14 +117,13 @@ annots
 genes 
 ```
 
-
 ## Classification with `IDTAXA`
 
-We now have a set of coding regions. Our last step for this section is to try
-to annotate their function. This functionality is done with `IdTaxa()` from the 
-`DECIPHER` package. We first need to train a classifier using `LearnTaxa()`, and
-then we can use `IdTaxa` on our set of sequences to try to assign function
-to them.
+We now have a set of coding regions. Our last step for this section is
+to try to annotate their function. This functionality is done with
+`IdTaxa()` from the `DECIPHER` package. We first need to train a
+classifier using `LearnTaxa()`, and then we can use `IdTaxa` on our set
+of sequences to try to assign function to them.
 
 ```{r results='hide'}
 # Reusing this datafile
@@ -137,8 +141,8 @@ cogSeqs <- RemoveGaps(cogSeqs)
 ids <- IdTaxa(cogSeqs, TrainingSet_16S)
 ```
 
-Once we've finished calculating, we can either view the annotations directly,
-or plot them as a taxonomy.
+Once we've finished calculating, we can either view the annotations
+directly, or plot them as a taxonomy.
 
 ```{r}
 ids
@@ -155,31 +159,56 @@ plot(ids, TrainingSet_16S)
 }
 ```
 
-<div class="center">
-  <ul class="pagination pagination-lg">
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">&laquo;</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">2</a>
-    </li>
-    <li class="page-item active">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">4</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">5</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">&raquo;</a>
-    </li>
-  </ul>
-</div>
+::: center
+<ul class="pagination pagination-lg">
+
+<li class="page-item">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">«</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">1</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">2</a>
+
+</li>
+
+<li class="page-item active">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">3</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">4</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">5</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">»</a>
+
+</li>
+
+</ul>
+:::

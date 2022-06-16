@@ -84,7 +84,7 @@ models as it can run with the data provided. However, users are free to use any 
 the individual models without the ensemble predictor. The methods implemented are 
 the following:
 
-```{r results='hide'}
+```{r results='hide', eval=FALSE}
 # PHYLOGENETIC PROFILING METHODS:
   ## P/A = Presence/Absence Profiles
   ## Jaccard distance of P/A

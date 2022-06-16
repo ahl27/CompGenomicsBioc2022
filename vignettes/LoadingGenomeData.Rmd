@@ -23,7 +23,8 @@ that allows us to work with it. The most commonly used format for genomic data i
 the `XString` and `XStringSet` classes, which are available through the `Biostrings`
 package.
 
-`XString`s come in 4 distinct flavors, depending on the characters allowed:
+`XStrings` come in 4 distinct flavors, depending on the characters allowed:
+
 - `DNAString`, for DNA data (ATGC, plus gaps and ambiguity codes)
 - `RNAString`, for RNA data (AUGC, plus gaps and ambiguity codes)
 - `AAString`, for amino acid data (20 amino acids plus ambiguity codes, U, O, and unknown/gaps)
