@@ -32,7 +32,8 @@ Depends:
     Biobase,
     DECIPHER,
     SynExtend,
-    ape
+    ape,
+    downloadthis
 Suggests: 
     knitr,
     rmarkdown,
