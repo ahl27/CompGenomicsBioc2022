@@ -137,19 +137,14 @@ datafile <- system.file('extdata', 'EX_Strepto_COG.fasta',
                         package='CompGenomicsBioc2022')
 cogSeqs <- readDNAStringSet(datafile) 
 
-
 # Load Training File
-# This is an IDTAXA training data file available from www2.decipher.codes/Downloads.html
-# This contains a training set called 'trainingSet' generated from Firmcutes KEGG data
-trainingFile <- system.file('extdata', 'KEGG_Firmicutes_r95.RData',
-                            package='CompGenomicsBioc2022')
-load(trainingFile) 
+data("TrainingSet_16S")
 
 # Remove gaps
 cogSeqs <- RemoveGaps(cogSeqs)
 
 # Classify!
-ids <- IdTaxa(cogSeqs, trainingSet)
+ids <- IdTaxa(cogSeqs, TrainingSet_16S)
 ```
 
 Once we've finished calculating, we can either view the annotations
@@ -157,7 +152,7 @@ directly, or plot them as a taxonomy.
 
 ```{r}
 ids
-plot(ids, trainingSet)
+plot(ids, TrainingSet_16S)
 ```
 
 ```{css, echo=FALSE}

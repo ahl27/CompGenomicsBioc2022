@@ -3,7 +3,6 @@
 * Minor updates to wording and formatting
 * Corrections to `Gene Calling and Annotation` page
 * Tutorial section on Alignment-Free Analysis removed (will be readded later once I figure out where to put it)
-* Adds new datafile for IDTAXA classification
 
 # Version 1.0.0
 ### General Notes
