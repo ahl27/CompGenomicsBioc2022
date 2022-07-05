@@ -29,7 +29,7 @@ referred to as COGs (Clusters of Orthologous Genes).
 
 Before we can get to looking for COGs, we first need a dataset to use. We'll 
 be using real Cyanobacteria genomes taken from NCBI. I've selected 5 genomes to
-work with due to their relative small size since we have limited time in this workshop. 
+work with due to their relatively small size since we have limited time in this workshop. 
 However, the complete data are available [here](https://www.ncbi.nlm.nih.gov/datasets/genomes/?taxon=1117&utm_source=gquery&utm_medium=referral),
 and you are more than welcome to try these analyses out with more genomes at any time!
 All the code in this section will work on larger datasets, you may just have to wait
@@ -204,6 +204,9 @@ constraints--I highly encourage experimenting with other, larger datasets!
     </li>
     <li class="page-item">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html">7</a>
     </li>
     <li class="page-item">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">&raquo;</a>

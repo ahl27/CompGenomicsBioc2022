@@ -80,7 +80,7 @@ data to analyze:
 
 -   `data("NonCodingRNA_Archaea")` for Archaeal data
 -   `data("NonCodingRNA_Bacteria")` for Bacterial data
--   `data("NonCodingRNA_Archaea")` for Eukaryotic data
+-   `data("NonCodingRNA_Eukarya")` for Eukaryotic data
 
 These include pretrained models with common non-coding patterns for the
 relevant domain of life. If these pretrained models are insuffient, you
@@ -88,7 +88,9 @@ can train your own dataset using `LearnNonCoding()` (though this is
 outside the scope of this workshop).
 
 Once we've run `FindNonCoding()`, we can use `ExtractGenes()` as before
-to pull out the coding regions.
+to pull out the coding regions. 
+
+For this example, we'll be using a complete Archaeal genome taken from NCBI GenBank.
 
 ```{r results='hide'}
 datafile <- system.file('extdata', 'EX_archaealGenome.RData', 
@@ -98,23 +100,27 @@ load(datafile) #loads in a complete Archaeal genome as `archaealGenome`
 data("NonCodingRNA_Archaea")
 ncRNA <- NonCodingRNA_Archaea
 
-codingRegions <- FindNonCoding(ncRNA, archaealGenome)
+geneticRegions <- FindNonCoding(ncRNA, archaealGenome)
 
 ## Find annotations 
-annotations <- attr(codingRegions, "annotations")
-geneMatches <- match(codingRegions[,"Gene"], annotations)
+annotations <- attr(geneticRegions, "annotations")
+geneMatches <- match(geneticRegions[,"Gene"], annotations)
 annots <- sort(table(names(annotations)[geneMatches]))
 
-# Extract the coding regions
-genes <- ExtractGenes(codingRegions, archaealGenome, type="DNAStringSet")
+# Find Genes
+genes <- FindGenes(archaealGenome, includeGenes=geneticRegions)
 ```
 
 ```{r}
 # What genes have we found and successfully annotated?
 annots
 
-# Sequences corresponding to coding regions
+# Genes in the genome
 genes 
+
+# Find sequences corresponding to found genes
+geneSeqs <- ExtractGenes(genes, archaealGenome, type="DNAStringSet")
+geneSeqs
 ```
 
 ## Classification with `IDTAXA`
@@ -131,14 +137,19 @@ datafile <- system.file('extdata', 'EX_Strepto_COG.fasta',
                         package='CompGenomicsBioc2022')
 cogSeqs <- readDNAStringSet(datafile) 
 
+
 # Load Training File
-data("TrainingSet_16S")
+# This is an IDTAXA training data file available from www2.decipher.codes/Downloads.html
+# This contains a training set called 'trainingSet' generated from Firmcutes KEGG data
+trainingFile <- system.file('extdata', 'KEGG_Firmicutes_r95.RData',
+                            package='CompGenomicsBioc2022')
+load(trainingFile) 
 
 # Remove gaps
 cogSeqs <- RemoveGaps(cogSeqs)
 
 # Classify!
-ids <- IdTaxa(cogSeqs, TrainingSet_16S)
+ids <- IdTaxa(cogSeqs, trainingSet)
 ```
 
 Once we've finished calculating, we can either view the annotations
@@ -146,7 +157,7 @@ directly, or plot them as a taxonomy.
 
 ```{r}
 ids
-plot(ids, TrainingSet_16S)
+plot(ids, trainingSet)
 ```
 
 ```{css, echo=FALSE}
@@ -202,6 +213,10 @@ plot(ids, TrainingSet_16S)
 
 <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
 
+</li>
+
+<li class="page-item">
+  <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html">7</a>
 </li>
 
 <li class="page-item">

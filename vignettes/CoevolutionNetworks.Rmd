@@ -112,18 +112,8 @@ ContextTree <- predict(pw, method='ContextTree')
 # Residue Methods: (ONLY AVAILABLE IN DEV VERSION)
 #   ## MutualInf of residues
 #ResidueMI <- predict(pw, method='ResidueMI') 
-#   ## MutualInf of phyletic changes
-#DendroMI <- predict(pw, method='DendroMI')
 ```
 
-## Thank you!
-
-If you've made it through this entire tutorial, thank you for following along!
-I hope this series was informative and useful to your analyses. All code showcased
-here is actively being worked on by members of our lab, especially the `ProtWeaver`
-and `ProtWeb` functionalities. If you have any comments, suggestions, or feature requests
-for `ProtWeaver`, `ProtWeb`, or this tutorial, please feel free to either email me at 
-ahl27@pitt.edu or open an issue on GitHub.
 
 ```{css, echo=FALSE}
 .pagination {
@@ -158,8 +148,11 @@ ahl27@pitt.edu or open an issue on GitHub.
     <li class="page-item active">
       <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
     </li>
-    <li class="page-item disabled">
-      <a class="page-link" href="#">&raquo;</a>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html">7</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html">&raquo;</a>
     </li>
   </ul>
 </div>

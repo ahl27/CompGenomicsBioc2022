@@ -1,0 +1,84 @@
+---
+title: "Conclusion"
+author: Aidan Lakshman^[ahl27@pitt.edu]
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Conclusion}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Conclusions will go here! Working on generating a single dataset for the entire
+tutorial, which will lead to some specific conclusions when we eventually get here.
+Stay tuned for details, and check the [News page](https://www.ahl27.com/CompGenomicsBioc2022/news/index.html)
+for the latest updates.
+
+## Thank you!
+
+If you've made it through this entire tutorial, thank you for following along!
+I hope this series was informative and useful to your analyses. All code showcased
+here is actively being worked on by members of our lab, especially the `ProtWeaver`
+and `ProtWeb` functionalities. If you have any comments, suggestions, or feature requests
+for `ProtWeaver`, `ProtWeb`, or this tutorial, please feel free to either email me at 
+ahl27@pitt.edu or open an issue on GitHub.
+
+## Other Resources
+
+If you're interested in learning more about me, our lab, or phylogenetics, check
+out these resources:
+
+- [My website](https://ahl27.com)
+- [The Wright Lab](https://wrightlabscience.com)
+- [Intro to Phylogenetics](https://www.ahl27.com/IntroPhylogenetics/)
+- [More DECIPHER Tutorials](http://www2.decipher.codes/)
+
+
+```{css, echo=FALSE}
+.pagination {
+    display: flex;
+    display: -webkit-flex;
+    padding-left: 0;
+    list-style: none;
+    justify-content: center
+}
+```
+
+<div class="center">
+  <ul class="pagination pagination-lg">
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">&laquo;</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">1</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/GeneCallingAnnotation.html">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html">4</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">5</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html">6</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html">7</a>
+    </li>
+    <li class="page-item disabled">
+      <a class="page-link" href="#">&raquo;</a>
+    </li>
+  </ul>
+</div>

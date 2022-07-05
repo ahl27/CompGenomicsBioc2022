@@ -45,6 +45,8 @@ navbar:
           href: https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html
         - text: Coevolutionary Networks
           href: https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html
+        - text: Conclusion
+          href: https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html
      
 reference:
   - title: "Loading Genome Data"
