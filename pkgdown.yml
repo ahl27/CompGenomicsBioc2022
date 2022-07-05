@@ -1,15 +1,16 @@
 pandoc: 2.17.1.1
-pkgdown: 2.0.4
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   CoevolutionNetworks: CoevolutionNetworks.html
   CompGenomicsBioc2022: CompGenomicsBioc2022.html
+  Conclusion: Conclusion.html
   ConstructingPhylogenies: ConstructingPhylogenies.html
   FindingCOGs: FindingCOGs.html
   GeneCallingAnnotation: GeneCallingAnnotation.html
   LoadingGenomeData: LoadingGenomeData.html
   Setup: Setup.html
-last_built: 2022-06-16T22:54Z
+last_built: 2022-07-05T18:40Z
 urls:
   reference: https://www.ahl27.com/CompGenomicsBioc2022/reference
   article: https://www.ahl27.com/CompGenomicsBioc2022/articles
