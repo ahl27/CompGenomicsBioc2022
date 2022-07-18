@@ -133,10 +133,10 @@ In the interest of time, we'll just classify the first 10 genes. Note
 that our training set for `IdTaxa()` is trained on amino acids, 
 so we have to provide it with amino acid sequences. This is why we 
 
-```{r results='hide'}
+```{r results='hide', warning=FALSE}
 # Find amino acid sequences corresponding to found genes
-geneSeqs <- ExtractGenes(genes, dnaGenome, type="AAStringSet")
-geneSeqs
+geneSeqs <- ExtractGenes(genes, dnaGenome, type="DNAStringSet")
+geneSeqs <- translate(geneSeqs)
 
 # Load training set
 datafile <- system.file('extdata', 'GeneCalling', 
