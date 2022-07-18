@@ -34,12 +34,16 @@ you prefer.
 ### Installing packages
 This workshop depends on two main packages: `DECIPHER` and `SynExtend`. 
 These will be installed via [Bioconductor](http://bioconductor.org/), a package 
-manager for open source bioinformatics projects in R.
+manager for open source bioinformatics projects in R. These tutorials will use
+`DECIPHER` version `2.25.0` and `SynExtend` version `1.9.4`, which are available on
+the development version of Bioconductor.
 
 ```{r eval=FALSE}
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
+#BiocManager::install('DECIPHER', version='2.25.0')
+#BiocManager::install('SynExtend', version='1.9.4')
 BiocManager::install('DECIPHER')
 BiocManager::install('SynExtend')
 ```

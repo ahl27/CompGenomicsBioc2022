@@ -40,9 +40,11 @@ source("TreeLine.R") # Shouldn't be necessary if using dev version
 ```
 
 ```{r}
-datafile <- system.file('extdata', 'EX_plasmids.fasta', 
+# Load a single complete Micrococcus genome
+datafile <- system.file('extdata', 'GeneCalling', 'SingleSeq.fa.gz', 
                         package='CompGenomicsBioc2022')
-seqs <- readDNAStringSet(datafile)
+dnaGenome <- readDNAStringSet(datafile)
+aaGenome <- translate(dnaGenome) 
 ```
 
 Next, we're going to identify the genes in the first sequence in our
@@ -55,9 +57,8 @@ start and end in the genome. We can then extract the sequences
 corresponding to each gene using the `ExtractGenes()` function.
 
 ```{r results='hide'}
-genome <- seqs[1]
-geneLocs <- FindGenes(genome)
-genes <- ExtractGenes(geneLocs, genome)
+geneLocs <- FindGenes(dnaGenome)
+genes <- ExtractGenes(geneLocs, dnaGenome, type='AAStringSet')
 ```
 
 ```{r}
@@ -88,71 +89,77 @@ can train your own dataset using `LearnNonCoding()` (though this is
 outside the scope of this workshop).
 
 Once we've run `FindNonCoding()`, we can use `ExtractGenes()` as before
-to pull out the coding regions. 
-
-For this example, we'll be using a complete Archaeal genome taken from NCBI GenBank.
+to pull out the coding regions. This will result in more accurate gene
+calling than just running `FindGenes()` directly.
 
 ```{r results='hide'}
-datafile <- system.file('extdata', 'EX_archaealGenome.RData', 
-                        package='CompGenomicsBioc2022')
-load(datafile) #loads in a complete Archaeal genome as `archaealGenome`
+data("NonCodingRNA_Bacteria")
+ncRNA <- NonCodingRNA_Bacteria
 
-data("NonCodingRNA_Archaea")
-ncRNA <- NonCodingRNA_Archaea
+geneticRegions <- FindNonCoding(ncRNA, dnaGenome)
 
-geneticRegions <- FindNonCoding(ncRNA, archaealGenome)
-
-## Find annotations 
+## Find annotations of noncoding regions
 annotations <- attr(geneticRegions, "annotations")
 geneMatches <- match(geneticRegions[,"Gene"], annotations)
-annots <- sort(table(names(annotations)[geneMatches]))
+noncodingAnnots <- sort(table(names(annotations)[geneMatches]))
 
 # Find Genes
-genes <- FindGenes(archaealGenome, includeGenes=geneticRegions)
+genes <- FindGenes(dnaGenome, includeGenes=geneticRegions)
 ```
 
 ```{r}
-# What genes have we found and successfully annotated?
-annots
+# What noncoding regions have we found and successfully annotated?
+noncodingAnnots
 
 # Genes in the genome
 genes 
-
-# Find sequences corresponding to found genes
-geneSeqs <- ExtractGenes(genes, archaealGenome, type="DNAStringSet")
-geneSeqs
 ```
 
 ## Classification with `IDTAXA`
 
 We now have a set of coding regions. Our last step for this section is
 to try to annotate their function. This functionality is done with
-`IdTaxa()` from the `DECIPHER` package. We first need to train a
-classifier using `LearnTaxa()`, and then we can use `IdTaxa` on our set
-of sequences to try to assign function to them.
+`IdTaxa()` from the `DECIPHER` package. 
+
+`IdTaxa()` requires a training set, which can be obtained in two ways.
+The first is to download them from [DECIPHER's downloads page](http://www2.decipher.codes/Downloads.html), which contains prebuilt training sets for a variety of organisms. We'll be using an Actinobacteria dataset obtained from this website.
+
+The other method is to build a training set yourself using 
+`LearnTaxa()`. This will not be covered in this workshop, but more 
+information is available on the `DECIPHER` documentation for people
+that are interested.
+
+In the interest of time, we'll just classify the first 10 genes. Note 
+that our training set for `IdTaxa()` is trained on amino acids, 
+so we have to provide it with amino acid sequences. This is why we 
 
 ```{r results='hide'}
-# Reusing this datafile
-datafile <- system.file('extdata', 'EX_Strepto_COG.fasta', 
+# Find amino acid sequences corresponding to found genes
+geneSeqs <- ExtractGenes(genes, dnaGenome, type="AAStringSet")
+geneSeqs
+
+# Load training set
+datafile <- system.file('extdata', 'GeneCalling', 
+                        'KEGG_actinobacteria_clus_v01.RData', 
                         package='CompGenomicsBioc2022')
-cogSeqs <- readDNAStringSet(datafile) 
-
-# Load Training File
-data("TrainingSet_16S")
-
-# Remove gaps
-cogSeqs <- RemoveGaps(cogSeqs)
+load(datafile)
 
 # Classify!
-ids <- IdTaxa(cogSeqs, TrainingSet_16S)
+ids <- IdTaxa(geneSeqs[1:10], trainingSet)
 ```
 
 Once we've finished calculating, we can either view the annotations
 directly, or plot them as a taxonomy.
 
 ```{r}
+# Looking at all results
 ids
-plot(ids, TrainingSet_16S)
+
+# Looking at a specific entry
+ids[[1]]
+
+# Plot the distribution of results
+plot(ids, trainingSet)
 ```
 
 ```{css, echo=FALSE}

@@ -1,0 +1,91 @@
+{
+"apiVersion": "V1",
+"assemblies": [
+{
+  "files": [
+    {
+      "filePath": "assembly_data_report.jsonl",
+      "fileType": "DATA_REPORT"
+    }
+  ]
+},{
+  "accession": "GCF_002008305.4",
+  "files": [
+    {
+      "filePath": "GCF_002008305.4/GCF_002008305.4_ASM200830v4_genomic.fna",
+      "fileType": "GENOMIC_NUCLEOTIDE_FASTA"
+    },
+    {
+      "filePath": "GCF_002008305.4/genomic.gff",
+      "fileType": "GFF3"
+    },
+    {
+      "filePath": "GCF_002008305.4/sequence_report.jsonl",
+      "fileType": "SEQUENCE_REPORT"
+    }
+  ]
+},{
+  "accession": "GCF_003691675.1",
+  "files": [
+    {
+      "filePath": "GCF_003691675.1/GCF_003691675.1_ASM369167v1_genomic.fna",
+      "fileType": "GENOMIC_NUCLEOTIDE_FASTA"
+    },
+    {
+      "filePath": "GCF_003691675.1/genomic.gff",
+      "fileType": "GFF3"
+    },
+    {
+      "filePath": "GCF_003691675.1/sequence_report.jsonl",
+      "fileType": "SEQUENCE_REPORT"
+    }
+  ]
+},{
+  "accession": "GCF_005280335.1",
+  "files": [
+    {
+      "filePath": "GCF_005280335.1/GCF_005280335.1_ASM528033v1_genomic.fna",
+      "fileType": "GENOMIC_NUCLEOTIDE_FASTA"
+    },
+    {
+      "filePath": "GCF_005280335.1/genomic.gff",
+      "fileType": "GFF3"
+    },
+    {
+      "filePath": "GCF_005280335.1/sequence_report.jsonl",
+      "fileType": "SEQUENCE_REPORT"
+    }
+  ]
+},{
+  "accession": "GCF_020097155.1",
+  "files": [
+    {
+      "filePath": "GCF_020097155.1/GCF_020097155.1_ASM2009715v1_genomic.fna",
+      "fileType": "GENOMIC_NUCLEOTIDE_FASTA"
+    },
+    {
+      "filePath": "GCF_020097155.1/genomic.gff",
+      "fileType": "GFF3"
+    },
+    {
+      "filePath": "GCF_020097155.1/sequence_report.jsonl",
+      "fileType": "SEQUENCE_REPORT"
+    }
+  ]
+},{
+  "accession": "GCF_023573625.1",
+  "files": [
+    {
+      "filePath": "GCF_023573625.1/GCF_023573625.1_ASM2357362v1_genomic.fna",
+      "fileType": "GENOMIC_NUCLEOTIDE_FASTA"
+    },
+    {
+      "filePath": "GCF_023573625.1/genomic.gff",
+      "fileType": "GFF3"
+    },
+    {
+      "filePath": "GCF_023573625.1/sequence_report.jsonl",
+      "fileType": "SEQUENCE_REPORT"
+    }
+  ]
+}]}

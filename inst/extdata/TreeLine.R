@@ -537,6 +537,7 @@ to.dendrogram <- function(object, states=NULL, p=NULL, s=NULL) {
 
 .globalBranches <- function(f, # function to minimize
 	x, # initial guesses
+	W=seq_along(x), # indices of branches to optimize
 	h=0.5, # starting neighborhood around center point
 	epsilon=1e-4, # convergence precision
 	tol=0.001, # accuracy of x values
@@ -549,7 +550,6 @@ to.dendrogram <- function(object, states=NULL, p=NULL, s=NULL) {
 	x <- X <- log(x) # enforce positive lengths during optimization
 	log_lower <- log(lower)
 	prev <- best <- Inf
-	W <- seq_along(x)
 	prev_delta <- numeric(length(x))
 	count <- 0L
 	while (length(W) > 0) {
@@ -576,14 +576,15 @@ to.dendrogram <- function(object, states=NULL, p=NULL, s=NULL) {
 		df <- (f_right - f_left)/(2*H)
 		ddf <- (f_right - 2*fu + f_left)/H^2
 		
-		delta <- ifelse(ddf == 0, H, abs(df/ddf))
+		delta <- abs(df/ddf)
+		delta[ddf == 0] <- H
 		delta[delta > 1] <- 1
-		delta <- ifelse(df <= 0, delta, -delta)
+		delta[df > 0] <- -delta[df > 0]
 		# dampen dependency among x with exponential smoothing
 		delta <- coef*delta + (1 - coef)*prev_delta[W]
 		prev_delta[W] <- delta
 		x[W] <- x[W] + delta
-		x[W] <- ifelse(x[W] < log_lower, log_lower, x[W])
+		x[W][x[W] < log_lower] <- log_lower
 		
 		# `change` is positive when converging
 		if (count < minIterations) {
@@ -1673,11 +1674,12 @@ MODELS <- list(Nucleotide=c("JC69",
 		df <- (f_right - f_left)/(2*H)
 		ddf <- (f_right - 2*f + f_left)/H^2
 		
-		delta <- ifelse(ddf == 0, H, abs(df/ddf))
+		delta <- abs(df/ddf)
+		delta[ddf == 0] <- H
 		delta[delta > 1] <- 1
-		delta <- ifelse(df <= 0, delta, -delta)
+		delta[df > 0] <- -delta[df > 0]
 		x[, W] <- x[, W] + delta
-		x[, W] <- ifelse(x[, W] < log_lower, log_lower, x[, W])
+		x[, W][x[, W] < log_lower] <- log_lower
 		
 		# `change` is positive when converging
 		if (count < minIterations) {
@@ -1781,23 +1783,16 @@ MODELS <- list(Nucleotide=c("JC69",
 	base, # base of weight function
 	tol=0.9, # minimum cumulative stdev of principal components
 	interval=0, # exclusion interval for normal quantile [0, 1)
-	#eps=0.1, # standard error of random projection
-	mult, # bounds of multiplier on noise (>= 0)
-	N=1) {
-	#j <- nrow(y)
-	#k <- ncol(y)
-	#orderPCA <- j*k^2 + k^3
-	#n <- ceiling(9*log(j)/(eps^2 - 2*eps^3/3) + 1)
-	#orderRP <- (j + 2)*k*n + n*j^2
-	
+	N=1, # number of estimates to return
+	mult) { # lower and upper bounds of multiplier on noise (>= 0)
 	# perform dimensionality-reduction in log space
 	y <- log(y) # error ~ lognormal
 	
-	#if (orderPCA < orderRP) {
-		PCA <- prcomp(y)
-		
-		# select random principal components
-		w <- which(PCA$sdev > 0)
+	PCA <- prcomp(y)
+	
+	# select random principal components
+	w <- which(PCA$sdev > 0)
+	if (length(w) > 0) {
 		w <- sample(w, prob=PCA$sdev[w])
 		s <- cumsum(PCA$sdev[w])
 		s <- s/s[length(s)]
@@ -1805,17 +1800,13 @@ MODELS <- list(Nucleotide=c("JC69",
 		if (n < 3)
 			n <- 3
 		w <- w[seq_len(n)]
-		X <- PCA$x[, w]
-		R <- t(PCA$rotation[, w])
-		C <- PCA$center
-	#} else {
-	#	R <- matrix(rnorm(k*n, sd=1/sqrt(n)), k, n) # sqrt(rowSums(R^2)) ~= 1
-	#	#R <- R/sqrt(rowSums(R^2))
-	#	
-	#	X <- y %*% R
-	#	R <- t(R)
-	#	C <- rep(0, k)
-	#}
+	} else {
+		n <- 1
+		w <- w[seq_len(n)]
+	}
+	X <- PCA$x[, w, drop=FALSE]
+	R <- t(PCA$rotation[, w])
+	C <- PCA$center
 	
 	# determine weights
 	w <- base^(-1000*(x/min(x) - 1)) # downweight worse scores
@@ -1834,7 +1825,7 @@ MODELS <- list(Nucleotide=c("JC69",
 	Y <- t(t(Y) + C)
 	
 	Y <- exp(Y)
-	Y[Y < 1e-8] <- 1e-8
+	Y[is.na(Y) | Y < 1e-8] <- 1e-8
 	Y[Y > 20] <- 20
 	Y
 }
@@ -1873,7 +1864,7 @@ TreeLine <- function(myXStringSet=NULL,
 	maxGenerations=20,
 	maxTime=Inf,
 	quadrature=FALSE,
-	costMatrix=1 - diag(length(x)),
+	costMatrix=NULL,
 	processors=1,
 	verbose=TRUE) {
 	
@@ -1946,18 +1937,6 @@ TreeLine <- function(myXStringSet=NULL,
 		stop("maxTime must be a numeric.")
 	if (!is.logical(quadrature))
 		stop("quadrature must be a logical.")
-	if (method == 7) {
-		sexpr <- substitute(costMatrix)
-		if (!is.numeric(sexpr)) {
-			if (is.name(sexpr)) { # function name
-				sexpr <- call(as.character(sexpr),
-					as.name("x")) # pass in 'x'
-			} else if (!(is.call(sexpr) && # call
-				"x" %in% all.vars(sexpr))) { # containing 'x'
-				stop("costMatrix must be a call containing 'x'.")
-			}
-		}
-	}
 	if (!is.logical(verbose))
 		stop("verbose must be a logical.")
 	if (!is.null(processors) && !is.numeric(processors))
@@ -2185,8 +2164,47 @@ TreeLine <- function(myXStringSet=NULL,
 		myClusters <- .reorderClusters(myClusters,
 			all=method != 3)
 		Z <- as.matrix(myXStringSet)
-		if (method != 7) {
+		if (method == 7) {
+			if (is.null(costMatrix)) {
+				if (typeX == 1) {
+					states <- DNA_BASES
+				} else if (typeX == 2) {
+					states <- RNA_BASES
+				} else {
+					states <- AA_STANDARD
+				}
+				S <- 1 - diag(length(states))
+			} else {
+				S <- costMatrix
+				if (!is(S, "matrix"))
+					stop("costMatrix must be a matrix.")
+				if (nrow(S) != ncol(S))
+					stop("costMatrix must be a square matrix.")
+				if (!is.numeric(S))
+					stop("costMatrix must be a numeric matrix.")
+				mode(S) <- "numeric"
+				if (any(is.na(S)))
+					stop("costMatrix contains NA values.")
+				if (any(S < 0))
+					stop("costMatrix contains negative values.")
+				if (any(S != t(S)))
+					stop("costMatrix must be symmetric.")
+				if (is.null(rownames(S))) {
+					if (is.null(colnames(S))) {
+						stop("costMatrix must have row or column names.")
+					} else {
+						states <- colnames(S)
+					}
+				} else {
+					states <- rownames(S)
+				}
+				if (any(is.na(states)) || any(nchar(states) != 1))
+					stop("costMatrix has row or column names not equal to one character.")
+			}
+			N <- sum(!is.na(Z))/nrow(Z) # denominator of parsimony branch length
+		} else {
 			if (typeX == 3L) {
+				states <- AA_STANDARD
 				.optimizeModel <- .optimizeModelAA
 				.giveParams <- .giveParamsAA
 				m <- matrix(NA_real_,
@@ -2198,6 +2216,11 @@ TreeLine <- function(myXStringSet=NULL,
 							"alpha",
 							"-LnL", "AICc", "BIC")))
 			} else {
+				if (typeX == 1) {
+					states <- DNA_BASES
+				} else if (typeX == 2) {
+					states <- RNA_BASES
+				}
 				.optimizeModel <- .optimizeModelDNA
 				.giveParams <- .giveParamsDNA
 				m <- matrix(NA_real_,
@@ -2209,6 +2232,8 @@ TreeLine <- function(myXStringSet=NULL,
 							"alpha",
 							"-LnL", "AICc", "BIC")))
 			}
+			if (method == 3 && indels)
+				states <- c(states, "-")
 			weights_ML <- tabulate(selfmatch(as.data.frame(Z)), ncol(Z))
 			if (quadrature) {
 				.rates <- .rates1 # use Laguerre quadrature
@@ -2640,7 +2665,11 @@ TreeLine <- function(myXStringSet=NULL,
 				.printLine <- function(value, print=interactive()) {
 					if (!print)
 						return(value)
-					change <- (value - .overall)/value
+					if (value == 0) {
+						change <- 0
+					} else {
+						change <- (value - .overall)/value
+					}
 					if (isTRUE(all.equal(change, 0))) {
 						sign <- ""
 					} else {
@@ -2692,7 +2721,7 @@ TreeLine <- function(myXStringSet=NULL,
 			relTol <- 0.0001 # relative convergence tolerance (0, 1]
 			absTol <- 0.1 # absolute convergence tolerance (> 0)
 			epsilon <- 1e-5 # threshold to accept changes
-			fracParams <- 1.001 # attempt parameter optimization within fracParams*best score
+			fracParams <- 1.005 # attempt parameter optimization within fracParams*best score
 			startingTrees <- c(1L, 5L) # number of initial trees to compare per iteration
 			generationSize <- 100L # maximum number of regrowths per generation (also used to set maxGenerations)
 			max_iterations <- c(100L, maxGenerations*generationSize, 1000L) # maximum number of iterations per phase
@@ -2733,15 +2762,6 @@ TreeLine <- function(myXStringSet=NULL,
 			fracRandomNNIs <- 0.7 # fraction of random NNIs (0, 1]
 			
 			# initialize variables for maximum parsimony
-			if (typeX == 1) {
-				states <- DNA_BASES
-			} else if (typeX == 2) {
-				states <- RNA_BASES
-			} else {
-				states <- AA_STANDARD
-			}
-			if (method == 3 && indels)
-				states <- c(states, "-")
 			Z <- matrix(match(Z, states), # integer encode
 				nrow=nrow(Z),
 				ncol=ncol(Z))
@@ -2757,23 +2777,6 @@ TreeLine <- function(myXStringSet=NULL,
 				})
 			r <- which(r > 0) # informative sites
 			weights_MP <- tabulate(r[selfmatch(as.data.frame(Z[, r, drop=FALSE]))], ncol(Z))
-			if (method == 7) {
-				S <- eval(sexpr,
-					envir=list(x=states),
-					enclos=parent.frame())
-				if (!is(S, "matrix"))
-					stop("costMatrix must evaluate to a matrix.")
-				if (nrow(S) != ncol(S))
-					stop("costMatrix must evaluate to a square matrix.")
-				if (!is.numeric(S))
-					stop("costMatrix must evaluate to a numeric matrix.")
-				mode(S) <- "numeric"
-				if (any(is.na(S)))
-					stop("costMatrix evaluates to a matrix containing NA values.")
-				if (any(S < 0))
-					stop("costMatrix evaluates to a matrix containing negative values.")
-				N <- sum(!is.na(Z))/nrow(Z) # denominator of parsimony branch length
-			}
 			
 			# maximize likelihood of tree
 			final <- FALSE # final pass
@@ -2785,7 +2788,7 @@ TreeLine <- function(myXStringSet=NULL,
 			allow <- TRUE # allow parameter optimization at end of iteration
 			maxTrees <- sum(max_iterations)
 			graft <- logical(sum(max_iterations))
-			Scores <- numeric(maxTrees)
+			Scores <- rep(-Inf, maxTrees)
 			Trees <- vector("list", maxTrees)
 			Cophenetic <- vector("list", max_iterations[1L] + max_iterations[2L])
 			if (method == 3)
@@ -2799,7 +2802,7 @@ TreeLine <- function(myXStringSet=NULL,
 						cand == generationSize) {
 						currentTime <- Sys.time()
 						if (verbose)
-							cat("\n\nPHASE 3 OF 3: SHAKEN TREES\n")
+							cat("\n\nPHASE 3 OF 3: SHAKEN TREES")
 						doGrafts <- TRUE # note: grafting sets best tree for shakes
 						doClimbs <- FALSE # note: used to delineate iteration type
 						doShakes <- TRUE
@@ -2808,10 +2811,10 @@ TreeLine <- function(myXStringSet=NULL,
 						allow <- FALSE
 						
 						w <- (it - generationSize + 1L):it
-						w <- w[Scores[w] > 0]
+						w <- w[Scores[w] > -Inf]
 						graft[w[which.min(Scores[w])]] <- TRUE
 						
-						w <- which(Scores[seq_len(it)] > 0)
+						w <- which(Scores[seq_len(it)] > -Inf)
 						graft[w[Scores[w] < quantile(Scores[w], fracGraft)]] <- TRUE
 						w <- w[which.min(Scores[w])]
 						.best <- Scores[w]
@@ -2824,15 +2827,19 @@ TreeLine <- function(myXStringSet=NULL,
 					} else {
 						if (cand == generationSize) {
 							w <- (it - generationSize + 1L):it
-							w <- w[Scores[w] > 0]
+							w <- w[Scores[w] > -Inf]
 							W <- which.min(Scores[w])
 							graft[w[W]] <- TRUE
 							Cophenetic[w[-W]] <- list(NULL)
 							observed <- Scores[graft]
 							observed <- sum((observed - min(observed))/min(observed) < relTol)
-							if (observed >= observations) {
+							if (is.na(observed)) {
+								gen <- maxGenerations
+								it <- sum(max_iterations[1:2])
+								next # skip remaining generations
+							} else if (observed >= observations) {
 								w <- (max_iterations[1L] + 1L):it
-								w <- w[Scores[w] > 0]
+								w <- w[Scores[w] > -Inf]
 								if (sd(Scores[w])/mean(Scores[w]) < maxSD) {
 									gen <- maxGenerations
 									it <- sum(max_iterations[1:2])
@@ -2849,8 +2856,12 @@ TreeLine <- function(myXStringSet=NULL,
 						} else if (it > max_iterations[1L]) {
 							W <- (it - cand + 1L):it
 							offset <- min(Scores[W])
-							offset <- sum((Scores[W] - offset)/offset < relTol)
-							offset <- addNoise*(offset - 1) # add noise as needed
+							if (offset > 0) {
+								offset <- sum((Scores[W] - offset)/offset < relTol)
+								offset <- addNoise*(offset - 1) # add noise as needed
+							} else {
+								offset <- 0
+							}
 						} else {
 							currentTime <- Sys.time()
 							observed <- 0L
@@ -2913,7 +2924,7 @@ TreeLine <- function(myXStringSet=NULL,
 								"2/3. Optimizing regrown tree #",
 								cand,
 								" of ",
-								if (min(Scores[Scores > 0]) >= Scores[w] - absTol) { # best overall
+								if (min(Scores[Scores > -Inf]) >= Scores[w] - absTol) { # best overall
 									ifelse(cand + waitAttempts - attempt >= generationSize,
 										generationSize,
 										paste(cand + waitAttempts - attempt,
@@ -2934,9 +2945,14 @@ TreeLine <- function(myXStringSet=NULL,
 						if (w == it - 1L ||
 							cand == 1L ||
 							I + startingTrees[2L] - 1L > popSize) {
-							w <- W[sample(seq_along(W),
-								numSamp,
-								prob=base^(-1000*(Scores[W]/Scores[w] - 1)))]
+							if (Scores[w] > 0) {
+								w <- W[sample(seq_along(W),
+									numSamp,
+									prob=base^(-1000*(Scores[W]/Scores[w] - 1)))]
+							} else {
+								w <- W[sample(seq_along(W),
+									numSamp)]
+							}
 							for (i in seq_along(w)) {
 								d <- Cophenetic[[w[i]]]
 								if (i == 1L)
@@ -2951,8 +2967,8 @@ TreeLine <- function(myXStringSet=NULL,
 								D,
 								base,
 								tol=tolPCA[cand],
-								mult=noiseEstimation + offset,
-								N=min((generationSize - cand + 1L)*startingTrees[2L], popSize))
+								N=min((generationSize - cand + 1L)*startingTrees[2L], popSize),
+								mult=noiseEstimation + offset)
 						}
 						
 						candScore <- Inf
@@ -3015,7 +3031,11 @@ TreeLine <- function(myXStringSet=NULL,
 					} else {
 						Score <- Scores[seq_len(it)]
 						w <- which.min(Score)
-						observed <- sum((Score - Score[w])/Score[w] < relTol)
+						if (Score[w] > 0) {
+							observed <- sum((Score - Score[w])/Score[w] < relTol)
+						} else {
+							observed <- it
+						}
 						if (observed >= observations ||
 							(it > 2L &&
 							difftime(Sys.time(), currentTime, units="hours") > max_time[1L])) {
@@ -3070,6 +3090,7 @@ TreeLine <- function(myXStringSet=NULL,
 							temp <- .clusterMP(Z,
 								S,
 								sample(dim), # seed
+								NNIs=1e6,
 								weights=weights,
 								processors=processors)
 							temp[[4L]] <- temp[[4L]]/N # changes per site
@@ -3108,7 +3129,7 @@ TreeLine <- function(myXStringSet=NULL,
 						.Grafts <- 0L
 						.totGrafts <- 0L
 						
-						w <- which(Scores[seq_len(it)] > 0)
+						w <- which(Scores[seq_len(it)] > -Inf)
 						w <- w[which.min(Scores[w])]
 						myClusters <- Trees[[w]]
 						.overall <- .best <- best <- Scores[w]
@@ -3122,7 +3143,7 @@ TreeLine <- function(myXStringSet=NULL,
 						s <- s[s != w]
 						
 						if (verbose) {
-							cat("\nGrafting",
+							cat("\n\nGrafting",
 								length(s),
 								ifelse(length(s) > 1,
 									"trees",
@@ -3267,6 +3288,7 @@ TreeLine <- function(myXStringSet=NULL,
 							final <- TRUE
 						} else if (!doShakes) {
 							if (.totShakes >= max_iterations[3L] ||
+								.best == 0 ||
 								((currentScore - .best)/.best < relTol &&
 								currentScore - .best < absTol)) {
 								doGrafts <- FALSE
@@ -3521,17 +3543,9 @@ TreeLine <- function(myXStringSet=NULL,
 					Z, # integer encoded XStringSet
 					S, # substitution matrix
 					weights_MP,
-					scoreOnly=FALSE)
+					scoreOnly=FALSE,
+					processors=processors)
 				myClusters[, 4:5] <- params[[3]]/N # changes per site
-				if (reconstruct && type > 1) {
-					f <- function(x) {
-						x <- states[x]
-						x[is.na(x)] <- "."
-						paste(x, collapse="")
-					}
-					orgXStringSet <- apply(Z, 1, f)
-					states <- list(apply(params[[2]], 1, f))
-				}
 			}
 			
 			myClusters <- .Call("reclusterNJ",
@@ -3545,7 +3559,37 @@ TreeLine <- function(myXStringSet=NULL,
 				flush.console()
 			}
 		} else {
-			.best <- m[, "-LnL"]
+			if (method == 3L) {
+				.best <- m[, "-LnL"]
+				myClusters <- .reorderClusters(myClusters, all=TRUE)
+				myClusters <- .adjustTreeHeights(myClusters)
+				myClusters <- .root(myClusters, root)
+			} else {
+				Z <- matrix(match(Z, states), # integer encode
+					nrow=nrow(Z),
+					ncol=ncol(Z))
+				params <- .Sankoff(myClusters[, 7:8, drop=FALSE],
+					Z, # integer encoded XStringSet
+					S, # substitution matrix
+					rep(1L, ncol(Z)),
+					scoreOnly=FALSE,
+					processors=processors)
+				myClusters[, 4:5] <- params[[3L]]/N
+				myClusters <- .reorderClusters(myClusters, all=TRUE)
+				myClusters <- .adjustTreeHeights(myClusters)
+				myClusters <- .root(myClusters, root)
+				.best <- params[[1L]]
+			}
+		}
+		
+		if (method == 7 && reconstruct && type > 1) {
+			f <- function(x) {
+				x <- states[x]
+				x[is.na(x)] <- "."
+				paste(x, collapse="")
+			}
+			orgXStringSet <- apply(Z, 1, f)
+			states <- list(apply(params[[2]], 1, f))
 		}
 		
 		if (verbose && method != 7) {
@@ -3713,7 +3757,8 @@ TreeLine <- function(myXStringSet=NULL,
 			probs <- NULL
 		}
 		
-		if (method == 3 || method == 7) {
+		if (nrow(myClusters) > 2 &&
+			(method == 3 || method == 7)) {
 			support <- rep(NA_real_, nrow(myClusters))
 			w <- which(myClusters[, 7:8] > 0)
 			support[myClusters[, 7:8][w]] <- .support(myClusters, Trees)

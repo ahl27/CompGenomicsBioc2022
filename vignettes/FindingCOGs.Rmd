@@ -28,12 +28,17 @@ referred to as COGs (Clusters of Orthologous Genes).
 ## Building Our Dataset
 
 Before we can get to looking for COGs, we first need a dataset to use. We'll 
-be using real Cyanobacteria genomes taken from NCBI. I've selected 5 genomes to
+be using real *Micrococcus* genomes taken from NCBI. I've selected 5 genomes to
 work with due to their relatively small size since we have limited time in this workshop. 
-However, the complete data are available [here](https://www.ncbi.nlm.nih.gov/datasets/genomes/?taxon=1117&utm_source=gquery&utm_medium=referral),
+However, the complete data are available [here](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=3%3A3),
 and you are more than welcome to try these analyses out with more genomes at any time!
 All the code in this section will work on larger datasets, you may just have to wait
 a little while.
+
+For this analysis, we're downloading the genomic data as `.fasta` files, but also
+precalculated annotations as `.gff` files. We could have also called genes and 
+annotated them in `DECIPHER` using the method in the previous page, this just
+provides an example of using prebuilt annotations.
 
 
 ```{r eval=FALSE}
@@ -42,13 +47,17 @@ library(SynExtend)
 ```
 
 ```{r results='hide'}
-COGExampleDir <- system.file('extdata', 'COGex', package='CompGenomicsBioc2022')
+COGExampleDir <- system.file('extdata', 'COGs',
+                             'micrococcus_wgff',
+                             package='CompGenomicsBioc2022')
 
+# TODO: Better explanation here
 # We're going to be using the database API for DECIPHER since this is designed for
 # larger scale analyses. See code below for how we do this!
 DBPATH <- tempfile()
 
-genomedirs <- dir(COGExampleDir, full.names = TRUE)
+genomedirs <- list.files(COGExampleDir, full.names = TRUE)
+genomedirs <- genomedirs[grep('json', genomedirs, fixed=T, invert=T)]
 
 # Initializing our GeneCalls list
 GeneCalls <- vector('list', length=length(genomedirs))
@@ -92,8 +101,7 @@ of tight time constraints.
 
 ```{r results='hide'}
 Syn <- FindSynteny(dbFile = DBPATH,
-                   verbose = TRUE,
-                   processors = NULL)
+                   verbose = TRUE)
 
 Overlaps <- NucleotideOverlap(SyntenyObject = Syn,
                                GeneCalls = GeneCalls,
@@ -145,7 +153,7 @@ COGSets <- DisjointSet(Pairs = Pairs,
 # Extract sequences for COGs with orthologs in at least 5 (all) genomes
 Sequences <- ExtractBy(x = Pairs,
                        y = DBPATH,
-                       z = COGSets[lengths(COGSets) == 5],
+                       z = COGSets[lengths(COGSets) >= 5],
                        Verbose = TRUE)
 
 # These come back in different orders, so let's match them up

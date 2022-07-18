@@ -47,9 +47,11 @@ source("TreeLine.R") # Shouldn't be necessary if using dev version
 ```
 
 ```{r}
-datafile <- system.file('extdata', 'phyloInputData.RData', 
+# Load in COG 3 from the previous analysis
+datafile <- system.file('extdata', 'Phylogenies',
+                        'testCOG.RData',
                         package='CompGenomicsBioc2022')
-load(datafile, verbose=TRUE) # Should load 'AlignedSequences'
+load(datafile, verbose=TRUE) # Should load 'testCOG'
 
 # Helper plotting function
 plot_tree_unrooted <- function(dend, main, plottype='fan'){
@@ -57,13 +59,15 @@ plot_tree_unrooted <- function(dend, main, plottype='fan'){
     tf <- tempfile()
     WriteDendrogram(dend, file=tf, quoteLabels=FALSE)
     predTree <- read.tree(tf)
-    plot(predTree, plottype, main=main)
+    plot(predTree, plottype, main=main, underscore=TRUE)
   } else {
     plot(dend, main=main)
   }
 }
 
-testSeqs <- AlignedSequences
+# Since these are coding regions, AlignTranslation is preferred
+testSeqs <- AlignTranslation(testCOG)
+
 
 treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE, verbose=FALSE)
 plot_tree_unrooted(treeCOG1, main='MP')
