@@ -17,6 +17,11 @@ library(DECIPHER)
 newTreeLine <- system.file('extdata', 'TreeLine.R', 
                             package='CompGenomicsBioc2022')
 source(newTreeLine, local=knitr::knit_global())
+
+makeTrainingSet <- system.file('extdata', 'GeneCalling', 
+                               'RecombineIdTaxaTraining.R',
+                            package='CompGenomicsBioc2022')
+source(makeTrainingSet, local=knitr::knit_global())
 ```
 
 ## Gene Calling and Annotation
@@ -139,8 +144,10 @@ geneSeqs <- ExtractGenes(genes, dnaGenome, type="DNAStringSet")
 geneSeqs <- translate(geneSeqs)
 
 # Load training set
+# Note: this training set is built on the fly due to GH file constraints
+# You can download this directly from decipher.codes
 datafile <- system.file('extdata', 'GeneCalling', 
-                        'KEGG_actinobacteria_clus_v01.RData', 
+                        'IdTaxaActinobacteriaTrainingSet.RData', 
                         package='CompGenomicsBioc2022')
 load(datafile)
 
