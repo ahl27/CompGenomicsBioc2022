@@ -16,10 +16,22 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Conclusions will go here! Working on generating a single dataset for the entire
-tutorial, which will lead to some specific conclusions when we eventually get here.
-Stay tuned for details, and check the [News page](https://www.ahl27.com/CompGenomicsBioc2022/news/index.html)
-for the latest updates.
+This tutorial has walked through a complete pipeline of comparative genomic
+analysis. By using this tool, we've been able to generate hypotheses of 
+functional associations between genetic regions using only raw sequence data
+as input. Along the way, we've covered the following:
+
+- Working with sequencing data, including alignment and visualization
+- Finding and annotating genes from sequencing data
+- Finding Clusters of Orthologous Genes (COGs)
+- Reconstructing the evolutionary history of COGs
+- Analyzing coevolutionary signal between COGs
+
+This coevolutionary signal allows us to generate hypotheses about possible unknown
+functional associations between proteins. In the previous example, we were able
+to identify that all ureases are under shared selective pressure.
+
+This pipeline works on both genes that have been previously characterized and those that have not, meaning we can guide future wet lab investigation with these predictions. Future work will investigate ways to improve our predictions, so stay tuned to the `SynExtend` package as it develops!
 
 ## Thank you!
 

@@ -29,10 +29,41 @@ We'll start off by identifying the genes themselves.
 
 ## Finding Genes
 
-In the interest of time, we're going to be using plasmid sequences from
-a dataset of Archaeal genomes. Plasmids are small enough that we can
-quickly execute our queries. We'll begin by reading in the data from a
-`.fasta` file, as we did in the previous section.
+We're going to keep using our *Micrococcus* dataset, but in the interest of time we'll focus on finding genes in a single sequence. We'll begin by reading in the data from a `.fasta` file, as we did in the previous section.
+
+
+```{css echo=FALSE}
+.hvr-grow-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+```
+```{r echo=FALSE}
+f <- system.file('extdata', 'GeneCalling', 'SingleSeq.fa.gz', 
+                        package='CompGenomicsBioc2022')
+downloadthis::download_file(
+  path = f,
+  button_label = "Download sequence",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-download",
+  self_contained = FALSE,
+  class = "hvr-grow-shadow"
+)
+```
+
 
 ```{r eval=FALSE}
 library(DECIPHER)
@@ -47,10 +78,7 @@ dnaGenome <- readDNAStringSet(datafile)
 aaGenome <- translate(dnaGenome) 
 ```
 
-Next, we're going to identify the genes in the first sequence in our
-sequence set. We'll mark this as our 'genome' (although it's really a
-plasmid), and predict genes within it using `FindGenes()` from the
-`DECIPHER` package.
+Next, we're going to identify the genes in our sequence  using `FindGenes()` from the `DECIPHER` package.
 
 `FindGenes()` returns a `Genes` object with information on where genes
 start and end in the genome. We can then extract the sequences
@@ -71,10 +99,9 @@ genes
 
 ## Removing Non-Coding Regions
 
-`FindGenes()` finds the genes themselves, but these may not encode
-coding regions. We're more interested in the regions that are actually
-translated into proteins, since these are what we'll try to annotate
-later. For this, we'll use the `FindNonCoding()` function.
+`FindGenes()` finds the genes themselves, but these may include non-coding regions. We're more interested in the regions that are actually translated into proteins, since these are what we'll try to annotate later. For this, we'll use the `FindNonCoding()` function.
+Using `FindGenes()` with `FindNonCoding()` in this way greatly improves
+the accuracy of `FindGenes()`.
 
 `FindNonCoding()` is used with three main datafiles depending on the
 data to analyze:
@@ -85,12 +112,8 @@ data to analyze:
 
 These include pretrained models with common non-coding patterns for the
 relevant domain of life. If these pretrained models are insuffient, you
-can train your own dataset using `LearnNonCoding()` (though this is
-outside the scope of this workshop).
-
-Once we've run `FindNonCoding()`, we can use `ExtractGenes()` as before
-to pull out the coding regions. This will result in more accurate gene
-calling than just running `FindGenes()` directly.
+can train your own dataset using `LearnNonCoding()`, though this is
+outside the scope of this workshop.
 
 ```{r results='hide'}
 data("NonCodingRNA_Bacteria")
@@ -103,14 +126,20 @@ annotations <- attr(geneticRegions, "annotations")
 geneMatches <- match(geneticRegions[,"Gene"], annotations)
 noncodingAnnots <- sort(table(names(annotations)[geneMatches]))
 
+# What noncoding regions have we found and annotated?
+noncodingAnnots
+```
+
+Once we've run `FindNonCoding()`, we can use `ExtractGenes()` as before
+to pull out the coding regions. This will result in more accurate gene
+calling than just running `FindGenes()` directly.
+
+```{r results='hide'}
 # Find Genes
 genes <- FindGenes(dnaGenome, includeGenes=geneticRegions)
 ```
 
 ```{r}
-# What noncoding regions have we found and successfully annotated?
-noncodingAnnots
-
 # Genes in the genome
 genes 
 ```
@@ -131,7 +160,8 @@ that are interested.
 
 In the interest of time, we'll just classify the first 10 genes. Note 
 that our training set for `IdTaxa()` is trained on amino acids, 
-so we have to provide it with amino acid sequences. This is why we 
+so we have to first call `translate()` on our DNA sequences to be able
+to provide `IdTaxa()` with amino acid sequences.
 
 ```{r include=FALSE}
 makeTrainingSet <- system.file('extdata', 'GeneCalling', 

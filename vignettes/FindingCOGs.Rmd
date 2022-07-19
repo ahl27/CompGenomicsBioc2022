@@ -27,18 +27,55 @@ referred to as COGs (Clusters of Orthologous Genes).
 
 ## Building Our Dataset
 
-Before we can get to looking for COGs, we first need a dataset to use. We'll 
-be using real *Micrococcus* genomes taken from NCBI. I've selected 5 genomes to
-work with due to their relatively small size since we have limited time in this workshop. 
-However, the complete data are available [here](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=3%3A3),
+We're going to continue using our *Micrococcus* genomes from NCBI, this time on a 
+subset of 5 genomes. As mentioned in previous sections, the complete data are available [here](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=3%3A3),
 and you are more than welcome to try these analyses out with more genomes at any time!
+
 All the code in this section will work on larger datasets, you may just have to wait
-a little while.
+a little while. See the [Conclusions](https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html)
+page for more information on running these analyses at scale.
 
 For this analysis, we're downloading the genomic data as `.fasta` files, but also
 precalculated annotations as `.gff` files. We could have also called genes and 
 annotated them in `DECIPHER` using the method in the previous page, this just
-provides an example of using prebuilt annotations.
+provides an example of using prebuilt annotations for a more thorough overview
+of different usecases.
+
+
+```{css echo=FALSE}
+.hvr-grow-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+```
+```{r echo=FALSE}
+dir <- system.file('extdata', 'COGs',
+                             'micrococcus_wgff',
+                             package='CompGenomicsBioc2022')
+downloadthis::download_dir(
+  path = dir,
+  output_name = "micrococcus_wgff",
+  button_label = "Download Genomes and Annotations",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-download",
+  self_contained = FALSE,
+  class = "hvr-grow-shadow"
+)
+```
+
 
 
 ```{r eval=FALSE}

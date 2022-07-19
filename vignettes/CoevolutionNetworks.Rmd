@@ -15,17 +15,18 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 library(DECIPHER)
 library(SynExtend)
+library(igraph)
 ```
 
 ## Coevolutionary Analysis
 
-At this point, we've learned how to generate gene trees for a set of COGs.
-We're now ready to look for signals of coevolution, which imply functional associations.
+At this point, we've walked through the steps to take a set of sequences and obtain
+a set of COGs with phylogenetic reconstructions for each COG. We're now ready to look for signals of coevolution, which imply functional associations between COGs.
 These methods are implemented via the `ProtWeaver` class in `SynExtend`, which 
 includes many commonly used methods for detecting coevolutionary patterns.
 
-While the previous steps have only utilized a small subsample of the data, we've
-pre-computed the complete dataset for you to play with. This dataset is comprised
+While the previous steps have only utilized a small subsample of the data, we're
+now finally going to work with the complete dataset. This dataset is comprised
 of the 91 *Micrococcus* genomes available with assemblies at the Scaffold, 
 Chromosome, or Complete level ([link to query](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=1%3A3)). Note that more genomes may become
 available after this conference; these are all that were available at the time.
@@ -38,8 +39,38 @@ We now use the new `ProtWeaver` class to try to find COGs that show evidence of
 correlated evolutionary selective pressures, also referred to as 'coevolutionary
 signal'.
 
-Let's start by loading in our input data. For people downloading the datafiles,
-these files are found in `CoevNetworks/`.
+```{css echo=FALSE}
+.hvr-grow-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+```
+```{r echo=FALSE}
+dir <- system.file('extdata', 'CoevNetworks',
+                             package='CompGenomicsBioc2022')
+downloadthis::download_dir(
+  path = dir,
+  output_name = "CoevNetworkFiles",
+  button_label = "Download Complete Dataset",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-download",
+  self_contained = FALSE,
+  class = "hvr-grow-shadow"
+)
+```
 
 
 ```{r eval=FALSE}
@@ -118,7 +149,8 @@ codingCOGs <- sapply(CogsAnnot, \(x) is(x, 'Taxa'))
 # At least one high confidence annotation
 highConf <- sapply(CogsAnnot, \(x) 
                    if(is(x, 'Taxa')) 
-                     max(sapply(x, \(y) y$confidence[length(y$confidence)])) > 50
+                     max(sapply(x, \(y) 
+                                y$confidence[length(y$confidence)])) > 50
                    else FALSE)
 
 # Subset for the workshop
@@ -146,6 +178,9 @@ for ( i in seq_along(CogsAnnot) ){
       consAnnots[[i]] <- names(sort(table(annots), decreasing=T))[1]
   }
 }
+
+# Remove this when we get the dev branch of SynExtend
+consAnnots <- consAnnots[WorkshopSubset]
 ```
 
 Now we can make our `ProtWeaver` object. `ProtWeaver` has multiple input options,
@@ -155,6 +190,7 @@ either a list formatted like `COGs` (list with gene identifiers) or a list like
 ```{r warning=FALSE}
 pw <- ProtWeaver(WTrees)
 ```
+
 The `ProtWeaver` constuctor automatically detects the type of data you have and 
 adjusts available predictors accordingly. While it functions best with a list
 of dendrograms for each COG, it can also run with simple presence/absence patterns.
@@ -163,7 +199,7 @@ See the documentation file for `ProtWeaver` for more information on this functio
 We're now ready to make predictions. Predicting functional associations is done
 with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations between the COGs we have.
 
-```{r results='hide'}
+```{r results='hide', warning=F}
 preds <- predict(pw)
 ```
 
@@ -190,12 +226,13 @@ regarding `ProtWeb`.
 In the meantime, we can use the `igraph` package to find clusters of coevolving
 COGs.
 
+```{r eval=FALSE}
+library(igraph)
+```
 ```{r}
 set.seed(123)
-library(igraph)
 
 adjMatrix <- GetProtWebData(preds)
-COGnames <- names(WTrees)
 g <- graph_from_adjacency_matrix(adjMatrix, weighted=TRUE,
                                  mode='undirected', diag=FALSE)
 
@@ -245,7 +282,7 @@ ContextTree <- predict(pw, method='ContextTree')
 
 # Residue Methods: (ONLY AVAILABLE IN DEV VERSION)
 #   ## MutualInf of residues
-#ResidueMI <- predict(pw, method='ResidueMI') 
+ResidueMI <- predict(pw, method='ResidueMI') 
 ```
 
 

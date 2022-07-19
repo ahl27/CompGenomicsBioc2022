@@ -31,15 +31,49 @@ our COGs using the new `TreeLine()` function introduced in the latest update
 of `DECIPHER`.
 
 In the last step, we constructed COGs for a small subset of our data to learn the
-algorithmic flow of that portion of the pipeline. Since analyzing the entire
-dataset is time-prohibitive for this workshop, we'll work with a pre-calculated
-`RData` file containing the results we would have gotten if we had run the same
-calculation on the entire dataset.
+algorithmic flow of that portion of the pipeline. I've included a precalculated
+result if we had constructed COGs for all 91 genomes at assembly
+levels of "Scaffold" or higher from GenBank. This section will work with one of those COGs.
 
 *Small note:* the setup for this page includes a helper function to plot the
 phylogenies as a circular plot. You can plot them just as well with `plot`, I
 just prefer this visualization. You can also use `plottype='unrooted'` for a 
 different visualization, though labels are often hard to read in that visualization.
+
+
+
+```{css echo=FALSE}
+.hvr-grow-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+```
+```{r echo=FALSE}
+f <- system.file('extdata', 'Phylogenies',
+                        'testCOG.RData',
+                        package='CompGenomicsBioc2022')
+downloadthis::download_file(
+  path = f,
+  button_label = "Download COG",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-download",
+  self_contained = FALSE,
+  class = "hvr-grow-shadow"
+)
+```
 
 ```{r eval=FALSE}
 library(DECIPHER)
@@ -47,7 +81,7 @@ source("TreeLine.R") # Shouldn't be necessary if using dev version
 ```
 
 ```{r}
-# Load in COG 3 from the previous analysis
+# Load in example COG from the precalculated data
 datafile <- system.file('extdata', 'Phylogenies',
                         'testCOG.RData',
                         package='CompGenomicsBioc2022')
@@ -68,7 +102,7 @@ plot_tree_unrooted <- function(dend, main, plottype='fan'){
 # Since these are coding regions, AlignTranslation is preferred
 testSeqs <- AlignTranslation(testCOG)
 
-
+# Construct a gene tree
 treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE, verbose=FALSE)
 plot_tree_unrooted(treeCOG1, main='MP')
 ```
@@ -121,6 +155,7 @@ demo will set the `maxTime` argument to prevent the algorithm from taking too lo
 #   - Max runtime is set here to 30sec, default is as long as it takes
 #   - maxTime expresses time in HOURS, not sec/min
 #   - Note that method='ML' is the default setting
+#   - Longer runtime will produce better results
 treeML <- TreeLine(testSeqs, maxTime=(30/3600))
 plot_tree_unrooted(treeML, main='Maximum-Likelihood')
 ```

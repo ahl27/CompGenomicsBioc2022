@@ -1,3 +1,15 @@
+# Version 2.1.0
+### General Notes
+* `ProtWeaver` analysis now uses the correct dataset
+* Conclusions page updated
+* `IdTaxa` training set fixed
+* Download links moved to be on each page
+
+### Future Work
+* Some download links still missing
+* Conclusions need more detail
+* Images missing
+
 # Version 2.0.0
 ### General Notes
 * All examples except `ProtWeaver` analysis use the same dataset
