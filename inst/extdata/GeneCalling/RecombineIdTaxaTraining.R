@@ -1,4 +1,4 @@
-dirn <- system.file('extdata', 'GeneCalling', 'splitTrainingSet',
+dirn <- system.file('extdata', 'GeneCalling', 'IdTaxaTraining',
                     package='CompGenomicsBioc2022')
 
 
