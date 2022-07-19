@@ -24,7 +24,7 @@ names(trainingSet) <- trainingSetNames
 
 class(trainingSet) <- c('Taxa', 'Train')
 
-dirout <- system.file('extdata', 'GeneCalling',
-                    package='CompGenomicsBioc2022')
-outfile <- file.path(dirout, 'IdTaxaActinobacteriaTrainingSet.RData')
-save(trainingSet, file=outfile)
+#dirout <- system.file('extdata', 'GeneCalling',
+#                    package='CompGenomicsBioc2022')
+#outfile <- file.path(dirout, 'IdTaxaActinobacteriaTrainingSet.RData')
+#save(trainingSet, file=outfile)

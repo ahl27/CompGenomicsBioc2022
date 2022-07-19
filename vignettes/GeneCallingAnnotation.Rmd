@@ -17,11 +17,6 @@ library(DECIPHER)
 newTreeLine <- system.file('extdata', 'TreeLine.R', 
                             package='CompGenomicsBioc2022')
 source(newTreeLine, local=knitr::knit_global())
-
-makeTrainingSet <- system.file('extdata', 'GeneCalling', 
-                               'RecombineIdTaxaTraining.R',
-                            package='CompGenomicsBioc2022')
-source(makeTrainingSet, local=knitr::knit_global())
 ```
 
 ## Gene Calling and Annotation
@@ -137,6 +132,13 @@ that are interested.
 In the interest of time, we'll just classify the first 10 genes. Note 
 that our training set for `IdTaxa()` is trained on amino acids, 
 so we have to provide it with amino acid sequences. This is why we 
+
+```{r include=FALSE}
+makeTrainingSet <- system.file('extdata', 'GeneCalling', 
+                               'RecombineIdTaxaTraining.R',
+                            package='CompGenomicsBioc2022')
+source(makeTrainingSet, local=knitr::knit_global())
+```
 
 ```{r results='hide', warning=FALSE}
 # Find amino acid sequences corresponding to found genes
