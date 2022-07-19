@@ -23,26 +23,137 @@ At this point, we've learned how to generate gene trees for a set of COGs.
 We're now ready to look for signals of coevolution, which imply functional associations.
 These methods are implemented via the `ProtWeaver` class in `SynExtend`, which 
 includes many commonly used methods for detecting coevolutionary patterns.
-While the previous step only generated a few gene trees, I've included an 
-`RData` file with the results if we had generated gene trees for all COGs in the
-dataset.
 
-Generating a `ProtWeaver` object from this is simple:
+While the previous steps have only utilized a small subsample of the data, we've
+pre-computed the complete dataset for you to play with. This dataset is comprised
+of the 91 *Micrococcus* genomes available with assemblies at the Scaffold, 
+Chromosome, or Complete level ([link to query](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=1%3A3)). Note that more genomes may become
+available after this conference; these are all that were available at the time.
+
+We ran the complete pipeline of identifying and annotating genes with `DECIPHER`, finding COGs with `SynExtend`, and then creating gene trees for each COG using `DECIPHER`. The complete data consist of 3,407 distinct COGs. All of this analysis
+is performed entirely within `SynExtend` and `DECIPHER`; no external packages
+or data are required aside from the input genomes.
+
+We now use the new `ProtWeaver` class to try to find COGs that show evidence of
+correlated evolutionary selective pressures, also referred to as 'coevolutionary
+signal'.
+
+Let's start by loading in our input data. For people downloading the datafiles,
+these files are found in `CoevNetworks/`.
+
 
 ```{r eval=FALSE}
 library(DECIPHER)
 library(SynExtend)
 ```
-```{r results='hide', fig.keep='all', warning=FALSE}
-datafile <- system.file('extdata', 'treesFromCOGs.RData', 
+```{r}
+COGsFile <- system.file('extdata', 'CoevNetworks', 
+                        'MicrococcusCOGs.RData',
                         package='CompGenomicsBioc2022')
-load(datafile, verbose=TRUE)
+AnnotationsFile <- system.file('extdata', 'CoevNetworks', 
+                               'MicrococcusAnnotations.RData',
+                        package='CompGenomicsBioc2022')
+TreesFile <- system.file('extdata', 'CoevNetworks', 
+                         'MicrococcusGeneTrees.RData',
+                        package='CompGenomicsBioc2022')
 
-pw <- ProtWeaver(treesFromCOGs[1:25])
+# All of these files are formatted the same way, as lists with each entry
+# corresponding to a COG. COGs entries are identifiers for each gene, CogsAnnot 
+# entries are annotations, and CogTrees entries are gene trees
+load(COGsFile)          # Loads 'COGs'
+load(AnnotationsFile)   # Loads 'CogsAnnot'
+load(TreesFile)         # Loads 'CogTrees'
 ```
 
 ```{r}
-print(pw)
+# Let's look at one of the COGs
+COGs[[7]]
+CogsAnnot[[7]]
+CogsAnnot[[7]][[1]]
+CogTrees[[7]]
+
+# Note that tree labels correspond to gene identifiers
+setequal(COGs[[7]], labels(CogTrees[[7]]))
+```
+
+There is a ton of data here, and we unfortunately don't have time to look at 
+all of it. To demonstrate some of the things we can do with `ProtWeaver`, we're
+going to look at subset of the data that is easier to investigate. 
+
+We'll subset the COGs to ones that meet the following characteristics:
+
+- COGs with no paralogs
+- COGs not part of the core genome
+- COGs present in at least 5 genomes (not singletons or super rare ones)
+- COGs with at least one high confidence annotation
+- COGs that imply a coding region
+
+These are relatively arbitrary requirements, but they subset the data to 
+an example that runs quickly and is easily understandable. This essentially takes
+a group of COGs that are not essential to the organisms but tend to appear a lot,
+that have been characterized individually before.
+
+```{r results='hide', fig.keep='all', warning=FALSE}
+## Subsetting COGs
+
+# Cutoff values (91 genomes total!)
+CoreCutoff <- 88
+UnderCutoff <- 5
+
+# Get assembly identifiers for each COG
+truncCOGs <- lapply(COGs, \(x) sort(as.integer(gsub('([0-9]*)_.*', '\\1', x))))
+
+# Find COGs without paralogs
+noParas <- sapply(truncCOGs, \(x) length(x) == length(unique(x)))
+
+# Get non-core genome
+notCoreCOGs <- sapply(truncCOGs, \(x) length(unique(x)) < CoreCutoff)
+
+# Get genes in more than 5 organisms
+notSingles <- sapply(truncCOGs, \(x) length(unique(x)) > UnderCutoff)
+
+# Make sure COGs are coding elements
+codingCOGs <- sapply(CogsAnnot, \(x) is(x, 'Taxa'))
+
+# At least one high confidence annotation
+highConf <- sapply(CogsAnnot, \(x) 
+                   if(is(x, 'Taxa')) 
+                     max(sapply(x, \(y) y$confidence[length(y$confidence)])) > 50
+                   else FALSE)
+
+# Subset for the workshop
+WorkshopSubset <- noParas & notCoreCOGs & notSingles & codingCOGs & highConf
+
+# Subset our data
+WCogs <- COGs[WorkshopSubset]
+WAnnots <- CogsAnnot[WorkshopSubset]
+WTrees <- CogTrees[WorkshopSubset]
+```
+
+Let's also put together a list of consensus annotations for each COG.
+```{r}
+consAnnots <- vector('character', length=length(CogsAnnot))
+for ( i in seq_along(CogsAnnot) ){
+  taxaentry <- CogsAnnot[[i]]
+  if (!is(taxaentry, 'Taxa'))
+    consAnnots[[i]] <- 'NONCODING'
+  else {
+    annots <- sapply(taxaentry, \(y) y$taxon[length(y$taxon)])
+    annots <- annots[annots!='unclassified_Root']
+    if (length(annots) == 0)
+      consAnnots[[i]] <- 'PNACT'
+    else
+      consAnnots[[i]] <- names(sort(table(annots), decreasing=T))[1]
+  }
+}
+```
+
+Now we can make our `ProtWeaver` object. `ProtWeaver` has multiple input options,
+either a list formatted like `COGs` (list with gene identifiers) or a list like 
+`CogTrees` (list with gene trees).
+
+```{r warning=FALSE}
+pw <- ProtWeaver(WTrees)
 ```
 The `ProtWeaver` constuctor automatically detects the type of data you have and 
 adjusts available predictors accordingly. While it functions best with a list
@@ -50,8 +161,7 @@ of dendrograms for each COG, it can also run with simple presence/absence patter
 See the documentation file for `ProtWeaver` for more information on this functionality.
 
 We're now ready to make predictions. Predicting functional associations is done
-with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations 
-between the first 100 COGs we have.
+with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations between the COGs we have.
 
 ```{r results='hide'}
 preds <- predict(pw)
@@ -76,6 +186,30 @@ including a custom plotting function. The current `plot.ProtWeb` S3 method
 implements a force-directed embedding of the pairwise scores, but it's a
 big work-in-progress. Stay tuned for the next release cycle for more functionality
 regarding `ProtWeb`.
+
+In the meantime, we can use the `igraph` package to find clusters of coevolving
+COGs.
+
+```{r}
+set.seed(123)
+library(igraph)
+
+adjMatrix <- GetProtWebData(preds)
+COGnames <- names(WTrees)
+g <- graph_from_adjacency_matrix(adjMatrix, weighted=TRUE,
+                                 mode='undirected', diag=FALSE)
+
+clusters <- cluster_fast_greedy(g)
+
+# Getting the clusters & identifying COGs by consensus annotation
+clusterLabels <- vector('list', length(clusters))
+for ( i in seq_along(clusterLabels) ){
+  cluster <- communities(clusters)[[i]]
+  labs <- consAnnots[as.integer(cluster)]
+  clusterLabels[[i]] <- labs[order(sapply(labs, \(x) strsplit(x, ' ')[[1]][3]))]
+}
+clusterLabels
+```
 
 ## Methods Implemented in ProtWeaver
 

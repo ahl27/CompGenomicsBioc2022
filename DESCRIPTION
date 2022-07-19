@@ -33,7 +33,8 @@ Depends:
     DECIPHER,
     SynExtend,
     ape,
-    downloadthis
+    downloadthis,
+    igraph
 Suggests: 
     knitr,
     rmarkdown,
