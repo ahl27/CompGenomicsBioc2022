@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,24 +142,38 @@ on the development version of Bioconductor.</p>
 </h3>
 <p>Click the below button to download all datafiles used in this
 workshop.</p>
-<style type="text/css">
-.hvr-grow-shadow {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow, transform;
-  transition-property: box-shadow, transform;
-}
-.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
-  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-</style>
+<!-- ```{css echo=FALSE} -->
+<!-- .hvr-grow-shadow { -->
+<!--   display: inline-block; -->
+<!--   vertical-align: middle; -->
+<!--   -webkit-transform: perspective(1px) translateZ(0); -->
+<!--   transform: perspective(1px) translateZ(0); -->
+<!--   box-shadow: 0 0 1px rgba(0, 0, 0, 0); -->
+<!--   -webkit-transition-duration: 0.3s; -->
+<!--   transition-duration: 0.3s; -->
+<!--   -webkit-transition-property: box-shadow, transform; -->
+<!--   transition-property: box-shadow, transform; -->
+<!-- } -->
+<!-- .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active { -->
+<!--   box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5); -->
+<!--   -webkit-transform: scale(1.1); -->
+<!--   transform: scale(1.1); -->
+<!-- } -->
+<!-- ``` -->
+<!-- ```{r echo=FALSE} -->
+<!-- dir <- list.files(path=system.file('extdata', package='CompGenomicsBioc2022'), -->
+<!--                   full.names=TRUE) -->
+<!-- downloadthis::download_file( -->
+<!--   path = dir, -->
+<!--   output_name = "exampleDataCGBioc2022", -->
+<!--   button_label = "Download example datafiles", -->
+<!--   button_type = "success", -->
+<!--   has_icon = TRUE, -->
+<!--   icon = "fa fa-download", -->
+<!--   self_contained = FALSE, -->
+<!--   class = "hvr-grow-shadow" -->
+<!-- ) -->
+<!-- ``` -->
 <p> </p>
 <p> </p>
 <p> </p>

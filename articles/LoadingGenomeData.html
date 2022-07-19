@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,8 +85,7 @@
 
 
 
-
-<div class="row">
+<script src="LoadingGenomeData_files/font-awesome-5.13.0/js/script.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Loading in Genome Data with DECIPHER</h1>
                         <h4 data-toc-skip class="author">Aidan
@@ -145,6 +144,27 @@ and work with genomics data. Below is an example of manually creating an
 <span><span class="co">## [3]     5 <span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">TT</span></span></span>
 <span><span class="co">## [4]     5 <span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span></span></span>
 <span><span class="co">## [5]     5 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span></span></span></code></pre>
+<p>We can also translate DNA sequences to their amino acid counterparts
+with <code><a href="https://rdrr.io/pkg/Biostrings/man/translate.html" class="external-link">translate()</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/translate.html" class="external-link">translate</a></span><span class="op">(</span><span class="va">sequenceSet</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
+<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[1]]': last 2 bases were ignored</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
+<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[2]]': last 2 bases were ignored</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
+<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[3]]': last 2 bases were ignored</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
+<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[4]]': last 2 bases were ignored</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
+<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[5]]': last 2 bases were ignored</span></span></code></pre>
+<pre><code><span><span class="co">## AAStringSet object of length 5:</span></span>
+<span><span class="co">##     width seq</span></span>
+<span><span class="co">## [1]     1 R</span></span>
+<span><span class="co">## [2]     1 R</span></span>
+<span><span class="co">## [3]     1 S</span></span>
+<span><span class="co">## [4]     1 C</span></span>
+<span><span class="co">## [5]     1 S</span></span></code></pre>
 <p>Manually typing in sequences obviously isn’t a great system. Most
 sequencing data are downloadable as <code>.fasta</code> or
 <code>.fastq</code> files, so let’s look at a more realistic use-case
@@ -155,13 +175,40 @@ GenBank</a>. I’ve predownloaded these and repackaged them into a single
 <code>.FASTA</code> file for this workshop (the file extension is
 <code>.fa.gz</code> since it’s been compressed for size).</p>
 <p>These sequences have been trimmed to facilitate completing analysis
-in a single workshop slot. Feel free to experiment with larger sequences
-later.</p>
-<p>If you can’t find the FASTA file, you can download it on the <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html">Setup
-page</a>. You can also build this object yourself by downloading the
-<code>_genomic.fasta</code> files from GenBank and then reading them in
-individually.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+in a single workshop slot. Feel free to experiment with the complete
+sequences later. You can also build this object yourself by downloading
+the <code>_genomic.fasta</code> files from GenBank and then reading them
+in individually.</p>
+<style type="text/css">
+.hvr-grow-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+</style>
+<a onclick="fetch('data:application/gzip;base64,H4sIAAAAAAAAE+2dzXIdSY6s9/EwY/qrv82YYWA2WN3Vxb7fop9/mPDPkUeUKImSuqZ7uqrKWOThOZkRCMDhcEQG/7Pyv//25umfd+/fvfnlP97+Lf7//7u+/fvbExGdT/9UPf1XGVlPP0c8vRBPP1yvP/3z9E1cP0d2dlQ/vXF+0U9vf/rN9d3TL+N67fTTha5/a657fbau//d19dIFrzf200tPV70+Hf30n67SevH63dO313DiXKO4ftAAnn7V11j6GmHx3utT10fmznENLmdOzGzueF3x+jHO049x3fZ6Y2to14xC06x55ekXcX2Z35TexiSui/Z18+uq1+zOmG4+MBO8fh166wztyUo5JmNo11T1nsvqT/YP3eG669z+suHTpa/Lz5jmovP9vC+0UPONPiAb97V6/r54w9NqdR59/rrEw31iLHaNIub3M0ybb1ZwrNiJsZncNYZjK6zjaA3KH9VvxuzXMjULot8G17km0bro0Sd0xRnpfGZ8osdouhB3TC7dO6Yx1/xKpjvXqocMrPenzJi+UWjIWVi5vHTBCHts3y3Tn5rVLK0a7nu9b16fEdZOUGNhcWyN6/Xra8uRr0Xp68MxLjK/x4g53hNa8WDFUqvUxGlH7uQnLJ8umHI6+eOMIGbIV7hU2RsimaPuPb+9vtGKjFcrWM9Ms8eCl6+NRWo+rHC0M+FDemXuMR6mkC1Z4JrhIW6ud7TCP2cUkfJtmcb/FR6uYaYmkXKMy7ujjqK08RSichaIsM1iBXuQTINVnGiwaVedYDiKhXG3VLTMb4O1UxiMgRYe0pcQVMz8QlfIPr5cy7iBpUvwEqyUxnW93nI+edWEGHgMQp21vYKkAMIGtQIb7TQFHDOKFAKExztvO2nnmg8U459l6QGVxbsSrsT4powbfJ2htFZZgTi3GpipXh9m4jPH6w0T8c1qhhZ4XE0hoHg6QsFwagjZUqtWfPK+9NoEF6ywY+nSV6TI/I4E5bx597VAtRDWgzmRBo28raHsNr51XXC+IbsBVb057s5rdWeyJqsN8Cbg518fQeM4l14joK6RFigcQJ8jSUYj2CbJljLs0+tncKDnjXO1a2FaJuLzT8tESra7CjkjZObW60KXy23mHgosgGrHPyMtYIxhaRqbkGNSsm2R1widhCYNBdSCmOaD2fd8NQ+mTr4cCNQ7TmiBJuvzdiYyHmgvVXT0zrliDbpJYFbzKEhTmDVuA2pORAxKNctG7MrPx4+cm8Y3hNQHxjBEZi45iNN1L1WO78xSDWQS3OuTdxg8DfW6YG+mLkVXnv8U/Xv35s3v75/o34ehf/PD3z+cH6Y/z9jP+WH684z9nB+mP8/Yz/lh+vOM/Zwfpj/P2M/5YfrzjP2cH6Y/z9jP+WH684z9nB+mP3iv2c/5YfrzjP2cH6Y/z9jP+WH684z9nB+mP8/Yz/kC/Ylvoj/P2M+B/tQD/clX0Z9n7Of8MP15xn7OD9OfZ+znvI7+9Kf05xn7OT9Mf56xn/NIf+rz9CeMYZ9yn0+pzxn/7tdwn1m9u8h/Rn3OV7hPLfeJz3Gf59RnbDjGlulFUZ39v4H79FKfFspfWe9T7hPfzH1KsPZAfY6pT30P9fkM8znMox9d9Jupz818ZtWun84XqE9+TH0IZThQGZ/I9fx/bOgkLQrUmmsuBdLgv0iBHhjQWQpkYyQjyJtzC1sne8R8MLQGgrdwyhjwPspBQn5NkHTqiDUYyB025wpx2l/Hla53n36AZLMMrWIpbtqBPT7XZkXNvL0gzWfPkg7B6BAdE8D3v/7x9tff0P/0w9/fHgl687HAtuOHcdunNaQJFGJivpFxL3P1pSOKDp/rp+F3k7sEQ+l8JH4/SfmKEjxXLhsFyZmPAnKX8pJc2jgXM+bQhUooM96bRp7RI9sk8hpymZk8lS4xIkkKyGYttNJcCcotPE/Crtanja5d6AAXnJTxghQP/Rki3LqTso44ydwJXg2nSKB3spBci4DNXN9Ybn+THdg1LN4+ObEkixf0at118gtkEJYoRJc9lOnbsRosEvEq3O9j4iau1sAaY5FRTVfDhBmOKsv4/Uq916LIonDrJlzFOprAunkyNYXvATlxwgzYkEhyUSzk4kfCJVRNUFDI1JQrsjB8e355nGxKxImMZgLYRHyR5g0j6N1MopUyxyYHvoJyJRCJUMWUmyBLYbFiN3O0SNpbAF3CcdmbzGRhF/clYKv2QVNo4CSi7rWTehVC4d4hkD9kO5HitjjojARzLUQAm/KIHIoTaiGMjyCe8zdrK3Qmu9Wu/tNV5PhOa/QCcqu5khwRcqXGETVDrSoe7sJJNx7VwANKV2SOvnkZv7A3jkO1KuOilodPjzucTRK4ywCZSG+u4wVrgsHmnc6cVSZ38/bDOCisMSL1Q92BTlRsrKhRYkykIFKFTYFCDa7/CmbkqK+0y9VWewPCrES4QAmmXPcc29gu505q+YLGzHwpY+T0visc4tgnyhimxR37qTL1BagmnCI3+Vjk0I8C2JhLyCG03BmeprzNaQcUyekcje4DddWtRhua905zylpFU2PN9DvogYkrOZsld0tdsnWJUa9alCxd481QL3sFMaymFoVCi+yUeSkBQ6g+gUNMzEAkpzhWZqdopH4PeUjLC5S3rRMqgiTTXngoFjy+5JBFNomZrFNypu/V4rzCiXCJPeDdNIG2dsbi83079LaKUmKVUjUsKVxaIeJczIEEu++WkyfoWZCC3OahkxjCl8InvMwSt0zUpkQ3yYYmy0PFp2mAytl7Ec56Zm0K6DQqVHhcztS5goVKiXDAg3FakqJTMWQpGEKQip5uYAL44e3b3968hQDqh4sAKtYrLSg8lhFknxZmqZBzmZpGdhHW5AoHS1Ks0d/QxaDEeVeZK7g1kIkoEHhmjf5vhqxftwHVpuT7buL0+ib25gURJeTqsjoqRJTeKqI6qKaQ1yTHaQ3TzntkShOTa0xHU2MdhSVMqsKiIquOkrUWwPNaFeF8fao0RGL1quiVa9tOE7EMRpwrlS1bIt1IkrjoFSk9oXUGOalsLamvTZlaAUka32RWd4V5xZaGAHO3w0LYyl2LdAIiQWhENoJ1vSmhb2QXFEKq555xZ9GCqpIPsvMuOAcvKGfOgx8k4oe4ucM76u4tIFgAYgxWPEMZKobm28lr5d/pGC3rhTLk4zcWD1RfgwY1jk1NW8SPIjlQH8pQZgC2MILgkkpY0l4EJ5skw/SbtL/jdUKwPFi2aVjZrv3vamyRMJ2NBUdLM5ZSQ74GeEyMlsGUJS2t8r6EXEI8uecgqEGQLVeEeSMAeKH3HCVDNbBKikIzE8vJNJJIfmaZgvsyIlnCP441exZ5INIEFLZEBo61rmSLBN0GdK5XjgX2oUGWo69VJcuJ+OImE7QlQmvJuKwfiu4fgDVgvesplty4UNgI4pJx917AHBGuzFPOGgsGrBE5poizMiRo+rE3HqTsFTgUehK3mkyVCyOxSqgoTGIfJECteruppAZGklap+jf1pK4e1P3MKVxKBxgdOyXF/LTeikrFwKY7kxCIE+e5BoQX0FdpxJQnH3Ru2atxbY3aIUZyE7+iSLoDphqVoo4uE6xj5a4MmpjVvHuhTX/d4AkXfON558byobBFf05FkvwxaWbA9tWl62Rl5eFjj8uOR6NbHC5iIDXfWr2c+ljODqtXtLcQD9X12KFwt35cTSeadn9wq/Hd8GKGp1uPY7fFdqlk0Kki/vCbMsAtGUnobxdqklIPe73kHLEaim+7KJDbrbBjmgDPvZVzJcw43ZKbJ9PgqCIvkTTUOrxBrtIqn1iZeLtmfcTnpdwp494K4C/vfn/z/j0EUD9oD+BKIZJqps4JiU8EWkzB2Yh4iPQpDT0oJsCJQ7K4duql67pBe+mHzulLnlUcEaE9hZWac8gJB7F3lDwWEGo2eqR8nDDV6EYgnHKTBhuipMqOI0pdTIxZhIgUkn9aF5XGbV2cBCjcodE9G5HGYiFbzr9SFJVcr2GorwSstdRW0Q7TyAXwCYX5lJTqUIHclN8kNY8nJENqU6OaVg3suoaYHXazc3I8Wsh6baWUxpyAzpSpCs1UbeHgoACJEXen1mJDXCJzaAotl1cbLqiNJcbO3AL2DAqrkahonrYRsKqOQ6Qhc6469umgjIYkJd6iC3XkkriRIcjV4hC5lHYcPK1uXGgUbfkYU2KFxkiDIUetvNZLqM9WJlg73031xHigdcXGYFbtavT/VFSNv6ldrwm1tI35OoOXnKXBJ62tWXmNaaxCx3Y6J60XJ1YCjnNBSCAxJv20QLikxnWxJZQ92m+LkqGo4purZ9ZtucB4PAGqhgGFkOemcD5SRVpxWk7NxLW8awY48RK0LEWRtRmi6UjJLUKbuQbbG/0kFM1t+U7BpvUimbh90biMRKSB35MiaVaqFFe6mtbf/ESDVJ9M2NVNxy/HzlICTlkbCAWYCfG8KV14mMeLZoi2XHfYHBxyIrVYtOyDC/NPTQ8mUZlb2tRY3TWYa0eQI9TGHuhHiW4NXQ6YwMJMUKATupNtyvCHb3budprr9dF59WLgWR7uLMREflMJVrdlcRKqQErRKOZ8XDzZQVGQkJfXm4U20rZdRF3Da6GDUuw1P3KKdpObardcodxdKK+4uAiWG0xAwlW5IZ233bzfstTJQlVBCavxZmiYvxMcTx9aw+xDpak6AxbRNtv029hJ09srtFJGnzdZDg3rgELCVfQD5eiSyFVhm6BRukiaZN0Wqx0LZ1KNqpPgDY34FIHsZxdKKGJvJaDGkiv4nryMYjpNxmnbQ236FiF7pYFURGqPgVmZQBecOpZeG61YyQ/+bXonHIJFqwKYotGbg0SllEZDtMab8+gAKhJQmpoys+UCLEsr+skmi4lHWysQjCVny00buaIRTkEFIcbUKLg9iz+/nFhuNA3VbxcqmAD+8dv7Nx+sAOqHJwJYpsTpCteYTtUjoVnA2dszv2t7KjEV4MmuHHcoV7l39Qa4VLumEcl1ebh8EbUuZ0txOZrZRpErF5XbdZJ/LK+ZB/R+ShYRJCfjQm28y9p0Zaz1oq6GJ9SDrLoFwCQTLWObh7s8FVUvl1ih/TmCUGYAn20o00RYzOZ7DOf6P21jsUClFGa9ahRioogJ4SpnPWl41oIJE6LcRHfFG66mQp7gdvACsCvfszUz2MtFrRcYCynQw7WhK/N0GUi9PbvDihrJyRJQ8us4RLryJj3AblzzKjBGGxrqTCrbO1O9sf1nctvDsqyyAEgGLnZlIaR5CIDWIdeCbnK5SN4Ov7toersE26FQhx4PY8pkDyR6IPJvuQK0fvuohukWgWpxrK70wr/YsuiC9wo8cN8GJ6iH60F7vd5zVjXC09VjmXerPpTfsffLpaKl+nQ3ZYd8nCHSebuI27aKIYIRaZ2UYIx42IV12+cQRG0NZYUuYcbyAJVE8jxFZdl8XRasBA5dvk8YJBDHsxy6IKKfhyM8E89JZjlFvkNf2ZhB0liwYLrijJyr0UG4qFFFIHrsW+NWSiiIiirsgsVdQHPHmehRPGTYsQ60DyFSAo9qs1X1YmPNgSJXXa5Qu9ASSjSQKMt+SYiJUoQlR4G11SuvUiI8En3SNdrQjiLkpkybca0bdNHWkZPqoq6J553HmULQF2vdqG0VhGs1OwLFSFsXXE12Mjl4ItQhUYDbIoBafys+PDJJyRfAjvs+pScVeYe9BDrMcosOo2KLgDlEhUZTIoruDIlu1sAKfhNvAOi9Fy7XnRO4TWcjqqyhVwxi47bRczb3cR8lD4wd+35nLJZVhYjCqkl5zjwPszfjVtrYVUdDMZnX1Y9CV/foGwa02rWzNzzhrhrsliS1Sz67LzJucnIjchl9Yl9BqEsY/tiSxTBbudpUibjBtQI/Eclg1rvQYXvxqaR/sHTmWBF2Nh+auQTw1z/e/LIE8PrhIoBLckSK17ibX2N7FWmG4bveC9vmYiepXcIdhfWL2j0OD4jftvvtaeuBExfe5w2YMYT1TZKGt1wajo3JVcs1/eIhwvHNh5201rNBtyUGUAhvUCe3laPwfMz6uGFbJYXxg8Nlxgo5dURJzxGGn1x2ZVCll7uL4+1hQb73bjFgk6CithXgtapw827ns9qvgENDFmrz0TJD7y2J43aoBqWpYf6Gh7SvyNXXachECYhOzjlmipFOvrFBnWxNSk/RLiWKJCiESpjVn7IuRXOdq+RH9IOx24VjUaDvsWvycdoMCuFWIKoaT10eRkQiZdP5zf92+ZWPjpoBODOg4hvYmhq1rK4LxVJh/DRpFsTB492RSDl/LxNweGzFbNiGXG3bHfA99bCOCsxSXYrHhR2+2Hi4i27PNUbIUNrpyfV2Qwv6iJelnRicirbhwfwW55vQSwxEr6dMjG2g2K8K4RVrlCd3X4/RxtLN6jEOar3NbQxzFwwmT0hvMABNDvPfjLh9nHJI2MrbH5K5LW95jCScA9y3k9SaGX5WSE6mN3mvNUwWgj/l13UqgnG08NToO/I1maaCWDfovB1rE2orEFVho9MZs8lfS2q9uwZqJRPvRqOwx0/4HR7l00zb9b+TpfnT9tacJm563jdNZpXNJ9ni3L5c6vNxO1O5XKw78gY62yP1uQ1Jogi3VRenksodCIPxJnwEJy+L+8UDDOUcz2NQt15Sd1DXCqEyV2NQ/1aGE2JTh4Znkc4l92MMc8Ob/t4MLogMaxDqh4Y3TAh4qBziI8awgwwXM21W3My+iZSwqhWEupI8xE1Bhla/VGhpQ5jfseAHQNp4Q3Lwi76600HdzK4gqomTCjYPMqFnFYCZyqkkY5DgpNJJyXbUkMCTWm5GSP7AVZBV24333T0Qy1GCujnThWWY+Mz221lddPtZ5UcC+PbDL//xzgTw7Ye/v9MpBW3lQvdoE/Eg6+RmNn0Rz82HxwAEsex5CZ6/dMraxIdJw1kC8VEhsf36tm+PF54btVc3hg5b89u9xbwHhQxYjVvOuQwchy5auj6oXgZmX27STQKW1tkoAVlrtYx5gjVdipa6iFscCQvQy5PG3MBx+LkemYjtwdMPdW1KJ6d4U1OpUahsYzMe+R5zLxpr05c3OSTcwWTp28mTrW34UnHbS1QJcS0xTept+ltBDQMKonndINVlju06yYhIqpqOrZCgKOyTTRt8wI9dPkox1BdSKtv4BBK4QC134ld06XbUr+0RoeXUwBVOsonq7FMvKflk/u/9TcuktW/KNIriLNRLLEYjreHEogmLaGlO5staPxchKxqC5Rb5XdfOO/aJiIcasLx9CQpi7XKZoIJZXXS1EoiC1DMbgs0oG8hSGe5QC5nVfkA67yHL1gZy7ZYVSG6reSlqYPXyE2hrUxWyfpaAfD9S0ZGL3vdZOCwLcZnOPPJwWYBHP4W2CpL55NlqI3Y1geak0U9WbZc+hFPULecNxIdVg4ddnDBOezUtFmfwhob6aY4qC6aplVEs01VtPYzska7MivcOcARYTVbd+As/+DX9hmKpUqGTNMpkGla/lBUm4LINX+UmUa4qqfZA7m3DlW8sAhHF7dxrYu2qWgHqfQPFqS0GWe4ZepSWqsA1lEI8I729edZTcBzEzVUqqY5BRiv7VrO5xAoHDy3Q99SkDSP6kQg/nhmSCILrfbyTrE/xFrt+PlnAMMZveZCm/FijMXAh0eR6dl+UqYirKyVgnnykW31YfQG4SgHTRVdYfi5L+LTimdBSDGFTTh6naWI/+Z0YZq+3NUWd0L3oq6/qbWzQlBUC7P0YD+EhkSRkw+nPIYo8a7RPXzRH9rB2V6IkyFnGF3CW13MZSjjd50MNEWpg8KjG3kQTeSAQ6efM0osWdEQdBHCbSQGZsRlFymOU6SXxgqXK5z4odtDoMTSPFsaxzG9TXtdeAvj7b+/fbwt4fpgWcBkhWyE1FJVNbKJ/FCxl4lcPeRzyuhXTgfYBnQ2bwFjO1KTvKmCtaG6GvARVZ6Z5NgXfsGh1wNcqb9uCqDjrITU5603JkgeikuXaAjlBb5UoU3c5Z5nHTxY673tapleB+2hcj8wgTA07qbEoU+6Kf/zRbVp289/udtdC2V4RUW7ntTBdWDZe1i9LzynfsoqWxUVlO7NvXQ0PMkNzHvaP1xuPdcfc6ciadUO6bZ+2CVmZR1MwKGPSs0MkobjdWpye7OlgEkjZOWGBt30G5Q6BVhYmHZVsKEwUB/i1XVJsCjfyFWaw5+MFdfOZ8VeZN4i/6ZMKHCRFIHfz5rGfB2p5pPVMw0TAdprX24TUS/XAwnnW22V73k4N/du3QkytHFjd0JrlXYqpyFfaKPvsLizhWWBrwXYxYdzXqjsIDneO1WPui7p9337FI01De+ZdVWpCLa1crKW2SFjcZsVRBH0NMmh5LyFNJinR6X7pPWyno3LlJ+dhm47ShgC4YFDLQYtYFtnyBhoL5mbGbQw27Gz0M+JFqIfEu9FsH9+N1HzIWkegIdmUdH/tJjogJGnIbgoT7S4DjWN8hSnn3iJFi2IOmTp3R8ec7V5lfa+i+PYnTkNJH/xht63J2Puk4iKbCqGmrJwldtZeBGibwlvLjBKlcxsMP2E+BkS1mf9dmxNqzQSZXLuw1NZR+F+39Vv4qL0nKFYSOYd5Wt9rsGYCd7aO2inkK6b6QCd6AqRgNsyVTSjDUBnz8YNJY5OnvHLdUPz1sWXjN9xqo9fr+shZ7sYQyaZD1iiZ0htFNtA9zPIwb7Hm1HK1stfUs2EKVqPN9jcSMm/bFXRz6wZDymO5bFUqDTCKwQf79AO/UAo6DzFhFSKXKN82qpXvG8yCITp9J3LRCYvXn5imHkyjQBPNd9mybdONquutZ6GSmu36HQTw7fsP735944dA+OmVJ0GrJHk8CVpWL1U4Ux1/chK0fgxSaZpMos26W/zvcxK0d7VZmgr2lLouyp93ErTYY//sk6Dj05Og405becf7MuxbXdu4EfiqB1lfOglaGySMoRtrsYGeDxclg8afdhJ0i7fi4jsW5VnzLyMEO5x+7knQ4NF9ErRShzLKXydBZ7GCDRm3+ujBpl11guF/4yTo1Md43TtN5FWdkigzjVD/506CpkoM6hk36DetffNJ0FYR1iZmrmHHgo598SToSrc7KtEkTNgkSZq/DtCMb718ErSf7Pum0xBTgDC//vQkaGYTbszN8HEVrCOjFVpXUitK4v/kJOjWowaRbNaIh9MQ7a5CzhdOgp7cUTujIu9o/DPSe6pV0CJ1WZXzpWRhi0v3MH9EQYFalPNlbtAxX9VuD5u4CHPe8Q87CbpRqSw6C6rC8qqzG+Gx2pY4qBWfqvskaDgGdcbYiaVKPaYXlquT4H4oIhwGXzsJ+u2Hd29/e7cMUD9dGuCP8p9n9OfVR0F/wn+e0Z+Ho6At6r6S/zyjP58eBd2v4T+88kB/9ijoVXhfy3+e0Z+Ho6C/yH9WX4NzFD42QP5If/6Mo6Cf8Z9dnBf4zzP68zOOgv6I/vx1FPR38J9n9OdLR0F/G/95Rn98FPQ38p/8lP88oz//+kdBP+M/+TH/aQDjgf78Y4+Cjm/iP18+DfoURxx8N/95Rn8Om2yf8596gf8Qb3nzn/iY/hwnVTxYHSnzn/oG/kMqZ0J9vMPnG/lPfsJ/yqYU/Tmf8p/4lP/kc/6TN/95Rn/OA/+p7+I/z+jPeZH/xDfyn3ygP5OkTORv/lPLf9Q/+zL/eUZ/jhIqRki08rTDGVdH3ZrPcSKKkC12l0A7pQFf2wpKyU7uGCTsIK1OC6fl93ztm+Zms/Fx86RWAnUbEAbAv3oKtOjG4U1yBLDEDPC33z+8+WUZoH76F2OA36mAfZUB5hcZYL3MAAXTJ8zu/NFbPX7GAPunMkA7nS9KPhYQ/HswwFsB+4sB/sUAv5EB5r8MA8w/mwG+qID16xjg6xWw6p/GAOMTBlifZ4BVP+nvgZx6DQN8iQDmrX9x6lwQ0rcAtvzsQQDrrxPAsWHn9wlg8RkCWOfLfwrtBQJYMAHC4SaACaV8JID1QwRw5PclgC/zv28mgHG+gwCa+n1EAHnU8nq28KcSwDyfEMBLaYQB/vH7H2/+8DZAfvouBtj/Zgzw2zXA8kfJif0naoDfzADt1P+6DDC/XQPsvxjgvxgDdL79J2GA9SczwM/0QP9UBviiBvjAALu++Gs0wJcZomz6CoJ4vsIQX00Q9ZjFQ4/0I4ZYSzsUfs8IYtwEsU0Qz1cYYuUrCOI1nfM1iiiGuI65DPGlFun5GkV8bYv0PCSJz2mE9TJDNGq42JsI1p6TIKk9UMQQlkW96o/lFnufvkQRHxniA0Xslyji+SpHfCVFPC9yxDu1fEIR6wsUcTcPPHJEGOC761ngtz4Khp+eGOASfj38M+4IE7gWb8D/PhRANv7cwdCiTx06GJ1soKn/0MHQKfYSwishYYDD2i5ZQq5sLZSGFWIQkvn5Y3U650yPAmtpNcsGYsO8QzEaclHNbLBF8xVuOLBj9huMpQYExoZzny+eB62MqGbJJ+dB6zydj86DFlMq4EJeJvt8y3nQitafeB70dc5SI48C9inn7e87D/roLAlRMMGJZi5Q5fGNV5wHrRNkC0qXubxhgu07zoOeKc+MftJ50NrsnT96HrQy7DXuI9KU9bPOgz4DcnFz24ACaUvy68+DHoAakJx4I1iTj+Xrz4M+GDzmtz/hPGgOivp550Efs3BB7KvOg67PnQfts0xDbOCl06AFNTIUhWFnLnCIxqZqJTHnh+OgFbYa8bPzoNek+eJx0KdfeRy0wpGmhjFKwTgDPTK5eY3q/3E3k1GcWWBToDk56zPHQZ8GPb//OGj4h9Lf1WNtk3cklKR+RbVL51jEJn2n+BAf/eg4aE7G82YA5YlZ01B5/9rjoDkN2tqJapR/xGnQgkHNOSYjcbRnF2hgApUWdfKj06B/1mHQrXPuft5h0PNnuvAupVPTG8oXkXZJG5BhLUor9J8fBh2HDFDkgIZLfe9h0MgUolpD3YarmwG+e/vb+9+XAc5P15Mg7SQraaUJyoZGwUHkw15Ycw9JjaC8MuScwubF38/vR5LkqkTcCEGp0j2FYuRogGq6+RSb4Vo4A0ZxEyGlsylf2ptxAymNTyk36QnsVgrn9ikoK8tTSZVhNUtJJd2BlNEEIKGHOiWQWedMGK92+DcLZxAXKZjHCATUmVsoV+mUSAh2CRrQ7pRLJhSUK6EVhd+XA4XDACinpgBs7yadHNguMYYkTZCKznSuPqa8O46IAqNBJydghwUnkw0hiiYjN58pBgvmY1L5XhRexZT+SIsYJiipzTvtP1NVLq4GkElDGpMwVTVJoz9olcUnBT5Thpaf8OPRR3kB4kSHfXDJaKxoM5tAYpkxGc3ukibikgQ6SH+Fbhl6BMAkbw53O0q7PEs5Nh7ePglmy3FxCzihM/RcR1m4BRScIk6+VwQI6yUOaHpjbxUSN2pGuvUiVyTRDYTKHqI2WhSlGUXwVCWS0ZQWhBHlLJHCUqHX5ZG6IO2MSpiRxC+eoR6vxC+JcoM9lZnwAko5rB98l2ySmn7a1y2sdMOvCzauBS4X76LJh2I6oZSyQOuuU7UIr5Xcm7gKlA27WurvN133O6rsG9pKGVHCewib0oXS3hRHc2v5VtCXSQSW4DkLkb0yj+82E1LxwB9oF+almYoOnneikg4yf3qiVR6g25eb35bUCpG9ve1CqplCmWi3cM0fn0W+3Awl++pvx6frQVO5pmfgdlAAnjA0HajT+DOJdOoQocVYtcVvwEYTFjkYbkpNGSq+ICRS+otyS6RaLFKVnNASxX+mLBYa6CBTqJyA6ijQUaEgnKrMwznIBZVkZqpsMVHZ8fpyoN36XanKaoSQ3mHOzcSU1UuYlFBiKZf9ysn8MC7TTudtiTpZVueoZERKipSIBNiSWfTdsdIpN4p9RJ5Sx+lGJWkKfVXlNDQvcR6B5FEYPlyMBljR0pw5UQaYiwi5RMQeLzpCiki9ArMtHKFFor1IWLQNxCDl8ZIqUtxOFdox2vd2Y8R9yVdo8SqJhGjtnoOVsvY1h+cPo9bV1RRQx6rhHhpcuEQeJxvohWQBBPCSMhURzDWKq/8eyLv3v/z2/td3ZoD66a99gPH1LrB8uizYKrHhuJNg/9oHmH9qF1gsXJOnWfjXPsD+P9IFxpP7n6QLDBX607rAmf+7XWDVh0kAvNDm/UqX959lH+DLXd7dBxjb5s1XPAkbn9kHKNN8e5v3ky4v3YOXnwTRRzzfQYPHNu9XuryPT4L0o5tuvDHnz20EzM90eV9+EgSAUnjglQZU+EkZo5TvBwwOFOqhzZv3k7DIvQpulw51h8GPPAmS37gT8Bj1NTFSqaPVQCA/2HwrdPx8l/d8ts2bX2jzOjKIz7p3As6AOLAw4SbKIGKAf7x58+G3X36ZLvCHD+9++e1v//Xm7RE1CRoEXjl/0x9RjhlFmchULQVF+k4RAzOtW77wW6WRsOTicwWLTzjto4peIskiQjAV1aACc+pRAr0s34VHJP2ULqZm0/xxNOMDJCvSN/HRczDfWg5M2VEErQnulELr3bgA2TGhWFwn7CVEKULLQwIB8Q/ZU85OTvbmDFHdjR/eo8yR/p8zajiyoDaNIW8nU/nie5elBrKdFQEMLYij641V4Y6QAllqnSlZ4rI/2eAyjWut5hQjCmBYvBQhIYJIqWm3UzjJiOQXcN/5rARAuWtbzIMhy6Jrh/mm15mCrjgLYJueQodu0FZIIVynwPAE8xERUhsDtnZEMauz1qL+rKbddPNvE0tiHqBTyAICcv7r/drnI0pFjdRmabFmAvTK2VXz6HKFtkSlfKwvi3AXsjBJr2QuF8IHFxv9Pe9sS+VYSskNa0e5zvsIVQolonY968GRz9ZV6XeojvBy48O3/JCapkENhqn5T5bMh0FTj+rGrDL+HOWTJLOAasUfkAPuFX+kD2NBktA9uXNuUDice1219RcTkLGvNxy3PSkXCVLQqVggacRW0tN3p5tU9sbr6xEvgX1Wmo6BN9TuNhywmi7CC7ZUJrXDNMphEP6OfQ/ky6IrqDIOU+Le9lOvUKk29JRFcwT3a5e03+SNmPZBE0vJg3PV07B9R3fUjYkqxsymNpAf1BCmnOZ8WmXdnehzusHRVM1kulju9VjDYm2eSKmysi2ae7l3eyP8RnGov2gGIOst0AYSxFkrlHDU4ansEU6aizKityyaPhEUMDODs2tSBOCSm42zNDqlWJU25Wy3fku1ud0JG9D0Vd69PqzGDQD1UMVSdalwB5Wl89QDHDkv6wqrZbEa8gfXY45oEML1n/7CAKDtZWnnoHRmV7Itk5jRD6Oxb9gygzYTjwv3zvRpCTddbpa3bOyylHkK01ciOk1YPEy8z/8AGaRI5RSqAAA=').then(res =&gt; res.blob()).then(blob =&gt; {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'MicroFASTAtrimmed.fa.gz'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+    });">
+<button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download sequences</button>
+</a>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># This datafile is available from materials on the Setup page</span></span>
 <span><span class="co"># It contains the first 2.5KB from all complete Micrococcus genomes on Genbank</span></span>
 <span><span class="co"># We'll work with the complete sequences later in the workshop</span></span>
@@ -172,7 +219,7 @@ individually.</p>
 <p>Success! Now we have a large example dataset to work with.</p>
 <p>If we wanted to visualize these sequences, we can open them in a web
 browser using <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code> from <code>DECIPHER</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs</a></span><span class="op">(</span><span class="va">exStringSet</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -181,13 +228,14 @@ browser using <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" c
 <p>Now that we have some sequences, let’s explore some of the ways we
 can manipulate them. A complete demo of <code>Biostrings</code> is
 outside the scope of this workshop, so we’ll just focus on functionality
-added via <code>DECIPHER</code>. A common analysis in bioinformatics is
-aligning sequences. This is easily achievable with either the
-<code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignSeqs.html" class="external-link">AlignSeqs()</a></code> function or the <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation()</a></code>
-functions from <code>DECIPHER</code>. <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation()</a></code>
-aligns sequences based on their translated amino acid sequences, and is
-significantly more accurate for coding sequences.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+added via <code>DECIPHER</code>.</p>
+<p>A common analysis in bioinformatics is aligning sequences. This is
+easily achievable with either the <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignSeqs.html" class="external-link">AlignSeqs()</a></code> function or
+the <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation()</a></code> functions from
+<code>DECIPHER</code>. <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation()</a></code> aligns sequences
+based on their translated amino acid sequences, and is significantly
+more accurate for coding sequences.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Align the sequences</span></span>
 <span><span class="va">aliNoTranslate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/AlignSeqs.html" class="external-link">AlignSeqs</a></span><span class="op">(</span><span class="va">exStringSet</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -213,7 +261,7 @@ significantly more accurate for coding sequences.</p>
 them through R isn’t always super informative. As before, we can
 visualize this alignment in a much better way using
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code>:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs</a></span><span class="op">(</span><span class="va">aliNoTranslate</span><span class="op">)</span></span></code></pre></div>
 <!-- ## Alignment-Free Analysis -->
 <!-- Another common analysis is to look at syntenic hits between sequences without  -->
