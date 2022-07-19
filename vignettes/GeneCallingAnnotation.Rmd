@@ -145,13 +145,11 @@ source(makeTrainingSet, local=knitr::knit_global())
 geneSeqs <- ExtractGenes(genes, dnaGenome, type="DNAStringSet")
 geneSeqs <- translate(geneSeqs)
 
-# Load training set
-# Note: this training set is built on the fly due to GH file constraints
-# You can download this directly from decipher.codes
-datafile <- system.file('extdata', 'GeneCalling', 
-                        'IdTaxaActinobacteriaTrainingSet.RData', 
-                        package='CompGenomicsBioc2022')
-load(datafile)
+# `trainingSet` is loaded from extdata/GeneCalling/IdTaxaTraining
+# It's broken up into pieces because of file constraints on GH
+# You can rebuild it using the "RecombineIdTaxaTraining.R" file
+# (just substitute the appropriate value for the first line),
+# or you can download it directly from the DECIPHER website.
 
 # Classify!
 ids <- IdTaxa(geneSeqs[1:10], trainingSet)
