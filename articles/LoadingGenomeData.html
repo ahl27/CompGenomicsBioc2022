@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,6 +99,7 @@ Lakshman<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-co
 
     
     
+<p><img src="images/PipelineGettingData.jpg" width="100%"></p>
 <div class="section level2">
 <h2 id="reading-in-sequencing-data">Reading in Sequencing Data<a class="anchor" aria-label="anchor" href="#reading-in-sequencing-data"></a>
 </h2>
@@ -173,7 +174,8 @@ an example set of 17 complete <em>Micrococcus</em> genomes obtained from
 <a href="https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&amp;annotated_only=true&amp;refseq_annotation=true&amp;assembly_level=3%3A3" class="external-link">NCBI
 GenBank</a>. I’ve predownloaded these and repackaged them into a single
 <code>.FASTA</code> file for this workshop (the file extension is
-<code>.fa.gz</code> since it’s been compressed for size).</p>
+<code>.fa.gz</code> since it’s been compressed for size). See the <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html">Setup
+page</a> for more information on how to download this data yourself.</p>
 <p>These sequences have been trimmed to facilitate completing analysis
 in a single workshop slot. Feel free to experiment with the complete
 sequences later. You can also build this object yourself by downloading
@@ -206,16 +208,18 @@ in individually.</p>
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
     });">
-<button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download sequences</button>
+<button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download Example Sequences</button>
 </a>
+<p> </p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># This datafile is available from materials on the Setup page</span></span>
-<span><span class="co"># It contains the first 2.5KB from all complete Micrococcus genomes on Genbank</span></span>
-<span><span class="co"># We'll work with the complete sequences later in the workshop</span></span>
-<span><span class="va">exampledata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">'LoadingData/MicroFASTAtrimmed.fa.gz'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># MicroFASTAtrimmed.fa.gz is loaded from the above button</span></span>
+<span><span class="co"># also available at:</span></span>
+<span><span class="co"># system.file('extdata', 'LoadingData', 'MicroFASTAtrimmed.fa.gz', </span></span>
+<span><span class="co">#                            package='CompGenomicsBioc2022')</span></span>
+<span><span class="va">exampleSeqs</span> <span class="op">&lt;-</span> <span class="st">'/path/to/MicroFASTAtrimmed.fa.gz'</span></span>
 <span></span>
 <span><span class="co"># note that we can also use format='fastq' for FASTQ datasets</span></span>
-<span><span class="va">exStringSet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="va">exampledata</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">exStringSet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="va">exampleSeqs</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></span></code></pre></div>
 <p>Success! Now we have a large example dataset to work with.</p>
 <p>If we wanted to visualize these sequences, we can open them in a web
 browser using <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code> from <code>DECIPHER</code>:</p>
@@ -263,6 +267,8 @@ visualize this alignment in a much better way using
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code>:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs</a></span><span class="op">(</span><span class="va">aliNoTranslate</span><span class="op">)</span></span></code></pre></div>
+<p>The output should resemble the following:</p>
+<p><img src="images/picAlignment.png" width="100%"></p>
 <!-- ## Alignment-Free Analysis -->
 <!-- Another common analysis is to look at syntenic hits between sequences without  -->
 <!-- aligning them. The result allows us to easily visualize differences between  -->

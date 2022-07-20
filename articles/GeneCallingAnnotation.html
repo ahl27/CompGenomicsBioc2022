@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,6 +99,7 @@ Lakshman<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-co
 
     
     
+<p><img src="images/PipelineGeneCalling.jpg" width="100%"></p>
 <div class="section level2">
 <h2 id="gene-calling-and-annotation">Gene Calling and Annotation<a class="anchor" aria-label="anchor" href="#gene-calling-and-annotation"></a>
 </h2>
@@ -142,16 +143,16 @@ we did in the previous section.</p>
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
     });">
-<button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download sequence</button>
+<button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download Example Sequence</button>
 </a>
+<p> </p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"TreeLine.R"</span><span class="op">)</span> <span class="co"># Shouldn't be necessary if using dev version</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"TreeLine.R"</span><span class="op">)</span> <span class="co"># Shouldn't be necessary if using dev version</span></span>
+<span></span>
+<span><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="st">'/path/to/SingleSeq.fa.gz'</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load a single complete Micrococcus genome</span></span>
-<span><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'GeneCalling'</span>, <span class="st">'SingleSeq.fa.gz'</span>, </span>
-<span>                        package<span class="op">=</span><span class="st">'CompGenomicsBioc2022'</span><span class="op">)</span></span>
-<span><span class="va">dnaGenome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="va">datafile</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">dnaGenome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="va">datafile</span><span class="op">)</span></span>
 <span><span class="va">aaGenome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/translate.html" class="external-link">translate</a></span><span class="op">(</span><span class="va">dnaGenome</span><span class="op">)</span> </span></code></pre></div>
 <p>Next, we’re going to identify the genes in our sequence using
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/FindGenes.html" class="external-link">FindGenes()</a></code> from the <code>DECIPHER</code> package.</p>
@@ -165,21 +166,21 @@ extract the sequences corresponding to each gene using the
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># `Genes` object</span></span>
 <span><span class="va">geneLocs</span></span></code></pre></div>
-<pre><code><span><span class="co">## Genes object of size 2,216 specifying:</span></span>
-<span><span class="co">## 2,216 protein coding genes from 75 to 4,653 nucleotides.</span></span>
+<pre><code><span><span class="co">## Genes object of size 2,218 specifying:</span></span>
+<span><span class="co">## 2,218 protein coding genes from 75 to 4,653 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     367.92 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     256.56 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     229.10 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      75.51 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     548.79 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     687.58 ...    1</span></span>
-<span><span class="co">## ... with 2,210 more rows.</span></span></code></pre>
+<span><span class="co">## 1     1      0   256  1803     366.46 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     255.32 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     228.34 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      75.33 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     545.48 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     684.34 ...    1</span></span>
+<span><span class="co">## ... with 2,212 more rows.</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Sequences corresponding to each gene</span></span>
 <span><span class="va">genes</span></span></code></pre></div>
-<pre><code><span><span class="co">## AAStringSet object of length 2216:</span></span>
+<pre><code><span><span class="co">## AAStringSet object of length 2218:</span></span>
 <span><span class="co">##        width seq</span></span>
 <span><span class="co">##    [1]   516 MVADQAVLSSWRSVVGSLEDDARVSARLMGFV...RKIRELMAERRTIYNQVTELTNEIKRKQRGA*</span></span>
 <span><span class="co">##    [2]   372 MKFTVERDILTDAVSWAARSLSPRPPVPVLSG...SAPKPALLTGVNQEDGVVSDYRYLVMPVRIA*</span></span>
@@ -187,11 +188,11 @@ extract the sequences corresponding to each gene using the
 <span><span class="co">##    [4]   188 MAETPAPFEPDRPDLALVQLRRVREAARERGE...TRIEVAGPQAPSWRKGPRTVRGGRGPRDTYG*</span></span>
 <span><span class="co">##    [5]   721 MVDAMPENPAEEPTAASAAPNPEAVPDAVGQP...DAVFSMLMGEDVESRRTFIQQNAKDIRFLDV*</span></span>
 <span><span class="co">##    ...   ... ...</span></span>
-<span><span class="co">## [2212]   195 MSAENVTPAPEAEDAVVETPAGQGSRVAEQDD...KIVHDVVADAGLTSESEGEGARRHVVISADD*</span></span>
-<span><span class="co">## [2213]   333 MFEAILSPFRWLMSWLLGAFHSILEFAGLPAD...QAGRGGAVLNGEVVRQSGQRVQPQRKNRRRK*</span></span>
-<span><span class="co">## [2214]   123 MTVTPSPFVVLEPSREWGPLRALPSALLAGLL...PPGHRRWPPGRQPRILALNHPPIPPDLPQED*</span></span>
-<span><span class="co">## [2215]   133 MLPRDRRVRTPAEFRHLGRTGTRAGRRTVVVS...AEADYALLRRETVGALGKALKPHLPAASEHA*</span></span>
-<span><span class="co">## [2216]    46 MTKRTFQPNNRRRARKHGFRARMRTRAGRAILSARRGKNRAELSA*</span></span></code></pre>
+<span><span class="co">## [2214]   195 MSAENVTPAPEAEDAVVETPAGQGSRVAEQDD...KIVHDVVADAGLTSESEGEGARRHVVISADD*</span></span>
+<span><span class="co">## [2215]   333 MFEAILSPFRWLMSWLLGAFHSILEFAGLPAD...QAGRGGAVLNGEVVRQSGQRVQPQRKNRRRK*</span></span>
+<span><span class="co">## [2216]   123 MTVTPSPFVVLEPSREWGPLRALPSALLAGLL...PPGHRRWPPGRQPRILALNHPPIPPDLPQED*</span></span>
+<span><span class="co">## [2217]   133 MLPRDRRVRTPAEFRHLGRTGTRAGRRTVVVS...AEADYALLRRETVGALGKALKPHLPAASEHA*</span></span>
+<span><span class="co">## [2218]    46 MTKRTFQPNNRRRARKHGFRARMRTRAGRAILSARRGKNRAELSA*</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="removing-non-coding-regions">Removing Non-Coding Regions<a class="anchor" aria-label="anchor" href="#removing-non-coding-regions"></a>
@@ -240,18 +241,18 @@ This will result in more accurate gene calling than just running
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Genes in the genome</span></span>
 <span><span class="va">genes</span> </span></code></pre></div>
-<pre><code><span><span class="co">## Genes object of size 2,275 specifying:</span></span>
-<span><span class="co">## 2,217 protein coding genes from 75 to 4,653 nucleotides.</span></span>
+<pre><code><span><span class="co">## Genes object of size 2,276 specifying:</span></span>
+<span><span class="co">## 2,218 protein coding genes from 75 to 4,653 nucleotides.</span></span>
 <span><span class="co">## 58 non-coding RNAs from 73 to 3,088 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     366.29 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     256.03 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     227.78 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      75.07 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     545.44 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     684.83 ...    1</span></span>
-<span><span class="co">## ... with 2,269 more rows.</span></span></code></pre>
+<span><span class="co">## 1     1      0   256  1803     366.52 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     255.21 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     227.65 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      74.69 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     544.95 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     684.67 ...    1</span></span>
+<span><span class="co">## ... with 2,270 more rows.</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="classification-with-idtaxa">Classification with <code>IDTAXA</code><a class="anchor" aria-label="anchor" href="#classification-with-idtaxa"></a>
@@ -273,22 +274,23 @@ that our training set for <code><a href="https://rdrr.io/pkg/DECIPHER/man/IdTaxa
 acids, so we have to first call <code><a href="https://rdrr.io/pkg/Biostrings/man/translate.html" class="external-link">translate()</a></code> on our DNA
 sequences to be able to provide <code><a href="https://rdrr.io/pkg/DECIPHER/man/IdTaxa.html" class="external-link">IdTaxa()</a></code> with amino acid
 sequences.</p>
+<p> </p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># TrainingSet.RData is downloadable at the above link.</span></span>
+<span><span class="co"># You can also download it directly from the DECIPHER website.</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">'/path/to/TrainingSet.RData'</span><span class="op">)</span></span>
+<span><span class="va">trainingSet</span> <span class="op">&lt;-</span> <span class="va">ExTrainList</span><span class="op">$</span><span class="va">TrainingSet</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Find amino acid sequences corresponding to found genes</span></span>
 <span><span class="va">geneSeqs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/ExtractGenes.html" class="external-link">ExtractGenes</a></span><span class="op">(</span><span class="va">genes</span>, <span class="va">dnaGenome</span>, type<span class="op">=</span><span class="st">"DNAStringSet"</span><span class="op">)</span></span>
 <span><span class="va">geneSeqs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/translate.html" class="external-link">translate</a></span><span class="op">(</span><span class="va">geneSeqs</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># `trainingSet` is loaded from extdata/GeneCalling/IdTaxaTraining</span></span>
-<span><span class="co"># It's broken up into pieces because of file constraints on GH</span></span>
-<span><span class="co"># You can rebuild it using the "RecombineIdTaxaTraining.R" file</span></span>
-<span><span class="co"># (just substitute the appropriate value for the first line),</span></span>
-<span><span class="co"># or you can download it directly from the DECIPHER website.</span></span>
 <span></span>
 <span><span class="co"># Classify!</span></span>
 <span><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/IdTaxa.html" class="external-link">IdTaxa</a></span><span class="op">(</span><span class="va">geneSeqs</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="va">trainingSet</span><span class="op">)</span></span></code></pre></div>
 <p>Once we’ve finished calculating, we can either view the annotations
 directly, or plot them as a taxonomy.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Looking at all results</span></span>
 <span><span class="va">ids</span></span></code></pre></div>
 <pre><code><span><span class="co">##   A test set of class 'Taxa' with length 10</span></span>
@@ -299,11 +301,11 @@ directly, or plot them as a taxonomy.</p>
 <span><span class="co">##  [4]        28% Root; unclassified_Root...                                      </span></span>
 <span><span class="co">##  [5]        96% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
 <span><span class="co">##  [6]       100% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
-<span><span class="co">##  [7]        35% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">##  [8]        60% Root; 09130 Environmental Information Processing; 09131 Membr...</span></span>
-<span><span class="co">##  [9]        47% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">## [10]        26% Root; unclassified_Root...</span></span></code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<span><span class="co">##  [7]        36% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">##  [8]        85% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">##  [9]        41% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">## [10]        27% Root; unclassified_Root...</span></span></code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Looking at a specific entry</span></span>
 <span><span class="va">ids</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## $taxon</span></span>
@@ -315,10 +317,10 @@ directly, or plot them as a taxonomy.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $confidence</span></span>
 <span><span class="co">## [1] 100 100 100 100 100</span></span></code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot the distribution of results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ids</span>, <span class="va">trainingSet</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GeneCallingAnnotation_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="GeneCallingAnnotation_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <style type="text/css">
 .pagination {
     display: flex;

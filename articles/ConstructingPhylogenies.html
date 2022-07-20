@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,6 +99,7 @@ Lakshman<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-co
 
     
     
+<p><img src="images/PipelinePhylogeny.jpg" width="100%"></p>
 <div class="section level2">
 <h2 id="phylogenetic-reconstruction">Phylogenetic Reconstruction<a class="anchor" aria-label="anchor" href="#phylogenetic-reconstruction"></a>
 </h2>
@@ -146,21 +147,20 @@ visualization.</p>
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
     });">
-<button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download COG</button>
+<button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download COG Data</button>
 </a>
+<p> </p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"TreeLine.R"</span><span class="op">)</span> <span class="co"># Shouldn't be necessary if using dev version</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"TreeLine.R"</span><span class="op">)</span> <span class="co"># Shouldn't be necessary if using dev version</span></span>
+<span></span>
+<span><span class="co"># This is downloadable at the link above</span></span>
+<span><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="st">'/path/to/testCOG.RData'</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load in example COG from the precalculated data</span></span>
-<span><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'Phylogenies'</span>,</span>
-<span>                        <span class="st">'testCOG.RData'</span>,</span>
-<span>                        package<span class="op">=</span><span class="st">'CompGenomicsBioc2022'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="va">datafile</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="co"># Should load 'testCOG'</span></span></code></pre></div>
-<pre><code><span><span class="co">## Loading objects:</span></span>
-<span><span class="co">##   testCOG</span></span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Helper plotting function</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="va">datafile</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="co"># Should load 'testCOG'</span></span>
+<span></span>
+<span><span class="co"># Helper plotting function</span></span>
 <span><span class="va">plot_tree_unrooted</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dend</span>, <span class="va">main</span>, <span class="va">plottype</span><span class="op">=</span><span class="st">'fan'</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://ape-package.ird.fr/" class="external-link">ape</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -173,60 +173,12 @@ visualization.</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># Since these are coding regions, AlignTranslation is preferred</span></span>
-<span><span class="va">testSeqs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation</a></span><span class="op">(</span><span class="va">testCOG</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Determining distance matrix based on shared 5-mers:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Clustering into groups by similarity:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Aligning Sequences:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0.06 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Iteration 1 of 2:</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Determining distance matrix based on alignment:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Reclustering into groups by similarity:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Realigning Sequences:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0.03 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Iteration 2 of 2:</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Determining distance matrix based on alignment:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Reclustering into groups by similarity:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0 secs</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Realigning Sequences:</span></span>
-<span><span class="co">## ================================================================================</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Time difference of 0 secs</span></span></code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<span><span class="va">testSeqs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation</a></span><span class="op">(</span><span class="va">testCOG</span><span class="op">)</span></span>
+<span><span class="va">treeCOG1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, method<span class="op">=</span><span class="st">'MP'</span>, reconstruct<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Construct a gene tree</span></span>
-<span><span class="va">treeCOG1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, method<span class="op">=</span><span class="st">'MP'</span>, reconstruct<span class="op">=</span><span class="cn">TRUE</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeCOG1</span>, main<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-4-1.png" width="1000px"></p>
+<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-7-1.png" width="1000px"></p>
 <p>That’s all we need to construct a quick phylogenenetic tree in R!
 I’ve set <code>reconstruct=TRUE</code> to have <code>TreeLine</code>
 automatically reconstruct ancestral states at each node.</p>
@@ -251,29 +203,29 @@ published <a href="https://ahl27.com/IntroPhylogenetics" class="external-link">a
 tutorial</a> that goes into the mathematics of how these methods
 work.</p>
 <p>Example code for each of these:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Maximum Parsimony</span></span>
 <span><span class="va">treeMP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span>myXStringSet<span class="op">=</span><span class="va">testSeqs</span>, method<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span>
 <span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeMP</span>, main<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-5-1.png" width="1000px"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-8-1.png" width="1000px"></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Neighbor-Joining</span></span>
 <span><span class="va">distMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/DistanceMatrix.html" class="external-link">DistanceMatrix</a></span><span class="op">(</span><span class="va">testSeqs</span>, correction<span class="op">=</span><span class="st">'Jukes-Cantor'</span><span class="op">)</span></span>
 <span><span class="va">treeNJ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span>myDistMatrix<span class="op">=</span><span class="va">distMatrix</span>, method<span class="op">=</span><span class="st">'NJ'</span><span class="op">)</span></span>
 <span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeNJ</span>, main<span class="op">=</span><span class="st">'NJ'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-6-1.png" width="1000px"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-9-1.png" width="1000px"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># UPGMA tree</span></span>
 <span><span class="va">distMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/DistanceMatrix.html" class="external-link">DistanceMatrix</a></span><span class="op">(</span><span class="va">testSeqs</span>, correction<span class="op">=</span><span class="st">'Jukes-Cantor'</span><span class="op">)</span></span>
 <span><span class="va">treeUltra</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span>myDistMatrix<span class="op">=</span><span class="va">distMatrix</span>, method<span class="op">=</span><span class="st">'UPGMA'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">treeUltra</span>, main<span class="op">=</span><span class="st">'UPGMA'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-7-1.png" width="1000px"></p>
+<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-10-1.png" width="1000px"></p>
 <p>Maximum-Likelihood trees are the most accurate, but also the slowest
 to create. This method iteratively maximizes the likelihood of the tree
 under a given sequence evolution model for a set of aligned sequences.
 In the interest of time, this demo will set the <code>maxTime</code>
 argument to prevent the algorithm from taking too long.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Maximum Likehood</span></span>
 <span><span class="co">#   - Max runtime is set here to 30sec, default is as long as it takes</span></span>
 <span><span class="co">#   - maxTime expresses time in HOURS, not sec/min</span></span>
@@ -281,7 +233,7 @@ argument to prevent the algorithm from taking too long.</p>
 <span><span class="co">#   - Longer runtime will produce better results</span></span>
 <span><span class="va">treeML</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, maxTime<span class="op">=</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">3600</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeML</span>, main<span class="op">=</span><span class="st">'Maximum-Likelihood'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-8-1.png" width="1000px"></p>
+<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-11-1.png" width="1000px"></p>
 </div>
 <div class="section level2">
 <h2 id="sequence-evolution-models">Sequence Evolution Models<a class="anchor" aria-label="anchor" href="#sequence-evolution-models"></a>
@@ -299,7 +251,7 @@ curious what models are even being tested?</p>
 <code>$Nucleotide</code> and <code>$Protein</code>. To look at the
 default models tested, simply print out the <code>MODELS</code> variable
 included from <code>DECIPHER</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">DECIPHER</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/DECIPHER/man/MODELS.html" class="external-link">MODELS</a></span></span></code></pre></div>
 <pre><code><span><span class="co">## $Nucleotide</span></span>
 <span><span class="co">##  [1] "JC69"     "JC69+G4"  "K80"      "K80+G4"   "F81"      "F81+G4"  </span></span>
@@ -336,20 +288,20 @@ well as models tailored towards specific organisms
 <code>MODELS</code>, just with the models you want to include. To
 exclude certain models, copy <code>MODELS</code> and remove the entries
 you don’t want.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Using a specific set of models</span></span>
 <span><span class="va">mySpecificModel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Nucleotide<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'JC69'</span>, <span class="st">'HKY85'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">specTree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, model<span class="op">=</span><span class="va">mySpecificModel</span>, maxTime<span class="op">=</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">3600</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">specTree</span>, main<span class="op">=</span><span class="st">'Specific Set ML'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-10-1.png" width="1000px"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-13-1.png" width="1000px"></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Excluding Specific Models</span></span>
 <span><span class="va">myExcludedModel</span> <span class="op">&lt;-</span> <span class="fu">DECIPHER</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/DECIPHER/man/MODELS.html" class="external-link">MODELS</a></span></span>
 <span><span class="va">myExcludedModel</span><span class="op">$</span><span class="va">Protein</span> <span class="op">&lt;-</span> <span class="cn">NULL</span> <span class="co"># Remove all protein models</span></span>
 <span><span class="va">myExcludedModel</span><span class="op">$</span><span class="va">Nucleotide</span> <span class="op">&lt;-</span> <span class="va">myExcludedModel</span><span class="op">$</span><span class="va">Nucleotide</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="co"># Remove JC69</span></span>
 <span><span class="va">exclTree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, model<span class="op">=</span><span class="va">myExcludedModel</span>, maxTime<span class="op">=</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">3600</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">exclTree</span>, main<span class="op">=</span><span class="st">'Excluded Set ML'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-10-2.png" width="1000px"></p>
+<p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-13-2.png" width="1000px"></p>
 </div>
 <div class="section level2">
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>

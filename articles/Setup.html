@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,42 +138,29 @@ on the development version of Bioconductor.</p>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">'SynExtend'</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="downloading-data">Downloading Data<a class="anchor" aria-label="anchor" href="#downloading-data"></a>
+<h3 id="optional-downloading-data">[OPTIONAL] Downloading Data<a class="anchor" aria-label="anchor" href="#optional-downloading-data"></a>
 </h3>
-<p>Click the below button to download all datafiles used in this
-workshop.</p>
-<!-- ```{css echo=FALSE} -->
-<!-- .hvr-grow-shadow { -->
-<!--   display: inline-block; -->
-<!--   vertical-align: middle; -->
-<!--   -webkit-transform: perspective(1px) translateZ(0); -->
-<!--   transform: perspective(1px) translateZ(0); -->
-<!--   box-shadow: 0 0 1px rgba(0, 0, 0, 0); -->
-<!--   -webkit-transition-duration: 0.3s; -->
-<!--   transition-duration: 0.3s; -->
-<!--   -webkit-transition-property: box-shadow, transform; -->
-<!--   transition-property: box-shadow, transform; -->
-<!-- } -->
-<!-- .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active { -->
-<!--   box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5); -->
-<!--   -webkit-transform: scale(1.1); -->
-<!--   transform: scale(1.1); -->
-<!-- } -->
-<!-- ``` -->
-<!-- ```{r echo=FALSE} -->
-<!-- dir <- list.files(path=system.file('extdata', package='CompGenomicsBioc2022'), -->
-<!--                   full.names=TRUE) -->
-<!-- downloadthis::download_file( -->
-<!--   path = dir, -->
-<!--   output_name = "exampleDataCGBioc2022", -->
-<!--   button_label = "Download example datafiles", -->
-<!--   button_type = "success", -->
-<!--   has_icon = TRUE, -->
-<!--   icon = "fa fa-download", -->
-<!--   self_contained = FALSE, -->
-<!--   class = "hvr-grow-shadow" -->
-<!-- ) -->
-<!-- ``` -->
+<p>This workshop uses the set of all <em>Micrococcus</em> genomes with
+RefSeq annotations at assembly levels of Scaffold or above. All the data
+are included within this package, so you don’t have to download it
+yourself to be able to follow along! Each page also contains download
+links for the relevant datafiles.</p>
+<p>If you’d like to download the data yourself, you can find the genomic
+data online at <a href="https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&amp;annotated_only=true&amp;refseq_annotation=true&amp;assembly_level=1%3A3" class="external-link">NCBI’s
+Genomes Browser</a>. This link has the relevant query pre-filled.</p>
+<p>You can subset this dataset to just complete genomes using the slider
+bar as shown:</p>
+<p><img src="images/NCBIScreenSlider.png" width="100%"></p>
+<p>Once you’ve selected the relevant genomes, you can download them with
+the “Download Package” button.</p>
+<p><img src="images/NCBIDownload.png" width="100%"></p>
+<p>In the options dialog that appears, make sure to select “RefSeq Only”
+on the left, and then “Genome Sequences (FASTA)” on the right. You can
+optionally select “Annotation Features (GFF)”, though we’ll also cover
+how to create our own annotations in this workshop.</p>
+<p><img src="images/NCBISelection.png" width="100%"></p>
+<p>Again, download links for relevant data at each section will be
+included, so there is no need to do this unless you really want to.</p>
 <p> </p>
 <p> </p>
 <p> </p>
