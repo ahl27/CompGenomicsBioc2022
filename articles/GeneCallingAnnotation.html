@@ -169,12 +169,12 @@ extract the sequences corresponding to each gene using the
 <span><span class="co">## 2,217 protein coding genes from 75 to 4,653 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     367.97 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     256.62 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     228.40 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      75.52 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     547.54 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     687.75 ...    1</span></span>
+<span><span class="co">## 1     1      0   256  1803     368.25 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     256.48 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     229.19 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      75.55 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     547.07 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     687.93 ...    1</span></span>
 <span><span class="co">## ... with 2,211 more rows.</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Sequences corresponding to each gene</span></span>
@@ -273,18 +273,18 @@ This will result in more accurate gene calling than just running
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Genes in the genome</span></span>
 <span><span class="va">genes</span> </span></code></pre></div>
-<pre><code><span><span class="co">## Genes object of size 2,273 specifying:</span></span>
-<span><span class="co">## 2,215 protein coding genes from 75 to 4,653 nucleotides.</span></span>
+<pre><code><span><span class="co">## Genes object of size 2,275 specifying:</span></span>
+<span><span class="co">## 2,217 protein coding genes from 75 to 4,653 nucleotides.</span></span>
 <span><span class="co">## 58 non-coding RNAs from 73 to 3,088 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     367.43 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     256.25 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     228.10 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      75.62 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     546.85 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     686.23 ...    1</span></span>
-<span><span class="co">## ... with 2,267 more rows.</span></span></code></pre>
+<span><span class="co">## 1     1      0   256  1803     365.51 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     255.02 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     227.50 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      75.55 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     544.35 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     682.54 ...    1</span></span>
+<span><span class="co">## ... with 2,269 more rows.</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="classification-with-idtaxa">Classification with <code>IDTAXA</code><a class="anchor" aria-label="anchor" href="#classification-with-idtaxa"></a>
@@ -340,9 +340,9 @@ directly, or plot them as a taxonomy.</p>
 <span><span class="co">##  [5]        96% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
 <span><span class="co">##  [6]       100% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
 <span><span class="co">##  [7]        34% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">##  [8]        79% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">##  [9]        45% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">## [10]        28% Root; unclassified_Root...</span></span></code></pre>
+<span><span class="co">##  [8]        68% Root; 09190 Not Included in Pathway or Brite; 09193 Unclassif...</span></span>
+<span><span class="co">##  [9]        44% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">## [10]        27% Root; unclassified_Root...</span></span></code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Looking at a specific entry</span></span>
 <span><span class="va">ids</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
