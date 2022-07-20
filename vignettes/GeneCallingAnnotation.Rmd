@@ -20,7 +20,7 @@ source(newTreeLine, local=knitr::knit_global())
 ```
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelineGeneCalling.jpg')
+knitr::include_graphics('images/PipelineGeneCalling.pdf')
 ```
 
 ## Gene Calling and Annotation

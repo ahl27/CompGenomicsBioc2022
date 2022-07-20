@@ -16,6 +16,10 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/PipelineOverview.pdf')
+```
+
 This tutorial has walked through a complete pipeline of comparative genomic
 analysis. By using this tool, we've been able to generate hypotheses of 
 functional associations between genetic regions using only raw sequence data

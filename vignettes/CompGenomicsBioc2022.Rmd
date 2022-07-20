@@ -36,7 +36,7 @@ shared evolutionary pressure, which have previously been shown to imply some
 degree of conserved function. The complete pipeline consists of the following:
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelineOverview.jpg')
+knitr::include_graphics('images/PipelineOverview.pdf')
 ```
 
 We'll walk through obtaining sequence data, working with it, identifying genes,

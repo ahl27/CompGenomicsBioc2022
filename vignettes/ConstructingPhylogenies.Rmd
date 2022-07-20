@@ -13,7 +13,6 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, out.width='1000px', dpi=200, global.par=TRUE)
-par(mar=c(7.1,4.1,6.1,2.1))
 library(DECIPHER)
 library(SynExtend)
 library(ape)
@@ -23,8 +22,12 @@ newTreeLine <- system.file('extdata', 'TreeLine.R',
 source(newTreeLine, local=knitr::knit_global())
 ```
 
+```{r echo=FALSE}
+par(mar=c(7.1,4.1,6.1,2.1))
+```
+
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelinePhylogeny.jpg')
+knitr::include_graphics('images/PipelinePhylogeny.pdf')
 ```
 
 ## Phylogenetic Reconstruction

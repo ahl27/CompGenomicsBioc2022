@@ -17,7 +17,7 @@ library(SynExtend)
 ```
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelineHomology.jpg')
+knitr::include_graphics('images/PipelineHomology.pdf')
 ```
 
 ## Finding COGs

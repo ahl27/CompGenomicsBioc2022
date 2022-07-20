@@ -17,7 +17,7 @@ library(DECIPHER)
 ```
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelineGettingData.jpg')
+knitr::include_graphics('images/PipelineGettingData.pdf')
 ```
 
 ## Reading in Sequencing Data
