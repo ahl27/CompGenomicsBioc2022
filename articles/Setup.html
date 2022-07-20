@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,20 +127,22 @@ development environment you prefer.</p>
 <code>SynExtend</code>. These will be installed via <a href="http://bioconductor.org/" class="external-link">Bioconductor</a>, a package manager for
 open source bioinformatics projects in R. These tutorials will use
 <code>DECIPHER</code> version <code>2.25.0</code> and
-<code>SynExtend</code> version <code>1.9.4</code>, which are available
+<code>SynExtend</code> version <code>1.9.5</code>, which are available
 on the development version of Bioconductor.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#BiocManager::install('DECIPHER', version='2.25.0')</span></span>
-<span><span class="co">#BiocManager::install('SynExtend', version='1.9.4')</span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">'DECIPHER'</span><span class="op">)</span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">'SynExtend'</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="downloading-data">Downloading Data<a class="anchor" aria-label="anchor" href="#downloading-data"></a>
+<h3 id="downloading-data-optional">Downloading Data [Optional]<a class="anchor" aria-label="anchor" href="#downloading-data-optional"></a>
 </h3>
+<p>If you are interested in downloading the complete dataset yourself,
+follow these instructions. Note that this is not necessary; all relevant
+data for each part of the workshop is provided on subsequent pages. To
+proceed to the next page, use the navbar at the bottom of this page.</p>
 <p>This workshop uses the set of all <em>Micrococcus</em> genomes with
 RefSeq annotations at assembly levels of Scaffold or above. All the data
 are included within this package, so you don’t have to download it
