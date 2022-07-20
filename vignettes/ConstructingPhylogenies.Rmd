@@ -36,14 +36,8 @@ We've now learned how to find Clusters of Orthologous Genes (COGs) from a set of
 sequences. The last thing we need for our final analysis are phylogenetic 
 reconstructions of each gene cluster. In this step, we'll build phylogenies for
 our COGs using the new `TreeLine()` function introduced in the latest update 
-of `DECIPHER`.
-
-In the last step, we constructed COGs for a small subset of our data to learn the
-algorithmic flow of that portion of the pipeline. I've included a precalculated
-result if we had constructed COGs for all 91 genomes at assembly
-levels of "Scaffold" or higher from 
-[GenBank](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=1%3A3). 
-This section will work with one of those COGs.
+of `DECIPHER`. This analysis uses the third COG from the previous section
+(if you don't have it, you can download it below!).
 
 *Small note:* the setup for this page includes a helper function to plot the
 phylogenies as a circular plot. You can plot them just as well with `plot`, I
@@ -91,6 +85,7 @@ downloadthis::download_file(
 library(DECIPHER)
 
 # This is downloadable using the above button
+# If you finished the previous page, this is MatchedSequences[[3]]
 datafile <- '/path/to/testCOG.RData'
 ```
 
@@ -101,7 +96,10 @@ datafile <- system.file('extdata', 'Phylogenies',
 ```
 
 ```{r results='hide'}
-# Load in example COG from the precalculated data
+# Load in example COG 
+# This is COG 3 from the previous section, which you can get with:
+# testCOG <- MatchedSequences[[3]]
+
 load(datafile, verbose=TRUE) # Should load 'testCOG'
 
 # Helper plotting function
@@ -119,11 +117,23 @@ plot_tree_unrooted <- function(dend, main, plottype='unrooted'){
 # Since these are coding regions, AlignTranslation is preferred
 testSeqs <- AlignTranslation(testCOG)
 
-
-# Construct a gene tree
-treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE)
+# Let's make the names a little more concise
+# These COGs exist in pairs with two lengths
+# We'll code them as <Assembly><A/B>, where A is the longer sequence
+# This renaming will make plotting look a little nicer
+names(testCOG) <- c('1A', '1B', '2A', '2B',
+                    '3B', '3A', '4B', '4A', 
+                    '5A', '5B')
+testCOG <- testCOG[order(names(testCOG))]
 ```
 ```{r}
+# Let's look at the COG before we proceed
+testCOG
+```
+```{r results='hide', fig.keep='all'}
+# Construct a gene tree
+treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE)
+
 # Visualize the result
 plot_tree_unrooted(treeCOG1, main='MP')
 ```
