@@ -185,7 +185,7 @@ source(makeTrainingSet, local=knitr::knit_global())
 
 &nbsp;
 
-If this button doesn't work, you can download it from the [DECIPHER Downloads Page](http://www2.decipher.codes/Downloads.html) under "Training sets for functional classification (amino acids)". The 
+If this button doesn't work, you can download it from the <a href='http://www2.decipher.codes/Downloads.html' target="_blank" rel="noopener noreferrer">DECIPHER Downloads Page</a> under "Training sets for functional classification (amino acids)". The 
 correct training set for *Microccocus* is `KEGG Actinobacteria`.
 
 ```{r eval=FALSE}
