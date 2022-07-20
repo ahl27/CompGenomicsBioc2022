@@ -16,6 +16,10 @@ knitr::opts_chunk$set(echo = TRUE)
 library(downloadthis)
 ```
 
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/PipelineSetup.png')
+```
+
 ## Setting up your environment
 This tutorial depends on a few key packages to work correctly. This page will outline
 how to install all the necessary components for this workshop. If you're attending
