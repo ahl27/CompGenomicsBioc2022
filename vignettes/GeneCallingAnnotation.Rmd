@@ -178,7 +178,9 @@ makeTrainingSet <- system.file('extdata', 'GeneCalling',
                                'RecombineIdTaxaTraining.R',
                             package='CompGenomicsBioc2022')
 source(makeTrainingSet, local=knitr::knit_global())
+```
 
+```{r echo=FALSE}
 downloadthis::download_link(
   link='http://www2.decipher.codes/Classification/TrainingSets/KEGG_Prokaryotes_r95.RData',
   button_label = "Download Training Set",
