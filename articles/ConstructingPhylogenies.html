@@ -112,8 +112,8 @@ we’ll build phylogenies for our COGs using the new
 <p>In the last step, we constructed COGs for a small subset of our data
 to learn the algorithmic flow of that portion of the pipeline. I’ve
 included a precalculated result if we had constructed COGs for all 91
-genomes at assembly levels of “Scaffold” or higher from GenBank. This
-section will work with one of those COGs.</p>
+genomes at assembly levels of “Scaffold” or higher from <a href="https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&amp;annotated_only=true&amp;refseq_annotation=true&amp;assembly_level=1%3A3" class="external-link">GenBank</a>.
+This section will work with one of those COGs.</p>
 <p><em>Small note:</em> the setup for this page includes a helper
 function to plot the phylogenies as a circular plot. You can plot them
 just as well with <code>plot</code>, I just prefer this visualization.
@@ -152,9 +152,8 @@ visualization.</p>
 <p> </p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"TreeLine.R"</span><span class="op">)</span> <span class="co"># Shouldn't be necessary if using dev version</span></span>
 <span></span>
-<span><span class="co"># This is downloadable at the link above</span></span>
+<span><span class="co"># This is downloadable using the above button</span></span>
 <span><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="st">'/path/to/testCOG.RData'</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load in example COG from the precalculated data</span></span>
@@ -239,10 +238,11 @@ argument to prevent the algorithm from taking too long.</p>
 <h2 id="sequence-evolution-models">Sequence Evolution Models<a class="anchor" aria-label="anchor" href="#sequence-evolution-models"></a>
 </h2>
 <p>One question you’re probably asking is, “What is this ‘given sequence
-evolution model’?” That’s an excellent question–by default,
-<code><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine()</a></code> will test a variety of sequence evolution models
-and pick the one that works best for your data. This means that you
-shouldn’t typically have to worry about which model to use.</p>
+evolution model’?” That’s an excellent question!</p>
+<p>By default, <code><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine()</a></code> will test a variety of sequence
+evolution models and pick the one that works best for your data. This
+means that you shouldn’t typically have to worry about which model to
+use.</p>
 <p>However, what if we wanted to explicitly pick a certain model? What
 if we wanted to exclude a handful of models? Or what if we’re just
 curious what models are even being tested?</p>

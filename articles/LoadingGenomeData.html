@@ -105,21 +105,21 @@ Lakshman<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-co
 </h2>
 <p>In order to work with sequencing data, we first have to get it into R
 in a format that allows us to work with it. The most commonly used
-format for genomic data is the <code>XString</code> and
+formats for genomic data are the <code>XString</code> and
 <code>XStringSet</code> classes, which are available through the
 <code>Biostrings</code> package.</p>
 <p><code>XStrings</code> come in 4 distinct flavors, depending on the
 characters allowed:</p>
 <ul>
 <li>
-<code>DNAString</code>, for DNA data (ATGC, plus gaps and ambiguity
-codes)</li>
+<code>DNAString</code>, for DNA data (<code>ATGC</code>, plus gaps
+and ambiguity codes)</li>
 <li>
-<code>RNAString</code>, for RNA data (AUGC, plus gaps and ambiguity
-codes)</li>
+<code>RNAString</code>, for RNA data (<code>AUGC</code>, plus gaps
+and ambiguity codes)</li>
 <li>
 <code>AAString</code>, for amino acid data (20 amino acids plus
-ambiguity codes, U, O, and unknown/gaps)</li>
+<code>U</code>, <code>O</code>, ambiguity codes, and unknown/gaps)</li>
 <li>
 <code>BString</code>, for any combination of any letters</li>
 </ul>
@@ -130,42 +130,32 @@ and work with genomics data. Below is an example of manually creating an
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">DECIPHER</span><span class="op">)</span> <span class="co"># Auto-imports Biostrings</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'AGACT'</span>,</span>
-<span>               <span class="st">'AGACG'</span>,</span>
-<span>               <span class="st">'TCATT'</span>,</span>
-<span>               <span class="st">'TGCTG'</span>,</span>
-<span>               <span class="st">'AGCTG'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'AGACTCGCA'</span>,</span>
+<span>               <span class="st">'AGACGGTCA'</span>,</span>
+<span>               <span class="st">'TCATTAGTT'</span>,</span>
+<span>               <span class="st">'TGCTGAAAA'</span>,</span>
+<span>               <span class="st">'AGCTGTTGC'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sequenceSet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-class.html" class="external-link">DNAStringSet</a></span><span class="op">(</span><span class="va">sequences</span><span class="op">)</span></span>
 <span><span class="va">sequenceSet</span></span></code></pre></div>
 <pre><code><span><span class="co">## DNAStringSet object of length 5:</span></span>
 <span><span class="co">##     width seq</span></span>
-<span><span class="co">## [1]     5 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span></span></span>
-<span><span class="co">## [2]     5 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">G</span></span></span>
-<span><span class="co">## [3]     5 <span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">TT</span></span></span>
-<span><span class="co">## [4]     5 <span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span></span></span>
-<span><span class="co">## [5]     5 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span></span></span></code></pre>
+<span><span class="co">## [1]     9 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span></span></span>
+<span><span class="co">## [2]     9 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #AFFFFF;">GG</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span></span></span>
+<span><span class="co">## [3]     9 <span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span></span></span>
+<span><span class="co">## [4]     9 <span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFAFAF;">AAAA</span></span></span>
+<span><span class="co">## [5]     9 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span></span></span></code></pre>
 <p>We can also translate DNA sequences to their amino acid counterparts
 with <code><a href="https://rdrr.io/pkg/Biostrings/man/translate.html" class="external-link">translate()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/translate.html" class="external-link">translate</a></span><span class="op">(</span><span class="va">sequenceSet</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
-<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[1]]': last 2 bases were ignored</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
-<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[2]]': last 2 bases were ignored</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
-<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[3]]': last 2 bases were ignored</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
-<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[4]]': last 2 bases were ignored</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in .Call2("DNAStringSet_translate", x, skip_code,</span></span>
-<span><span class="co">## dna_codes[codon_alphabet], : in 'x[[5]]': last 2 bases were ignored</span></span></code></pre>
 <pre><code><span><span class="co">## AAStringSet object of length 5:</span></span>
 <span><span class="co">##     width seq</span></span>
-<span><span class="co">## [1]     1 R</span></span>
-<span><span class="co">## [2]     1 R</span></span>
-<span><span class="co">## [3]     1 S</span></span>
-<span><span class="co">## [4]     1 C</span></span>
-<span><span class="co">## [5]     1 S</span></span></code></pre>
+<span><span class="co">## [1]     3 RLA</span></span>
+<span><span class="co">## [2]     3 RRS</span></span>
+<span><span class="co">## [3]     3 SLV</span></span>
+<span><span class="co">## [4]     3 C*K</span></span>
+<span><span class="co">## [5]     3 SCC</span></span></code></pre>
 <p>Manually typing in sequences obviously isn’t a great system. Most
 sequencing data are downloadable as <code>.fasta</code> or
 <code>.fastq</code> files, so let’s look at a more realistic use-case
@@ -211,20 +201,20 @@ in individually.</p>
 <button class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download Example Sequences</button>
 </a>
 <p> </p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># MicroFASTAtrimmed.fa.gz is loaded from the above button</span></span>
-<span><span class="co"># also available at:</span></span>
-<span><span class="co"># system.file('extdata', 'LoadingData', 'MicroFASTAtrimmed.fa.gz', </span></span>
-<span><span class="co">#                            package='CompGenomicsBioc2022')</span></span>
+<span><span class="co"># also available at extdata/LoadingData/ within this package</span></span>
+<span></span>
 <span><span class="va">exampleSeqs</span> <span class="op">&lt;-</span> <span class="st">'/path/to/MicroFASTAtrimmed.fa.gz'</span></span>
 <span></span>
-<span><span class="co"># note that we can also use format='fastq' for FASTQ datasets</span></span>
-<span><span class="va">exStringSet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="va">exampleSeqs</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">exStringSet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="va">exampleSeqs</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></span>
+<span><span class="co"># we could also use format='fastq' for FASTQ datasets</span></span></code></pre></div>
 <p>Success! Now we have a large example dataset to work with.</p>
 <p>If we wanted to visualize these sequences, we can open them in a web
 browser using <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code> from <code>DECIPHER</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs</a></span><span class="op">(</span><span class="va">exStringSet</span><span class="op">)</span></span></code></pre></div>
+<p><img src="images/browseSeqs.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="aligning-sequences">Aligning Sequences<a class="anchor" aria-label="anchor" href="#aligning-sequences"></a>
@@ -239,7 +229,7 @@ the <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class
 <code>DECIPHER</code>. <code><a href="https://rdrr.io/pkg/DECIPHER/man/AlignTranslation.html" class="external-link">AlignTranslation()</a></code> aligns sequences
 based on their translated amino acid sequences, and is significantly
 more accurate for coding sequences.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Align the sequences</span></span>
 <span><span class="va">aliNoTranslate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/AlignSeqs.html" class="external-link">AlignSeqs</a></span><span class="op">(</span><span class="va">exStringSet</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -265,10 +255,17 @@ more accurate for coding sequences.</p>
 them through R isn’t always super informative. As before, we can
 visualize this alignment in a much better way using
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code>:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs</a></span><span class="op">(</span><span class="va">aliNoTranslate</span><span class="op">)</span></span></code></pre></div>
 <p>The output should resemble the following:</p>
 <p><img src="images/picAlignment.png" width="100%"></p>
+</div>
+<div class="section level2">
+<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</h2>
+<p>Now we’ve managed to read in sequence data and perform some basic
+analyses. With this knowledge, we can proceed to the next step of the
+pipeline: finding and annotating genes.</p>
 <!-- ## Alignment-Free Analysis -->
 <!-- Another common analysis is to look at syntenic hits between sequences without  -->
 <!-- aligning them. The result allows us to easily visualize differences between  -->

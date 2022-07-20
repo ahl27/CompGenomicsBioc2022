@@ -115,13 +115,32 @@ visualization</li>
 </ul>
 <p>This coevolutionary signal allows us to generate hypotheses about
 possible unknown functional associations between proteins. In the
-previous example, we were able to identify that all ureases are under
-shared selective pressure.</p>
+previous example, we were able to correctly identify a cluster of
+ureases using only sequencing data.</p>
 <p>This pipeline works on both genes that have been previously
 characterized and those that have not, meaning we can guide future wet
 lab investigation with these predictions. Future work will investigate
 ways to improve our predictions, so stay tuned to the
 <code>SynExtend</code> package as it develops!</p>
+<div class="section level2">
+<h2 id="implementation-at-scale">Implementation at Scale<a class="anchor" aria-label="anchor" href="#implementation-at-scale"></a>
+</h2>
+<p>While our analyses are designed to be scalable, they are not yet fast
+enough to be able to examine thousands of genomes within a single
+workshop. Since we eventually need to make comparisons between every
+pair of COGs, the task grows quadratically as more genomes (and thus
+more COGs) are analyzed. Because of this, we chose a smaller test set to
+showcase performance in this workshop.</p>
+<p>However, our methods can scale to many more genomes. All of our
+methods are designed to be run in parallel across a supercomputer
+system. The majority of the methods have low CPU and memory
+requirements, and thus can be run on small (2-4GB memory) nodes. We have
+recently completed analysis of all available <em>Streptomyces</em>
+genomes, which took approximately three weeks of real time when executed
+in parallel.</p>
+<p>Users interested in deploying these analyses at scale are encouraged
+to contact our lab for more information!</p>
+</div>
 <div class="section level2">
 <h2 id="thank-you">Thank you!<a class="anchor" aria-label="anchor" href="#thank-you"></a>
 </h2>
