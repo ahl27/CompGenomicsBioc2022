@@ -20,7 +20,7 @@ source(newTreeLine, local=knitr::knit_global())
 ```
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelineGeneCalling.pdf')
+knitr::include_graphics('images/PipelineGeneCalling.png')
 ```
 
 ## Gene Calling and Annotation
@@ -180,17 +180,8 @@ makeTrainingSet <- system.file('extdata', 'GeneCalling',
 source(makeTrainingSet, local=knitr::knit_global())
 ```
 
-```{r echo=FALSE}
-downloadthis::download_link(
-  link='http://www2.decipher.codes/Classification/TrainingSets/KEGG_Prokaryotes_r95.RData',
-  button_label = "Download Training Set",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-download",
-  self_contained = FALSE,
-  class = "hvr-grow-shadow"
-)
-```
+
+<a href='http://www2.decipher.codes/Classification/TrainingSets/KEGG_Prokaryotes_r95.RData' class="btn btn-success hvr-grow-shadow"><i class="fa fa-download"></i> Download Training Set</a>
 
 &nbsp;
 
