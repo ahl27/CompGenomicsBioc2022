@@ -99,7 +99,8 @@ Lakshman<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-co
 
     
     
-<embed src="images/PipelinePhylogeny.pdf" width="100%" type="application/pdf"></embed><div class="section level2">
+<p><img src="images/PipelinePhylogeny.png" width="100%"></p>
+<div class="section level2">
 <h2 id="phylogenetic-reconstruction">Phylogenetic Reconstruction<a class="anchor" aria-label="anchor" href="#phylogenetic-reconstruction"></a>
 </h2>
 <p>We’ve now learned how to find Clusters of Orthologous Genes (COGs)
@@ -159,7 +160,7 @@ visualization.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="va">datafile</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="co"># Should load 'testCOG'</span></span>
 <span></span>
 <span><span class="co"># Helper plotting function</span></span>
-<span><span class="va">plot_tree_unrooted</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dend</span>, <span class="va">main</span>, <span class="va">plottype</span><span class="op">=</span><span class="st">'fan'</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="va">plot_tree_unrooted</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dend</span>, <span class="va">main</span>, <span class="va">plottype</span><span class="op">=</span><span class="st">'unrooted'</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://ape-package.ird.fr/" class="external-link">ape</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/WriteDendrogram.html" class="external-link">WriteDendrogram</a></span><span class="op">(</span><span class="va">dend</span>, file<span class="op">=</span><span class="va">tf</span>, quoteLabels<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
