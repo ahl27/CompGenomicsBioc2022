@@ -39,9 +39,14 @@ degree of conserved function. The complete pipeline consists of the following:
 knitr::include_graphics('images/PipelineOverview.jpg')
 ```
 
+We'll walk through obtaining sequence data, working with it, identifying genes,
+finding orthologous regions, creating phylogenetic reconstructions, and then
+identifying functional association networks. These networks can be used to make
+novel hypotheses about protein functional pathways.
+
 While this analysis is useful, the overall purpose of this workshop is to teach 
 users how to utilize a wide variety of tools for computational genomics. Our 
-immediate  goal serves as a convenient mechanism to guide instruction in a set of 
+immediate goal serves as a convenient mechanism to guide instruction in a set of 
 broadly applicable tools that can easily be repurposed to many other problems.
 
 This workshop will showcase the following functionalities through hands-on tutorials
@@ -76,7 +81,8 @@ additional tutorials.
 Attendees will be expected to participate by following along with the examples 
 provided in the workshop. Rather than just listening to instruction, attendees
 are expected to run the examples for themselves and ask questions related to either
-steps in the workshop or related problem scenarios these methods could be applicable to.
+steps in the workshop or related scenarios these methods could be applicable to
+for their own work.
 
 ### *Bioconductor* packages used
 
@@ -89,8 +95,7 @@ Timing is estimated and may vary depending on questions from audience.
 
 | Activity                                 |  Package  |        Time        |
 |:-----------------------------------------|:---------:|-------------------:|
-| Introduction                             |           |            5 min   |
-| Environment Setup                        |           |            5 min   |
+| Introduction and Setup                   |           |            5 min   |
 | Working with Genomic Data                | `DECIPHER`|           10 min   |
 | Gene Calling and Annotation              | `DECIPHER`|           15 min   |
 | Finding COGs                             |`SynExtend`|           15 min   |
@@ -111,9 +116,9 @@ preliminary data and guide experimental hypotheses.
 
 At the conclusion of this workshop, attendees will possess a toolkit of analyses
 they can apply to their own data. Computational analyses are increasingly valuable
-in the modern era of microbiology, and attendees of this workshop will gain sufficient
-expertise to be able to conduct *in silico* analyses, even if they don't have a 
-deep bioinformatics background.
+in the modern era of microbiology, and attendees of this workshop will gain 
+sufficient expertise to be able to conduct basic *in silico* analyses, 
+even if they don't have a deep bioinformatics background.
 
 ### Learning goals
 

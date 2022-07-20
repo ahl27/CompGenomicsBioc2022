@@ -48,7 +48,7 @@ BiocManager::install('DECIPHER')
 BiocManager::install('SynExtend')
 ```
 
-### [OPTIONAL] Downloading Data
+### Downloading Data
 
 This workshop uses the set of all *Micrococcus* genomes with RefSeq annotations
 at assembly levels of Scaffold or above. All the data are included within this 

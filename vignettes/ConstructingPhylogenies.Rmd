@@ -12,7 +12,8 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, out.width='1000px', dpi=200)
+knitr::opts_chunk$set(echo = TRUE, out.width='1000px', dpi=200, global.par=TRUE)
+par(mar=c(7.1,4.1,6.1,2.1))
 library(DECIPHER)
 library(SynExtend)
 library(ape)
@@ -37,7 +38,9 @@ of `DECIPHER`.
 In the last step, we constructed COGs for a small subset of our data to learn the
 algorithmic flow of that portion of the pipeline. I've included a precalculated
 result if we had constructed COGs for all 91 genomes at assembly
-levels of "Scaffold" or higher from GenBank. This section will work with one of those COGs.
+levels of "Scaffold" or higher from 
+[GenBank](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=1%3A3). 
+This section will work with one of those COGs.
 
 *Small note:* the setup for this page includes a helper function to plot the
 phylogenies as a circular plot. You can plot them just as well with `plot`, I
@@ -83,9 +86,8 @@ downloadthis::download_file(
 
 ```{r eval=FALSE}
 library(DECIPHER)
-source("TreeLine.R") # Shouldn't be necessary if using dev version
 
-# This is downloadable at the link above
+# This is downloadable using the above button
 datafile <- '/path/to/testCOG.RData'
 ```
 
@@ -176,7 +178,9 @@ plot_tree_unrooted(treeML, main='Maximum-Likelihood')
 ## Sequence Evolution Models
 
 One question you're probably asking is, "What is this 'given sequence evolution
-model'?" That's an excellent question--by default, `TreeLine()` will test a variety
+model'?" That's an excellent question!
+
+By default, `TreeLine()` will test a variety
 of sequence evolution models and pick the one that works best for your data. 
 This means that you shouldn't typically have to worry about which model to use.
 

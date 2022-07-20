@@ -41,11 +41,11 @@ All the code in this section will work on larger datasets, you may just have to 
 a little while. See the [Conclusions](https://www.ahl27.com/CompGenomicsBioc2022/articles/Conclusion.html)
 page for more information on running these analyses at scale.
 
-For this analysis, we're downloading the genomic data as `.fasta` files, but also
+For this analysis, we're downloading the genomic data as `.fasta` files along with
 precalculated annotations as `.gff` files. We could have also called genes and 
 annotated them in `DECIPHER` using the method in the previous page, this just
 provides an example of using prebuilt annotations for a more thorough overview
-of different usecases.
+of different use cases.
 
 
 ```{css echo=FALSE}
@@ -104,6 +104,7 @@ COGExampleDir <- system.file('extdata', 'COGs',
 # larger scale analyses. See code below for how we do this!
 DBPATH <- tempfile()
 
+# Pull out just the folders we want
 genomedirs <- list.files(COGExampleDir, full.names = TRUE)
 genomedirs <- genomedirs[grep('json', genomedirs, fixed=T, invert=T)]
 
@@ -129,6 +130,9 @@ for (i in seq_along(genomedirs)){
                                     Verbose = TRUE)
 }
 names(GeneCalls) <- seq_along(GeneCalls) # Must have number IDs here too
+
+# Note again that we could have used `FindNonCoding` and `FindGenes`
+# Rather than rely on having precomputed GeneCalls from a .gff
 ```
 
 ## Finding Orthologous Pairs
@@ -154,11 +158,7 @@ Syn <- FindSynteny(dbFile = DBPATH,
 Overlaps <- NucleotideOverlap(SyntenyObject = Syn,
                                GeneCalls = GeneCalls,
                                Verbose = TRUE)
-```
-```{r}
-head(Overlaps)
-```
-```{r results='hide'}
+
 Pairs <- PairSummaries(SyntenyLinks = Overlaps,
                      GeneCalls = GeneCalls,
                      DBPATH = DBPATH,
@@ -187,16 +187,16 @@ head(Pairs)
 ## Finding COGs
 
 From these pairwise orthologous regions, we can finally determine COGs using the
-`DisjointSet()` function from `SynExtend`. This function analyzes pairs to find
+`DisjointSet()` function from `SynExtend`. This function analyzes pairs to 
 determine which orthologs are (dis)connected. Future work will look into smarter
-ways to determine COGs from pairwise orthologies, but this analysis is already highly
-accurate. We also use `ExtractBy` to pull out the sequences corresponding to each
+ways to determine COGs from pairwise orthologies, but method currently shows strong
+performance. We also use `ExtractBy` to pull out the sequences corresponding to each
 genomic region in each COG.
 ```{r results='hide'}
 COGSets <- DisjointSet(Pairs = Pairs,
                         Verbose = TRUE)
 
-# Extract sequences for COGs with orthologs in at least 5 (all) genomes
+# Extract sequences for COGs with at least orthologs
 Sequences <- ExtractBy(x = Pairs,
                        y = DBPATH,
                        z = COGSets[lengths(COGSets) >= 5],
@@ -205,8 +205,9 @@ Sequences <- ExtractBy(x = Pairs,
 # These come back in different orders, so let's match them up
 allnames <- lapply(Sequences, names)
 COGMapping <- sapply(COGSets, \(x){
-  which(sapply(allnames, \(y) setequal(x,y)))
-})
+                                which(sapply(allnames, \(y) setequal(x,y)))
+                              }
+                     )
 COGMapping <- COGMapping[sapply(COGMapping, \(x) length(x) > 0)]
 
 MatchedCOGSets <- COGSets[names(COGMapping)]

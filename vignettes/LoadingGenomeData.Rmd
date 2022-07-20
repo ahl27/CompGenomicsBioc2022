@@ -23,15 +23,15 @@ knitr::include_graphics('images/PipelineGettingData.jpg')
 ## Reading in Sequencing Data
 
 In order to work with sequencing data, we first have to get it into R in a format
-that allows us to work with it. The most commonly used format for genomic data is
+that allows us to work with it. The most commonly used formats for genomic data are
 the `XString` and `XStringSet` classes, which are available through the `Biostrings`
 package.
 
 `XStrings` come in 4 distinct flavors, depending on the characters allowed:
 
-- `DNAString`, for DNA data (ATGC, plus gaps and ambiguity codes)
-- `RNAString`, for RNA data (AUGC, plus gaps and ambiguity codes)
-- `AAString`, for amino acid data (20 amino acids plus ambiguity codes, U, O, and unknown/gaps)
+- `DNAString`, for DNA data (`ATGC`, plus gaps and ambiguity codes)
+- `RNAString`, for RNA data (`AUGC`, plus gaps and ambiguity codes)
+- `AAString`, for amino acid data (20 amino acids plus `U`, `O`, ambiguity codes, and unknown/gaps)
 - `BString`, for any combination of any letters
 
 When `XString` objects of the same type are combined, they become an `XStringSet`. 
@@ -43,18 +43,18 @@ library(DECIPHER) # Auto-imports Biostrings
 
 ```{r}
 
-sequences <- c('AGACT',
-               'AGACG',
-               'TCATT',
-               'TGCTG',
-               'AGCTG')
+sequences <- c('AGACTCGCA',
+               'AGACGGTCA',
+               'TCATTAGTT',
+               'TGCTGAAAA',
+               'AGCTGTTGC')
 
 sequenceSet <- DNAStringSet(sequences)
 sequenceSet
 ```
 
 We can also translate DNA sequences to their amino acid counterparts with `translate()`.
-```{r}
+```{r warning=FALSE}
 translate(sequenceSet)
 ```
 
@@ -115,13 +115,12 @@ exStringSet <- readDNAStringSet(exampledata, format="fasta")
 
 ```{r, eval=FALSE}
 # MicroFASTAtrimmed.fa.gz is loaded from the above button
-# also available at:
-# system.file('extdata', 'LoadingData', 'MicroFASTAtrimmed.fa.gz', 
-#                            package='CompGenomicsBioc2022')
+# also available at extdata/LoadingData/ within this package
+
 exampleSeqs <- '/path/to/MicroFASTAtrimmed.fa.gz'
 
-# note that we can also use format='fastq' for FASTQ datasets
 exStringSet <- readDNAStringSet(exampleSeqs, format="fasta")
+# we could also use format='fastq' for FASTQ datasets
 ```
 Success! Now we have a large example dataset to work with.
 
@@ -130,6 +129,10 @@ using `BrowseSeqs()` from `DECIPHER`:
 
 ```{r, eval=FALSE}
 BrowseSeqs(exStringSet)
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/browseSeqs.png')
 ```
 
 ## Aligning Sequences
@@ -168,6 +171,12 @@ The output should resemble the following:
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('images/picAlignment.png')
 ```
+
+## Conclusion
+
+Now we've managed to read in sequence data and perform some basic analyses. 
+With this knowledge, we can proceed to the next step of the pipeline: finding
+and annotating genes.
 
 <!-- ## Alignment-Free Analysis -->
 

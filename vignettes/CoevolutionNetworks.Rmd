@@ -262,8 +262,22 @@ for ( i in seq_along(clusterLabels) ){
   labs <- consAnnots[as.integer(cluster)]
   clusterLabels[[i]] <- labs[order(sapply(labs, \(x) strsplit(x, ' ')[[1]][3]))]
 }
-clusterLabels
+
+# Let's examine a cluster
+clusterLabels[[1]]
 ```
+
+Note here that we've identified all the COGs in this group to be associated based
+on coevolutionary pressures, and this conclusion is supported by annotation 
+consistency across the members of this group. Of note here is that this clustering
+was done with no prior knowledge on what these COGs do; we reached this conclusion
+using purely sequencing data as input. This cluster is also very similar to 
+results in [the STRING database](https://version-11-5.string-db.org/cgi/network?networkId=bHOgs2hNXWxE).
+While STRING doesn't have the `nixA`, it does have `Achl_0397`, a similar
+nickle/cobalt transporter. If we had conducted this analysis with hypothetical 
+proteins, we could have inferred novel functions!
+
+
 
 ## Methods Implemented in ProtWeaver
 

@@ -72,18 +72,17 @@ downloadthis::download_file(
 
 ```{r eval=FALSE}
 library(DECIPHER)
-source("TreeLine.R") # Shouldn't be necessary if using dev version
 
+# This file is downloadable at the above link
 datafile <- '/path/to/SingleSeq.fa.gz'
+dnaGenome <- readDNAStringSet(datafile)
+aaGenome <- translate(dnaGenome) 
 ```
 
 ```{r echo=FALSE}
 # Load a single complete Micrococcus genome
 datafile <- system.file('extdata', 'GeneCalling', 'SingleSeq.fa.gz', 
                         package='CompGenomicsBioc2022')
-```
-
-```{r}
 dnaGenome <- readDNAStringSet(datafile)
 aaGenome <- translate(dnaGenome) 
 ```
@@ -135,7 +134,8 @@ geneticRegions <- FindNonCoding(ncRNA, dnaGenome)
 annotations <- attr(geneticRegions, "annotations")
 geneMatches <- match(geneticRegions[,"Gene"], annotations)
 noncodingAnnots <- sort(table(names(annotations)[geneMatches]))
-
+```
+```{r}
 # What noncoding regions have we found and annotated?
 noncodingAnnots
 ```
@@ -179,12 +179,8 @@ makeTrainingSet <- system.file('extdata', 'GeneCalling',
                             package='CompGenomicsBioc2022')
 source(makeTrainingSet, local=knitr::knit_global())
 
-f <- system.file('extdata', 'GeneCalling', 
-                        package='CompGenomicsBioc2022')
-
-downloadthis::download_dir(
-  f,
-  output_name = 'IdTaxaTrainingData',
+downloadthis::download_link(
+  link='http://www2.decipher.codes/Classification/TrainingSets/KEGG_Prokaryotes_r95.RData',
   button_label = "Download Training Set",
   button_type = "success",
   has_icon = TRUE,
@@ -197,7 +193,7 @@ downloadthis::download_dir(
 &nbsp;
 
 ```{r eval=FALSE}
-# TrainingSet.RData is downloadable at the above link.
+# RData training set file is downloadable from the above button.
 # You can also download it directly from the DECIPHER website.
 
 load('/path/to/TrainingSet.RData')
