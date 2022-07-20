@@ -19,6 +19,10 @@ newTreeLine <- system.file('extdata', 'TreeLine.R',
 source(newTreeLine, local=knitr::knit_global())
 ```
 
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/PipelineGeneCalling.jpg')
+```
+
 ## Gene Calling and Annotation
 
 At this point, we've learned how to read in some genomic data, and have
@@ -55,7 +59,7 @@ f <- system.file('extdata', 'GeneCalling', 'SingleSeq.fa.gz',
                         package='CompGenomicsBioc2022')
 downloadthis::download_file(
   path = f,
-  button_label = "Download sequence",
+  button_label = "Download Example Sequence",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-download",
@@ -64,16 +68,22 @@ downloadthis::download_file(
 )
 ```
 
+&nbsp;
 
 ```{r eval=FALSE}
 library(DECIPHER)
 source("TreeLine.R") # Shouldn't be necessary if using dev version
+
+datafile <- '/path/to/SingleSeq.fa.gz'
 ```
 
-```{r}
+```{r echo=FALSE}
 # Load a single complete Micrococcus genome
 datafile <- system.file('extdata', 'GeneCalling', 'SingleSeq.fa.gz', 
                         package='CompGenomicsBioc2022')
+```
+
+```{r}
 dnaGenome <- readDNAStringSet(datafile)
 aaGenome <- translate(dnaGenome) 
 ```
@@ -168,18 +178,38 @@ makeTrainingSet <- system.file('extdata', 'GeneCalling',
                                'RecombineIdTaxaTraining.R',
                             package='CompGenomicsBioc2022')
 source(makeTrainingSet, local=knitr::knit_global())
+
+f <- system.file('extdata', 'GeneCalling', 'SingleSeq.fa.gz', 
+                        package='CompGenomicsBioc2022')
+
+ExTrainList <- list(TrainingSet=trainingSet)
+downloadthis::download_this(
+  ExTrainList,
+  output_name = 'IdTaxaActinobacteriaTraining',
+  output_extension = '.RData',
+  button_label = "Download Training Set",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-download",
+  self_contained = FALSE,
+  class = "hvr-grow-shadow"
+)
+```
+
+&nbsp;
+
+```{r eval=FALSE}
+# TrainingSet.RData is downloadable at the above link.
+# You can also download it directly from the DECIPHER website.
+
+load('/path/to/TrainingSet.RData')
+trainingSet <- ExTrainList$TrainingSet
 ```
 
 ```{r results='hide', warning=FALSE}
 # Find amino acid sequences corresponding to found genes
 geneSeqs <- ExtractGenes(genes, dnaGenome, type="DNAStringSet")
 geneSeqs <- translate(geneSeqs)
-
-# `trainingSet` is loaded from extdata/GeneCalling/IdTaxaTraining
-# It's broken up into pieces because of file constraints on GH
-# You can rebuild it using the "RecombineIdTaxaTraining.R" file
-# (just substitute the appropriate value for the first line),
-# or you can download it directly from the DECIPHER website.
 
 # Classify!
 ids <- IdTaxa(geneSeqs[1:10], trainingSet)

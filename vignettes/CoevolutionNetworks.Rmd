@@ -18,6 +18,11 @@ library(SynExtend)
 library(igraph)
 ```
 
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/PipelineProtWeaver.jpg')
+```
+
 ## Coevolutionary Analysis
 
 At this point, we've walked through the steps to take a set of sequences and obtain
@@ -63,7 +68,7 @@ dir <- system.file('extdata', 'CoevNetworks',
 downloadthis::download_dir(
   path = dir,
   output_name = "CoevNetworkFiles",
-  button_label = "Download Complete Dataset",
+  button_label = "Download Complete Micrococcus Dataset",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-download",
@@ -72,12 +77,25 @@ downloadthis::download_dir(
 )
 ```
 
+&nbsp;
 
 ```{r eval=FALSE}
 library(DECIPHER)
 library(SynExtend)
+
+
+COGsFile <- '/path/to/MicrococcusCOGs.RData'
+AnnotationsFile <- '/path/to/MicrococcusAnnotations.RData'
+TreesFile <- '/path/to/MicrococcusGeneTrees.RData'
+
+# All of these files are formatted the same way, as lists with each entry
+# corresponding to a COG. COGs entries are identifiers for each gene, CogsAnnot 
+# entries are annotations, and CogTrees entries are gene trees
+load(COGsFile)          # Loads 'COGs'
+load(AnnotationsFile)   # Loads 'CogsAnnot'
+load(TreesFile)         # Loads 'CogTrees'
 ```
-```{r}
+```{r echo=FALSE}
 COGsFile <- system.file('extdata', 'CoevNetworks', 
                         'MicrococcusCOGs.RData',
                         package='CompGenomicsBioc2022')
@@ -88,12 +106,9 @@ TreesFile <- system.file('extdata', 'CoevNetworks',
                          'MicrococcusGeneTrees.RData',
                         package='CompGenomicsBioc2022')
 
-# All of these files are formatted the same way, as lists with each entry
-# corresponding to a COG. COGs entries are identifiers for each gene, CogsAnnot 
-# entries are annotations, and CogTrees entries are gene trees
-load(COGsFile)          # Loads 'COGs'
-load(AnnotationsFile)   # Loads 'CogsAnnot'
-load(TreesFile)         # Loads 'CogTrees'
+load(COGsFile)      
+load(AnnotationsFile) 
+load(TreesFile) 
 ```
 
 ```{r}
@@ -151,7 +166,8 @@ highConf <- sapply(CogsAnnot, \(x)
                    if(is(x, 'Taxa')) 
                      max(sapply(x, \(y) 
                                 y$confidence[length(y$confidence)])) > 50
-                   else FALSE)
+                   else FALSE
+                   )
 
 # Subset for the workshop
 WorkshopSubset <- noParas & notCoreCOGs & notSingles & codingCOGs & highConf
@@ -230,6 +246,7 @@ COGs.
 library(igraph)
 ```
 ```{r}
+# Ensure reproducibility of igraph clustering
 set.seed(123)
 
 adjMatrix <- GetProtWebData(preds)

@@ -33,12 +33,16 @@ analyses in comparative genomics.
 The immediate goal of this session is to use sequence data to uncover networks of 
 functionally associated genes. These networks consist of genetic regions under 
 shared evolutionary pressure, which have previously been shown to imply some 
-degree of conserved function.
+degree of conserved function. The complete pipeline consists of the following:
 
-While this analysis is useful, the overall purpose of this workshop is to teach users how
-to utilize a wide variety of tools for computational genomics. Our immediate 
-goal serves as a convenient mechanism to guide instruction in a set of broadly 
-applicable tools that can easily be repurposed to many other problems.
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/PipelineOverview.jpg')
+```
+
+While this analysis is useful, the overall purpose of this workshop is to teach 
+users how to utilize a wide variety of tools for computational genomics. Our 
+immediate  goal serves as a convenient mechanism to guide instruction in a set of 
+broadly applicable tools that can easily be repurposed to many other problems.
 
 This workshop will showcase the following functionalities through hands-on tutorials
 with real data:
@@ -64,13 +68,8 @@ end user. As such, the only pre-requisites for this workshop are the following:
 
 Participants can expect to fully understand the entire workshop with only the above
 qualifications. However, users that want to dig deeper into the content covered
-may find the following resources useful for reference either before or after the
-workshop:
-
--   Papers
--   Textbooks
--   Code documentation
--   decipher.codes
+may consider checking [the DECIPHER website](http://www2.decipher.codes/) for
+additional tutorials.
 
 ### Participation
 
@@ -90,14 +89,13 @@ Timing is estimated and may vary depending on questions from audience.
 
 | Activity                                 |  Package  |        Time        |
 |:-----------------------------------------|:---------:|-------------------:|
-| Introduction                             |           |           10 min   |
+| Introduction                             |           |            5 min   |
 | Environment Setup                        |           |            5 min   |
-| Visualizing and Aligning Genomes         | `DECIPHER`|           15 min   |
-| Gene Calling                             | `DECIPHER`|           20 min   |
-| Gene Annotation                          | `DECIPHER`|           20 min   |
-| Finding COGs                             |`SynExtend`|           20 min   |
-| Phylogenetic Reconstruction              | `DECIPHER`|           20 min   |
-| Identifying Co-evolving Gene Collectives |`SynExtend`|           20 min   |
+| Working with Genomic Data                | `DECIPHER`|           10 min   |
+| Gene Calling and Annotation              | `DECIPHER`|           15 min   |
+| Finding COGs                             |`SynExtend`|           15 min   |
+| Phylogenetic Reconstruction              | `DECIPHER`|           15 min   |
+| Identifying Co-evolving Gene Collectives |`SynExtend`|           15 min   |
 | Concluding Remarks                       |           |            5 min   |
 | Q & A                                    |           |   Remaining Time   |
 
@@ -121,7 +119,8 @@ deep bioinformatics background.
 
 -   Describe how to work with and visualize sequencing data in R 
 -   Identify methods to analyze evolutionary forces on genetic regions
--   ???
+-   Identify orthologous genomic regions
+-   Identify and annotate gene function
 
 ### Learning objectives
 

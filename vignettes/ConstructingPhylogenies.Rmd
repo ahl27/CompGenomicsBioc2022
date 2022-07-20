@@ -22,6 +22,10 @@ newTreeLine <- system.file('extdata', 'TreeLine.R',
 source(newTreeLine, local=knitr::knit_global())
 ```
 
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/PipelinePhylogeny.jpg')
+```
+
 ## Phylogenetic Reconstruction
 
 We've now learned how to find Clusters of Orthologous Genes (COGs) from a set of 
@@ -66,7 +70,7 @@ f <- system.file('extdata', 'Phylogenies',
                         package='CompGenomicsBioc2022')
 downloadthis::download_file(
   path = f,
-  button_label = "Download COG",
+  button_label = "Download COG Data",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-download",
@@ -75,16 +79,24 @@ downloadthis::download_file(
 )
 ```
 
+&nbsp;
+
 ```{r eval=FALSE}
 library(DECIPHER)
 source("TreeLine.R") # Shouldn't be necessary if using dev version
+
+# This is downloadable at the link above
+datafile <- '/path/to/testCOG.RData'
 ```
 
-```{r}
-# Load in example COG from the precalculated data
+```{r echo=FALSE}
 datafile <- system.file('extdata', 'Phylogenies',
                         'testCOG.RData',
                         package='CompGenomicsBioc2022')
+```
+
+```{r results='hide'}
+# Load in example COG from the precalculated data
 load(datafile, verbose=TRUE) # Should load 'testCOG'
 
 # Helper plotting function
@@ -101,9 +113,10 @@ plot_tree_unrooted <- function(dend, main, plottype='fan'){
 
 # Since these are coding regions, AlignTranslation is preferred
 testSeqs <- AlignTranslation(testCOG)
-
+treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE)
+```
+```{r}
 # Construct a gene tree
-treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE, verbose=FALSE)
 plot_tree_unrooted(treeCOG1, main='MP')
 ```
 

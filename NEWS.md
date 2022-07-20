@@ -1,3 +1,9 @@
+# Version 2.2.0
+### General Notes
+* Download links fixed
+* `IdTaxa` training set now has a download link
+* Images added to each page 
+
 # Version 2.1.0
 ### General Notes
 * `ProtWeaver` analysis now uses the correct dataset

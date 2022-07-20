@@ -16,6 +16,12 @@ library(DECIPHER)
 library(SynExtend)
 ```
 
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/PipelineHomology.jpg')
+```
+
+## Finding COGs
+
 We've now learned some ways to load genomic data into R, as well as ways to find
 and annotate genomic sequences. Once we have annotated sequence data, we'll want 
 to find genes that are orthologous. Orthologous genes are genes that derive
@@ -76,17 +82,22 @@ downloadthis::download_dir(
 )
 ```
 
-
+&nbsp;
 
 ```{r eval=FALSE}
 library(DECIPHER)
 library(SynExtend)
+
+COGExampleDir <- '/path/to/uncompressed/micrococcus_wgff'
 ```
 
-```{r results='hide'}
+```{r echo=FALSE}
 COGExampleDir <- system.file('extdata', 'COGs',
                              'micrococcus_wgff',
                              package='CompGenomicsBioc2022')
+```
+
+```{r results='hide'}
 
 # TODO: Better explanation here
 # We're going to be using the database API for DECIPHER since this is designed for
@@ -142,8 +153,6 @@ Syn <- FindSynteny(dbFile = DBPATH,
 
 Overlaps <- NucleotideOverlap(SyntenyObject = Syn,
                                GeneCalls = GeneCalls,
-                               LimitIndex = FALSE,
-                               AcceptContigNames = TRUE,
                                Verbose = TRUE)
 ```
 ```{r}
