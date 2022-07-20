@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(DECIPHER)
 library(SynExtend)
 library(igraph)
+set.seed(123)
 ```
 
 
@@ -82,7 +83,7 @@ downloadthis::download_dir(
 ```{r eval=FALSE}
 library(DECIPHER)
 library(SynExtend)
-
+set.seed(123) #reproducibility
 
 COGsFile <- '/path/to/MicrococcusCOGs.RData'
 AnnotationsFile <- '/path/to/MicrococcusAnnotations.RData'
@@ -246,8 +247,6 @@ COGs.
 library(igraph)
 ```
 ```{r}
-# Ensure reproducibility of igraph clustering
-set.seed(123)
 
 adjMatrix <- GetProtWebData(preds)
 g <- graph_from_adjacency_matrix(adjMatrix, weighted=TRUE,
@@ -264,7 +263,7 @@ for ( i in seq_along(clusterLabels) ){
 }
 
 # Let's examine a cluster
-clusterLabels[[1]]
+clusterLabels
 ```
 
 Note here that we've identified all the COGs in this group to be associated based

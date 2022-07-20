@@ -39,20 +39,23 @@ you prefer.
 This workshop depends on two main packages: `DECIPHER` and `SynExtend`. 
 These will be installed via [Bioconductor](http://bioconductor.org/), a package 
 manager for open source bioinformatics projects in R. These tutorials will use
-`DECIPHER` version `2.25.0` and `SynExtend` version `1.9.4`, which are available on
+`DECIPHER` version `2.25.0` and `SynExtend` version `1.9.5`, which are available on
 the development version of Bioconductor.
 
 ```{r eval=FALSE}
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-#BiocManager::install('DECIPHER', version='2.25.0')
-#BiocManager::install('SynExtend', version='1.9.4')
 BiocManager::install('DECIPHER')
 BiocManager::install('SynExtend')
 ```
 
-### Downloading Data
+### Downloading Data [Optional]
+
+If you are interested in downloading the complete dataset yourself, follow
+these instructions. Note that this is not necessary; all relevant data for each
+part of the workshop is provided on subsequent pages. To proceed to the next
+page, use the navbar at the bottom of this page.
 
 This workshop uses the set of all *Micrococcus* genomes with RefSeq annotations
 at assembly levels of Scaffold or above. All the data are included within this 

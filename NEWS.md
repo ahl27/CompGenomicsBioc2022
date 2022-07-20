@@ -1,3 +1,10 @@
+# Version 3.0.0
+### General Notes
+* Version bump; code, writing, examples are presentation-ready aside from possible minor edits
+* All download buttons now working
+* Images all working
+* Minor formatting fixes
+
 # Version 2.2.0
 ### General Notes
 * Download links fixed

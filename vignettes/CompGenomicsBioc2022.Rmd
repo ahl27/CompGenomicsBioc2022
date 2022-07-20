@@ -44,10 +44,10 @@ finding orthologous regions, creating phylogenetic reconstructions, and then
 identifying functional association networks. These networks can be used to make
 novel hypotheses about protein functional pathways.
 
-While this analysis is useful, the overall purpose of this workshop is to teach 
-users how to utilize a wide variety of tools for computational genomics. Our 
-immediate goal serves as a convenient mechanism to guide instruction in a set of 
-broadly applicable tools that can easily be repurposed to many other problems.
+The overall purpose of this workshop is slightly more broad: to teach 
+users how to utilize a wide variety of tools for computational genomics. Walking
+through our pipline serves as a convenient mechanism to guide instruction in a set
+of broadly applicable tools that can easily be repurposed to many other problems.
 
 This workshop will showcase the following functionalities through hands-on tutorials
 with real data:

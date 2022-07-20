@@ -1,6 +1,6 @@
 Package: CompGenomicsBioc2022
 Title: Comparative Genomics Analyses with SynExtend and DECIPHER
-Version: 2.2.0
+Version: 3.0.0
 Authors@R: 
     person(given = "Aidan",
            family = "Lakshman",

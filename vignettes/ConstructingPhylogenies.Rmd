@@ -35,12 +35,6 @@ our COGs using the new `TreeLine()` function introduced in the latest update
 of `DECIPHER`. This analysis uses the third COG from the previous section
 (if you don't have it, you can download it below!).
 
-*Small note:* the setup for this page includes a helper function to plot the
-phylogenies as a circular plot. You can plot them just as well with `plot`, I
-just prefer this visualization. You can also use `plottype='unrooted'` for a 
-different visualization, though labels are often hard to read in that visualization.
-
-
 
 ```{css echo=FALSE}
 .hvr-grow-shadow {
@@ -77,6 +71,12 @@ downloadthis::download_file(
 
 &nbsp;
 
+*Small note:* the setup for this page includes a helper function to plot the
+phylogenies as a circular plot. You can plot them just as well with `plot`, I
+just prefer this visualization. You can also use `plottype='unrooted'` for a 
+different visualization, though labels are often hard to read in that visualization.
+
+
 ```{r eval=FALSE}
 library(DECIPHER)
 
@@ -93,9 +93,10 @@ datafile <- system.file('extdata', 'Phylogenies',
 
 ```{r results='hide'}
 # Load in example COG 
-# This is COG 3 from the previous section, which you can get with:
+# Again, this is COG 3 from the previous section, which you can get with:
 # testCOG <- MatchedSequences[[3]]
 
+# If you don't have it, load it in this way
 load(datafile, verbose=TRUE) # Should load 'testCOG'
 
 # Helper plotting function
@@ -117,17 +118,17 @@ testSeqs <- AlignTranslation(testCOG)
 # These COGs exist in pairs with two lengths
 # We'll code them as <Assembly><A/B>, where A is the longer sequence
 # This renaming will make plotting look a little nicer
-names(testCOG) <- c('1A', '1B', '2A', '2B',
+names(testSeqs) <- c('1A', '1B', '2A', '2B',
                     '3B', '3A', '4B', '4A', 
                     '5A', '5B')
-testCOG <- testCOG[order(names(testCOG))]
+testSeqs <- testSeqs[order(names(testSeqs))]
 ```
 ```{r}
-# Let's look at the COG before we proceed
-testCOG
+# Let's look at the aligned COG sequences
+testSeqs
 ```
 ```{r results='hide', fig.keep='all'}
-# Construct a gene tree
+# Construct a gene tree from aligned sequences
 treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE)
 
 # Visualize the result

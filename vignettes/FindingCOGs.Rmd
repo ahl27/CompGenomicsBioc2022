@@ -99,7 +99,6 @@ COGExampleDir <- system.file('extdata', 'COGs',
 
 ```{r results='hide'}
 
-# TODO: Better explanation here
 # We're going to be using the database API for DECIPHER since this is designed for
 # larger scale analyses. See code below for how we do this!
 DBPATH <- tempfile()

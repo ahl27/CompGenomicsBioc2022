@@ -2,9 +2,7 @@
 
 The `SynExtend` and `DECIPHER` packages for R incorporate a wealth of easy to use functions for comparative genomics analyses. This interactive tutorial series will introduce users to these packages by walking them through a complete workflow of identifying co-evolving genes from a dataset of genome sequences. This webpage was created for presentation at [Bioconductor 2022](https://bioc2022.bioconductor.org/), but the content will be freely available forever.
 
-I've summarized on this page all the skills you can expect to learn by working through the tutorials on this site. See the [Overview](https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html) page for more information, along with code examples you can run for yourself! 
-
-(Note: I'm still working on the tutorials. Code is currently operational, but many of them are toy examples with random datasets. The final version will incorporate a consistent dataset for the entire workshop, as well as meaningful conclusions. Check the [Changelog](https://www.ahl27.com/CompGenomicsBioc2022/news/index.html) for the latest updates).
+I've summarized on this page all the skills you can expect to learn by working through the tutorials on this site. When you're ready to get started, check out the [Overview](https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html) page!
 
 ----------------------------------
 
@@ -51,7 +49,8 @@ At the conclusion of this workshop, users will be able to perform the following 
 * Identify and annotate genes from sequence data
 * Identify COGs from a set of gene calls
 * Build phylogenies at the species and gene level
-* Predict COGs under shared evolutionary pressure
+* Analyze shared evolutionary pressure on COGs
+* Predict novel protein function from coevolutionary signal
 
 ### Useful Links
 * [DECIPHER](http://bioconductor.org/packages/release/bioc/html/DECIPHER.html)
