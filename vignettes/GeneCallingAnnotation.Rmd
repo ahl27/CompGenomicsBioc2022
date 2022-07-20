@@ -179,14 +179,12 @@ makeTrainingSet <- system.file('extdata', 'GeneCalling',
                             package='CompGenomicsBioc2022')
 source(makeTrainingSet, local=knitr::knit_global())
 
-f <- system.file('extdata', 'GeneCalling', 'SingleSeq.fa.gz', 
+f <- system.file('extdata', 'GeneCalling', 
                         package='CompGenomicsBioc2022')
 
-ExTrainList <- list(TrainingSet=trainingSet)
-downloadthis::download_this(
-  ExTrainList,
-  output_name = 'IdTaxaActinobacteriaTraining',
-  output_extension = '.RData',
+downloadthis::download_dir(
+  f,
+  output_name = 'IdTaxaTrainingData',
   button_label = "Download Training Set",
   button_type = "success",
   has_icon = TRUE,
