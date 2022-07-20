@@ -226,6 +226,13 @@ plot(ids, trainingSet)
 }
 ```
 
+## Conclusion
+We now have a way to identify genomic regions and annotate them with 
+function. However, for comparative genomics we need some way to 
+compare these genes across organisms so that we can draw conclusions
+at scale. In the next section, we'll build on these techniques
+to find orthologous genomic regions.
+
 ::: center
 <ul class="pagination pagination-lg">
 

@@ -118,10 +118,13 @@ plot_tree_unrooted <- function(dend, main, plottype='unrooted'){
 
 # Since these are coding regions, AlignTranslation is preferred
 testSeqs <- AlignTranslation(testCOG)
+
+
+# Construct a gene tree
 treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE)
 ```
 ```{r}
-# Construct a gene tree
+# Visualize the result
 plot_tree_unrooted(treeCOG1, main='MP')
 ```
 
