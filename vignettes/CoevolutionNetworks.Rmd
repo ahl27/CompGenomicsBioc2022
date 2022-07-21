@@ -217,7 +217,11 @@ See the documentation file for `ProtWeaver` for more information on this functio
 We're now ready to make predictions. Predicting functional associations is done
 with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations between the COGs we have.
 
-```{r results='hide', warning=F}
+```{r echo=FALSE}
+preds <- suppressWarnings(predict(pw))
+```
+
+```{r eval=FALSE}
 preds <- predict(pw)
 ```
 

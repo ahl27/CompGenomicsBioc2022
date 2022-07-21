@@ -91,18 +91,23 @@ aaGenome <- translate(dnaGenome)
 Next, we're going to identify the genes in our sequence  using `FindGenes()` from the `DECIPHER` package.
 
 `FindGenes()` returns a `Genes` object with information on where genes
-start and end in the genome. We can then extract the sequences
-corresponding to each gene using the `ExtractGenes()` function.
+start and end in the genome.
 
 ```{r results='hide'}
 geneLocs <- FindGenes(dnaGenome)
-genes <- ExtractGenes(geneLocs, dnaGenome, type='AAStringSet')
 ```
-
 ```{r}
 # `Genes` object
 geneLocs
+```
 
+We can then extract the sequences corresponding to each gene with
+`ExtractGenes()`.
+
+```{r results='hide'}
+genes <- ExtractGenes(geneLocs, dnaGenome, type='AAStringSet')
+```
+```{r}
 # Sequences corresponding to each gene
 genes
 ```
