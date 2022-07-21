@@ -198,8 +198,8 @@ correct training set for *Microccocus* is `KEGG Actinobacteria`.
 # RData training set file is downloadable from the above button.
 # You can also download it directly from the DECIPHER website.
 
-load('/path/to/TrainingSet.RData')
-trainingSet <- ExTrainList$TrainingSet
+load('/path/to/KEGG_Actinobacteria_r95.RData')
+# loads "trainingSet"
 ```
 
 ```{r results='hide', warning=FALSE}
