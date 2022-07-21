@@ -273,8 +273,10 @@ was done with no prior knowledge on what these COGs do; we reached this conclusi
 using purely sequencing data as input. This cluster is also very similar to 
 results in [the STRING database](https://version-11-5.string-db.org/cgi/network?networkId=bHOgs2hNXWxE).
 While STRING doesn't have the `nixA`, it does have `Achl_0397`, a similar
-nickle/cobalt transporter. If we had conducted this analysis with hypothetical 
-proteins, we could have inferred novel functions!
+nickle/cobalt transporter. We also have a viral integrase, which potentially 
+facilitates HGT of some of these genes. 
+If we had conducted this analysis with hypothetical proteins, we could have 
+inferred novel functions!
 
 
 
