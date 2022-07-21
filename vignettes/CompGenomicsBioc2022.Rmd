@@ -1,6 +1,6 @@
 ---
 title: "Workshop Overview"
-author: Aidan Lakshman^[ahl27@pitt.edu]
+author:
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Overview}
@@ -17,11 +17,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-# Comparative Genomics with SynExtend and DECIPHER
-
-Authors: Aidan Lakshman, Nicholas Cooley, Erik S. Wright[^1]. <br/> Last
-modified: 10 May, 2022.
+Authors: Aidan Lakshman, Nicholas Cooley, Erik S. Wright[^1].
 
 [^1]: All authors affiliated with University of Pittsburgh
 
