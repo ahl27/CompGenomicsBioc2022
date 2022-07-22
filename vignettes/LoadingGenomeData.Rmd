@@ -215,7 +215,10 @@ Now it's time to start populating our database with sequences!
 This is done with `Seqs2DB()` with the following syntax:
 
 ```{r}
-Seqs2DB(exStringSet, type='XStringSet')
+# All sequences must be identified with a unique quantifier
+# This has to be a character vector; we can make it 1:length(exStringSet)
+identifiers = as.character(seq_along(exStringSet))
+Seqs2DB(exStringSet, type='XStringSet', identifier=identifiers)
 ```
 
 We can also write sequences directly from a `FASTA` file to our database.
