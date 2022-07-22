@@ -17,6 +17,10 @@ knitr::opts_chunk$set(echo = TRUE, out.width='1000px', dpi=200)
 library(DECIPHER)
 library(SynExtend)
 library(ape)
+
+newTreeLine <- system.file('extdata', 'TreeLine.R', 
+                            package='CompGenomicsBioc2022')
+source(newTreeLine, local=knitr::knit_global())
 ```
 
 ```{r echo=FALSE, out.width='100%'}
