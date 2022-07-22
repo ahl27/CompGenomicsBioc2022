@@ -189,7 +189,7 @@ for ( i in seq_along(CogsAnnot) ){
     annots <- sapply(taxaentry, \(y) y$taxon[length(y$taxon)])
     annots <- annots[annots!='unclassified_Root']
     if (length(annots) == 0)
-      consAnnots[[i]] <- 'PNACT'
+      consAnnots[[i]] <- 'Uncharacterized'
     else
       consAnnots[[i]] <- names(sort(table(annots), decreasing=T))[1]
   }

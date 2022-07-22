@@ -112,6 +112,8 @@ genes <- ExtractGenes(geneLocs, dnaGenome, type='AAStringSet')
 genes
 ```
 
+Of note is that `FindGenes()` assumes there are no introns or frame shifts, and as a result performs best with prokaryotic genomes.
+
 ## Removing Non-Coding Regions
 
 `FindGenes()` finds genes, but these may be coding or non-coding genes.
