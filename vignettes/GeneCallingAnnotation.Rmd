@@ -114,9 +114,13 @@ genes
 
 ## Removing Non-Coding Regions
 
-`FindGenes()` finds the genes themselves, but these may include non-coding regions. We're more interested in the regions that are actually translated into proteins, since these are what we'll try to annotate later. For this, we'll use the `FindNonCoding()` function.
-Using `FindGenes()` with `FindNonCoding()` in this way greatly improves
-the accuracy of `FindGenes()`.
+`FindGenes()` finds genes, but these may be coding or non-coding genes.
+We're more interested in the regions that are actually translated into proteins, since these are what we'll try to annotate later. The `FindNonCoding()` function is developed specifically for this purpose,
+to help distinguish between coding and non-coding genes.
+
+Using `FindGenes()` with `FindNonCoding()` in this way also greatly 
+improves the accuracy of `FindGenes()`, since we won't accidentally
+misidentify coding genes as non-coding genes.
 
 `FindNonCoding()` is used with three main datafiles depending on the
 data to analyze:
@@ -146,20 +150,30 @@ noncodingAnnots <- sort(table(names(annotations)[geneMatches]))
 noncodingAnnots
 ```
 
-Once we've run `FindNonCoding()`, we can use `ExtractGenes()` as before
-to pull out the coding regions. This will result in more accurate gene
-calling than just running `FindGenes()` directly.
+`FindNonCoding()` returns a `Genes` object identifying non-coding regions with annotations. We can pass this object to `FindGenes()` 
+to improve our identification of coding regions, resulting in more accurate gene calling than just running `FindGenes()` directly.
 
 ```{r results='hide'}
 # Find Genes
 genes <- FindGenes(dnaGenome, includeGenes=geneticRegions)
 ```
-
 ```{r}
 # Genes in the genome
 genes 
 ```
 
+As before, we can pull out the sequences for these regions using 
+`ExtractGenes()`. Since these are all coding regions, we'll also 
+translate them into amino acids.
+
+```{r results='hide', warning=FALSE}
+# Find amino acid sequences corresponding to found genes
+geneSeqs <- ExtractGenes(genes, dnaGenome, type="DNAStringSet")
+geneSeqs <- translate(geneSeqs)
+```
+```{r}
+geneSeqs
+```
 ## Classification with `IDTAXA`
 
 We now have a set of coding regions. Our last step for this section is
@@ -203,12 +217,11 @@ load('/path/to/KEGG_Actinobacteria_r95.RData')
 ```
 
 ```{r results='hide', warning=FALSE}
-# Find amino acid sequences corresponding to found genes
-geneSeqs <- ExtractGenes(genes, dnaGenome, type="DNAStringSet")
-geneSeqs <- translate(geneSeqs)
+# Grab the first 10 genes extracted earlier
+geneSeqSubset <- geneSeqs[1:10]
 
-# Classify!
-ids <- IdTaxa(geneSeqs[1:10], trainingSet)
+# Classify our sequences!
+ids <- IdTaxa(geneSeqSubset, trainingSet)
 ```
 
 Once we've finished calculating, we can either view the annotations

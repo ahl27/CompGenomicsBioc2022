@@ -54,7 +54,7 @@ which can complete in as little as an hour given sufficient compute nodes.
 
 Our analytical pipeline looks like this:
 
-```{r echo=FALSE, out.width='50%'}
+```{r echo=FALSE, out.width='100%', fig.align='center'}
 knitr::include_graphics('images/Parallelization.png')
 ```
 
