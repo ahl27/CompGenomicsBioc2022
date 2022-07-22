@@ -162,17 +162,17 @@ information on where genes start and end in the genome.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># `Genes` object</span></span>
 <span><span class="va">geneLocs</span></span></code></pre></div>
-<pre><code><span><span class="co">## Genes object of size 2,193 specifying:</span></span>
-<span><span class="co">## 2,193 protein coding genes from 99 to 4,653 nucleotides.</span></span>
+<pre><code><span><span class="co">## Genes object of size 2,214 specifying:</span></span>
+<span><span class="co">## 2,214 protein coding genes from 75 to 4,653 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     375.68 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     263.10 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     225.01 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      72.00 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     556.80 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     695.03 ...    1</span></span>
-<span><span class="co">## ... with 2,187 more rows.</span></span></code></pre>
+<span><span class="co">## 1     1      0   256  1803     366.10 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     256.23 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     227.87 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      75.78 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     545.66 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     683.88 ...    1</span></span>
+<span><span class="co">## ... with 2,208 more rows.</span></span></code></pre>
 <p>We can then extract the sequences corresponding to each gene with
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/ExtractGenes.html" class="external-link">ExtractGenes()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -180,7 +180,7 @@ information on where genes start and end in the genome.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Sequences corresponding to each gene</span></span>
 <span><span class="va">genes</span></span></code></pre></div>
-<pre><code><span><span class="co">## AAStringSet object of length 2193:</span></span>
+<pre><code><span><span class="co">## AAStringSet object of length 2214:</span></span>
 <span><span class="co">##        width seq</span></span>
 <span><span class="co">##    [1]   516 MVADQAVLSSWRSVVGSLEDDARVSARLMGFV...RKIRELMAERRTIYNQVTELTNEIKRKQRGA*</span></span>
 <span><span class="co">##    [2]   372 MKFTVERDILTDAVSWAARSLSPRPPVPVLSG...SAPKPALLTGVNQEDGVVSDYRYLVMPVRIA*</span></span>
@@ -188,11 +188,11 @@ information on where genes start and end in the genome.</p>
 <span><span class="co">##    [4]   188 MAETPAPFEPDRPDLALVQLRRVREAARERGE...TRIEVAGPQAPSWRKGPRTVRGGRGPRDTYG*</span></span>
 <span><span class="co">##    [5]   721 MVDAMPENPAEEPTAASAAPNPEAVPDAVGQP...DAVFSMLMGEDVESRRTFIQQNAKDIRFLDV*</span></span>
 <span><span class="co">##    ...   ... ...</span></span>
-<span><span class="co">## [2189]   242 MTERGSAYERRPGLDPQDRGDRPAPVGQPAPP...KYGGAEPEILTVGEGLLPETTTVVRVSARPR*</span></span>
-<span><span class="co">## [2190]   195 MSAENVTPAPEAEDAVVETPAGQGSRVAEQDD...KIVHDVVADAGLTSESEGEGARRHVVISADD*</span></span>
-<span><span class="co">## [2191]   333 MFEAILSPFRWLMSWLLGAFHSILEFAGLPAD...QAGRGGAVLNGEVVRQSGQRVQPQRKNRRRK*</span></span>
-<span><span class="co">## [2192]   123 MTVTPSPFVVLEPSREWGPLRALPSALLAGLL...PPGHRRWPPGRQPRILALNHPPIPPDLPQED*</span></span>
-<span><span class="co">## [2193]   133 MLPRDRRVRTPAEFRHLGRTGTRAGRRTVVVS...AEADYALLRRETVGALGKALKPHLPAASEHA*</span></span></code></pre>
+<span><span class="co">## [2210]   195 MSAENVTPAPEAEDAVVETPAGQGSRVAEQDD...KIVHDVVADAGLTSESEGEGARRHVVISADD*</span></span>
+<span><span class="co">## [2211]   333 MFEAILSPFRWLMSWLLGAFHSILEFAGLPAD...QAGRGGAVLNGEVVRQSGQRVQPQRKNRRRK*</span></span>
+<span><span class="co">## [2212]   123 MTVTPSPFVVLEPSREWGPLRALPSALLAGLL...PPGHRRWPPGRQPRILALNHPPIPPDLPQED*</span></span>
+<span><span class="co">## [2213]   133 MLPRDRRVRTPAEFRHLGRTGTRAGRRTVVVS...AEADYALLRRETVGALGKALKPHLPAASEHA*</span></span>
+<span><span class="co">## [2214]    46 MTKRTFQPNNRRRARKHGFRARMRTRAGRAILSARRGKNRAELSA*</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="removing-non-coding-regions">Removing Non-Coding Regions<a class="anchor" aria-label="anchor" href="#removing-non-coding-regions"></a>
@@ -274,18 +274,18 @@ This will result in more accurate gene calling than just running
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Genes in the genome</span></span>
 <span><span class="va">genes</span> </span></code></pre></div>
-<pre><code><span><span class="co">## Genes object of size 2,274 specifying:</span></span>
-<span><span class="co">## 2,216 protein coding genes from 75 to 4,653 nucleotides.</span></span>
+<pre><code><span><span class="co">## Genes object of size 2,275 specifying:</span></span>
+<span><span class="co">## 2,217 protein coding genes from 75 to 4,653 nucleotides.</span></span>
 <span><span class="co">## 58 non-coding RNAs from 73 to 3,088 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     365.01 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     254.89 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     226.74 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      75.14 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     542.81 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     681.16 ...    1</span></span>
-<span><span class="co">## ... with 2,268 more rows.</span></span></code></pre>
+<span><span class="co">## 1     1      0   256  1803     367.69 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     256.02 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     228.80 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      75.54 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     545.96 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     686.82 ...    1</span></span>
+<span><span class="co">## ... with 2,269 more rows.</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="classification-with-idtaxa">Classification with <code>IDTAXA</code><a class="anchor" aria-label="anchor" href="#classification-with-idtaxa"></a>
@@ -337,13 +337,13 @@ directly, or plot them as a taxonomy.</p>
 <span><span class="co">##      confidence taxon</span></span>
 <span><span class="co">##  [1]       100% Root; 09130 Environmental Information Processing; 09132 Signa...</span></span>
 <span><span class="co">##  [2]       100% Root; 09120 Genetic Information Processing; 09124 Replication...</span></span>
-<span><span class="co">##  [3]        99% Root; 09120 Genetic Information Processing; 09124 Replication...</span></span>
+<span><span class="co">##  [3]       100% Root; 09120 Genetic Information Processing; 09124 Replication...</span></span>
 <span><span class="co">##  [4]        28% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">##  [5]        97% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
-<span><span class="co">##  [6]       100% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
-<span><span class="co">##  [7]        34% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">##  [8]        88% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">##  [9]        43% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">##  [5]        96% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
+<span><span class="co">##  [6]        99% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
+<span><span class="co">##  [7]        33% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">##  [8]        92% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">##  [9]        46% Root; unclassified_Root...                                      </span></span>
 <span><span class="co">## [10]        27% Root; unclassified_Root...</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Looking at a specific entry</span></span>
