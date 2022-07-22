@@ -112,32 +112,32 @@ plot_tree_unrooted <- function(dend, main, plottype='unrooted'){
   }
 }
 
-# Since these are coding regions, AlignTranslation is preferred
-testSeqs <- AlignTranslation(testCOG)
-
 # Let's make the names a little more concise
 # These COGs exist in pairs with two lengths
 # We'll code them as <Assembly><A/B>, where A is the longer sequence
 # This renaming will make plotting look a little nicer
-names(testSeqs) <- c('1A', '1B', '2A', '2B',
+names(testCOG) <- c('1A', '1B', '2A', '2B',
                     '3B', '3A', '4B', '4A', 
                     '5A', '5B')
-testSeqs <- testSeqs[order(names(testSeqs))]
+testCOG <- testCOG[order(names(testCOG))]
 ```
 ```{r}
 # Let's look at the aligned COG sequences
-testSeqs
+testCOG
 ```
 ```{r results='hide', fig.keep='all'}
+# Since these are coding regions, AlignTranslation is preferred
+testSeqs <- AlignTranslation(testCOG)
+
 # Construct a gene tree from aligned sequences
-treeCOG1 <- TreeLine(testSeqs, method='MP', reconstruct=TRUE)
+treeCOG1 <- TreeLine(testSeqs, method='MP')
 
 # Visualize the result
 plot_tree_unrooted(treeCOG1, main='MP')
 ```
 
-That's all we need to construct a quick phylogenenetic tree in R! I've set
-`reconstruct=TRUE` to have `TreeLine` automatically reconstruct ancestral states 
+That's all we need to construct a quick phylogenenetic tree in R! We could also set
+the optional argument `reconstruct=TRUE` to have `TreeLine` automatically reconstruct ancestral states 
 at each node.
 
 However, `TreeLine` incorporates a wealth of functionality past what is detailed here. 
@@ -152,24 +152,24 @@ using a Maximum Parsimony method. However, many more methods are available.
 Ultrametric (`complete`, `single`, `UPGMA`, `WPGMA`), and Maximum Likelihood (`ML`)
 methods. Each of these have different strengths, weaknesses, and assumptions. While
 an in-depth look at the difference between these methods is outside the scope of
-this tutorial, I recently published [another tutorial](https://ahl27.com/IntroPhylogenetics)
+this tutorial, I recently published [another tutorial](https://www.ahl27.com/IntroPhylogenetics/)
 that goes into the mathematics of how these methods work.
 
 Example code for each of these:
 ```{r results='hide', fig.keep='all'}
 # Maximum Parsimony
-treeMP <- TreeLine(myXStringSet=testSeqs, method='MP')
+treeMP <- TreeLine(myXStringSet=testSeqs, method='MP', reconstruct=TRUE)
 plot_tree_unrooted(treeMP, main='MP')
 ```
 ```{r results='hide', fig.keep='all'}
 # Neighbor-Joining
-distMatrix <- DistanceMatrix(testSeqs, correction='Jukes-Cantor')
+distMatrix <- DistanceMatrix(testSeqs)
 treeNJ <- TreeLine(myDistMatrix=distMatrix, method='NJ')
 plot_tree_unrooted(treeNJ, main='NJ')
 ```
 ```{r results='hide', fig.keep='all'}
 # UPGMA tree
-distMatrix <- DistanceMatrix(testSeqs, correction='Jukes-Cantor')
+distMatrix <- DistanceMatrix(testSeqs)
 treeUltra <- TreeLine(myDistMatrix=distMatrix, method='UPGMA')
 plot(treeUltra, main='UPGMA')
 ```

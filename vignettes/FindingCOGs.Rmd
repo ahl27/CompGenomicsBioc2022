@@ -195,8 +195,12 @@ genomic region in each COG.
 ```{r results='hide'}
 COGSets <- DisjointSet(Pairs = Pairs,
                         Verbose = TRUE)
-
-# Extract sequences for COGs with at least orthologs
+```
+```{r}
+COGSets[1:3]
+```
+```{r results='hide'}
+# Extract sequences for COGs with at least 5 orthologs
 Sequences <- ExtractBy(x = Pairs,
                        y = DBPATH,
                        z = COGSets[lengths(COGSets) >= 5],

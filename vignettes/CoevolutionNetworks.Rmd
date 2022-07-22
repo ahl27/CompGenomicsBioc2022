@@ -17,7 +17,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(DECIPHER)
 library(SynExtend)
 library(igraph)
-set.seed(1234)
 ```
 
 
@@ -84,7 +83,6 @@ downloadthis::download_dir(
 ```{r eval=FALSE}
 library(DECIPHER)
 library(SynExtend)
-set.seed(1234) #reproducibility
 
 COGsFile <- '/path/to/MicrococcusCOGs.RData'
 AnnotationsFile <- '/path/to/MicrococcusAnnotations.RData'
@@ -205,7 +203,7 @@ Now we can make our `ProtWeaver` object. `ProtWeaver` has multiple input options
 either a list formatted like `COGs` (list with gene identifiers) or a list like 
 `CogTrees` (list with gene trees).
 
-```{r warning=FALSE}
+```{r eval=FALSE}
 pw <- ProtWeaver(WTrees)
 ```
 
@@ -218,7 +216,10 @@ We're now ready to make predictions. Predicting functional associations is done
 with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations between the COGs we have.
 
 ```{r echo=FALSE}
-preds <- suppressWarnings(predict(pw))
+OutFile <- system.file('extdata', 'CoevNetworks', 
+                        'PrecomputedOutput.RData',
+                        package='CompGenomicsBioc2022')
+load(OutFile)
 ```
 
 ```{r eval=FALSE}
@@ -252,6 +253,7 @@ COGs.
 library(igraph)
 ```
 ```{r}
+set.seed(1234) # Reproducibility
 
 adjMatrix <- GetProtWebData(preds)
 g <- graph_from_adjacency_matrix(adjMatrix, weighted=TRUE,
