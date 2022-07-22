@@ -50,7 +50,13 @@ However, our methods can scale to many more genomes. All of our methods are desi
 to be run in parallel across a supercomputer system. The majority of the methods
 have low CPU and memory requirements, and thus can be run on small (2-4GB memory)
 nodes. We have recently completed analysis of all available *Streptomyces* genomes,
-which took approximately three weeks of real time when executed in parallel.
+which can complete in as little as an hour given sufficient compute nodes.
+
+Our analytical pipeline looks like this:
+
+```{r echo=FALSE, out.width='50%'}
+knitr::include_graphics('images/Parallelization.png')
+```
 
 Users interested in deploying these analyses at scale are encouraged to contact
 our lab for more information! 
