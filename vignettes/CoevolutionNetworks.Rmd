@@ -194,9 +194,6 @@ for ( i in seq_along(CogsAnnot) ){
       consAnnots[[i]] <- names(sort(table(annots), decreasing=T))[1]
   }
 }
-
-# Remove this when we get the dev branch of SynExtend
-consAnnots <- consAnnots[WorkshopSubset]
 ```
 
 Now we can make our `ProtWeaver` object. `ProtWeaver` has multiple input options,
@@ -294,7 +291,7 @@ models as it can run with the data provided. However, users are free to use any 
 the individual models without the ensemble predictor. The methods implemented are 
 the following:
 
-```{r results='hide', eval=FALSE}
+```{r eval=FALSE}
 # PHYLOGENETIC PROFILING METHODS:
   ## P/A = Presence/Absence Profiles
   ## Jaccard distance of P/A
