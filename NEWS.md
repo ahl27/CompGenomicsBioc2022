@@ -1,3 +1,9 @@
+# Version 3.1.0
+### General Notes
+* Adds information on using `DECIPHER`'s database API for working with big biological data
+* Switches to using base R plots for the phylogenetics section
+* Removes `ape` dependency
+
 # Version 3.0.0
 ### General Notes
 * Version bump; code, writing, examples are presentation-ready aside from possible minor edits

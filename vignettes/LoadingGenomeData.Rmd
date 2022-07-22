@@ -108,10 +108,10 @@ downloadthis::download_file(
 
 
 ```{r, echo=FALSE}
-exampledata <- system.file('extdata', 'LoadingData', 'MicroFASTAtrimmed.fa.gz', 
+exampleSeqs <- system.file('extdata', 'LoadingData', 'MicroFASTAtrimmed.fa.gz', 
                             package='CompGenomicsBioc2022')
 
-exStringSet <- readDNAStringSet(exampledata, format="fasta")
+exStringSet <- readDNAStringSet(exampleSeqs, format="fasta")
 ```
 
 &nbsp;
@@ -183,47 +183,130 @@ knitr::include_graphics('images/picAlignment.png')
 
 &nbsp;
 
+## Big Data with DECIPHER
+
+One of `DECIPHER`'s unique features is the ability to work with massive amounts
+of data. `DECIPHER` incorporates a rich API for working with sequencing data 
+stored in SQLite files. These allow users to work with enormous amounts of data
+(ex. hundreds of thousands of sequences) while providing the following benefits:
+
+- Space optimization
+- Fast random access
+- Concurrent use from multiple queries/users
+- Reliable and cross-platform storage
+
+For more information on all the benefits of using databases
+with `DECIPHER`, check out the [`DECIPHER` publication](https://journal.r-project.org/archive/2016/RJ-2016-025/index.html).
+
+Setting up a `DECIPHER` database takes a few extra lines of code, but it's worth it!
+Let's start by creating a connection to a SQLite database.
+
+```{r}
+# You can set this to any path, use a non-tempfile for long term storage
+DBPATH <- tempfile()
+dbConn <- dbConnect(SQLite(), DBPATH)
+```
+
+Now we have a connection to a database! I used `tempfile()` for a temporary file,
+but you could have also added a filepath to a non-temporary file. Note that if
+the file does not exist, it will be automatically created.
+
+Now it's time to start populating our database with sequences!
+This is done with `Seqs2DB()` with the following syntax:
+
+```{r}
+Seqs2DB(exStringSet, type='XStringSet')
+```
+
+We can also write sequences directly from a `FASTA` file to our database.
+In this code, we're using `replaceTbl=TRUE` so that we replace our table
+with the sequences (rather than add the same set twice).
+```{r}
+# We can also directly import from a FASTA file 
+Seqs2DB(exampleSeqs, type='FASTA', replaceTbl=TRUE)
+```
+
+Now that we have our database, what do we do with it? 
+
+To start, we can run `BrowseDB()`, a function analogous to `BrowseSeqs()` but
+for `DECIPHER` databases.
+
+```{r eval=FALSE}
+BrowseDB(dbConn)
+```
+
+If we want to read the sequences back into R as an `XStringSet`, we use `SearchDB()`
+
+```{r}
+dbStringSet <- SearchDB(dbConn)
+dbStringSet
+```
+
+`SearchDB()` incorporates far more options than just returning all the sequences
+in the database. If we had a database of a million sequences, we would likely
+crash our R environment trying to load them all in. Instead, we can use the 
+following options:
+
+```{r eval=FALSE}
+# Limit amount returned to first 10
+SearchDB(dbConn, limit=10)
+
+# Look for a specific identifier
+SearchDB(dbConn, identifier = 'example identifier')
+
+# Run SQL queries
+#     This clause is appended to the end of a `WHERE ... ` call
+SearchDB(dbConn, clause = 'identifier in ("1", "2", "3")')
+```
+
+Once we're done working with the database, it's important to disconnect any
+open `SQLite` connections.
+
+```{r}
+dbDisconnect(dbConn)
+```
+
+Many `DECIPHER` functions use databases rather than `XStringSet` objects for 
+speed and efficiency. As an example, let's look at the `FindSynteny()` function.
+
+`FindSynteny()` allows us to look at syntenic hits between sequences without
+aligning them. The result allows us to easily visualize differences between
+two sequences without the computational cost of sequence alignment. 
+Let's look at an example of finding syntenic hits between the first 6 sequences in our set.
+
+```{r results='hide', fig.keep='all'}
+to_select <- 1:4
+synData <- exStringSet[to_select]
+
+names(synData) <- as.character(to_select)
+
+# Initialize our database
+DBPATH <- tempfile()
+dbConn <- dbConnect(SQLite(), DBPATH)
+Seqs2DB(synData, "XStringSet", dbConn, identifier=as.character(to_select))
+
+syn <- FindSynteny(dbConn)
+dbDisconnect(dbConn)
+
+pairs(syn)
+```
+
+What are we looking at with this plot? Each plot compares two genomes, and each
+dot is a syntenic hit between the two genomes. The X position of the dot is its
+location on the first genome, and the Y position is its position on the second genome.
+If we had identical genomes, we would expect to see a diagonal line $y=x$, indicating
+that all bases occur at the same place in both genomes. Gaps indicate areas that
+do not match, and points off the diagonal indicate matching areas in different places on
+each genomes.
+
+We'll see a more in-depth example of using `Synteny` objects returned by 
+`FindSynteny()` later on.
+
 ## Conclusion
 
 Now we've managed to read in sequence data and perform some basic analyses. 
 With this knowledge, we can proceed to the next step of the pipeline: finding
 and annotating genes.
-
-<!-- ## Alignment-Free Analysis -->
-
-<!-- Another common analysis is to look at syntenic hits between sequences without  -->
-<!-- aligning them. The result allows us to easily visualize differences between  -->
-<!-- two sequences without having to align them. Let's look at an example of finding -->
-<!-- syntenic hits between the first 6 sequences in our set. -->
-
-<!-- ```{r results='hide', fig.keep='all'} -->
-<!-- to_select <- c(4,6,8,9) -->
-<!-- synData <- exStringSet[to_select] -->
-<!-- names(synData) <- as.character(to_select) -->
-<!-- dbConn <- dbConnect(SQLite(), ":memory:") -->
-<!-- Seqs2DB(synData, "XStringSet", dbConn, identifier=as.character(to_select)) -->
-
-<!-- syn <- FindSynteny(dbConn, verbose=FALSE) -->
-<!-- dbDisconnect(dbConn) -->
-
-<!-- pairs(syn) -->
-<!-- ``` -->
-
-<!-- What are we looking at with this plot? Each plot compares two genomes, and each -->
-<!-- dot is a syntenic hit between the two genomes. The X position of the dot is its -->
-<!-- location on the first genome, and the Y position is its position on the second genome. -->
-<!-- If we had identical genomes, we would expect to see a diagonal line $y=x$, indicating -->
-<!-- that all bases occur at the same place in both genomes. Gaps indicate areas that  -->
-<!-- do not match, and points off the diagonal indicate matching areas in different places on  -->
-<!-- each genomes. -->
-
-<!-- You may also notice that this example creates a SQLite table prior to running `FindSynteny()`. -->
-<!-- `DECIPHER` is built around working with sequences via SQLite tables to allow for  -->
-<!-- analysis at scale. When working with hundreds of thousands of genomes, we can't always -->
-<!-- just store the files within memory on our computer. This won't be covered in this -->
-<!-- tutorial, but advanced users can refer to the `DECIPHER` docs to find out more about -->
-<!-- using database files. I've also included more information on these in the Function -->
-<!-- Reference page for this section. -->
 
 ```{css, echo=FALSE}
 .pagination {

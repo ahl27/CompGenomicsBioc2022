@@ -1,6 +1,6 @@
 Package: CompGenomicsBioc2022
 Title: Comparative Genomics Analyses with SynExtend and DECIPHER
-Version: 3.0.0
+Version: 3.1.0
 Authors@R: 
     person(given = "Aidan",
            family = "Lakshman",
@@ -32,12 +32,10 @@ Depends:
     Biobase,
     DECIPHER,
     SynExtend,
-    ape,
     downloadthis,
-    igraph
-Suggests: 
-    knitr,
+    igraph,
     rmarkdown,
+    knitr,
     pkgdown
 URL: https://www.ahl27.com/CompGenomicsBioc2022/
 BugReports: https://github.com/ahl27/CompGenomicsBioc2022/issues/new/choose

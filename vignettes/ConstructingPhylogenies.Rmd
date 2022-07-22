@@ -16,7 +16,6 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(echo = TRUE, out.width='1000px', dpi=200)
 library(DECIPHER)
 library(SynExtend)
-library(ape)
 
 newTreeLine <- system.file('extdata', 'TreeLine.R', 
                             package='CompGenomicsBioc2022')
@@ -133,7 +132,7 @@ testSeqs <- AlignTranslation(testCOG)
 treeCOG1 <- TreeLine(testSeqs, method='MP')
 
 # Visualize the result
-plot_tree_unrooted(treeCOG1, main='MP')
+plot(treeCOG1, main='MP')
 ```
 
 That's all we need to construct a quick phylogenenetic tree in R! We could also set
@@ -159,13 +158,13 @@ Example code for each of these:
 ```{r results='hide', fig.keep='all'}
 # Maximum Parsimony
 treeMP <- TreeLine(myXStringSet=testSeqs, method='MP', reconstruct=TRUE)
-plot_tree_unrooted(treeMP, main='MP')
+plot(treeMP, main='MP')
 ```
 ```{r results='hide', fig.keep='all'}
 # Neighbor-Joining
 distMatrix <- DistanceMatrix(testSeqs)
 treeNJ <- TreeLine(myDistMatrix=distMatrix, method='NJ')
-plot_tree_unrooted(treeNJ, main='NJ')
+plot(treeNJ, main='NJ')
 ```
 ```{r results='hide', fig.keep='all'}
 # UPGMA tree
@@ -186,7 +185,7 @@ demo will set the `maxTime` argument to prevent the algorithm from taking too lo
 #   - Note that method='ML' is the default setting
 #   - Longer runtime will produce better results
 treeML <- TreeLine(testSeqs, maxTime=(30/3600))
-plot_tree_unrooted(treeML, main='Maximum-Likelihood')
+plot(treeML, main='Maximum-Likelihood')
 ```
 
 ## Sequence Evolution Models
@@ -223,14 +222,14 @@ and remove the entries you don't want.
 # Using a specific set of models
 mySpecificModel <- list(Nucleotide=c('JC69', 'HKY85'))
 specTree <- TreeLine(testSeqs, model=mySpecificModel, maxTime=(30/3600))
-plot_tree_unrooted(specTree, main='Specific Set ML')
+plot(specTree, main='Specific Set ML')
 
 # Excluding Specific Models
 myExcludedModel <- DECIPHER::MODELS
 myExcludedModel$Protein <- NULL # Remove all protein models
 myExcludedModel$Nucleotide <- myExcludedModel$Nucleotide[-1] # Remove JC69
 exclTree <- TreeLine(testSeqs, model=myExcludedModel, maxTime=(30/3600))
-plot_tree_unrooted(exclTree, main='Excluded Set ML')
+plot(exclTree, main='Excluded Set ML')
 ```
 
 ## Conclusion
