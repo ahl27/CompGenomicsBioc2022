@@ -190,8 +190,7 @@ From these pairwise orthologous regions, we can finally determine COGs using the
 `DisjointSet()` function from `SynExtend`. This function analyzes pairs to 
 determine which orthologs are (dis)connected. Future work will look into smarter
 ways to determine COGs from pairwise orthologies, but method currently shows strong
-performance. We also use `ExtractBy` to pull out the sequences corresponding to each
-genomic region in each COG.
+performance. 
 ```{r results='hide'}
 COGSets <- DisjointSet(Pairs = Pairs,
                         Verbose = TRUE)
@@ -199,6 +198,22 @@ COGSets <- DisjointSet(Pairs = Pairs,
 ```{r}
 COGSets[1:3]
 ```
+
+This object is a list of character vectors, where each element of each character
+vector uniquely identifies a gene. The annotation schema is the following:
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/GeneIDs.jpg')
+```
+
+Assembly refers to the assembly (1-5 for this data), strand refers to which
+chromosome the gene is found on, and the gene identifier is a unique number
+for each gene. For example, `2_1_1999` refers to the 1999<sup>th</sup> gene
+from the 2<sup>nd</sup> assembly (genome) on the 1<sup>st</sup> chromosome.
+
+Once we have these COGs, we can use `ExtractBy` to pull out the sequences 
+corresponding to each genomic region in each COG.
+
 ```{r results='hide'}
 # Extract sequences for COGs with at least 5 orthologs
 Sequences <- ExtractBy(x = Pairs,
