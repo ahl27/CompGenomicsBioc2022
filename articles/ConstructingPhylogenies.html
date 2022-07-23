@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -203,7 +203,7 @@ visualization.</p>
 <span><span class="va">treeCOG1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, method<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Visualize the result</span></span>
-<span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeCOG1</span>, main<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">treeCOG1</span>, main<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-8-1.png" width="1000px"></p>
 <p>That’s all we need to construct a quick phylogenenetic tree in R! We
 could also set the optional argument <code>reconstruct=TRUE</code> to
@@ -233,13 +233,13 @@ work.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Maximum Parsimony</span></span>
 <span><span class="va">treeMP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span>myXStringSet<span class="op">=</span><span class="va">testSeqs</span>, method<span class="op">=</span><span class="st">'MP'</span>, reconstruct<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeMP</span>, main<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">treeMP</span>, main<span class="op">=</span><span class="st">'MP'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-9-1.png" width="1000px"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Neighbor-Joining</span></span>
 <span><span class="va">distMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/DistanceMatrix.html" class="external-link">DistanceMatrix</a></span><span class="op">(</span><span class="va">testSeqs</span><span class="op">)</span></span>
 <span><span class="va">treeNJ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span>myDistMatrix<span class="op">=</span><span class="va">distMatrix</span>, method<span class="op">=</span><span class="st">'NJ'</span><span class="op">)</span></span>
-<span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeNJ</span>, main<span class="op">=</span><span class="st">'NJ'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">treeNJ</span>, main<span class="op">=</span><span class="st">'NJ'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-10-1.png" width="1000px"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># UPGMA tree</span></span>
@@ -259,7 +259,7 @@ argument to prevent the algorithm from taking too long.</p>
 <span><span class="co">#   - Note that method='ML' is the default setting</span></span>
 <span><span class="co">#   - Longer runtime will produce better results</span></span>
 <span><span class="va">treeML</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, maxTime<span class="op">=</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">3600</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">treeML</span>, main<span class="op">=</span><span class="st">'Maximum-Likelihood'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">treeML</span>, main<span class="op">=</span><span class="st">'Maximum-Likelihood'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-12-1.png" width="1000px"></p>
 </div>
 <div class="section level2">
@@ -320,7 +320,7 @@ you don’t want.</p>
 <code class="sourceCode R"><span><span class="co"># Using a specific set of models</span></span>
 <span><span class="va">mySpecificModel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Nucleotide<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'JC69'</span>, <span class="st">'HKY85'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">specTree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, model<span class="op">=</span><span class="va">mySpecificModel</span>, maxTime<span class="op">=</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">3600</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">specTree</span>, main<span class="op">=</span><span class="st">'Specific Set ML'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">specTree</span>, main<span class="op">=</span><span class="st">'Specific Set ML'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-14-1.png" width="1000px"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Excluding Specific Models</span></span>
@@ -328,7 +328,7 @@ you don’t want.</p>
 <span><span class="va">myExcludedModel</span><span class="op">$</span><span class="va">Protein</span> <span class="op">&lt;-</span> <span class="cn">NULL</span> <span class="co"># Remove all protein models</span></span>
 <span><span class="va">myExcludedModel</span><span class="op">$</span><span class="va">Nucleotide</span> <span class="op">&lt;-</span> <span class="va">myExcludedModel</span><span class="op">$</span><span class="va">Nucleotide</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="co"># Remove JC69</span></span>
 <span><span class="va">exclTree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DECIPHER/man/TreeLine.html" class="external-link">TreeLine</a></span><span class="op">(</span><span class="va">testSeqs</span>, model<span class="op">=</span><span class="va">myExcludedModel</span>, maxTime<span class="op">=</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">3600</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">plot_tree_unrooted</span><span class="op">(</span><span class="va">exclTree</span>, main<span class="op">=</span><span class="st">'Excluded Set ML'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">exclTree</span>, main<span class="op">=</span><span class="st">'Excluded Set ML'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ConstructingPhylogenies_files/figure-html/unnamed-chunk-14-2.png" width="1000px"></p>
 </div>
 <div class="section level2">
