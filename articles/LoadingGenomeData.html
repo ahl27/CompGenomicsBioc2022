@@ -316,7 +316,7 @@ is done with <code><a href="https://rdrr.io/pkg/DECIPHER/man/Seqs2DB.html" class
 <pre><code><span><span class="co">## Adding 20 sequences to the database.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## 20 total sequences in table Seqs.</span></span>
-<span><span class="co">## Time difference of 0.09 secs</span></span></code></pre>
+<span><span class="co">## Time difference of 0.1 secs</span></span></code></pre>
 <p>We can also write sequences directly from a <code>FASTA</code> file
 to our database. In this code, we’re using <code>replaceTbl=TRUE</code>
 so that we replace our table with the sequences (rather than add the
@@ -393,7 +393,7 @@ visualize differences between two sequences without the computational
 cost of sequence alignment. Let’s look at an example of finding syntenic
 hits between the first 6 sequences in our set.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">to_select</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span></span>
+<code class="sourceCode R"><span><span class="va">to_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">8</span><span class="op">)</span></span>
 <span><span class="va">synData</span> <span class="op">&lt;-</span> <span class="va">exStringSet</span><span class="op">[</span><span class="va">to_select</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">synData</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">to_select</span><span class="op">)</span></span>
