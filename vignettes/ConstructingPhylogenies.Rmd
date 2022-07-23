@@ -71,12 +71,6 @@ downloadthis::download_file(
 
 &nbsp;
 
-*Small note:* the setup for this page includes a helper function to plot the
-phylogenies as a circular plot. You can plot them just as well with `plot`, I
-just prefer this visualization. You can also use `plottype='unrooted'` for a 
-different visualization, though labels are often hard to read in that visualization.
-
-
 ```{r eval=FALSE}
 library(DECIPHER)
 

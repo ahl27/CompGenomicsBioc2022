@@ -202,7 +202,7 @@ This object is a list of character vectors, where each element of each character
 vector uniquely identifies a gene. The annotation schema is the following:
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/GeneIDs.jpg')
+knitr::include_graphics('images/GeneIDs.png')
 ```
 
 Assembly refers to the assembly (1-5 for this data), strand refers to which

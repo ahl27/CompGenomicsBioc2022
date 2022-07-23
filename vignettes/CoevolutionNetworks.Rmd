@@ -118,8 +118,8 @@ CogsAnnot[[7]]
 CogsAnnot[[7]][[1]]
 CogTrees[[7]]
 
-# Note that tree labels correspond to gene identifiers
-setequal(COGs[[7]], labels(CogTrees[[7]]))
+# Removing leaf labels because they make it hard to read
+plot(CogTrees[[7]], leaflab='none', main='COG 7')
 ```
 
 There is a ton of data here, and we unfortunately don't have time to look at 
@@ -180,16 +180,27 @@ WTrees <- CogTrees[WorkshopSubset]
 
 Let's also put together a list of consensus annotations for each COG.
 ```{r}
+# Initialize a character vector to populate
 consAnnots <- vector('character', length=length(CogsAnnot))
+
+# Loop along the annotations for each COG
 for ( i in seq_along(CogsAnnot) ){
   taxaentry <- CogsAnnot[[i]]
+  
+  # If no annotation, it's a noncoding gene
   if (!is(taxaentry, 'Taxa'))
     consAnnots[[i]] <- 'NONCODING'
+  # Otherwise it's a coding gene
   else {
+    # Grab all the annotations aside from "Unclassified"
     annots <- sapply(taxaentry, \(y) y$taxon[length(y$taxon)])
     annots <- annots[annots!='unclassified_Root']
+    
+    # If we only have "Unclassified", just mark it as uncharacterized
     if (length(annots) == 0)
       consAnnots[[i]] <- 'Uncharacterized'
+    
+    # Otherwise take the most common annotation
     else
       consAnnots[[i]] <- names(sort(table(annots), decreasing=T))[1]
   }
@@ -201,6 +212,7 @@ either a list formatted like `COGs` (list with gene identifiers) or a list like
 `CogTrees` (list with gene trees).
 
 ```{r eval=FALSE}
+# ProtWeaver constructor
 pw <- ProtWeaver(WTrees)
 ```
 
