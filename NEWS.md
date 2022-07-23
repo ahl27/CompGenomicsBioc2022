@@ -1,3 +1,9 @@
+# Version 3.2.0
+### General Notes
+* Changes example on `Loading Genome Data` to use a gene rather than random bases
+* Updates images for consistency
+* Minor edits to formatting
+
 # Version 3.1.0
 ### General Notes
 * Adds information on using `DECIPHER`'s database API for working with big biological data

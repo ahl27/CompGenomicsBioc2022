@@ -62,17 +62,13 @@ translate(sequenceSet)
 
 Manually typing in sequences obviously isn't a great system. Modern sequencing data are typically in `.fasta` or `.fastq` file format, so let's look at a more realistic
 use-case that reads in a data from a `.fasta`. We're going to be using an example
-set of 17 complete *Micrococcus* genomes obtained from [NCBI GenBank](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=3%3A3). 
+from *Micrococcus* genomes obtained from [NCBI GenBank](https://www.ncbi.nlm.nih.gov/data-hub/genome/?taxon=1269&annotated_only=true&refseq_annotation=true&assembly_level=3%3A3). 
 
-I've predownloaded these and repackaged them into a single `.FASTA` file for this 
-workshop (the file extension is `.fa.gz` since it's been compressed for size),
-which you can download with the below button.
-
-These sequences have been trimmed to facilitate completing analysis in a single 
-workshop slot. Feel free to experiment with the complete sequences later.
-You can also build this object yourself by downloading the `_genomic.fasta` files
-from GenBank and then reading them in individually. More details on this are 
-available on the [Setup page](https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html).
+For purposes of the workshop, I've reduced the dataset to a single *Micrococcus*
+gene. This expedites examples to allow for quick processing. These sequences
+have been packaged into a single `.FASTA` file (compressed into a `.fa.gz` file),
+which you can download with the below button. Each gene is uniquely identified
+with a three number code detailed on the [Finding COGs page](https://www.ahl27.com/CompGenomicsBioc2022/articles/FindingCOGs.html).
 
 ```{css echo=FALSE}
 .hvr-grow-shadow {
@@ -152,17 +148,19 @@ A common analysis in
 bioinformatics is aligning sequences. This is easily achievable with either the 
 `AlignSeqs()` function or the `AlignTranslation()` functions from `DECIPHER`. 
 `AlignTranslation()` aligns sequences based on their translated amino acid 
-sequences, and is significantly more accurate for coding sequences.
+sequences, and is significantly more accurate for coding sequences (like the
+ones we're working with).
 
 ```{r}
 # Align the sequences
 aliNoTranslate <- AlignSeqs(exStringSet, verbose=FALSE)
 
 # Aligning using translated amino acid sequences
+# These sequences are coding sequences, so this function will be more accurate
 aliTranslate <- AlignTranslation(exStringSet, verbose=FALSE)
 
 # Visualize through R 
-aliNoTranslate
+aliTranslate
 ```
 
 Alignments tend to start with a lot of gaps, and as a result viewing them through
@@ -170,7 +168,7 @@ R isn't always super informative.
 As before, we can visualize this alignment in a much better way using `BrowseSeqs()`:
 
 ```{r, eval=FALSE}
-BrowseSeqs(aliNoTranslate)
+BrowseSeqs(aliTranslate)
 ```
 
 The output should resemble the following:
@@ -178,8 +176,6 @@ The output should resemble the following:
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('images/picAlignment.png')
 ```
-
-&nbsp;
 
 &nbsp;
 
@@ -236,13 +232,18 @@ Seqs2DB(seqs=exampleSeqs, type='FASTA',
 Now that we have our database, what do we do with it? 
 
 To start, we can run `BrowseDB()`, a function analogous to `BrowseSeqs()` but
-for `DECIPHER` databases.
+for `DECIPHER` databases. Instead of showing sequences, this visualization shows
+entries in the database that can be queried. 
 
 ```{r eval=FALSE}
 BrowseDB(dbConn)
 ```
 
-If we want to read the sequences back into R as an `XStringSet`, we use `SearchDB()`
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('images/picDB.png')
+```
+
+If we want to read the sequences back into R as an `XStringSet`, we use `SearchDB()`.
 
 ```{r}
 dbStringSet <- SearchDB(dbConn)
@@ -259,6 +260,7 @@ following options:
 SearchDB(dbConn, limit=10)
 
 # Look for a specific identifier
+# BrowseDB() is useful here for determining what the identifiers are
 SearchDB(dbConn, identifier = 'example identifier')
 
 # Run SQL queries

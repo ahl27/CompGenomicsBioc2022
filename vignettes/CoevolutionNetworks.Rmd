@@ -147,7 +147,7 @@ CoreCutoff <- 88
 UnderCutoff <- 5
 
 # Get assembly identifiers for each COG
-truncCOGs <- lapply(COGs, \(x) sort(as.integer(gsub('([0-9]*)_.*', '\\1', x))))
+truncCOGs <- lapply(COGs, \(x) sort(as.integer(gsub('^([0-9]+)_.*', '\\1', x))))
 
 # Find COGs without paralogs
 noParas <- sapply(truncCOGs, \(x) length(x) == length(unique(x)))
