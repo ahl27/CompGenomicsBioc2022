@@ -93,18 +93,6 @@ datafile <- system.file('extdata', 'Phylogenies',
 # If you don't have it, load it in this way
 load(datafile, verbose=TRUE) # Should load 'testCOG'
 
-# Helper plotting function
-plot_tree_unrooted <- function(dend, main, plottype='unrooted'){
-  if(require(ape)){
-    tf <- tempfile()
-    WriteDendrogram(dend, file=tf, quoteLabels=FALSE)
-    predTree <- read.tree(tf)
-    plot(predTree, plottype, main=main, underscore=TRUE)
-  } else {
-    plot(dend, main=main)
-  }
-}
-
 # Let's make the names a little more concise
 # These COGs exist in pairs with two lengths
 # We'll code them as <Assembly><A/B>, where A is the longer sequence

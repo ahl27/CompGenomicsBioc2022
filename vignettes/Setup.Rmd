@@ -26,6 +26,33 @@ This tutorial depends on a few key packages to work correctly. This page will ou
 how to install all the necessary components for this workshop. If you're attending
 this tutorial at Bioconductor 2022, [you can skip directly to the next page](https://www.ahl27.com/CompGenomicsBioc2022/articles/LoadingGenomeData.html).
 
+### Docker Installation
+The easiest way to run the examples in this tutorial series are via Docker.
+If you have Docker installed, you can set up an environment with the following
+command:
+
+```
+docker run -e PASSWORD=<password> -p 8787:8787 ghcr.io/ahl27/compgenomicsbioc2022:723220851
+```
+
+This will download the relevant Docker container and then launch an RStudio server
+instance, which you can access by going to [http://localhost:8787](http://localhost:8787).
+The username is by default `rstudio`, and the password is what you entered for 
+`<password>`. 
+
+Once in the Docker container, you can look at the `datafiles/` directory for 
+all the files you'll need to follow along. Each folder corresponds to one 
+of the tutorial pages on this site, and includes all relevant datafiles plus
+an `.Rmd` file with all the code (so you don't have to copy-paste back and forth).
+
+Note that RStudio Server running in Docker is currently incompatible with ARM Macs,
+so in that case you'll have to use your own RStudio instance.
+
+For Bioconductor workshop attendees, we'll be using the content in the `CONFERENCE_MATERIALS`
+folder.
+
+If you don't want to use Docker, see below.
+
 ### Prerequisites
 All content will be shown using the [R programming language](https://www.r-project.org/). 
 For existing users, note that your version of `R` must be at least version `4.x.x` 

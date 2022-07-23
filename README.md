@@ -43,9 +43,10 @@ With these data, we can analyze patterns in evolutionary signal across COGs. Co-
 
 ### Conclusion
 
-At the conclusion of this workshop, users will be able to perform the following tasks in R:
+By working through this website, users will be able to perform the following tasks in R:
 
 * Visualize sequence data
+* Work with big genomic data
 * Identify and annotate genes from sequence data
 * Identify COGs from a set of gene calls
 * Build phylogenies at the species and gene level
@@ -58,8 +59,6 @@ At the conclusion of this workshop, users will be able to perform the following 
 * [Related Tutorials](http://www2.decipher.codes/Tutorials.html)
 * [Our Lab!](https://www.wrightlabscience.com/p/index.html)
 
-
-&nbsp;
 
 &nbsp;
 

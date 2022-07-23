@@ -62,6 +62,11 @@ with real data:
 All of these analyses will be conducted entirely within R, and are achievable using
 only raw sequencing data along with the `DECIPHER` and `SynExtend` packages.
 
+EDIT: Due to time constraints, we're going to focus on predicting functional 
+associations between COGs, and if time permits we can work our way backward 
+to the rest of the content. Users are encouraged to read the other pages
+later on.
+
 ### Prerequisites
 
 Both `DECIPHER` and `SynExtend` are developed to be as simple as possible for the 
@@ -94,13 +99,13 @@ Timing is estimated and may vary depending on questions from audience.
 
 | Activity                                 |  Package  |        Time        |
 |:-----------------------------------------|:---------:|-------------------:|
-| Introduction and Setup                   |           |            5 min   |
-| Working with Genomic Data                | `DECIPHER`|           10 min   |
-| Gene Calling and Annotation              | `DECIPHER`|           15 min   |
-| Finding COGs                             |`SynExtend`|           15 min   |
-| Phylogenetic Reconstruction              | `DECIPHER`|           15 min   |
-| Identifying Co-evolving Gene Collectives |`SynExtend`|           15 min   |
-| Concluding Remarks                       |           |            5 min   |
+| Introduction and Setup                   |           |            20 min  |
+| Working with Genomic Data                | `DECIPHER`|            0 min   |
+| Gene Calling and Annotation              | `DECIPHER`|            0 min   |
+| Finding COGs                             |`SynExtend`|            0 min   |
+| Phylogenetic Reconstruction              | `DECIPHER`|            0 min   |
+| Identifying Co-evolving Gene Collectives |`SynExtend`|          30 min   |
+| Concluding Remarks                       |           |          10 min   |
 | Q & A                                    |           |   Remaining Time   |
 
 ### Workshop goals and objectives
