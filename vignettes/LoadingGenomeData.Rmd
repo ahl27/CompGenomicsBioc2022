@@ -218,7 +218,8 @@ This is done with `Seqs2DB()` with the following syntax:
 # All sequences must be identified with a unique quantifier
 # This has to be a character vector; we can make it 1:length(exStringSet)
 identifiers = as.character(seq_along(exStringSet))
-Seqs2DB(exStringSet, type='XStringSet', identifier=identifiers)
+Seqs2DB(seqs=exStringSet, type='XStringSet', 
+        dbFile=dbConn, identifier=identifiers)
 ```
 
 We can also write sequences directly from a `FASTA` file to our database.
@@ -226,7 +227,10 @@ In this code, we're using `replaceTbl=TRUE` so that we replace our table
 with the sequences (rather than add the same set twice).
 ```{r}
 # We can also directly import from a FASTA file 
-Seqs2DB(exampleSeqs, type='FASTA', replaceTbl=TRUE)
+# FASTA files 
+Seqs2DB(seqs=exampleSeqs, type='FASTA', 
+        dbFile=dbConn, identifier=identifiers,
+        replaceTbl=TRUE)
 ```
 
 Now that we have our database, what do we do with it? 
