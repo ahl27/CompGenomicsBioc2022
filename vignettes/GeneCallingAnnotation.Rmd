@@ -132,7 +132,7 @@ data to analyze:
 -   `data("NonCodingRNA_Eukarya")` for Eukaryotic data
 
 These include pretrained models with common non-coding patterns for the
-relevant domain of life. If these pretrained models are insuffient, you
+relevant domain of life. If these pretrained models are insufficient, you
 can train your own dataset using `LearnNonCoding()`, though this is
 outside the scope of this workshop.
 
@@ -170,6 +170,7 @@ translate them into amino acids.
 
 ```{r results='hide', warning=FALSE}
 # Find amino acid sequences corresponding to found genes
+# May get a warning if we don't have an even multiple of 3 base pairs
 geneSeqs <- ExtractGenes(genes, dnaGenome, type="DNAStringSet")
 geneSeqs <- translate(geneSeqs)
 ```

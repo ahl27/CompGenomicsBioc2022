@@ -55,8 +55,9 @@ If you don't want to use Docker, see below.
 
 ### Prerequisites
 All content will be shown using the [R programming language](https://www.r-project.org/). 
-For existing users, note that your version of `R` must be at least version `4.x.x` 
-for compatibility with the packages we'll be using.
+For existing users, note that your version of `R` must be at least version `4.2.x` 
+for compatibility with the packages we'll be using and access to Bioconductor
+3.16.
 
 I also recommend using [RStudio](https://www.rstudio.com/products/rstudio/) as a 
 development environment, since it's an excellent IDE with tons of features. 
@@ -67,7 +68,7 @@ you prefer.
 This workshop depends on two main packages: `DECIPHER` and `SynExtend`. 
 These will be installed via [Bioconductor](http://bioconductor.org/), a package 
 manager for open source bioinformatics projects in R. These tutorials will use
-`DECIPHER` version `2.25.0` and `SynExtend` version `1.9.5`, which are available on
+`DECIPHER` version `2.25.0` and `SynExtend` version `1.9.6`, which are available on
 the development version of Bioconductor.
 
 ```{r eval=FALSE}

@@ -301,12 +301,12 @@ pairs(syn)
 ```
 
 What are we looking at with this plot? Each plot compares two genomes, and each
-dot is a syntenic hit between the two genomes. The X position of the dot is its
+point is a syntenic hit between the two genomes. The X position of the point is its
 location on the first genome, and the Y position is its position on the second genome.
 If we had identical genomes, we would expect to see a diagonal line $y=x$, indicating
 that all bases occur at the same place in both genomes. Gaps indicate areas that
 do not match, and points off the diagonal indicate matching areas in different places on
-each genomes.
+each genomes. These particular examples are highly syntenic, so they all resemble the line $y=x$.
 
 We'll see a more in-depth example of using `Synteny` objects returned by 
 `FindSynteny()` later on.
