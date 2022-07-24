@@ -316,7 +316,7 @@ is done with <code><a href="https://rdrr.io/pkg/DECIPHER/man/Seqs2DB.html" class
 <pre><code><span><span class="co">## Adding 20 sequences to the database.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## 20 total sequences in table Seqs.</span></span>
-<span><span class="co">## Time difference of 0.1 secs</span></span></code></pre>
+<span><span class="co">## Time difference of 0.07 secs</span></span></code></pre>
 <p>We can also write sequences directly from a <code>FASTA</code> file
 to our database. In this code, we’re using <code>replaceTbl=TRUE</code>
 so that we replace our table with the sequences (rather than add the
@@ -331,7 +331,7 @@ same set twice).</p>
 Reading FASTA file chunk 1
 ## 
 ## 20 total sequences in table Seqs.
-## Time difference of 0.05 secs</code></pre>
+## Time difference of 0.03 secs</code></pre>
 <p>Now that we have our database, what do we do with it?</p>
 <p>To start, we can run <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseDB.html" class="external-link">BrowseDB()</a></code>, a function analogous to
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/BrowseSeqs.html" class="external-link">BrowseSeqs()</a></code> but for <code>DECIPHER</code> databases.
@@ -409,13 +409,14 @@ hits between the first 6 sequences in our set.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">syn</span><span class="op">)</span></span></code></pre></div>
 <p><img src="LoadingGenomeData_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
 <p>What are we looking at with this plot? Each plot compares two
-genomes, and each dot is a syntenic hit between the two genomes. The X
-position of the dot is its location on the first genome, and the Y
+genomes, and each point is a syntenic hit between the two genomes. The X
+position of the point is its location on the first genome, and the Y
 position is its position on the second genome. If we had identical
 genomes, we would expect to see a diagonal line <span class="math inline">\(y=x\)</span>, indicating that all bases occur at
 the same place in both genomes. Gaps indicate areas that do not match,
 and points off the diagonal indicate matching areas in different places
-on each genomes.</p>
+on each genomes. These particular examples are highly syntenic, so they
+all resemble the line <span class="math inline">\(y=x\)</span>.</p>
 <p>We’ll see a more in-depth example of using <code>Synteny</code>
 objects returned by <code><a href="https://rdrr.io/pkg/DECIPHER/man/FindSynteny.html" class="external-link">FindSynteny()</a></code> later on.</p>
 </div>
