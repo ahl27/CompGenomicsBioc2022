@@ -307,30 +307,31 @@ the following:
 # PHYLOGENETIC PROFILING METHODS:
   ## P/A = Presence/Absence Profiles
   ## Jaccard distance of P/A
-Jaccard <- predict(pw, method='Jaccard') 
+Jaccard <- predict(pw, Method='Jaccard') 
 
   ## Hamming distance of P/A
-Hamming <- predict(pw, method='Hamming') 
+Hamming <- predict(pw, Method='Hamming') 
 
   ## MutualInformation of P/A
-MutualInf <- predict(pw, method='MutualInformation')
+MutualInf <- predict(pw, Method='MutualInformation')
 
   ## Direct Coupling Analysis of P/A
-ProfDCA <- predict(pw, method='ProfDCA') 
+ProfDCA <- predict(pw, Method='ProfDCA') 
 
   ## Correlation of gain/loss events on phylogeny, requires Species Tree
-Behdenna <- predict(pw, method='Behdenna', mySpeciesTree=exSpeciesTree)
+      ## Commented out because we don't have a species tree
+#Behdenna <- predict(pw, Method='Behdenna', mySpeciesTree=exSpeciesTree)
 
 # CO-LOCALIZATION METHODS:
-Colocalization <- predict(pw, method='Coloc') # Co-localization analysis
+Colocalization <- predict(pw, Method='Coloc') # Co-localization analysis
 
 # DISTANCE MATRIX METHDOS:
-MirrorTree <- predict(pw, method='MirrorTree')
-ContextTree <- predict(pw, method='ContextTree')
+MirrorTree <- predict(pw, Method='MirrorTree')
+ContextTree <- predict(pw, Method='ContextTree')
 
 # Residue Methods: (ONLY AVAILABLE IN DEV VERSION)
 #   ## MutualInf of residues
-ResidueMI <- predict(pw, method='ResidueMI') 
+ResidueMI <- predict(pw, Method='ResidueMI') 
 ```
 
 
