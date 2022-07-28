@@ -32,7 +32,7 @@ If you have Docker installed, you can set up an environment with the following
 command:
 
 ```
-docker run -e PASSWORD=<password> -p 8787:8787 ghcr.io/ahl27/compgenomicsbioc2022:728221013
+docker run -e PASSWORD=<password> -p 8787:8787 ghcr.io/ahl27/compgenomicsbioc2022:latest
 ```
 
 This will download the relevant Docker container and then launch an RStudio server
