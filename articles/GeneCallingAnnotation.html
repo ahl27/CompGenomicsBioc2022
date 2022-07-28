@@ -166,12 +166,12 @@ information on where genes start and end in the genome.</p>
 <span><span class="co">## 2,217 protein coding genes from 75 to 4,653 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     367.60 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     255.94 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     228.45 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      75.46 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     548.12 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     686.42 ...    1</span></span>
+<span><span class="co">## 1     1      0   256  1803     367.49 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     256.34 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     228.50 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      75.43 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     547.50 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     686.73 ...    1</span></span>
 <span><span class="co">## ... with 2,211 more rows.</span></span></code></pre>
 <p>We can then extract the sequences corresponding to each gene with
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/ExtractGenes.html" class="external-link">ExtractGenes()</a></code>.</p>
@@ -287,12 +287,12 @@ regions, resulting in more accurate gene calling than just running
 <span><span class="co">## 58 non-coding RNAs from 73 to 3,088 nucleotides.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Index Strand Begin   End TotalScore ... Gene</span></span>
-<span><span class="co">## 1     1      0   256  1803     367.34 ...    1</span></span>
-<span><span class="co">## 2     1      0  2554  3669     255.70 ...    1</span></span>
-<span><span class="co">## 3     1      0  3691  4905     228.49 ...    1</span></span>
-<span><span class="co">## 4     1      0  4898  5461      75.46 ...    1</span></span>
-<span><span class="co">## 5     1      0  5819  7981     545.62 ...    1</span></span>
-<span><span class="co">## 6     1      0  8050 10746     686.16 ...    1</span></span>
+<span><span class="co">## 1     1      0   256  1803     366.48 ...    1</span></span>
+<span><span class="co">## 2     1      0  2554  3669     255.84 ...    1</span></span>
+<span><span class="co">## 3     1      0  3691  4905     227.35 ...    1</span></span>
+<span><span class="co">## 4     1      0  4898  5461      75.90 ...    1</span></span>
+<span><span class="co">## 5     1      0  5819  7981     545.47 ...    1</span></span>
+<span><span class="co">## 6     1      0  8050 10746     683.83 ...    1</span></span>
 <span><span class="co">## ... with 2,268 more rows.</span></span></code></pre>
 <p>As before, we can pull out the sequences for these regions using
 <code><a href="https://rdrr.io/pkg/DECIPHER/man/ExtractGenes.html" class="external-link">ExtractGenes()</a></code>. Since these are all coding regions, we’ll
@@ -366,15 +366,15 @@ directly, or plot them as a taxonomy.</p>
 <pre><code><span><span class="co">##   A test set of class 'Taxa' with length 10</span></span>
 <span><span class="co">##      confidence taxon</span></span>
 <span><span class="co">##  [1]       100% Root; 09130 Environmental Information Processing; 09132 Signa...</span></span>
-<span><span class="co">##  [2]        99% Root; 09120 Genetic Information Processing; 09124 Replication...</span></span>
+<span><span class="co">##  [2]       100% Root; 09120 Genetic Information Processing; 09124 Replication...</span></span>
 <span><span class="co">##  [3]       100% Root; 09120 Genetic Information Processing; 09124 Replication...</span></span>
-<span><span class="co">##  [4]        27% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">##  [4]        29% Root; unclassified_Root...                                      </span></span>
 <span><span class="co">##  [5]        96% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
-<span><span class="co">##  [6]        99% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
+<span><span class="co">##  [6]       100% Root; 09180 Brite Hierarchies; 09182 Protein families: geneti...</span></span>
 <span><span class="co">##  [7]        35% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">##  [8]        76% Root; 09190 Not Included in Pathway or Brite; 09193 Unclassif...</span></span>
-<span><span class="co">##  [9]        45% Root; unclassified_Root...                                      </span></span>
-<span><span class="co">## [10]        29% Root; unclassified_Root...</span></span></code></pre>
+<span><span class="co">##  [8]        81% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">##  [9]        44% Root; unclassified_Root...                                      </span></span>
+<span><span class="co">## [10]        27% Root; unclassified_Root...</span></span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Looking at a specific entry</span></span>
 <span><span class="va">ids</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
