@@ -316,7 +316,7 @@ Hamming <- predict(pw, Method='Hamming')
 MutualInf <- predict(pw, Method='MutualInformation')
 
   ## Direct Coupling Analysis of P/A
-ProfDCA <- predict(pw, Method='ProfDCA') 
+ProfDCA <- predict(pw, Method='ProfileDCA') 
 
   ## Correlation of gain/loss events on phylogeny, requires Species Tree
       ## Commented out because we don't have a species tree
