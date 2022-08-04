@@ -1,3 +1,10 @@
+# Version 3.3.0
+### General Notes
+* First update after Bioconductor conference
+* Removes some material specific to conference workshop
+* Updates some graphics
+* Adds detailed description of runtime consideration
+
 # Version 3.2.0
 ### General Notes
 * Changes example on `Loading Genome Data` to use a gene rather than random bases
