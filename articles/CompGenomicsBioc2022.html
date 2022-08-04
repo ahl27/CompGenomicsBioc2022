@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,8 +102,9 @@
 <div class="section level3">
 <h3 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
 </h3>
-<p>This workshop consists of an interactive, instructor-led
-demonstration of common analyses in comparative genomics.</p>
+<p>This workshop consists of a demonstration of using
+<code>DECIPHER</code> and <code>SynExtend</code> for common analyses in
+comparative genomics.</p>
 <p>The immediate goal of this session is to use sequence data to uncover
 networks of functionally associated genes. These networks consist of
 genetic regions under shared evolutionary pressure, which have
@@ -117,7 +118,7 @@ These networks can be used to make novel hypotheses about protein
 functional pathways.</p>
 <p>The overall purpose of this workshop is slightly more broad: to teach
 users how to utilize a wide variety of tools for computational genomics.
-Walking through our pipline serves as a convenient mechanism to guide
+Walking through our pipeline serves as a convenient mechanism to guide
 instruction in a set of broadly applicable tools that can easily be
 repurposed to many other problems.</p>
 <p>This workshop will showcase the following functionalities through
@@ -132,12 +133,8 @@ hands-on tutorials with real data:</p>
 <li>Predicting functional association between COGs</li>
 </ul>
 <p>All of these analyses will be conducted entirely within R, and are
-achievable using only raw sequencing data along with the
-<code>DECIPHER</code> and <code>SynExtend</code> packages.</p>
-<p>EDIT: Due to time constraints, we’re going to focus on predicting
-functional associations between COGs, and if time permits we can work
-our way backward to the rest of the content. Users are encouraged to
-read the other pages later on.</p>
+achievable using only raw sequencing data with the <code>DECIPHER</code>
+and <code>SynExtend</code> packages.</p>
 </div>
 <div class="section level3">
 <h3 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
@@ -155,15 +152,6 @@ into the content covered may consider checking <a href="http://www2.decipher.cod
 additional tutorials.</p>
 </div>
 <div class="section level3">
-<h3 id="participation">Participation<a class="anchor" aria-label="anchor" href="#participation"></a>
-</h3>
-<p>Attendees will be expected to participate by following along with the
-examples provided in the workshop. Rather than just listening to
-instruction, attendees are expected to run the examples for themselves
-and ask questions related to either steps in the workshop or related
-scenarios these methods could be applicable to for their own work.</p>
-</div>
-<div class="section level3">
 <h3 id="bioconductor-packages-used">
 <em>Bioconductor</em> packages used<a class="anchor" aria-label="anchor" href="#bioconductor-packages-used"></a>
 </h3>
@@ -171,66 +159,6 @@ scenarios these methods could be applicable to for their own work.</p>
 <li><a href="http://bioconductor.org/packages/release/bioc/html/DECIPHER.html" class="external-link"><code>DECIPHER</code></a></li>
 <li><a href="http://bioconductor.org/packages/release/bioc/html/SynExtend.html" class="external-link"><code>SynExtend</code></a></li>
 </ul>
-</div>
-<div class="section level3">
-<h3 id="time-outline">Time outline<a class="anchor" aria-label="anchor" href="#time-outline"></a>
-</h3>
-<p>Timing is estimated and may vary depending on questions from
-audience.</p>
-<table class="table">
-<colgroup>
-<col width="57%">
-<col width="15%">
-<col width="27%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">Activity</th>
-<th align="center">Package</th>
-<th align="right">Time</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Introduction and Setup</td>
-<td align="center"></td>
-<td align="right">20 min</td>
-</tr>
-<tr class="even">
-<td align="left">Working with Genomic Data</td>
-<td align="center"><code>DECIPHER</code></td>
-<td align="right">0 min</td>
-</tr>
-<tr class="odd">
-<td align="left">Gene Calling and Annotation</td>
-<td align="center"><code>DECIPHER</code></td>
-<td align="right">0 min</td>
-</tr>
-<tr class="even">
-<td align="left">Finding COGs</td>
-<td align="center"><code>SynExtend</code></td>
-<td align="right">0 min</td>
-</tr>
-<tr class="odd">
-<td align="left">Phylogenetic Reconstruction</td>
-<td align="center"><code>DECIPHER</code></td>
-<td align="right">0 min</td>
-</tr>
-<tr class="even">
-<td align="left">Identifying Co-evolving Gene Collectives</td>
-<td align="center"><code>SynExtend</code></td>
-<td align="right">30 min</td>
-</tr>
-<tr class="odd">
-<td align="left">Concluding Remarks</td>
-<td align="center"></td>
-<td align="right">10 min</td>
-</tr>
-<tr class="even">
-<td align="left">Q &amp; A</td>
-<td align="center"></td>
-<td align="right">Remaining Time</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="section level3">
 <h3 id="workshop-goals-and-objectives">Workshop goals and objectives<a class="anchor" aria-label="anchor" href="#workshop-goals-and-objectives"></a>
@@ -251,28 +179,9 @@ basic <em>in silico</em> analyses, even if they don’t have a deep
 bioinformatics background.</p>
 </div>
 <div class="section level3">
-<h3 id="learning-goals">Learning goals<a class="anchor" aria-label="anchor" href="#learning-goals"></a>
+<h3 id="get-started">Get Started!<a class="anchor" aria-label="anchor" href="#get-started"></a>
 </h3>
-<ul>
-<li>Describe how to work with and visualize sequencing data in R</li>
-<li>Identify methods to analyze evolutionary forces on genetic
-regions</li>
-<li>Identify orthologous genomic regions</li>
-<li>Identify and annotate gene function</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="learning-objectives">Learning objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a>
-</h3>
-<ul>
-<li>Analyze sequencing data to produce experimental hypotheses</li>
-<li>Generate phylogenetic reconstructions to investigate the
-evolutionary history of a set of genomes</li>
-<li>Mine big genomic data to find regions with conserved function across
-organisms</li>
-</ul>
-<p> </p>
-<p> </p>
+<p>When you’re ready to start, click the button below!</p>
 <p> </p>
 <style type="text/css">
 .btn-lg, .btn-group-lg>.btn{
@@ -283,8 +192,8 @@ organisms</li>
 }
 </style>
 <div class="d-grid gap-2">
-<p><a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html" class="btn btn-lg btn-primary" type="button">Get
-Started!</a></p>
+<p><a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/Setup.html" class="btn btn-lg btn-primary" type="button">Next
+Page</a></p>
 </div>
 </div>
 

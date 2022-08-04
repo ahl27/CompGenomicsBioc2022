@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">CompGenomicsBioc2022</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,8 +141,99 @@ genomes, which can complete in as little as an hour given sufficient
 compute nodes.</p>
 <p>Our analytical pipeline looks like this:</p>
 <p><img src="images/Parallelization.png" width="100%" style="display: block; margin: auto;"></p>
+<div class="section level3">
+<h3 id="runtime-estimations">Runtime Estimations<a class="anchor" aria-label="anchor" href="#runtime-estimations"></a>
+</h3>
+<p>The following is a rough estimate of runtime considerations at each
+stage of the pipeline. These examples use <em>Streptomyces</em> genomes,
+which are roughly 7-9 megabases. Stages marked “single” are only run
+once, whereas “parallel” are run multiple times. “Runtime” denotes total
+runtime if “single” and runtime per iteration if “parallel”.</p>
+<p>For scaling, <span class="math inline">\(G\)</span> is the number of
+Genomes, <span class="math inline">\(g\)</span> is the number of genes,
+<span class="math inline">\(C\)</span> is the number of COGs, <span class="math inline">\(g_C\)</span> is the number of genes in a
+particular COG.</p>
+<p><code>MP</code> and <code>ML</code> denote Maximum Parsimony and
+Maximum Likelihood, respectively. <code>ML</code> is more accurate than
+<code>MP</code>, but suffers in runtime. See the section on <a href="https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html">Phylogenetics</a>
+for more info.</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="17%">
+<col width="17%">
+<col width="17%">
+<col width="14%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">Pipeline Stage</th>
+<th align="center">Scaling</th>
+<th align="center">Single or Parallel</th>
+<th align="center">Example</th>
+<th align="center">Example Runtime</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Get Genomes</td>
+<td align="center"><span class="math inline">\(O(G)\)</span></td>
+<td align="center">Single</td>
+<td align="center">300 <em>Streptomyces</em> Genomes</td>
+<td align="center">30-120 sec</td>
+</tr>
+<tr class="even">
+<td align="center">Find Genes</td>
+<td align="center"><span class="math inline">\(O(G)\)</span></td>
+<td align="center">Parallel</td>
+<td align="center">Single <em>Streptomyces</em> Genome</td>
+<td align="center">10-20 min</td>
+</tr>
+<tr class="odd">
+<td align="center">Annotate Genes</td>
+<td align="center"><span class="math inline">\(O(G)\)</span></td>
+<td align="center">Parallel</td>
+<td align="center">Single <em>Streptomyces</em> Genome</td>
+<td align="center">10-30 min</td>
+</tr>
+<tr class="even">
+<td align="center">Pairwise Orthology</td>
+<td align="center"><span class="math inline">\(O(G^2)\)</span></td>
+<td align="center">Parallel</td>
+<td align="center">Pair of <em>Streptomyces</em> Genomes</td>
+<td align="center">5-20 min</td>
+</tr>
+<tr class="odd">
+<td align="center">Ortholog Pairs to COGs</td>
+<td align="center"><span class="math inline">\(O(g^2)\)</span></td>
+<td align="center">Single</td>
+<td align="center">All pairs from 300 <em>Streptomyces</em> Genomes</td>
+<td align="center">5 min</td>
+</tr>
+<tr class="even">
+<td align="center">Align and Make Tree (MP)</td>
+<td align="center"><span class="math inline">\(O(C)\)</span></td>
+<td align="center">Parallel</td>
+<td align="center">Single <em>Streptomyces</em> COG</td>
+<td align="center">20-40 min</td>
+</tr>
+<tr class="odd">
+<td align="center">Align and Make Tree (ML)</td>
+<td align="center"><span class="math inline">\(O(C)\)</span></td>
+<td align="center">Parallel</td>
+<td align="center">Single <em>Streptomyces</em> COG</td>
+<td align="center">10-12 hr</td>
+</tr>
+<tr class="even">
+<td align="center">Calculate Coevolution</td>
+<td align="center"><span class="math inline">\(O(C^2)\)</span></td>
+<td align="center">Parallel</td>
+<td align="center">Pair of <em>Streptomyces</em> COGs</td>
+<td align="center">5-10 sec</td>
+</tr>
+</tbody>
+</table>
 <p>Users interested in deploying these analyses at scale are encouraged
 to contact our lab for more information!</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="thank-you">Thank you!<a class="anchor" aria-label="anchor" href="#thank-you"></a>
