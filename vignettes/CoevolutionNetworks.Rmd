@@ -249,6 +249,14 @@ the raw data with `GetProtWebData()`:
 GetProtWebData(preds)[1:7, 1:7]
 ```
 
+We can also examine a histogram of association scores for all our predictions:
+
+```{r}
+pwData <- GetProtWebData(preds)
+hist(pwData[upper.tri(pwData)], main='Histogram of Association Scores',
+     xlab='Strength of Association')
+```
+
 The `ProtWeb` class will be updated next release cycle to include more methods, 
 including a custom plotting function. The current `plot.ProtWeb` S3 method 
 implements a force-directed embedding of the pairwise scores, but it's a
@@ -294,8 +302,6 @@ facilitates HGT of some of these genes.
 If we had conducted this analysis with hypothetical proteins, we could have 
 inferred novel functions!
 
-
-
 ## Methods Implemented in ProtWeaver
 
 By default, `predict.ProtWeaver` makes an ensemble prediction using as many individual
@@ -334,6 +340,26 @@ ContextTree <- predict(pw, Method='ContextTree')
 ResidueMI <- predict(pw, Method='ResidueMI') 
 ```
 
+## Runtime Considerations
+
+Runtime of `ProtWeaver` depends on the number of COGs and the method used. Most of 
+the methods are extremely quick, on the order of 0-1 seconds per comparison. 
+The default `Method="Ensemble"` implements the fastest methods, giving a good
+compromise between speed and accuracy. For a set of 100 COGs, `Ensemble` prediction
+for all pairs took 30 seconds on a 2021 M1 MacBook Pro.
+
+Note that number of pairs computed scales quadratically with the number of COGs.
+100 COGs results in ~5k comparisons, but 200 COGs results in ~20k comparisons.
+
+`ResidueMI` is currently the slowest method implemented, and is not used in 
+`Ensemble` prediction. Prediction on 10 COGs took 30 seconds. Future releases
+will optimize residue level methods for use in `Ensemble` prediction, but use of
+these methods is inherently difficult due to runtime scaling on both the number of
+COGs, the size of each tree, and the length of each gene sequence.
+
+These predictions can be parallelized across multiple compute nodes. This implementation
+is recommended for using `ResidueMI` on large datasets. A single `ResidueMI` comparison
+completes in roughly 1 second, and `Ensemble` prediction in around 0.5 seconds.
 
 ```{css, echo=FALSE}
 .pagination {

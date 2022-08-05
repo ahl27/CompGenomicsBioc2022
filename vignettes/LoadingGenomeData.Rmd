@@ -311,6 +311,16 @@ each genomes. These particular examples are highly syntenic, so they all resembl
 We'll see a more in-depth example of using `Synteny` objects returned by 
 `FindSynteny()` later on.
 
+## Runtime Considerations
+
+Loading genomes is fairly fast; each sequence takes on the order of 1-2 seconds.
+The runtime of these operations are rarely significant in the overall runtime of 
+the entire pipeline.
+
+When implementing at scale on a compute cluster, it may be more efficient to use [NCBI's Entrez Search](https://www.ncbi.nlm.nih.gov/books/NBK3837/) to download genomes
+on the fly; this adds some runtime overhead but improves memory efficiency
+on individual compute nodes.
+
 ## Conclusion
 
 Now we've managed to read in sequence data and perform some basic analyses. 

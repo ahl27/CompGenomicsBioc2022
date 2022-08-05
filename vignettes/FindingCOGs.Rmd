@@ -237,6 +237,21 @@ MatchedCOGSets[1:3]
 MatchedSequences[1:3]
 ```
 
+## Runtime Considerations
+
+Finding COGs is comprised of multiple steps that are almost all parallelizable.
+
+Each pair of genomes can be compared on a separate compute node. If 
+`BlockExpansion` and `BlockReconciliation` are used, total runtime is on the order
+of 5-20 minutes per pair. Runtime scales with the number of gene calls and the length
+of each gene. Skipping `BlockExpansion` and `BlockReconciliation` can improve
+runtime by a factor of 2-5x, but decreases accuracy.
+
+Reconciling pairwise orthology into COGs using `DisjointSets` does not parallelize well,
+but is a fast operation overall. Runtime scales on the number of pairwise orthology
+predictions. Reconciling pairwise orthology predictions from 2.2 million *Streptomyces*
+gene calls takes on the order of 20 minutes total.
+
 ## Conclusion
 
 Now we know how to generate COGs from a dataset of genomes and gene calls. We 

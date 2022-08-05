@@ -52,36 +52,42 @@ have low CPU and memory requirements, and thus can be run on small (2-4GB memory
 nodes. We have recently completed analysis of all available *Streptomyces* genomes,
 which can complete in as little as an hour given sufficient compute nodes.
 
-Our analytical pipeline looks like this:
+Our pipeline of analysis looks like this:
 
 ```{r echo=FALSE, out.width='100%', fig.align='center'}
 knitr::include_graphics('images/Parallelization.png')
 ```
 
+
 ### Runtime Estimations
 The following is a rough estimate of runtime considerations at each stage of the 
 pipeline. These examples use *Streptomyces* genomes, which are roughly 7-9 megabases.
-Stages marked "single" are only run once, whereas "parallel" are run multiple times.
-"Runtime" denotes total runtime if "single" and runtime per iteration if "parallel".
+Stages marked `single` are only run once, whereas `parallel` are run multiple times.
+"Runtime" denotes total runtime if `single` and runtime per iteration if `parallel`.
+More details on each runtime component are available on the corresponding pages.
 
 For scaling, $G$ is the number of Genomes, $g$ is the number of genes, $C$ is the number
 of COGs, $g_C$ is the number of genes in a particular COG.
 
-`MP` and `ML` denote Maximum Parsimony and Maximum Likelihood, respectively.
-`ML` is more accurate than `MP`, but suffers in runtime. See the section on
+`NJ`, `MP`, and `ML` denote Neighbor Joining, Maximum Parsimony, and Maximum Likelihood (respectively).
+`ML` is more accurate than `MP` at the cost of increased runtime, and the same is true of `MP` and `NJ`. See the section on
 [Phylogenetics](https://www.ahl27.com/CompGenomicsBioc2022/articles/ConstructingPhylogenies.html) for more info.
 
 
-| Pipeline Stage        |  Scaling  | Single or Parallel | Example | Example Runtime |
+| Pipeline Stage        |  Scaling  | Single or Parallel | *Streptomyces* Example | Example Runtime |
 |:-------------------:|:---------:|:---------:|:---------:|:-------:|
-| Get Genomes     |  $O(G)$ |  Single  | 300 *Streptomyces* Genomes  |  30-120 sec |
-| Find Genes     | $O(G)$ | Parallel | Single *Streptomyces* Genome | 10-20 min |
-| Annotate Genes | $O(G)$ |  Parallel | Single *Streptomyces* Genome | 10-30 min |
-| Pairwise Orthology | $O(G^2)$ | Parallel |  Pair of *Streptomyces* Genomes |  5-20 min |
-| Ortholog Pairs to COGs   | $O(g^2)$ | Single |  All pairs from 300 *Streptomyces* Genomes | 5 min |
-| Align and Make Tree (MP) | $O(C)$ | Parallel  |  Single *Streptomyces* COG | 20-40 min |
-| Align and Make Tree (ML) | $O(C)$ | Parallel | Single *Streptomyces* COG | 10-12 hr |
-| Calculate Coevolution | $O(C^2)$ | Parallel |  Pair of *Streptomyces* COGs | 5-10 sec |
+| Get Genomes     |  $O(G)$ |  Single  | 300 Genomes  |  ~60 sec |
+| Find Genes     | $O(G)$ | Parallel | Single Genome | ~15 min |
+| Annotate Genes | $O(G)$ |  Parallel | Single Genome | ~20 min |
+| Pairwise Orthology | $O(G^2)$ | Parallel |  Pair of Genomes |  ~10 min |
+| Ortholog Pairs to COGs   | $O(g^2)$ | Single |  All pairs from 300 Genomes | ~5 min |
+| Align and Make Tree | $O(C)$ | Parallel  |  Single COG | <1 sec (NJ) <br/> ~0.5 hr (MP) <br/> ~13 hr (ML) |
+| Calculate Coevolution | $O(C^2)$ | Parallel |  Pair of COGs | ~5 sec |
+| (Optimal) Total Runtime | --- | --- | 300 Genomes | ~1 hr (NJ) <br/> ~1.5 hr (MP) <br/> ~14 hr (ML) |
+
+For this example, 300 *Streptomyces* genomes resulted in ~2.2 million genes,
+resulting in ~65k COGs. Overall runtime depends on the phylogenetic reconstruction
+algorithm used. Tree construction is performed using amino acid alignments.
 
 Users interested in deploying these analyses at scale are encouraged to contact
 our lab for more information! 

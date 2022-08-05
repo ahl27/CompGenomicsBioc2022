@@ -251,6 +251,23 @@ plot(ids, trainingSet)
 }
 ```
 
+## Runtime Considerations
+
+Gene calling and annotation are both parallelizable; each compute node can process
+a single genome. 
+
+Runtime of gene calling depends on the length of each genome, but is overall
+very fast. For a single *Micrococcus* genome (~2.5 megabase pairs), `FindGenes` takes approximately
+40sec to find ~2200 genes on a 2021 M1 MacBook Pro. The same operation on an 8.5Mbp
+*Streptomyces* genome takes around 5min to find ~7000 genes. `FindNonCoding` has a
+similar runtime,
+
+Runtime of gene annotation depends on both the number of genes and the length of
+each gene (in base pairs). While compute could theoretically be parallelized to
+annotate one gene per compute node, this can be inefficient due to 
+overhead incurred by copying the training set file to each node. 
+Annotation on *Streptomyces* genes takes around 2 seconds per gene (ranging from 300-2000 bp).
+
 ## Conclusion
 We now have a way to identify genomic regions and annotate them with 
 function. However, for comparative genomics we need some way to 
