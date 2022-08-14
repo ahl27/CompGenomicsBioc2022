@@ -269,13 +269,13 @@ COGs.
 library(igraph)
 ```
 ```{r}
-set.seed(1234) # Reproducibility
+set.seed(123) # Reproducibility
 
 adjMatrix <- as.matrix(preds)
 g <- graph_from_adjacency_matrix(adjMatrix, weighted=TRUE,
                                  mode='undirected', diag=FALSE)
 
-clusters <- cluster_fast_greedy(g)
+clusters <- cluster_louvain(g)
 
 # Getting the clusters & identifying COGs by consensus annotation
 clusterLabels <- vector('list', length(clusters))
@@ -286,7 +286,7 @@ for ( i in seq_along(clusterLabels) ){
 }
 
 # Let's examine a cluster
-clusterLabels[[1]]
+clusterLabels[[3]]
 ```
 
 Note here that we've identified all the COGs in this group to be associated based
@@ -296,10 +296,11 @@ was done with no prior knowledge on what these COGs do; we reached this conclusi
 using purely sequencing data as input. This cluster is also very similar to 
 results in [the STRING database](https://version-11-5.string-db.org/cgi/network?networkId=bHOgs2hNXWxE).
 While STRING doesn't have the `nixA`, it does have `Achl_0397`, a similar
-nickle/cobalt transporter. We also have a viral integrase, which potentially 
-facilitates HGT of some of these genes. 
-If we had conducted this analysis with hypothetical proteins, we could have 
-inferred novel functions!
+nickle/cobalt transporter. We also see some other proteins that could have activity associated with urease function.
+
+We chose cluster 3 because it's small and easy to see common function. Louvain clustering identifies 4 total clusters, with cluster 1 seemingly related to stress response activity, cluster 2 related to transporting and using metals, cluster 3 related to urease activity, and cluster 4 relating to arabinogalactan/maltooligosaccharide transport.
+
+It's important to note here that this analysis is agnostic to the presence/absence of annotations. We subset our proteins to ones with high confidence annotations in this example primarily for purposes of demonstration. In actual applications we would use `ProtWeaver` with annotated and non-annotated proteins to infer novel function of hypothetical proteins.
 
 ## Methods Implemented in ProtWeaver
 
