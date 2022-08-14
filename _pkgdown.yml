@@ -103,6 +103,7 @@ reference:
     contents:
       - SynExtend::ProtWeaver
       - SynExtend::predict.ProtWeaver
+      - SynExtend::simMat
+      - SynExtend::ProtWeb
       - SynExtend::plot.ProtWeb
-      - SynExtend::GetProtWebData.ProtWeb
 

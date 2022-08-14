@@ -241,18 +241,17 @@ print(preds)
 ## Viewing our results
 
 Notice that `preds` is a `ProtWeb` object. This is just a simple S3 class with a 
-pretty print method wrapping a matrix of pairwise association scores. We can get
-the raw data with `GetProtWebData()`:
+pretty print method wrapping a matrix of pairwise association scores. `ProtWeb`
+inherits from the `simMat` class, which incorporates functionality similar
+to `dist` objects (notably memory-efficient storage of symmetric matrices) but with matrix-like operations and pretty print functions.
+See `?simMat` for more info.
+
+`ProtWeb` objects are easily coercible to matrices using `as.matrix`, but be aware matrix representations require roughly double the storage. `as.data.frame` will coerce `ProtWeb` objects into a `3xN` matrix of pairwise scores.
+
+We can use these functions to examine a histogram of association scores for all our predictions:
 
 ```{r}
-# Subset so the output is actually readable
-GetProtWebData(preds)[1:7, 1:7]
-```
-
-We can also examine a histogram of association scores for all our predictions:
-
-```{r}
-pwData <- GetProtWebData(preds)
+pwData <- as.matrix(preds)
 hist(pwData[upper.tri(pwData)], main='Histogram of Association Scores',
      xlab='Strength of Association')
 ```
@@ -272,7 +271,7 @@ library(igraph)
 ```{r}
 set.seed(1234) # Reproducibility
 
-adjMatrix <- GetProtWebData(preds)
+adjMatrix <- as.matrix(preds)
 g <- graph_from_adjacency_matrix(adjMatrix, weighted=TRUE,
                                  mode='undirected', diag=FALSE)
 

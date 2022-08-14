@@ -15,9 +15,6 @@ editor_options:
 options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(echo = TRUE)
 library(DECIPHER)
-newTreeLine <- system.file('extdata', 'TreeLine.R', 
-                            package='CompGenomicsBioc2022')
-source(newTreeLine, local=knitr::knit_global())
 ```
 
 ```{r echo=FALSE, out.width='100%'}

@@ -1,3 +1,6 @@
 inst/doc
 *~
 .DS_Store
+.Rproj.user
+*.Rproj
+.Rbuildignore
