@@ -75,9 +75,7 @@ the development version of Bioconductor.
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-# Set BiocManager to use development versions
-BiocManager::install(version='devel')
-
+# Install packages through BiocManager
 BiocManager::install('DECIPHER')
 BiocManager::install('SynExtend')
 ```
