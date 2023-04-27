@@ -93,7 +93,7 @@ reference:
     contents:
       - DECIPHER::Cophenetic
       - DECIPHER::DistanceMatrix
-      - DECIPHER::IdClusters
+      - DECIPHER::Clusterize
       - DECIPHER::TreeLine
       - DECIPHER::WriteDendrogram
 
