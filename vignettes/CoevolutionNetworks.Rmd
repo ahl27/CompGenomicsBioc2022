@@ -184,7 +184,7 @@ Let's also put together a list of consensus annotations for each COG.
 consAnnots <- vector('character', length=length(CogsAnnot))
 
 # Loop along the annotations for each COG
-for ( i in seq_along(CogsAnnot) ){
+for ( i in seq_along(CogsAnnot) ) {
   taxaentry <- CogsAnnot[[i]]
   
   # If no annotation, it's a noncoding gene
