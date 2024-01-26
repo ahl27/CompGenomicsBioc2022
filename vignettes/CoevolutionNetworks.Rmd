@@ -21,7 +21,7 @@ library(igraph)
 
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelineEvoWeaver.png')
+knitr::include_graphics('images/PipelineProtWeaver.png')
 ```
 
 ## Coevolutionary Analysis
