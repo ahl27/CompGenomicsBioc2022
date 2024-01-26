@@ -96,9 +96,9 @@ our lab for more information!
 
 If you've made it through this entire tutorial, thank you for following along!
 I hope this series was informative and useful to your analyses. All code showcased
-here is actively being worked on by members of our lab, especially the `ProtWeaver`
-and `ProtWeb` functionalities. If you have any comments, suggestions, or feature requests
-for `ProtWeaver`, `ProtWeb`, or this tutorial, please feel free to either email me at 
+here is actively being worked on by members of our lab, especially the `EvoWeaver`
+and `EvoWeb` functionalities. If you have any comments, suggestions, or feature requests
+for `EvoWeaver`, `EvoWeb`, or this tutorial, please feel free to either email me at 
 ahl27@pitt.edu or open an issue on GitHub.
 
 ## Other Resources

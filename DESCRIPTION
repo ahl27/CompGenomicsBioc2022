@@ -1,6 +1,6 @@
 Package: CompGenomicsBioc2022
 Title: Comparative Genomics Analyses with SynExtend and DECIPHER
-Version: 3.3.0
+Version: 3.4.0
 Authors@R: 
     person(given = "Aidan",
            family = "Lakshman",
@@ -18,8 +18,8 @@ Description: In the past decade, the number of sequenced proteins with unknown f
              - Gene calling and annotation using the DECIPHER package
              - Identification of clusters of orthologous genes using the SynExtend package
              - Construction of alignments and phylogenetic trees using the new TreeLine function in the DECIPHER package
-             - Prediction of functional associations using ProtWeaver in the SynExtend package
-             The talk will highlight our newest functionality, ProtWeaver, which implements several methods commonly used in the literature 
+             - Prediction of functional associations using EvoWeaver in the SynExtend package
+             The talk will highlight our newest functionality, EvoWeaver, which implements several methods commonly used in the literature 
              to prediction protein functional association. We will briefly show how each algorithm works, then apply them to a real set of 
              proteins of unknown function. This workshop will teach participants how to extract useful information from large biological 
              sequence data with comparative genomics and predict the function of uncharacterized proteins.

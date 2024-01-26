@@ -21,14 +21,14 @@ library(igraph)
 
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('images/PipelineProtWeaver.png')
+knitr::include_graphics('images/PipelineEvoWeaver.png')
 ```
 
 ## Coevolutionary Analysis
 
 At this point, we've walked through the steps to take a set of sequences and obtain
 a set of COGs with phylogenetic reconstructions for each COG. We're now ready to look for signals of coevolution, which imply functional associations between COGs.
-These methods are implemented via the `ProtWeaver` class in `SynExtend`, which 
+These methods are implemented via the `EvoWeaver` class in `SynExtend`, which 
 includes many commonly used methods for detecting coevolutionary patterns.
 
 While the previous steps have only utilized a small subsample of the data, we're
@@ -41,7 +41,7 @@ We ran the complete pipeline of identifying and annotating genes with `DECIPHER`
 is performed entirely within `SynExtend` and `DECIPHER`; no external packages
 or data are required aside from the input genomes.
 
-We now use the new `ProtWeaver` class to try to find COGs that show evidence of
+We now use the new `EvoWeaver` class to try to find COGs that show evidence of
 correlated evolutionary selective pressures, also referred to as 'coevolutionary
 signal'.
 
@@ -123,7 +123,7 @@ plot(CogTrees[[7]], leaflab='none', main='COG 7')
 ```
 
 There is a ton of data here, and we unfortunately don't have time to look at 
-all of it. To demonstrate some of the things we can do with `ProtWeaver`, we're
+all of it. To demonstrate some of the things we can do with `EvoWeaver`, we're
 going to look at subset of the data that is easier to investigate. 
 
 We'll subset the COGs to ones that meet the following characteristics:
@@ -207,22 +207,22 @@ for ( i in seq_along(CogsAnnot) ) {
 }
 ```
 
-Now we can make our `ProtWeaver` object. `ProtWeaver` has multiple input options,
+Now we can make our `EvoWeaver` object. `EvoWeaver` has multiple input options,
 either a list formatted like `COGs` (list with gene identifiers) or a list like 
 `CogTrees` (list with gene trees).
 
 ```{r eval=FALSE}
-# ProtWeaver constructor
-pw <- ProtWeaver(WTrees)
+# EvoWeaver constructor
+pw <- EvoWeaver(WTrees)
 ```
 
-The `ProtWeaver` constuctor automatically detects the type of data you have and 
+The `EvoWeaver` constuctor automatically detects the type of data you have and 
 adjusts available predictors accordingly. While it functions best with a list
 of dendrograms for each COG, it can also run with simple presence/absence patterns.
-See the documentation file for `ProtWeaver` for more information on this functionality.
+See the documentation file for `EvoWeaver` for more information on this functionality.
 
 We're now ready to make predictions. Predicting functional associations is done
-with the `predict.ProtWeaver` S3 method. Let's examine possible functional associations between the COGs we have.
+with the `predict.EvoWeaver` S3 method. Let's examine possible functional associations between the COGs we have.
 
 ```{r echo=FALSE}
 OutFile <- system.file('extdata', 'CoevNetworks', 
@@ -240,13 +240,13 @@ print(preds)
 ```
 ## Viewing our results
 
-Notice that `preds` is a `ProtWeb` object. This is just a simple S3 class with a 
-pretty print method wrapping a matrix of pairwise association scores. `ProtWeb`
+Notice that `preds` is a `EvoWeb` object. This is just a simple S3 class with a 
+pretty print method wrapping a matrix of pairwise association scores. `EvoWeb`
 inherits from the `simMat` class, which incorporates functionality similar
 to `dist` objects (notably memory-efficient storage of symmetric matrices) but with matrix-like operations and pretty print functions.
 See `?simMat` for more info.
 
-`ProtWeb` objects are easily coercible to matrices using `as.matrix`, but be aware matrix representations require roughly double the storage. `as.data.frame` will coerce `ProtWeb` objects into a `3xN` matrix of pairwise scores.
+`EvoWeb` objects are easily coercible to matrices using `as.matrix`, but be aware matrix representations require roughly double the storage. `as.data.frame` will coerce `EvoWeb` objects into a `3xN` matrix of pairwise scores.
 
 We can use these functions to examine a histogram of association scores for all our predictions:
 
@@ -256,11 +256,11 @@ hist(pwData[upper.tri(pwData)], main='Histogram of Association Scores',
      xlab='Strength of Association')
 ```
 
-The `ProtWeb` class will be updated next release cycle to include more methods, 
-including a custom plotting function. The current `plot.ProtWeb` S3 method 
+The `EvoWeb` class will be updated next release cycle to include more methods, 
+including a custom plotting function. The current `plot.EvoWeb` S3 method 
 implements a force-directed embedding of the pairwise scores, but it's a
 big work-in-progress. Stay tuned for the next release cycle for more functionality
-regarding `ProtWeb`.
+regarding `EvoWeb`.
 
 In the meantime, we can use the `igraph` package to find clusters of coevolving
 COGs.
@@ -300,11 +300,11 @@ nickle/cobalt transporter. We also see some other proteins that could have activ
 
 We chose cluster 3 because it's small and easy to see common function. Louvain clustering identifies 4 total clusters, with cluster 1 seemingly related to stress response activity, cluster 2 related to transporting and using metals, cluster 3 related to urease activity, and cluster 4 relating to arabinogalactan/maltooligosaccharide transport.
 
-It's important to note here that this analysis is agnostic to the presence/absence of annotations. We subset our proteins to ones with high confidence annotations in this example primarily for purposes of demonstration. In actual applications we would use `ProtWeaver` with annotated and non-annotated proteins to infer novel function of hypothetical proteins.
+It's important to note here that this analysis is agnostic to the presence/absence of annotations. We subset our proteins to ones with high confidence annotations in this example primarily for purposes of demonstration. In actual applications we would use `EvoWeaver` with annotated and non-annotated proteins to infer novel function of hypothetical proteins.
 
-## Methods Implemented in ProtWeaver
+## Methods Implemented in EvoWeaver
 
-By default, `predict.ProtWeaver` makes an ensemble prediction using as many individual
+By default, `predict.EvoWeaver` makes an ensemble prediction using as many individual
 models as it can run with the data provided. However, users are free to use any of 
 the individual models without the ensemble predictor. The methods implemented are 
 the following:
@@ -342,7 +342,7 @@ ResidueMI <- predict(pw, Method='ResidueMI')
 
 ## Runtime Considerations
 
-Runtime of `ProtWeaver` depends on the number of COGs and the method used. Most of 
+Runtime of `EvoWeaver` depends on the number of COGs and the method used. Most of 
 the methods are extremely quick, on the order of 0-1 seconds per comparison. 
 The default `Method="Ensemble"` implements the fastest methods, giving a good
 compromise between speed and accuracy. For a set of 100 COGs, `Ensemble` prediction

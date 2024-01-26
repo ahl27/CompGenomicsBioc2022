@@ -101,9 +101,9 @@ reference:
     desc: >
       Functions for finding co-evolutionary signal between COGs
     contents:
-      - SynExtend::ProtWeaver
-      - SynExtend::predict.ProtWeaver
+      - SynExtend::EvoWeaver
+      - SynExtend::predict.EvoWeaver
       - SynExtend::simMat
-      - SynExtend::ProtWeb
-      - SynExtend::plot.ProtWeb
+      - SynExtend::EvoWeb
+      - SynExtend::plot.EvoWeb
 

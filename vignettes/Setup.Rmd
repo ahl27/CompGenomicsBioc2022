@@ -69,7 +69,15 @@ This workshop depends on two main packages: `DECIPHER` and `SynExtend`.
 These will be installed via [Bioconductor](http://bioconductor.org/), a package 
 manager for open source bioinformatics projects in R. These tutorials will use
 `DECIPHER` version `2.25.0` and `SynExtend` version `1.9.6`, which are available on
-the development version of Bioconductor.
+the development version of Bioconductor. If you are viewing this tutorial in the future
+(after 2022), just use the most recent release version of `DECIPHER` and `SynExtend`--
+we plan to maintain backwards compatibility, so everything should work fine. If you encounter
+issues using the latest release with these tutorials, please feel free to open an issue on GitHub
+or email me.
+
+**2024 Update: These functions have all been officially released in Bioconductor.**
+**The most recent working release is SynExtend version 1.14.0, available fwrom Bioconductor version 3.18.**
+**Similarly, `DECIPHER` version 2.30.0 should be used instead of 2.25.0**. 
 
 ```{r eval=FALSE}
 if (!require("BiocManager", quietly = TRUE))

@@ -1,3 +1,8 @@
+# Version 3.4.0
+### 2024 Update
+* `ProtWeaver` and `ProtWeb` updated to `EvoWeaver` and `EvoWeb` (respectively)
+* Added some notes on correct package versions for use in this tutorial
+
 # Version 3.3.0
 ### General Notes
 * First update after Bioconductor conference
@@ -32,7 +37,7 @@
 
 # Version 2.1.0
 ### General Notes
-* `ProtWeaver` analysis now uses the correct dataset
+* `EvoWeaver` analysis now uses the correct dataset
 * Conclusions page updated
 * `IdTaxa` training set fixed
 * Download links moved to be on each page
@@ -44,11 +49,11 @@
 
 # Version 2.0.0
 ### General Notes
-* All examples except `ProtWeaver` analysis use the same dataset
+* All examples except `EvoWeaver` analysis use the same dataset
 * `IdTaxa` now uses the correct training set
 
 ### Future Work
-* `ProtWeaver` example will be updated
+* `EvoWeaver` example will be updated
 * Conclusions section will be updated with actual takeaways
 * Writeup within each section will be changed to reflect new examples
 * Images will be added

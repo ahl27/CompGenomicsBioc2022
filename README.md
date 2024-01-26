@@ -4,6 +4,8 @@ The `SynExtend` and `DECIPHER` packages for R incorporate a wealth of easy to us
 
 I've summarized on this page all the skills you can expect to learn by working through the tutorials on this site. When you're ready to get started, check out the [Overview](https://www.ahl27.com/CompGenomicsBioc2022/articles/CompGenomicsBioc2022.html) page!
 
+**Note:** When this tutorial was originally given, multiple steps of the pipeline used a function called `ProtWeaver`. This has since been renamed to `EvoWeaver` (as well as `ProtWeb` renamed to `EvoWeb`). I've attempted to correct all the locations where this occurs, but you may encounter references to the old naming scheme in files available through the Docker image.
+
 ----------------------------------
 
 ## Topics Covered
@@ -36,7 +38,7 @@ Each COG comprises sets of conserved orthologs across species. These data, combi
 
 ### [Identifying Co-evolving Gene Collectives with `SynExtend`](https://www.ahl27.com/CompGenomicsBioc2022/articles/CoevolutionNetworks.html)
 
-With these data, we can analyze patterns in evolutionary signal across COGs. Co-evolutionary signal between genes implies functional association, so finding COGs under shared selective pressure aids us in uncovering the mechanisms of intracellular pathways. Users will learn to use the `ProtWeaver` class to tease out subtle evidence of correlated evolutionary pressure in order to create co-evolutionary networks. 
+With these data, we can analyze patterns in evolutionary signal across COGs. Co-evolutionary signal between genes implies functional association, so finding COGs under shared selective pressure aids us in uncovering the mechanisms of intracellular pathways. Users will learn to use the `EvoWeaver` class to tease out subtle evidence of correlated evolutionary pressure in order to create co-evolutionary networks. 
 
 [<sup>Function Reference</sup>](https://www.ahl27.com/CompGenomicsBioc2022/reference/index.html#finding-co-evolving-gene-collectives)
 
