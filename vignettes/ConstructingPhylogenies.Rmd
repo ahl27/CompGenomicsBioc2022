@@ -135,7 +135,7 @@ that goes into the mathematics of how these methods work.
 Example code for each of these:
 ```{r results='hide', fig.keep='all'}
 # Maximum Parsimony
-treeMP <- TreeLine(myXStringSet=testSeqs, method='MP', reconstruct=TRUE)
+treeMP <- TreeLine(myXStringSet=testSeqs, method='MP')
 plot(treeMP, main='MP')
 ```
 ```{r results='hide', fig.keep='all'}
