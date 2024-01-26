@@ -1,4 +1,4 @@
-pandoc: 2.19.2
+pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -10,7 +10,7 @@ articles:
   GeneCallingAnnotation: GeneCallingAnnotation.html
   LoadingGenomeData: LoadingGenomeData.html
   Setup: Setup.html
-last_built: 2023-04-27T20:32Z
+last_built: 2024-01-26T18:18Z
 urls:
   reference: https://www.ahl27.com/CompGenomicsBioc2022/reference
   article: https://www.ahl27.com/CompGenomicsBioc2022/articles
